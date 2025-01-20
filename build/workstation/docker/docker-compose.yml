@@ -1,0 +1,85 @@
+version: '3'
+name: ragkb
+services:
+  # RAGKB services
+  unit-tests:
+    build:
+      context: ../../..
+      dockerfile: build/workstation/docker/Dockerfile.unit_tests
+
+  embed:
+    build:
+      context: ../../..
+      dockerfile: build/workstation/docker/Dockerfile.embed
+      args:
+        BUILD_NAME: "default-build-name"
+        CONFIGURATION_FILE: "src/common/bootstrap/configuration/configuration.json"
+        SECRETS_FILE: "env_vars/.env"
+
+  chat:
+    build:
+      context: ../../..
+      dockerfile: build/workstation/docker/Dockerfile.chat
+      args:
+        BUILD_NAME: "default-build-name"
+        CONFIGURATION_FILE: "src/common/bootstrap/configuration/configuration.json"
+        SECRETS_FILE: "env_vars/.env"
+    ports:
+      -  "${RAGKB__CHAINLIT__PORT}:8000"
+    restart: unless-stopped
+
+  evaluate:
+    build:
+      context: ../../..
+      dockerfile: build/workstation/docker/Dockerfile.evaluate
+      args:
+        BUILD_NAME: "default-build-name"
+        CONFIGURATION_FILE: "src/common/bootstrap/configuration/configuration.json"
+        SECRETS_FILE: "env_vars/.env"
+
+  # Base services
+  qdrant:
+    image: qdrant/qdrant:v1.9.0
+    environment:
+      QDRANT__SERVICE__REST_PORT: ${RAGKB__VECTOR_STORE__PORT_REST}
+      QDRANT__SERVICE__GRPC_PORT: ${RAGKB__VECTOR_STORE__PORT_GRPC}
+    ports:
+      - "${RAGKB__VECTOR_STORE__PORT_REST}:${RAGKB__VECTOR_STORE__PORT_REST}"
+      - "${RAGKB__VECTOR_STORE__PORT_GRPC}:${RAGKB__VECTOR_STORE__PORT_GRPC}"
+    restart: unless-stopped
+    volumes:
+      - ./.docker-data/qdrant:/qdrant/storage
+
+  langfuse-db:
+    build:
+      dockerfile: Dockerfile.postgres.langfuse
+    environment:
+      RAGKB__LANGFUSE__DATABASE__NAME: ${RAGKB__LANGFUSE__DATABASE__NAME}
+      POSTGRES_USER: ${RAGKB__LANGFUSE__DATABASE__USER}
+      POSTGRES_PASSWORD: ${RAGKB__LANGFUSE__DATABASE__PASSWORD}
+      POSTGRES_DB: postgres
+    ports:
+      - "${RAGKB__LANGFUSE__DATABASE__PORT}:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d ${RAGKB__LANGFUSE__DATABASE__NAME} -U ${RAGKB__LANGFUSE__DATABASE__USER}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    volumes:
+      - ./.docker-data/langfuse-postgres:/var/lib/postgresql/data
+
+  langfuse:
+    image: langfuse/langfuse:2.71.0
+    depends_on:
+      langfuse-db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${RAGKB__LANGFUSE__DATABASE__USER}:${RAGKB__LANGFUSE__DATABASE__PASSWORD}@langfuse-db:5432/${RAGKB__LANGFUSE__DATABASE__NAME}
+      NEXTAUTH_URL: http://localhost:3000
+      PORT: ${RAGKB__LANGFUSE__PORT}
+      NEXTAUTH_SECRET: mysecret
+      SALT: mysalt
+    ports:
+      - "${RAGKB__LANGFUSE__PORT}:${RAGKB__LANGFUSE__PORT}"
+    restart: unless-stopped

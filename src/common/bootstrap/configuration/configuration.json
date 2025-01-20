@@ -1,0 +1,74 @@
+{
+    "metadata": {
+        "log_level": "info",
+        "environment": "local"
+    },
+    "pipeline": {
+        "embedding": {
+            "datasources": [
+                {
+                    "name": "notion",
+                    "export_limit": null,
+                    "home_page_database_id": "4c962a24-67d4-4b8d-9d25-b235ed46ae92"
+                }
+            ],
+            "embedding_model": {
+                "name": "BAAI/bge-small-en-v1.5",
+                "tokenizer_name": "BAAI/bge-small-en-v1.5",
+                "splitting": {
+                    "name": "basic",
+                    "chunk_overlap_in_tokens": 50,
+                    "chunk_size_in_tokens": 384
+                }
+            },
+            "vector_store": {
+                "name": "qdrant",
+                "collection_name": "ragkb-v9-baai",
+                "ports": {
+                    "rest": 6333,
+                    "grpc": 6334
+                }
+            }
+        },
+        "augmentation": {
+            "query_engine": {
+                "retriever": {
+                    "name": "basic",
+                    "similarity_top_k": 5
+                },
+                "synthesizer": {
+                    "name": "tree",
+                    "llm": {
+                        "name": "nemo",
+                        "max_tokens": 1024,
+                        "max_retries": 3,
+                        "context_window": 16384
+                    }
+                },
+                "postprocessors": []
+            },
+            "langfuse": {
+                "port": 3003,
+                "database": {
+                    "port": 5532,
+                    "db": "langfuse"
+                }
+            },
+            "chainlit": {
+                "port": 8001
+            }
+        },
+        "evaluation": {
+            "judge_llm": {
+                "name": "nemo",
+                "max_tokens": 1024,
+                "max_retries": 3,
+                "context_window": 16384
+            },
+            "judge_embedding_model": {
+                "name": "BAAI/bge-small-en-v1.5",
+                "tokenizer_name": "BAAI/bge-small-en-v1.5"
+            }
+        }
+    }
+}

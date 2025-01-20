@@ -1,0 +1,20 @@
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+
+ARG BUILD_NAME
+ARG CONFIGURATION_FILE
+ARG SECRETS_FILE
+
+ENV BUILD_NAME=${BUILD_NAME}
+ENV CONFIGURATION_FILE=${CONFIGURATION_FILE}
+ENV SECRETS_FILE=${SECRETS_FILE}
+ENV UV_SYSTEM_PYTHON=1
+
+WORKDIR /app
+ADD ./requirements.txt /app/requirements.txt
+RUN --mount=type=cache,target=/root/.cache \
+            uv pip install -r requirements.txt
+ADD . /app
+
+ENV TOKENIZERS_PARALLELISM=false
+
+CMD python src/chat.py --build-name ${BUILD_NAME} --config-file ${CONFIGURATION_FILE} --secrets-file ${SECRETS_FILE}
