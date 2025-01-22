@@ -26,9 +26,11 @@ jobs:
 
       - name: "Set up Python"
         uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.3"
 
       - name: Install requirements
-        run: uv pip sync requirements.txt 
+        run: uv pip sync requirements.txt --system
 
       - name: Run tests
         run: pytest
