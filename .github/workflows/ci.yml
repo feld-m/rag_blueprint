@@ -1,5 +1,11 @@
 name: CI
 
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
 jobs:
   uv-example:
     name: python
