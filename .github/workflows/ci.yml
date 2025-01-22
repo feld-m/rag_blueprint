@@ -33,4 +33,4 @@ jobs:
         run: uv pip sync requirements.txt --system
 
       - name: Run tests
-        run: pytest
+        run: uv run pytest tests --system
