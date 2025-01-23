@@ -5,3 +5,4 @@ This module contains functionality related to the the `default_embedder` module 
 ## Default_embedder
 
 ::: src.embedding.embedders.default_embedder
+

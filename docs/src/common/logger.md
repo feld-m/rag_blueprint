@@ -5,3 +5,4 @@ This module contains functionality related to the the `logger` module for `commo
 ## Logger
 
 ::: src.common.logger
+

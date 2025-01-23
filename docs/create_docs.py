@@ -1,4 +1,5 @@
 import os
+import shutil
 
 import yaml
 
@@ -36,6 +37,15 @@ def get_module_description(module_name: str, parent_module: str) -> str:
     # Clean up parent module path
     context = parent_module.replace("src.", "")
     return f"the `{module_name}` module for `{context}`"
+
+
+def clean_docs_directory(docs_dir: str):
+    """Remove the existing documentation directory and recreate it."""
+    if os.path.exists(docs_dir):
+        print(f"Removing existing documentation directory: {docs_dir}")
+        shutil.rmtree(docs_dir)
+    os.makedirs(docs_dir, exist_ok=True)
+    print(f"Created fresh documentation directory: {docs_dir}")
 
 
 def generate_markdown_template(base_dir, docs_dir, parent_module):
@@ -177,7 +187,7 @@ def update_mkdocs_yml(nav_structure):
         },
         {
             "How to": [
-                {"How To Add New LLM": "how_to/how_to_add_new_llm.md"},
+                {"How To Add a New LLM": "how_to/how_to_add_new_llm.md"},
             ]
         },
         {
@@ -216,7 +226,7 @@ def update_mkdocs_yml(nav_structure):
     # Base configuration for MkDocs
     config = {
         "site_name": "RAG Systems",
-        "repo_url": "https://code.feld-m.de/intern/rag-confluence/",
+        "repo_url": "https://github.com/rag_blueprint/",
         "theme": "readthedocs",
         "plugins": ["mkdocstrings", "search"],
         "watch": ["."],
@@ -231,6 +241,9 @@ def update_mkdocs_yml(nav_structure):
 
 
 if __name__ == "__main__":
+    # Clean the docs/src directory
+    clean_docs_directory(DOCS_DIR)
+
     # Generate documentation for the entire project
     nav_structure = generate_markdown_files(SRC_DIR, DOCS_DIR)
 
