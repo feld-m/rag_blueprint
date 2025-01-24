@@ -28,14 +28,17 @@ jobs:
       - name: Generate Documentation
         run: python docs/create_docs.py 
 
-      - name: Check for changes in docs
-        run: |
-          git diff --quiet docs/ mkdocs.yml || echo "Changes detected"
+      - name: Check for changes in docs or mkdocs.yml
         id: check_changes
-        continue-on-error: true
+        run: |
+          if git diff --quiet docs/ mkdocs.yml; then
+            echo "no_changes=true" >> $GITHUB_ENV
+          else
+            echo "no_changes=false" >> $GITHUB_ENV
+          fi
 
       - name: Commit and Push Docs
-        if: steps.check_changes.outcome == 'success'
+        if: env.no_changes == 'false'
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
@@ -44,4 +47,5 @@ jobs:
           git push origin main
 
       - name: Deploy to GitHub Pages
+        if: env.no_changes == 'false'
         run: mkdocs gh-deploy --force
