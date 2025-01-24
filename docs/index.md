@@ -1,7 +1,7 @@
-# RAG System Documentation
+# RAG Blueprint Documentation
 
 ## Overview
-RAG project is a Retrieval-Augmented Generation system that integrates with several datasources to provide intelligent document search and analysis. The system combines the power of different large language models with knowledge bases to deliver accurate, context-aware responses through a chat interface.
+The RAG blueprint project is a Retrieval-Augmented Generation system that integrates with several datasources to provide intelligent document search and analysis. The system combines the power of different large language models with knowledge bases to deliver accurate, context-aware responses through a chat interface.
 
 ## Data Sources
 
