@@ -1,6 +1,4 @@
-# RAG Knowledge Base
-
-RAG system on top of the Notion knowledge base exposed through the chat UI
+# RAG Blueprint
 
 ### Tech Stack
 
