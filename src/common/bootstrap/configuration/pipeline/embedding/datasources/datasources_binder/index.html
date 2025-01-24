@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../../../../../img/favicon.ico" />
+    <title>Datasources_binder - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Datasources_binder";
+        var mkdocs_page_input_path = "src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../../../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../../../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../../quickstart/developer_setup/">Developer Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../../how_to/how_to_add_new_llm/">How To Add a New LLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../augmentation/chainlit/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../../augmentation/utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Common</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" >Bootstrap</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" >Configuration</a>
+    <ul class="current">
+                <li class="toctree-l4 current"><a class="reference internal current" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../base_binder/">Base_binder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../langfuse/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../langfuse/dataset/">Dataset</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../retrievers/">Retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../query_engine/">Query_engine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/datasources/confluence/">Confluence</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/embedders/default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/embedders/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/embedders/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/orchestrators/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Common</li>
+          <li class="breadcrumb-item">Bootstrap</li>
+          <li class="breadcrumb-item">Configuration</li>
+          <li class="breadcrumb-item">Pipeline</li>
+          <li class="breadcrumb-item">Embedding</li>
+          <li class="breadcrumb-item">Datasources</li>
+      <li class="breadcrumb-item active">Datasources_binder</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="datasources_binder">Datasources_binder</h1>
+<p>This module contains functionality related to the the <code>datasources_binder</code> module for <code>common.bootstrap.configuration.pipeline.embedding.datasources</code>.</p>
+<h2 id="datasources_binder_1">Datasources_binder</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.ConfluenceBinder" class="doc doc-heading">
+            <code>ConfluenceBinder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="common.bootstrap.base_binder.BaseBinder">BaseBinder</span></code></p>
+
+
+        <p>Binder for the Confluence datasources components.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ConfluenceBinder(BaseBinder):
+    """Binder for the Confluence datasources components."""
+
+    def bind(self) -&gt; Type:
+        """Bind the Confluence datasources components.
+
+        Returns:
+            Type: The Confluence datasource manager."""
+        self._bind_confluence_cofuguration()
+        self._bind_client()
+        self._bind_reader()
+        self._bind_cleaner()
+        self._bind_splitter()
+        self._bind_manager()
+        return ConfluenceDatasourceManager
+
+    def _bind_confluence_cofuguration(self) -&gt; None:
+        """Bind the Confluence datasource configuration."""
+        confluence_configuration = [
+            configuration
+            for configuration in self.configuration.pipeline.embedding.datasources
+            if isinstance(configuration, ConfluenceDatasourceConfiguration)
+        ][0]
+        self.binder.bind(
+            ConfluenceDatasourceConfiguration,
+            to=confluence_configuration,
+            scope=singleton,
+        )
+
+    def _bind_client(self) -&gt; None:
+        """Bind the Confluence client."""
+        self.binder.bind(
+            Confluence,
+            to=ConfluenceClientBuilder.build,
+        )
+
+    def _bind_reader(self) -&gt; None:
+        """Bind the Confluence reader."""
+        self.binder.bind(
+            ConfluenceReader,
+            to=ConfluenceReaderBuilder.build,
+        )
+
+    def _bind_cleaner(self) -&gt; None:
+        """Bind the Confluence cleaner."""
+        self.binder.bind(ConfluenceCleaner, to=ConfluenceCleanerBuilder.build)
+
+    def _bind_splitter(self) -&gt; None:
+        """Bind the Confluence splitter."""
+        self.binder.bind(
+            ConfluenceSplitter,
+            to=ConfluenceSplitterBuilder.build,
+        )
+
+    def _bind_manager(self) -&gt; None:
+        """Bind the Confluence datasource manager."""
+        self.binder.bind(
+            ConfluenceDatasourceManager,
+            to=ConfluenceDatasourceManagerBuilder.build,
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.ConfluenceBinder.bind" class="doc doc-heading">
+            <code class="highlight language-python">bind()</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Confluence datasources components.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Type</code></b>(                  <code><span title="typing.Type">Type</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>The Confluence datasource manager.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <pre class="highlight"><code class="language-python">def bind(self) -&gt; Type:
+    """Bind the Confluence datasources components.
+
+    Returns:
+        Type: The Confluence datasource manager."""
+    self._bind_confluence_cofuguration()
+    self._bind_client()
+    self._bind_reader()
+    self._bind_cleaner()
+    self._bind_splitter()
+    self._bind_manager()
+    return ConfluenceDatasourceManager</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.DatasourcesBinder" class="doc doc-heading">
+            <code>DatasourcesBinder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="common.bootstrap.base_binder.BaseBinder">BaseBinder</span></code></p>
+
+
+        <p>Binder for the datasources components.</p>
+<p>Bind the list of datasource managers based on the configuration.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+                <pre class="highlight"><code class="language-python">class DatasourcesBinder(BaseBinder):
+    """Binder for the datasources components.
+
+    Bind the list of datasource managers based on the configuration."""
+
+    mapping = {
+        DatasourceName.CONFLUENCE: ConfluenceBinder,
+        DatasourceName.NOTION: NotionDatasourceBinder,
+        DatasourceName.PDF: PdfDatasourcesBinder,
+    }
+
+    def bind(self) -&gt; None:
+        self._bind_datasource_managers()
+        self._bind_embedder()
+        self._bind_datasource_orchestrator()
+
+    def _bind_datasource_managers(self) -&gt; None:
+        """Bind the datasource managers.
+
+        Bind the datasource managers based on the configuration."""
+        datasources_configuration = (
+            self.configuration.pipeline.embedding.datasources
+        )
+        datasources = {}
+
+        for datasource_configuration in datasources_configuration:
+            datasource_manager_key = DatasourcesBinder.mapping[
+                datasource_configuration.name
+            ](configuration=self.configuration, binder=self.binder).bind()
+            datasources[datasource_configuration.name] = self._get_bind(
+                datasource_manager_key
+            )()
+
+        self.binder.bind(
+            BoundDatasourceManagers,
+            to=lambda: datasources,
+            scope=singleton,
+        )
+
+    def _bind_embedder(self) -&gt; None:
+        """Bind the embedder."""
+        self.binder.bind(
+            Embedder,
+            to=EmbedderBuilder.build,
+        )
+
+    def _bind_datasource_orchestrator(self) -&gt; None:
+        """Bind the datasource orchestrator."""
+        self.binder.bind(
+            DatasourceOrchestrator,
+            to=DatasourceOrchestratorBuilder.build,
+            scope=singleton,
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.NotionDatasourceBinder" class="doc doc-heading">
+            <code>NotionDatasourceBinder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="common.bootstrap.base_binder.BaseBinder">BaseBinder</span></code></p>
+
+
+        <p>Binder for the Notion datasources components.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionDatasourceBinder(BaseBinder):
+    """Binder for the Notion datasources components."""
+
+    def bind(self) -&gt; Type:
+        """Bind the Notion datasources components.
+
+        Returns:
+            Type: The Notion datasource manager."""
+        self._bind_notion_cofuguration()
+        self._bind_exporter()
+        self._bind_client()
+        self._bind_reader()
+        self._bind_cleaner()
+        self._bind_splitter()
+        self._bind_manager()
+        return NotionDatasourceManager
+
+    def _bind_notion_cofuguration(self) -&gt; None:
+        """Bind the Notion datasource configuration."""
+        notion_configuration = [
+            configuration
+            for configuration in self.configuration.pipeline.embedding.datasources
+            if isinstance(configuration, NotionDatasourceConfiguration)
+        ][0]
+        self.binder.bind(
+            NotionDatasourceConfiguration,
+            to=notion_configuration,
+            scope=singleton,
+        )
+
+    def _bind_exporter(self) -&gt; None:
+        """Bind the Notion exporter."""
+        self.binder.bind(
+            NotionExporter,
+            to=NotionExporterBuilder.build,
+        )
+
+    def _bind_client(self) -&gt; None:
+        """Bind the Notion client."""
+        self.binder.bind(
+            Client,
+            to=NotionClientBuilder.build,
+        )
+
+    def _bind_reader(self) -&gt; None:
+        """Bind the Notion reader."""
+        self.binder.bind(
+            NotionReader,
+            to=NotionReaderBuilder.build,
+        )
+
+    def _bind_cleaner(self) -&gt; None:
+        """Bind the Notion cleaner."""
+        self.binder.bind(
+            NotionCleaner,
+            to=NotionCleanerBuilder.build,
+        )
+
+    def _bind_splitter(self) -&gt; None:
+        """Bind the Notion splitter."""
+        self.binder.bind(
+            NotionSplitter,
+            to=NotionSplitterBuilder.build,
+        )
+
+    def _bind_manager(self) -&gt; None:
+        """Bind the Notion datasource manager."""
+        self.binder.bind(
+            NotionDatasourceManager,
+            to=NotionDatasourceManagerBuilder.build,
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.NotionDatasourceBinder.bind" class="doc doc-heading">
+            <code class="highlight language-python">bind()</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Notion datasources components.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Type</code></b>(                  <code><span title="typing.Type">Type</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>The Notion datasource manager.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <pre class="highlight"><code class="language-python">def bind(self) -&gt; Type:
+    """Bind the Notion datasources components.
+
+    Returns:
+        Type: The Notion datasource manager."""
+    self._bind_notion_cofuguration()
+    self._bind_exporter()
+    self._bind_client()
+    self._bind_reader()
+    self._bind_cleaner()
+    self._bind_splitter()
+    self._bind_manager()
+    return NotionDatasourceManager</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.PdfDatasourcesBinder" class="doc doc-heading">
+            <code>PdfDatasourcesBinder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="common.bootstrap.base_binder.BaseBinder">BaseBinder</span></code></p>
+
+
+        <p>Binder for the PDF datasources components.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+                <pre class="highlight"><code class="language-python">class PdfDatasourcesBinder(BaseBinder):
+    """Binder for the PDF datasources components."""
+
+    def bind(self) -&gt; Type:
+        """Bind the PDF datasources components.
+
+        Returns:
+            Type: The PDF datasource manager."""
+        self._bind_pdf_configuration()
+        self._bind_reader()
+        self._bind_manager()
+        return PdfDatasourceManager
+
+    def _bind_pdf_configuration(self) -&gt; None:
+        """Bind the PDF datasource configuration."""
+        confluence_configuration = [
+            configuration
+            for configuration in self.configuration.pipeline.embedding.datasources
+            if isinstance(configuration, PdfDatasourceConfiguration)
+        ][0]
+        self.binder.bind(
+            PdfDatasourceConfiguration,
+            to=confluence_configuration,
+            scope=singleton,
+        )
+
+    def _bind_reader(self) -&gt; None:
+        """Bind the PDF reader."""
+        self.binder.bind(
+            PdfReader,
+            to=PdfReaderBuilder.build,
+        )
+
+    def _bind_manager(self) -&gt; None:
+        """Bind the PDF datasource manager."""
+        self.binder.bind(
+            PdfDatasourceManager,
+            to=PdfDatasourceManagerBuilder.build,
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.PdfDatasourcesBinder.bind" class="doc doc-heading">
+            <code class="highlight language-python">bind()</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the PDF datasources components.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Type</code></b>(                  <code><span title="typing.Type">Type</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>The PDF datasource manager.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <pre class="highlight"><code class="language-python">def bind(self) -&gt; Type:
+    """Bind the PDF datasources components.
+
+    Returns:
+        Type: The PDF datasource manager."""
+    self._bind_pdf_configuration()
+    self._bind_reader()
+    self._bind_manager()
+    return PdfDatasourceManager</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../../../../initializer/" class="btn btn-neutral float-left" title="Initializer"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../datasources_binding_keys/" class="btn btn-neutral float-right" title="Datasources_binding_keys">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../../../../../initializer/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../datasources_binding_keys/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../../../../../..";</script>
+    <script src="../../../../../../../../js/theme_extra.js"></script>
+    <script src="../../../../../../../../js/theme.js"></script>
+      <script src="../../../../../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

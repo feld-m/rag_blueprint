@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>How To Add a New LLM - RAG Systems</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "How To Add a New LLM";
+        var mkdocs_page_input_path = "how_to/how_to_add_new_llm.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/developer_setup/">Developer Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">How To Add a New LLM</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#define-the-llm-provider">Define the LLM Provider</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configure-llm-secrets">Configure LLM Secrets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implement-the-llm-configuration">Implement the LLM Configuration</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/augmentation/utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Common</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/common/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/bootstrap/base_binder/">Base_binder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/langfuse/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/langfuse/dataset/">Dataset</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/common/retrievers/">Retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/common/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/common/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/common/query_engine/">Query_engine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/datasources/confluence/">Confluence</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">How to</li>
+      <li class="breadcrumb-item active">How To Add a New LLM</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/how_to/how_to_add_new_llm.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="how-to-add-new-llm-implementation">How To Add New LLM Implementation</h1>
+<p>This guide outlines the process of adding support for a new language model (LLM) implementation. We use the existing <code>OpenAILLMConfiguration</code> as an example, located in <a href="src/common/bootstrap/configuration/pipeline/augmentation/query_engine/llm_configuration.py">llm_configuration.py</a> file.</p>
+<h2 id="define-the-llm-provider">Define the LLM Provider</h2>
+<p>LLM configurations in <em>llm_configuration.py</em> are scoped by provider. Each provider, such as <a href="https://openai.com/">OpenAI</a>, , requires its own Pydantic configuration class. Begin by assigning a meaningful name to the new provider in the <code>LLMProviderNames</code> enumeration:</p>
+<pre><code class="language-py">class LLMProviderNames(str, Enum):
+    ...
+    OPENAI = &quot;openai&quot;
+</code></pre>
+<h2 id="configure-llm-secrets">Configure LLM Secrets</h2>
+<p>Next, define how secrets for the LLM are handled. For OpenAI, this includes an <code>api_key</code>. Create a secrets class that retrieves these values from environment variables (e.g., from  <code>env_vars/.env</code> or a user-specified file):</p>
+<pre><code class="language-py">class OpenAILLMSecrets(BaseSettings):
+    model_config = ConfigDict(
+        env_file=&quot;env_vars/.env&quot;,
+        env_file_encoding=&quot;utf-8&quot;,
+        env_prefix=&quot;RAGKB__LLMS__OPENAI__&quot;,
+        env_nested_delimiter=&quot;__&quot;,
+        extra=&quot;ignore&quot;,
+    )
+
+    api_key: Optional[SecretStr] = Field(
+        None, description=&quot;API key for the model provider.&quot;
+    )
+</code></pre>
+<ul>
+<li><code>env_prefix</code>: Prefix for secrets, e.g., <code>RAGKB__LLMS__OPENAI__</code>.</li>
+<li><strong>Environment Variable Naming</strong>: To populate the api_key, use the variable <code>RAGKB__LLMS__OPENAI__API_KEY</code> in the environment file.</li>
+</ul>
+<p>Example <code>.env</code> entry:</p>
+<pre><code class="language-sh">...
+RAGKB__LLMS__OPENAI__API_KEY=&lt;openai_api_key&gt;
+...
+</code></pre>
+<h2 id="implement-the-llm-configuration">Implement the LLM Configuration</h2>
+<p>Define the main configuration class for the LLM, extending the base <code>LLMConfiguration</code>:</p>
+<pre><code class="language-py">class OpenAILLMConfiguration(LLMConfiguration):
+    provider: Literal[LLMProviderNames.OPENAI] = Field(
+        ..., description=&quot;The name of the language model provider.&quot;
+    )
+    secrets: OpenAILLMSecrets = Field(
+        None, description=&quot;The secrets for the language model.&quot;
+    )
+
+    builder: Callable = Field(
+        OpenAIBuilder.build,
+        description=&quot;The builder for the language model.&quot;,
+        exclude=True,
+    )
+</code></pre>
+<p><code>provider</code>: Constrained to the openai value, ensuring only configurations matching <code>LLMProviderNames.OPENAI</code> are valid.</p>
+<p><code>secrets</code>: Links the configuration to the <code>OpenAILLMSecrets</code> class.</p>
+<p><code>builder</code>: Specifies a callable (e.g., <code>OpenAIBuilder.build</code>) responsible for initializing the LLM instance.</p>
+<p><strong>Example JSON Configuration</strong></p>
+<pre><code class="language-json">...
+    &quot;llm&quot;: {
+        &quot;provider&quot;: &quot;openai&quot;, // only openai is accepted for `OpenAILLMConfiguration`
+        &quot;name&quot;: &quot;gpt-4o&quot;,     // any model name compatible with OpenAI API
+        &quot;max_tokens&quot;: 1024,
+        &quot;max_retries&quot;: 3,
+    }
+...
+</code></pre>
+<ul>
+<li>
+<p><code>provider</code>: Matches the provider defined in <code>LLMProviderNames</code>.</p>
+</li>
+<li>
+<p><code>name</code>: Specifies the LLM model (e.g., <code>gpt-4o</code>).</p>
+</li>
+<li>
+<p><code>max_tokens</code>: Sets the maximum token limit for the LLM.</p>
+</li>
+<li>
+<p><code>max_retries</code>: Defines the retry policy for API calls.</p>
+</li>
+</ul>
+<h1 id="create-the-llm-builder">Create the LLM Builder</h1>
+<p>The builder is responsible for initializing the LLM. Our implementation leverages <a href="https://docs.llamaindex.ai/en/stable/">llamaindex</a>, to add the builder logic to <a href="src/common/builders/llm_builders.py">llm_builders.py</a> we add necessary builder.</p>
+<pre><code class="language-py">from typing import TYPE_CHECKING
+
+from injector import inject
+from llama_index.llms.openai import OpenAI
+
+if TYPE_CHECKING:
+    from common.bootstrap.configuration.pipeline.augmentation.query_engine.llm_configuration import (
+        OpenAILLMConfiguration,
+    )
+
+
+class OpenAIBuilder:
+    &quot;&quot;&quot;Builder for creating OpenAI language model instances.
+
+    Provides factory method to create configured OpenAI objects.
+    &quot;&quot;&quot;
+
+    @staticmethod
+    @inject
+    def build(configuration: &quot;OpenAILLMConfiguration&quot;) -&gt; OpenAI:
+        &quot;&quot;&quot;Creates a configured OpenAI language model.
+
+        Args:
+            configuration: Model settings including API key and parameters.
+
+        Returns:
+            OpenAI: Configured language model instance.
+        &quot;&quot;&quot;
+        return OpenAI(
+            api_key=configuration.secrets.api_key.get_secret_value(),
+            model=configuration.name,
+            max_tokens=configuration.max_tokens,
+            max_retries=configuration.max_retries,
+        )
+</code></pre>
+<p><strong>Explanation</strong>:</p>
+<ul>
+<li>
+<p><strong>Dependencies</strong>: Use dependency injection (@inject) to ensure proper initialization.</p>
+</li>
+<li>
+<p><strong>Configuration</strong> Use: Extracts <code>api_key</code>, <code>model</code>, <code>max_tokens</code>, and <code>max_retries</code> from the <code>OpenAILLMConfiguration</code>.</p>
+</li>
+<li>
+<p><strong>Library Integration</strong>: Uses <code>llama_index.llms.openai.OpenAI</code> to create the LLM instance.</p>
+</li>
+</ul>
+<p>After all these steps, OpenAI models are ready to be configured and used in RAG System.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../quickstart/developer_setup/" class="btn btn-neutral float-left" title="Developer Setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../src/chat/" class="btn btn-neutral float-right" title="Chat">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../../quickstart/developer_setup/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../src/chat/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

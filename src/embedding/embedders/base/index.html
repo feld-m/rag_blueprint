@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Base - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Base";
+        var mkdocs_page_input_path = "src/embedding/embedders/base.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Developer Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">How To Add a New LLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../augmentation/utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Common</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../common/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/base_binder/">Base_binder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/dataset/">Dataset</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/retrievers/">Retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/query_engine/">Query_engine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Embedding</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../datasources/confluence/">Confluence</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" >Embedders</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" href="../default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../builders/">Builders</a>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Base</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#base_1">Base</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.embedders.base">base</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.embedders.base.BaseEmbedder">BaseEmbedder</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Embedding</li>
+          <li class="breadcrumb-item">Embedders</li>
+      <li class="breadcrumb-item active">Base</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/src/embedding/embedders/base.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="base">Base</h1>
+<p>This module contains functionality related to the the <code>base</code> module for <code>embedding.embedders</code>.</p>
+<h2 id="base_1">Base</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.embedders.base"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.embedders.base.BaseEmbedder" class="doc doc-heading">
+            <code>BaseEmbedder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>Abstract base class for text node embedding operations.</p>
+<p>Defines interface for embedding generation and storage operations
+on text nodes.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>embedding_model</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Model for generating embeddings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>vector_store</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Storage for embedding vectors</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/embedders/base.py</code></summary>
+                <pre class="highlight"><code class="language-python">class BaseEmbedder(ABC):
+    """Abstract base class for text node embedding operations.
+
+    Defines interface for embedding generation and storage operations
+    on text nodes.
+
+    Attributes:
+        embedding_model: Model for generating embeddings
+        vector_store: Storage for embedding vectors
+    """
+
+    def __init__(
+        self, embedding_model: BaseEmbedding, vector_store: VectorStore
+    ):
+        """Initialize embedder with model and storage.
+
+        Args:
+            embedding_model: Model to generate embeddings
+            vector_store: Storage for embedding vectors
+        """
+        super().__init__()
+        self.embedding_model = embedding_model
+        self.vector_store = vector_store
+
+    @abstractmethod
+    def save(self, nodes: List[TextNode]) -&gt; None:
+        """Save embedded text nodes to vector store.
+
+        Args:
+            nodes: Collection of text nodes with embeddings
+        """
+        pass
+
+    @abstractmethod
+    def embed(self, nodes: List[TextNode]) -&gt; None:
+        """Generate embeddings for text nodes in batches.
+
+        Args:
+            nodes: Collection of text nodes to embed
+
+        Note:
+            Modifies nodes in-place by adding embeddings
+        """
+        pass</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.embedders.base.BaseEmbedder.__init__" class="doc doc-heading">
+            <code class="highlight language-python">__init__(embedding_model, vector_store)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize embedder with model and storage.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>embedding_model</code></b>
+                  (<code><span title="llama_index.core.base.embeddings.base.BaseEmbedding">BaseEmbedding</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Model to generate embeddings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>vector_store</code></b>
+                  (<code><span title="llama_index.core.vector_stores.types.VectorStore">VectorStore</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Storage for embedding vectors</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/embedders/base.py</code></summary>
+              <pre class="highlight"><code class="language-python">def __init__(
+    self, embedding_model: BaseEmbedding, vector_store: VectorStore
+):
+    """Initialize embedder with model and storage.
+
+    Args:
+        embedding_model: Model to generate embeddings
+        vector_store: Storage for embedding vectors
+    """
+    super().__init__()
+    self.embedding_model = embedding_model
+    self.vector_store = vector_store</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.embedders.base.BaseEmbedder.embed" class="doc doc-heading">
+            <code class="highlight language-python">embed(nodes)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Generate embeddings for text nodes in batches.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>nodes</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Collection of text nodes to embed</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>Modifies nodes in-place by adding embeddings</p>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/embedders/base.py</code></summary>
+              <pre class="highlight"><code class="language-python">@abstractmethod
+def embed(self, nodes: List[TextNode]) -&gt; None:
+    """Generate embeddings for text nodes in batches.
+
+    Args:
+        nodes: Collection of text nodes to embed
+
+    Note:
+        Modifies nodes in-place by adding embeddings
+    """
+    pass</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.embedders.base.BaseEmbedder.save" class="doc doc-heading">
+            <code class="highlight language-python">save(nodes)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Save embedded text nodes to vector store.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>nodes</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Collection of text nodes with embeddings</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/embedders/base.py</code></summary>
+              <pre class="highlight"><code class="language-python">@abstractmethod
+def save(self, nodes: List[TextNode]) -&gt; None:
+    """Save embedded text nodes to vector store.
+
+    Args:
+        nodes: Collection of text nodes with embeddings
+    """
+    pass</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../builders/" class="btn btn-neutral float-left" title="Builders"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../orchestrators/datasource_orchestrator/" class="btn btn-neutral float-right" title="Datasource_orchestrator">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../builders/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../orchestrators/datasource_orchestrator/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

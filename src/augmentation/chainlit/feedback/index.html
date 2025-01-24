@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Feedback - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Feedback";
+        var mkdocs_page_input_path = "src/augmentation/chainlit/feedback.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Developer Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">How To Add a New LLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Augmentation</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" >Chainlit</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" href="../builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../service/">Service</a>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Feedback</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#feedback_1">Feedback</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.augmentation.chainlit.feedback">feedback</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.augmentation.chainlit.feedback.ChainlitFeedbackService">ChainlitFeedbackService</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Common</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../common/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/base_binder/">Base_binder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/dataset/">Dataset</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/retrievers/">Retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/query_engine/">Query_engine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/datasources/confluence/">Confluence</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Augmentation</li>
+          <li class="breadcrumb-item">Chainlit</li>
+      <li class="breadcrumb-item active">Feedback</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/src/augmentation/chainlit/feedback.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="feedback">Feedback</h1>
+<p>This module contains functionality related to the the <code>feedback</code> module for <code>augmentation.chainlit</code>.</p>
+<h2 id="feedback_1">Feedback</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.augmentation.chainlit.feedback"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.augmentation.chainlit.feedback.ChainlitFeedbackService" class="doc doc-heading">
+            <code>ChainlitFeedbackService</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Service for handling Chainlit feedback and Langfuse integration.</p>
+<p>This service associates feedbacks with value, comment and message, and persists
+information about retrieved nodes used for message generation in Langfuse database
+as trace scores. This allows feedback display in the Langfuse UI.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>SCORE_NAME</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Name used for feedback scores in Langfuse.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>langfuse_dataset_service</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Service for managing Langfuse datasets.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>langfuse_client</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Client for Langfuse API interactions.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>feedback_dataset</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Configuration for feedback dataset.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>chainlit_tag_format</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Format string for trace retrieval tags.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/augmentation/chainlit/feedback.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ChainlitFeedbackService:
+    """Service for handling Chainlit feedback and Langfuse integration.
+
+    This service associates feedbacks with value, comment and message, and persists
+    information about retrieved nodes used for message generation in Langfuse database
+    as trace scores. This allows feedback display in the Langfuse UI.
+
+    Attributes:
+        SCORE_NAME: Name used for feedback scores in Langfuse.
+        langfuse_dataset_service: Service for managing Langfuse datasets.
+        langfuse_client: Client for Langfuse API interactions.
+        feedback_dataset: Configuration for feedback dataset.
+        chainlit_tag_format: Format string for trace retrieval tags.
+    """
+
+    SCORE_NAME = "User Feedback"
+
+    def __init__(
+        self,
+        langfuse_dataset_service: LangfuseDatasetService,
+        langfuse_client: Langfuse,
+        feedback_dataset: LangfuseDatasetConfiguration,
+        chainlit_tag_format: str,
+    ):
+        """Initialize the feedback service.
+
+        Args:
+            langfuse_dataset_service: Service for managing Langfuse datasets.
+            langfuse_client: Client for Langfuse API interactions.
+            feedback_dataset: Configuration for feedback dataset.
+            chainlit_tag_format: Format string for trace retrieval tags.
+        """
+        self.langfuse_dataset_service = langfuse_dataset_service
+        self.langfuse_client = langfuse_client
+        self.feedback_dataset = feedback_dataset
+        self.chainlit_tag_format = chainlit_tag_format
+
+        self.langfuse_dataset_service.create_if_does_not_exist(feedback_dataset)
+
+    async def upsert(self, feedback: Feedback) -&gt; bool:
+        """Upsert Chainlit feedback to Langfuse database.
+
+        Updates or inserts feedback as a score of associated trace and saves positive
+        feedback in the associated dataset.
+
+        Args:
+            feedback: Feedback object containing value and comment.
+
+        Returns:
+            bool: True if feedback was successfully upserted, False otherwise.
+        """
+        trace = None
+        try:
+            trace = self._fetch_trace(feedback.forId)
+
+            if self._is_positive(feedback):
+                logging.info(
+                    f"Uploading trace {trace.id} to dataset {self.feedback_dataset.name}."
+                )
+                self._upload_trace_to_dataset(trace)
+
+            self.langfuse_client.score(
+                trace_id=trace.id,
+                name=ChainlitFeedbackService.SCORE_NAME,
+                value=feedback.value,
+                comment=feedback.comment,
+            )
+            logging.info(
+                f"Upserted feedback for {trace.id} trace with value {feedback.value}."
+            )
+            return True
+        except Exception as e:
+            trace_id = trace.id if trace else None
+            logging.warning(
+                f"Failed to upsert feedback for {trace_id} trace: {e}"
+            )
+            return False
+
+    def _fetch_trace(self, message_id: str) -&gt; TraceWithDetails:
+        """Fetch trace by message ID.
+
+        Args:
+            message_id: Message identifier to fetch trace for.
+
+        Returns:
+            TraceWithDetails: Found trace object.
+
+        Raises:
+            TraceNotFoundException: If no trace is found for message ID.
+        """
+        response = self.langfuse_client.fetch_traces(
+            tags=[self.chainlit_tag_format.format(message_id=message_id)]
+        )
+        trace = response.data[0] if response.data else None
+        if trace is None:
+            raise TraceNotFoundException(message_id)
+        return trace
+
+    def _upload_trace_to_dataset(self, trace: TraceWithDetails) -&gt; None:
+        """Upload trace details to feedback dataset.
+
+        Args:
+            trace: Trace object containing interaction details.
+        """
+        retrieve_observation = self._fetch_last_retrieve_observation(trace)
+        last_templating_observation = self._fetch_last_templating_observation(
+            trace
+        )
+        self.langfuse_client.create_dataset_item(
+            dataset_name=self.feedback_dataset.name,
+            input={
+                "query_str": trace.input,
+                "nodes": retrieve_observation.output.get("nodes"),
+                "templating": last_templating_observation.input,
+            },
+            expected_output={
+                "result": trace.output.get("text"),
+            },
+            source_trace_id=trace.id,
+            metadata={
+                "generated_by": trace.output.get("raw").get("model"),
+            },
+        )
+
+    def _fetch_last_retrieve_observation(
+        self, trace: TraceWithDetails
+    ) -&gt; ObservationsView:
+        """Fetch most recent retrieve observation for trace.
+
+        Args:
+            trace: Trace object containing observations.
+
+        Returns:
+            ObservationsView: Latest retrieve observation sorted by creation time.
+        """
+        retrieve_observations = self.langfuse_client.fetch_observations(
+            trace_id=trace.id,
+            name="retrieve",
+        )
+        return max(retrieve_observations.data, key=lambda x: x.createdAt)
+
+    def _fetch_last_templating_observation(
+        self, trace: TraceWithDetails
+    ) -&gt; ObservationsView:
+        """Fetch most recent templating observation for trace.
+
+        Args:
+            trace: Trace object containing observations.
+
+        Returns:
+            ObservationsView: Latest templating observation sorted by creation time.
+        """
+        templating_observations = self.langfuse_client.fetch_observations(
+            trace_id=trace.id,
+            name="templating",
+        )
+        return max(templating_observations.data, key=lambda x: x.createdAt)
+
+    @staticmethod
+    def _is_positive(feedback: Feedback) -&gt; bool:
+        """Check if feedback value is positive.
+
+        Args:
+            feedback: Feedback object containing user feedback.
+
+        Returns:
+            bool: True if feedback value is greater than 0.
+        """
+        return feedback.value &gt; 0</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.chainlit.feedback.ChainlitFeedbackService.__init__" class="doc doc-heading">
+            <code class="highlight language-python">__init__(langfuse_dataset_service, langfuse_client, feedback_dataset, chainlit_tag_format)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize the feedback service.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>langfuse_dataset_service</code></b>
+                  (<code><span title="common.langfuse.dataset.LangfuseDatasetService">LangfuseDatasetService</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Service for managing Langfuse datasets.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>langfuse_client</code></b>
+                  (<code><span title="langfuse.Langfuse">Langfuse</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Client for Langfuse API interactions.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>feedback_dataset</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.augmentation.langfuse.langfuse_configuration.LangfuseDatasetConfiguration">LangfuseDatasetConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Configuration for feedback dataset.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>chainlit_tag_format</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Format string for trace retrieval tags.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/chainlit/feedback.py</code></summary>
+              <pre class="highlight"><code class="language-python">def __init__(
+    self,
+    langfuse_dataset_service: LangfuseDatasetService,
+    langfuse_client: Langfuse,
+    feedback_dataset: LangfuseDatasetConfiguration,
+    chainlit_tag_format: str,
+):
+    """Initialize the feedback service.
+
+    Args:
+        langfuse_dataset_service: Service for managing Langfuse datasets.
+        langfuse_client: Client for Langfuse API interactions.
+        feedback_dataset: Configuration for feedback dataset.
+        chainlit_tag_format: Format string for trace retrieval tags.
+    """
+    self.langfuse_dataset_service = langfuse_dataset_service
+    self.langfuse_client = langfuse_client
+    self.feedback_dataset = feedback_dataset
+    self.chainlit_tag_format = chainlit_tag_format
+
+    self.langfuse_dataset_service.create_if_does_not_exist(feedback_dataset)</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.chainlit.feedback.ChainlitFeedbackService.upsert" class="doc doc-heading">
+            <code class="highlight language-python">upsert(feedback)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Upsert Chainlit feedback to Langfuse database.</p>
+<p>Updates or inserts feedback as a score of associated trace and saves positive
+feedback in the associated dataset.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>feedback</code></b>
+                  (<code><span title="chainlit.types.Feedback">Feedback</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Feedback object containing value and comment.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>bool</code></b>(                  <code>bool</code>
+)              –
+              <div class="doc-md-description">
+                <p>True if feedback was successfully upserted, False otherwise.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/chainlit/feedback.py</code></summary>
+              <pre class="highlight"><code class="language-python">async def upsert(self, feedback: Feedback) -&gt; bool:
+    """Upsert Chainlit feedback to Langfuse database.
+
+    Updates or inserts feedback as a score of associated trace and saves positive
+    feedback in the associated dataset.
+
+    Args:
+        feedback: Feedback object containing value and comment.
+
+    Returns:
+        bool: True if feedback was successfully upserted, False otherwise.
+    """
+    trace = None
+    try:
+        trace = self._fetch_trace(feedback.forId)
+
+        if self._is_positive(feedback):
+            logging.info(
+                f"Uploading trace {trace.id} to dataset {self.feedback_dataset.name}."
+            )
+            self._upload_trace_to_dataset(trace)
+
+        self.langfuse_client.score(
+            trace_id=trace.id,
+            name=ChainlitFeedbackService.SCORE_NAME,
+            value=feedback.value,
+            comment=feedback.comment,
+        )
+        logging.info(
+            f"Upserted feedback for {trace.id} trace with value {feedback.value}."
+        )
+        return True
+    except Exception as e:
+        trace_id = trace.id if trace else None
+        logging.warning(
+            f"Failed to upsert feedback for {trace_id} trace: {e}"
+        )
+        return False</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../service/" class="btn btn-neutral float-left" title="Service"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../utils/" class="btn btn-neutral float-right" title="Utils">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../service/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../utils/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

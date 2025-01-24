@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Initializer - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Initializer";
+        var mkdocs_page_input_path = "src/common/bootstrap/initializer.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Developer Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">How To Add a New LLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../augmentation/utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Common</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" >Bootstrap</a>
+    <ul class="current">
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Initializer</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#initializer_1">Initializer</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.common.bootstrap.initializer">initializer</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.common.bootstrap.initializer.AugmentationInitializer">AugmentationInitializer</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.common.bootstrap.initializer.CommonInitializer">CommonInitializer</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.common.bootstrap.initializer.EmbeddingInitializer">EmbeddingInitializer</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.common.bootstrap.initializer.EvaluationInitializer">EvaluationInitializer</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../base_binder/">Base_binder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../langfuse/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../langfuse/dataset/">Dataset</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../retrievers/">Retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../query_engine/">Query_engine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/datasources/confluence/">Confluence</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Common</li>
+          <li class="breadcrumb-item">Bootstrap</li>
+      <li class="breadcrumb-item active">Initializer</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/src/common/bootstrap/initializer.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="initializer">Initializer</h1>
+<p>This module contains functionality related to the the <code>initializer</code> module for <code>common.bootstrap</code>.</p>
+<h2 id="initializer_1">Initializer</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.common.bootstrap.initializer"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.bootstrap.initializer.AugmentationInitializer" class="doc doc-heading">
+            <code>AugmentationInitializer</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="src.common.bootstrap.initializer.CommonInitializer" href="#src.common.bootstrap.initializer.CommonInitializer">CommonInitializer</a></code></p>
+
+
+        <p>Initializer for the augmentation process.</p>
+<p>Bind the components required for the augmentation process to the injector.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/bootstrap/initializer.py</code></summary>
+                <pre class="highlight"><code class="language-python">class AugmentationInitializer(CommonInitializer):
+    """Initializer for the augmentation process.
+
+    Bind the components required for the augmentation process to the injector.
+    """
+
+    def init_injector(self) -&gt; Injector:
+        """Bind components to the injector based on the configuration and return the injector.
+
+        Returns:
+            Injector: Injector with components bound"""
+        injector = super().init_injector()
+        cl_data._data_layer = injector.get(ChainlitService)
+        return injector
+
+    def _bind(self, binder: Binder) -&gt; None:
+        """Bind components required for the augmentation process to the injector.
+
+        Args:
+            binder: Injector binder
+        """
+        super()._bind(binder)
+        LangfuseBinder(configuration=self.configuration, binder=binder).bind()
+        QueryEngineBinder(
+            configuration=self.configuration, binder=binder
+        ).bind()
+        ChainlitBinder(configuration=self.configuration, binder=binder).bind()</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.initializer.AugmentationInitializer.init_injector" class="doc doc-heading">
+            <code class="highlight language-python">init_injector()</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind components to the injector based on the configuration and return the injector.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Injector</code></b>(                  <code><span title="injector.Injector">Injector</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Injector with components bound</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/initializer.py</code></summary>
+              <pre class="highlight"><code class="language-python">def init_injector(self) -&gt; Injector:
+    """Bind components to the injector based on the configuration and return the injector.
+
+    Returns:
+        Injector: Injector with components bound"""
+    injector = super().init_injector()
+    cl_data._data_layer = injector.get(ChainlitService)
+    return injector</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.bootstrap.initializer.CommonInitializer" class="doc doc-heading">
+            <code>CommonInitializer</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>Common initializer for embedding, augmentation and evaluation processes.</p>
+<p>Multiple components are used in the embedding, augmentation and evaluation processes.
+To avoid code duplication, this initializer is used to bind the components to the injector.
+It is intended to be subclassed by the specific initializers for each process.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Configuration object</p>
+              </div>
+            </li>
+            <li>
+              <b><code>configuration_json</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Configuration JSON string</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/bootstrap/initializer.py</code></summary>
+                <pre class="highlight"><code class="language-python">class CommonInitializer(ABC):
+    """Common initializer for embedding, augmentation and evaluation processes.
+
+    Multiple components are used in the embedding, augmentation and evaluation processes.
+    To avoid code duplication, this initializer is used to bind the components to the injector.
+    It is intended to be subclassed by the specific initializers for each process.
+
+    Attributes:
+        configuration: Configuration object
+        configuration_json: Configuration JSON string
+    """
+
+    def __init__(self):
+        """Initialize the CommonInitializer.
+
+        Parse the command line arguments and read the configuration file.
+        Setup the logger configuration.
+        """
+        args = self._parse_args()
+        configuration_filename = args.config_file
+        build_name = args.build_name
+
+        with open(configuration_filename) as f:
+            self.configuration_json = f.read()
+        self.configuration = Configuration.model_validate_json(
+            self.configuration_json
+        )
+        self.configuration.metadata.build_name = build_name
+        print(f"::{configuration_filename}")
+        print(self.configuration.model_dump_json(indent=4))
+
+        LoggerConfiguration.config()  # TODO: Pass log level from configuration
+        LoggerConfiguration.filterwarnings()
+
+    def init_injector(self) -&gt; Injector:
+        """Bind components to the injector based on the configuration and return the injector.
+
+        Returns:
+            Injector: Injector with components bound"""
+        return Injector([self._bind])
+
+    def _bind(self, binder: Binder) -&gt; None:
+        """Bind common components to the injector based on the configuration.
+
+        Args:
+            binder: Injector binder
+        """
+        binder.bind(Configuration, to=self.configuration, scope=singleton)
+        EmbeddingModelBinder(
+            configuration=self.configuration, binder=binder
+        ).bind()
+        VectorStoreBinder(
+            configuration=self.configuration, binder=binder
+        ).bind()
+
+    def _parse_args(self):
+        """Parse the command line arguments.
+
+        Returns:
+            argparse.Namespace: Parsed command line arguments
+        """
+        parser = argparse.ArgumentParser(
+            description="Run the embedding process."
+        )
+        parser.add_argument(
+            "--config-file",
+            type=str,
+            help="Path to the configuration file.",
+            default="src/common/bootstrap/configuration/configuration.json",
+        )
+        parser.add_argument(
+            "--build-name",
+            type=str,
+            help="The name of the build.",
+            default=f"build-local-{time.time()}",  # Removed trailing comma
+        )
+        parser.add_argument(
+            "--secrets-file",
+            type=str,
+            help="Path to the secrets file.",
+            default="env_vars/.env",
+        )
+        return parser.parse_args()</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.initializer.CommonInitializer.__init__" class="doc doc-heading">
+            <code class="highlight language-python">__init__()</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize the CommonInitializer.</p>
+<p>Parse the command line arguments and read the configuration file.
+Setup the logger configuration.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/initializer.py</code></summary>
+              <pre class="highlight"><code class="language-python">def __init__(self):
+    """Initialize the CommonInitializer.
+
+    Parse the command line arguments and read the configuration file.
+    Setup the logger configuration.
+    """
+    args = self._parse_args()
+    configuration_filename = args.config_file
+    build_name = args.build_name
+
+    with open(configuration_filename) as f:
+        self.configuration_json = f.read()
+    self.configuration = Configuration.model_validate_json(
+        self.configuration_json
+    )
+    self.configuration.metadata.build_name = build_name
+    print(f"::{configuration_filename}")
+    print(self.configuration.model_dump_json(indent=4))
+
+    LoggerConfiguration.config()  # TODO: Pass log level from configuration
+    LoggerConfiguration.filterwarnings()</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.initializer.CommonInitializer.init_injector" class="doc doc-heading">
+            <code class="highlight language-python">init_injector()</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind components to the injector based on the configuration and return the injector.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Injector</code></b>(                  <code><span title="injector.Injector">Injector</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Injector with components bound</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/initializer.py</code></summary>
+              <pre class="highlight"><code class="language-python">def init_injector(self) -&gt; Injector:
+    """Bind components to the injector based on the configuration and return the injector.
+
+    Returns:
+        Injector: Injector with components bound"""
+    return Injector([self._bind])</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.bootstrap.initializer.EmbeddingInitializer" class="doc doc-heading">
+            <code>EmbeddingInitializer</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="src.common.bootstrap.initializer.CommonInitializer" href="#src.common.bootstrap.initializer.CommonInitializer">CommonInitializer</a></code></p>
+
+
+        <p>Initializer for the embedding process.</p>
+<p>Bind the components required for the embedding process to the injector.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/bootstrap/initializer.py</code></summary>
+                <pre class="highlight"><code class="language-python">class EmbeddingInitializer(CommonInitializer):
+    """Initializer for the embedding process.
+
+    Bind the components required for the embedding process to the injector.
+    """
+
+    def _bind(self, binder: Binder) -&gt; None:
+        """Bind components required for the embedding process to the injector.
+
+        Args:
+            binder: Injector binder
+        """
+        super()._bind(binder)
+        DatasourcesBinder(
+            configuration=self.configuration, binder=binder
+        ).bind()</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.bootstrap.initializer.EvaluationInitializer" class="doc doc-heading">
+            <code>EvaluationInitializer</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="src.common.bootstrap.initializer.AugmentationInitializer" href="#src.common.bootstrap.initializer.AugmentationInitializer">AugmentationInitializer</a></code></p>
+
+
+        <p>Initializer for the evaluation process.</p>
+<p>Bind the components required for the evaluation process to the injector.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/bootstrap/initializer.py</code></summary>
+                <pre class="highlight"><code class="language-python">class EvaluationInitializer(AugmentationInitializer):
+    """Initializer for the evaluation process.
+
+    Bind the components required for the evaluation process to the injector."""
+
+    def init_injector(self) -&gt; Injector:
+        """Bind components to the injector based on the configuration and return the injector.
+
+        Returns:
+            Injector: Injector with components bound"""
+        return Injector([self._bind])
+
+    def _bind(self, binder: Binder) -&gt; None:
+        """Bind components required for the evaluation process to the injector.
+
+        Args:
+            binder: Injector binder
+        """
+        super()._bind(binder)
+        EvaluationBinder(
+            configuration=self.configuration, binder=binder
+        ).bind()</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.initializer.EvaluationInitializer.init_injector" class="doc doc-heading">
+            <code class="highlight language-python">init_injector()</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind components to the injector based on the configuration and return the injector.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Injector</code></b>(                  <code><span title="injector.Injector">Injector</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Injector with components bound</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/initializer.py</code></summary>
+              <pre class="highlight"><code class="language-python">def init_injector(self) -&gt; Injector:
+    """Bind components to the injector based on the configuration and return the injector.
+
+    Returns:
+        Injector: Injector with components bound"""
+    return Injector([self._bind])</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../../augmentation/utils/" class="btn btn-neutral float-left" title="Utils"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../configuration/pipeline/embedding/datasources/datasources_binder/" class="btn btn-neutral float-right" title="Datasources_binder">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../../../augmentation/utils/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../configuration/pipeline/embedding/datasources/datasources_binder/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,2499 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Core - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Core";
+        var mkdocs_page_input_path = "src/embedding/datasources/core.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Developer Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">How To Add a New LLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../augmentation/utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Common</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../common/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/base_binder/">Base_binder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/dataset/">Dataset</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/retrievers/">Retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/query_engine/">Query_engine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Embedding</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" >Datasources</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" href="../notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Core</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#cleaner">Cleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.cleaner">cleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.cleaner.BaseCleaner">BaseCleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.cleaner.Cleaner">Cleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#document">Document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.document">document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.document.BaseDocument">BaseDocument</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#manager">Manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.manager">manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.manager.BaseDatasourceManager">BaseDatasourceManager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.manager.DatasourceManager">DatasourceManager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#reader">Reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.reader">reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.reader.BaseReader">BaseReader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#splitter">Splitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.splitter">splitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.splitter.BaseSplitter">BaseSplitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.splitter.MarkdownSplitter">MarkdownSplitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#builders">Builders</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.builders">builders</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.core.builders.MarkdownSplitterBuilder">MarkdownSplitterBuilder</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../confluence/">Confluence</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Embedding</li>
+          <li class="breadcrumb-item">Datasources</li>
+      <li class="breadcrumb-item active">Core</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/src/embedding/datasources/core.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="core-datasource">Core Datasource</h1>
+<p>This module contains functionality related to the <code>Core</code> datasource.</p>
+<h2 id="cleaner">Cleaner</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.core.cleaner"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.core.cleaner.BaseCleaner" class="doc doc-heading">
+            <code>BaseCleaner</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="embedding.datasources.core.document.DocType">DocType</span>]</code></p>
+
+
+        <p>Abstract base class defining document cleaning interface.</p>
+<p>Provides interface for cleaning document collections with type safety
+through generic typing.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/core/cleaner.py</code></summary>
+                <pre class="highlight"><code class="language-python">class BaseCleaner(ABC, Generic[DocType]):
+    """Abstract base class defining document cleaning interface.
+
+    Provides interface for cleaning document collections with type safety
+    through generic typing.
+
+    Attributes:
+        None
+    """
+
+    @abstractmethod
+    def clean(self, documents: List[DocType]) -&gt; List[DocType]:
+        """Clean a list of documents.
+
+        Args:
+            documents: List of documents to clean
+
+        Returns:
+            List[DocType]: List of cleaned documents
+        """
+        pass
+
+    @staticmethod
+    def _has_empty_content(document: TextNode) -&gt; bool:
+        """Check if document content is empty.
+
+        Args:
+            document: Document to check for content
+
+        Returns:
+            bool: True if document text is empty after stripping whitespace
+        """
+        return not document.text.strip()</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.cleaner.BaseCleaner.clean" class="doc doc-heading">
+            <code class="highlight language-python">clean(documents)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Clean a list of documents.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>documents</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="embedding.datasources.core.document.DocType">DocType</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>List of documents to clean</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="embedding.datasources.core.document.DocType">DocType</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[DocType]: List of cleaned documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/cleaner.py</code></summary>
+              <pre class="highlight"><code class="language-python">@abstractmethod
+def clean(self, documents: List[DocType]) -&gt; List[DocType]:
+    """Clean a list of documents.
+
+    Args:
+        documents: List of documents to clean
+
+    Returns:
+        List[DocType]: List of cleaned documents
+    """
+    pass</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.core.cleaner.Cleaner" class="doc doc-heading">
+            <code>Cleaner</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="src.embedding.datasources.core.cleaner.BaseCleaner" href="#src.embedding.datasources.core.cleaner.BaseCleaner">BaseCleaner</a></code></p>
+
+
+        <p>Generic document cleaner implementation.</p>
+<p>Removes empty documents from collections while tracking progress.
+Supports any document type with a text attribute.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/core/cleaner.py</code></summary>
+                <pre class="highlight"><code class="language-python">class Cleaner(BaseCleaner):
+    """Generic document cleaner implementation.
+
+    Removes empty documents from collections while tracking progress.
+    Supports any document type with a text attribute.
+    """
+
+    def clean(self, documents: List[Any]) -&gt; List[Any]:
+        """Remove empty documents from collection.
+
+        Args:
+            documents: List of documents to clean
+
+        Returns:
+            List[Any]: Filtered list containing only non-empty documents
+
+        Note:
+            Document type is inferred from first document in collection.
+        """
+        if not documents:
+            return []
+
+        # Infer document type from the first document
+        document_type_name = type(documents[0]).__name__
+
+        cleaned_documents = []
+        for document in self._get_documents_with_tqdm(
+            documents, document_type_name
+        ):
+            if not self._has_empty_content(document):
+                cleaned_documents.append(document)
+
+        return cleaned_documents
+
+    def _get_documents_with_tqdm(
+        self, documents: List[Any], document_type_name: str
+    ):
+        """Wrap document iteration with optional progress bar.
+
+        Args:
+            documents: List of documents to process
+            document_type_name: Name of document type for progress display
+
+        Returns:
+            Iterator over documents, optionally wrapped with progress bar
+        """
+        return tqdm(
+            documents, desc=f"[{document_type_name}] Cleaning documents"
+        )
+
+    @staticmethod
+    def _has_empty_content(document: Any) -&gt; bool:
+        """Check if document has empty content.
+
+        Args:
+            document: Document to check (must have text attribute)
+
+        Returns:
+            bool: True if document text is empty after stripping whitespace
+        """
+        return not document.text.strip()</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.cleaner.Cleaner.clean" class="doc doc-heading">
+            <code class="highlight language-python">clean(documents)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Remove empty documents from collection.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>documents</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="typing.Any">Any</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>List of documents to clean</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="typing.Any">Any</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[Any]: Filtered list containing only non-empty documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>Document type is inferred from first document in collection.</p>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/cleaner.py</code></summary>
+              <pre class="highlight"><code class="language-python">def clean(self, documents: List[Any]) -&gt; List[Any]:
+    """Remove empty documents from collection.
+
+    Args:
+        documents: List of documents to clean
+
+    Returns:
+        List[Any]: Filtered list containing only non-empty documents
+
+    Note:
+        Document type is inferred from first document in collection.
+    """
+    if not documents:
+        return []
+
+    # Infer document type from the first document
+    document_type_name = type(documents[0]).__name__
+
+    cleaned_documents = []
+    for document in self._get_documents_with_tqdm(
+        documents, document_type_name
+    ):
+        if not self._has_empty_content(document):
+            cleaned_documents.append(document)
+
+    return cleaned_documents</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="document">Document</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.core.document"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.core.document.BaseDocument" class="doc doc-heading">
+            <code>BaseDocument</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="llama_index.core.Document">Document</span></code></p>
+
+
+        <p>Base document class for structured content storage.</p>
+<p>Extends LlamaIndex Document to add support for attachments and
+metadata filtering for embedding and LLM contexts.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>attachments</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[str, str]]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Dictionary mapping placeholder keys to attachment content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>included_embed_metadata_keys</code></b>
+                  (<code><span title="typing.List">List</span>[str]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Metadata fields to include in embeddings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>included_llm_metadata_keys</code></b>
+                  (<code><span title="typing.List">List</span>[str]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Metadata fields to include in LLM context</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>DocType TypeVar ensures type safety when implementing document types.
+Default metadata includes title and timestamp information.</p>
+</details>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/core/document.py</code></summary>
+                <pre class="highlight"><code class="language-python">class BaseDocument(Document):
+    """Base document class for structured content storage.
+
+    Extends LlamaIndex Document to add support for attachments and
+    metadata filtering for embedding and LLM contexts.
+
+    Attributes:
+        attachments: Dictionary mapping placeholder keys to attachment content
+        included_embed_metadata_keys: Metadata fields to include in embeddings
+        included_llm_metadata_keys: Metadata fields to include in LLM context
+
+    Note:
+        DocType TypeVar ensures type safety when implementing document types.
+        Default metadata includes title and timestamp information.
+    """
+
+    attachments: Optional[Dict[str, str]] = Field(
+        description="Attachments of the document. Key is the attachment placeholder in raw_content and value is the Attachment object",
+        default=None,
+    )
+
+    included_embed_metadata_keys: List[str] = [
+        "title",
+        "created_time",
+        "last_edited_time",
+    ]
+
+    included_llm_metadata_keys: List[str] = [
+        "title",
+        "created_time",
+        "last_edited_time",
+    ]</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="manager">Manager</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.core.manager"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.core.manager.BaseDatasourceManager" class="doc doc-heading">
+            <code>BaseDatasourceManager</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="embedding.datasources.core.document.DocType">DocType</span>]</code></p>
+
+
+        <p>Abstract base class for datasource management.</p>
+<p>Provides interface for content extraction and vector storage updates.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Settings for embedding and processing</p>
+              </div>
+            </li>
+            <li>
+              <b><code>reader</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Component for reading source content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>cleaner</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Component for cleaning extracted content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>splitter</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Component for splitting content into chunks</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/core/manager.py</code></summary>
+                <pre class="highlight"><code class="language-python">class BaseDatasourceManager(ABC, Generic[DocType]):
+    """Abstract base class for datasource management.
+
+    Provides interface for content extraction and vector storage updates.
+
+    Attributes:
+        configuration: Settings for embedding and processing
+        reader: Component for reading source content
+        cleaner: Component for cleaning extracted content
+        splitter: Component for splitting content into chunks
+    """
+
+    def __init__(
+        self,
+        configuration: Configuration,
+        reader: BaseReader,
+        cleaner: BaseCleaner,
+        splitter: BaseSplitter,
+    ):
+        """Initialize datasource manager.
+
+        Args:
+            configuration: Embedding and processing settings
+            reader: Content extraction component
+            cleaner: Content cleaning component
+            splitter: Content splitting component
+        """
+        self.configuration = configuration
+        self.reader = reader
+        self.cleaner = cleaner
+        self.splitter = splitter
+
+    @abstractmethod
+    async def extract(
+        self,
+    ) -&gt; Tuple[List[DocType], List[DocType], List[TextNode]]:
+        """Extract and process content from datasource.
+
+        Returns:
+            Tuple containing:
+                - List of raw documents
+                - List of cleaned documents
+                - List of text nodes for embedding
+        """
+        pass
+
+    @abstractmethod
+    def update_vector_storage(self):
+        """Update vector storage with current embeddings."""
+        pass</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.manager.BaseDatasourceManager.__init__" class="doc doc-heading">
+            <code class="highlight language-python">__init__(configuration, reader, cleaner, splitter)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize datasource manager.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.configuration.Configuration">Configuration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Embedding and processing settings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>reader</code></b>
+                  (<code><span title="embedding.datasources.core.reader.BaseReader">BaseReader</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Content extraction component</p>
+              </div>
+            </li>
+            <li>
+              <b><code>cleaner</code></b>
+                  (<code><span title="embedding.datasources.core.cleaner.BaseCleaner">BaseCleaner</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Content cleaning component</p>
+              </div>
+            </li>
+            <li>
+              <b><code>splitter</code></b>
+                  (<code><span title="embedding.datasources.core.splitter.BaseSplitter">BaseSplitter</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Content splitting component</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/manager.py</code></summary>
+              <pre class="highlight"><code class="language-python">def __init__(
+    self,
+    configuration: Configuration,
+    reader: BaseReader,
+    cleaner: BaseCleaner,
+    splitter: BaseSplitter,
+):
+    """Initialize datasource manager.
+
+    Args:
+        configuration: Embedding and processing settings
+        reader: Content extraction component
+        cleaner: Content cleaning component
+        splitter: Content splitting component
+    """
+    self.configuration = configuration
+    self.reader = reader
+    self.cleaner = cleaner
+    self.splitter = splitter</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.manager.BaseDatasourceManager.extract" class="doc doc-heading">
+            <code class="highlight language-python">extract()</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extract and process content from datasource.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.Tuple">Tuple</span>[<span title="typing.List">List</span>[<span title="embedding.datasources.core.document.DocType">DocType</span>], <span title="typing.List">List</span>[<span title="embedding.datasources.core.document.DocType">DocType</span>], <span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]]</code>
+              –
+              <div class="doc-md-description">
+                <p>Tuple containing:
+- List of raw documents
+- List of cleaned documents
+- List of text nodes for embedding</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/manager.py</code></summary>
+              <pre class="highlight"><code class="language-python">@abstractmethod
+async def extract(
+    self,
+) -&gt; Tuple[List[DocType], List[DocType], List[TextNode]]:
+    """Extract and process content from datasource.
+
+    Returns:
+        Tuple containing:
+            - List of raw documents
+            - List of cleaned documents
+            - List of text nodes for embedding
+    """
+    pass</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.manager.BaseDatasourceManager.update_vector_storage" class="doc doc-heading">
+            <code class="highlight language-python">update_vector_storage()</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Update vector storage with current embeddings.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/manager.py</code></summary>
+              <pre class="highlight"><code class="language-python">@abstractmethod
+def update_vector_storage(self):
+    """Update vector storage with current embeddings."""
+    pass</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.core.manager.DatasourceManager" class="doc doc-heading">
+            <code>DatasourceManager</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="src.embedding.datasources.core.manager.BaseDatasourceManager" href="#src.embedding.datasources.core.manager.BaseDatasourceManager">BaseDatasourceManager</a></code></p>
+
+
+        <p>Manager for datasource content processing and embedding.</p>
+<p>Implements content extraction pipeline using configurable components
+for reading, cleaning, splitting and embedding content.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/core/manager.py</code></summary>
+                <pre class="highlight"><code class="language-python">class DatasourceManager(BaseDatasourceManager):
+    """Manager for datasource content processing and embedding.
+
+    Implements content extraction pipeline using configurable components
+    for reading, cleaning, splitting and embedding content.
+    """
+
+    async def extract(
+        self,
+    ) -&gt; Tuple[List[Document], List[Document], List[TextNode]]:
+        """Extract and process content from datasource.
+
+        Returns:
+            Tuple containing:
+                - List of raw documents
+                - List of cleaned documents
+                - List of text nodes for embedding
+        """
+        documents = await self.reader.get_all_documents_async()
+        cleaned_documents = self.cleaner.clean(documents)
+        nodes = self.splitter.split(cleaned_documents)
+        return documents, cleaned_documents, nodes
+
+    def update_vector_storage(self):
+        """Update vector storage with current embeddings.
+
+        Raises:
+            NotImplementedError: Method must be implemented by subclasses
+        """
+        raise NotImplementedError</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.manager.DatasourceManager.extract" class="doc doc-heading">
+            <code class="highlight language-python">extract()</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extract and process content from datasource.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.Tuple">Tuple</span>[<span title="typing.List">List</span>[<span title="llama_index.core.schema.Document">Document</span>], <span title="typing.List">List</span>[<span title="llama_index.core.schema.Document">Document</span>], <span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]]</code>
+              –
+              <div class="doc-md-description">
+                <p>Tuple containing:
+- List of raw documents
+- List of cleaned documents
+- List of text nodes for embedding</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/manager.py</code></summary>
+              <pre class="highlight"><code class="language-python">async def extract(
+    self,
+) -&gt; Tuple[List[Document], List[Document], List[TextNode]]:
+    """Extract and process content from datasource.
+
+    Returns:
+        Tuple containing:
+            - List of raw documents
+            - List of cleaned documents
+            - List of text nodes for embedding
+    """
+    documents = await self.reader.get_all_documents_async()
+    cleaned_documents = self.cleaner.clean(documents)
+    nodes = self.splitter.split(cleaned_documents)
+    return documents, cleaned_documents, nodes</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.manager.DatasourceManager.update_vector_storage" class="doc doc-heading">
+            <code class="highlight language-python">update_vector_storage()</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Update vector storage with current embeddings.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code>NotImplementedError</code>
+              –
+              <div class="doc-md-description">
+                <p>Method must be implemented by subclasses</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/manager.py</code></summary>
+              <pre class="highlight"><code class="language-python">def update_vector_storage(self):
+    """Update vector storage with current embeddings.
+
+    Raises:
+        NotImplementedError: Method must be implemented by subclasses
+    """
+    raise NotImplementedError</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="reader">Reader</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.core.reader"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.core.reader.BaseReader" class="doc doc-heading">
+            <code>BaseReader</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="embedding.datasources.core.document.DocType">DocType</span>]</code></p>
+
+
+        <p>Abstract base class for document source readers.</p>
+<p>Defines interface for document extraction from various sources.
+Supports both synchronous and asynchronous implementations through
+generic typing for document types.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/core/reader.py</code></summary>
+                <pre class="highlight"><code class="language-python">class BaseReader(ABC, Generic[DocType]):
+    """Abstract base class for document source readers.
+
+    Defines interface for document extraction from various sources.
+    Supports both synchronous and asynchronous implementations through
+    generic typing for document types.
+
+    Attributes:
+        None
+    """
+
+    @abstractmethod
+    def get_all_documents(self) -&gt; List[DocType]:
+        """Synchronously retrieve all documents from source.
+
+        Returns:
+            List[DocType]: Collection of extracted documents
+
+        Raises:
+            NotImplementedError: Must be implemented by concrete classes
+        """
+        pass
+
+    @abstractmethod
+    async def get_all_documents_async(self) -&gt; List[DocType]:
+        """Asynchronously retrieve all documents from source.
+
+        Returns:
+            List[DocType]: Collection of extracted documents
+
+        Raises:
+            NotImplementedError: Must be implemented by concrete classes
+        """
+        pass</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.reader.BaseReader.get_all_documents" class="doc doc-heading">
+            <code class="highlight language-python">get_all_documents()</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Synchronously retrieve all documents from source.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="embedding.datasources.core.document.DocType">DocType</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[DocType]: Collection of extracted documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code>NotImplementedError</code>
+              –
+              <div class="doc-md-description">
+                <p>Must be implemented by concrete classes</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/reader.py</code></summary>
+              <pre class="highlight"><code class="language-python">@abstractmethod
+def get_all_documents(self) -&gt; List[DocType]:
+    """Synchronously retrieve all documents from source.
+
+    Returns:
+        List[DocType]: Collection of extracted documents
+
+    Raises:
+        NotImplementedError: Must be implemented by concrete classes
+    """
+    pass</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.reader.BaseReader.get_all_documents_async" class="doc doc-heading">
+            <code class="highlight language-python">get_all_documents_async()</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Asynchronously retrieve all documents from source.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="embedding.datasources.core.document.DocType">DocType</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[DocType]: Collection of extracted documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code>NotImplementedError</code>
+              –
+              <div class="doc-md-description">
+                <p>Must be implemented by concrete classes</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/reader.py</code></summary>
+              <pre class="highlight"><code class="language-python">@abstractmethod
+async def get_all_documents_async(self) -&gt; List[DocType]:
+    """Asynchronously retrieve all documents from source.
+
+    Returns:
+        List[DocType]: Collection of extracted documents
+
+    Raises:
+        NotImplementedError: Must be implemented by concrete classes
+    """
+    pass</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="splitter">Splitter</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.core.splitter"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.core.splitter.BaseSplitter" class="doc doc-heading">
+            <code>BaseSplitter</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="embedding.datasources.core.document.DocType">DocType</span>]</code></p>
+
+
+        <p>Abstract base class for document splitting.</p>
+<p>Defines interface for splitting documents into text nodes with
+generic typing support for document types.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/core/splitter.py</code></summary>
+                <pre class="highlight"><code class="language-python">class BaseSplitter(ABC, Generic[DocType]):
+    """Abstract base class for document splitting.
+
+    Defines interface for splitting documents into text nodes with
+    generic typing support for document types.
+    """
+
+    @abstractmethod
+    def split(self, documents: List[DocType]) -&gt; List[TextNode]:
+        """Split documents into text nodes.
+
+        Args:
+            documents: Collection of documents to split
+
+        Returns:
+            List[TextNode]: Collection of text nodes
+        """
+        pass</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.splitter.BaseSplitter.split" class="doc doc-heading">
+            <code class="highlight language-python">split(documents)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Split documents into text nodes.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>documents</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="embedding.datasources.core.document.DocType">DocType</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Collection of documents to split</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[TextNode]: Collection of text nodes</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/splitter.py</code></summary>
+              <pre class="highlight"><code class="language-python">@abstractmethod
+def split(self, documents: List[DocType]) -&gt; List[TextNode]:
+    """Split documents into text nodes.
+
+    Args:
+        documents: Collection of documents to split
+
+    Returns:
+        List[TextNode]: Collection of text nodes
+    """
+    pass</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.core.splitter.MarkdownSplitter" class="doc doc-heading">
+            <code>MarkdownSplitter</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="src.embedding.datasources.core.splitter.BaseSplitter" href="#src.embedding.datasources.core.splitter.BaseSplitter">BaseSplitter</a></code></p>
+
+
+        <p>Splitter for markdown documents with token-based chunking.</p>
+<p>Splits markdown content into nodes based on document structure and
+token limits. Supports node merging and splitting to maintain
+consistent chunk sizes.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>chunk_size_in_tokens</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Maximum tokens per chunk</p>
+              </div>
+            </li>
+            <li>
+              <b><code>tokenize_func</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Function to convert text to tokens</p>
+              </div>
+            </li>
+            <li>
+              <b><code>markdown_node_parser</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Parser for markdown structure</p>
+              </div>
+            </li>
+            <li>
+              <b><code>sentence_splitter</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Splitter for text chunks</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/core/splitter.py</code></summary>
+                <pre class="highlight"><code class="language-python">class MarkdownSplitter(BaseSplitter):
+    """Splitter for markdown documents with token-based chunking.
+
+    Splits markdown content into nodes based on document structure and
+    token limits. Supports node merging and splitting to maintain
+    consistent chunk sizes.
+
+    Attributes:
+        chunk_size_in_tokens: Maximum tokens per chunk
+        tokenize_func: Function to convert text to tokens
+        markdown_node_parser: Parser for markdown structure
+        sentence_splitter: Splitter for text chunks
+    """
+
+    def __init__(
+        self,
+        chunk_size_in_tokens: int,
+        chunk_overlap_in_tokens: int,
+        tokenize_func: Callable,
+    ):
+        """Initialize markdown splitter.
+
+        Args:
+            chunk_size_in_tokens: Maximum tokens per chunk
+            chunk_overlap_in_tokens: Token overlap between chunks
+            tokenize_func: Function to tokenize text
+        """
+        self.chunk_size_in_tokens = chunk_size_in_tokens
+        self.tokenize_func = tokenize_func
+
+        self.markdown_node_parser = MarkdownNodeParser()
+        self.sentence_splitter = SentenceSplitter(
+            chunk_size=chunk_size_in_tokens,
+            chunk_overlap=chunk_overlap_in_tokens,
+            tokenizer=tokenize_func,
+        )
+
+    def split(self, documents: List[Document]) -&gt; List[TextNode]:
+        """Split markdown documents into text nodes.
+
+        Processes documents through markdown parsing, then adjusts node sizes
+        through splitting and merging to match chunk size requirements.
+
+        Args:
+            documents: Collection of markdown documents
+
+        Returns:
+            List[TextNode]: Collection of processed text nodes
+        """
+        nodes = []
+
+        for document in documents:
+            document_nodes = self.markdown_node_parser.get_nodes_from_documents(
+                [document]
+            )
+            document_nodes = self._split_big_nodes(document_nodes)
+            document_nodes = self._merge_small_nodes(document_nodes)
+            nodes.extend(document_nodes)
+
+        return nodes
+
+    def _split_big_nodes(
+        self, document_nodes: List[TextNode]
+    ) -&gt; List[TextNode]:
+        """Split oversized nodes into smaller chunks.
+
+        Args:
+            document_nodes: Collection of nodes to process
+
+        Returns:
+            List[TextNode]: Processed nodes within size limits
+        """
+        new_document_nodes = []
+
+        for document_node in document_nodes:
+            text = document_node.text
+            document_node_size = len(self.tokenize_func(text))
+
+            if document_node_size &gt; self.chunk_size_in_tokens:
+                document_sub_nodes = self._split_big_node(document_node)
+                new_document_nodes.extend(document_sub_nodes)
+            else:
+                new_document_nodes.append(document_node)
+
+        return new_document_nodes
+
+    def _split_big_node(self, document_node: TextNode) -&gt; List[TextNode]:
+        """Split single oversized node into smaller nodes.
+
+        Args:
+            document_node: Node to split
+
+        Returns:
+            List[TextNode]: Collection of smaller nodes
+        """
+        text = document_node.text
+        sub_texts = self.sentence_splitter.split_text(text)
+        sub_nodes = []
+
+        for sub_text in sub_texts:
+            sub_node = document_node.model_copy()
+            sub_node.id_ = str(uuid.uuid4())
+            sub_node.text = sub_text
+            sub_nodes.append(sub_node)
+
+        return sub_nodes
+
+    def _merge_small_nodes(
+        self, document_nodes: List[TextNode]
+    ) -&gt; List[TextNode]:
+        """Merge adjacent small nodes into larger chunks.
+
+        Args:
+            document_nodes: Collection of nodes to process
+
+        Returns:
+            List[TextNode]: Collection of merged nodes
+        """
+        new_document_nodes = []
+        current_node = document_nodes[0]
+
+        for node in document_nodes[1:]:
+            current_text = current_node.text
+            current_node_size = len(self.tokenize_func(current_text))
+            node_text = node.text
+            node_size = len(self.tokenize_func(node_text))
+
+            if current_node_size + node_size &lt;= self.chunk_size_in_tokens:
+                current_node.text += node.text
+            else:
+                new_document_nodes.append(current_node)
+                current_node = node
+
+        new_document_nodes.append(current_node)
+        return new_document_nodes</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.splitter.MarkdownSplitter.__init__" class="doc doc-heading">
+            <code class="highlight language-python">__init__(chunk_size_in_tokens, chunk_overlap_in_tokens, tokenize_func)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize markdown splitter.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>chunk_size_in_tokens</code></b>
+                  (<code>int</code>)
+              –
+              <div class="doc-md-description">
+                <p>Maximum tokens per chunk</p>
+              </div>
+            </li>
+            <li>
+              <b><code>chunk_overlap_in_tokens</code></b>
+                  (<code>int</code>)
+              –
+              <div class="doc-md-description">
+                <p>Token overlap between chunks</p>
+              </div>
+            </li>
+            <li>
+              <b><code>tokenize_func</code></b>
+                  (<code><span title="typing.Callable">Callable</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Function to tokenize text</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/splitter.py</code></summary>
+              <pre class="highlight"><code class="language-python">def __init__(
+    self,
+    chunk_size_in_tokens: int,
+    chunk_overlap_in_tokens: int,
+    tokenize_func: Callable,
+):
+    """Initialize markdown splitter.
+
+    Args:
+        chunk_size_in_tokens: Maximum tokens per chunk
+        chunk_overlap_in_tokens: Token overlap between chunks
+        tokenize_func: Function to tokenize text
+    """
+    self.chunk_size_in_tokens = chunk_size_in_tokens
+    self.tokenize_func = tokenize_func
+
+    self.markdown_node_parser = MarkdownNodeParser()
+    self.sentence_splitter = SentenceSplitter(
+        chunk_size=chunk_size_in_tokens,
+        chunk_overlap=chunk_overlap_in_tokens,
+        tokenizer=tokenize_func,
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.splitter.MarkdownSplitter.split" class="doc doc-heading">
+            <code class="highlight language-python">split(documents)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Split markdown documents into text nodes.</p>
+<p>Processes documents through markdown parsing, then adjusts node sizes
+through splitting and merging to match chunk size requirements.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>documents</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="llama_index.core.Document">Document</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Collection of markdown documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[TextNode]: Collection of processed text nodes</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/splitter.py</code></summary>
+              <pre class="highlight"><code class="language-python">def split(self, documents: List[Document]) -&gt; List[TextNode]:
+    """Split markdown documents into text nodes.
+
+    Processes documents through markdown parsing, then adjusts node sizes
+    through splitting and merging to match chunk size requirements.
+
+    Args:
+        documents: Collection of markdown documents
+
+    Returns:
+        List[TextNode]: Collection of processed text nodes
+    """
+    nodes = []
+
+    for document in documents:
+        document_nodes = self.markdown_node_parser.get_nodes_from_documents(
+            [document]
+        )
+        document_nodes = self._split_big_nodes(document_nodes)
+        document_nodes = self._merge_small_nodes(document_nodes)
+        nodes.extend(document_nodes)
+
+    return nodes</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="builders">Builders</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.core.builders"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.core.builders.MarkdownSplitterBuilder" class="doc doc-heading">
+            <code>MarkdownSplitterBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating markdown content splitter instances.</p>
+<p>Provides factory method to create configured MarkdownSplitter objects
+using embedding model settings for chunking parameters.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/core/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class MarkdownSplitterBuilder:
+    """Builder for creating markdown content splitter instances.
+
+    Provides factory method to create configured MarkdownSplitter objects
+    using embedding model settings for chunking parameters.
+    """
+
+    @staticmethod
+    @inject
+    def build(
+        embedding_model_configuration: EmbeddingModelConfiguration,
+    ) -&gt; MarkdownSplitter:
+        """Creates a configured markdown splitter instance.
+
+        Args:
+            embedding_model_configuration: Configuration containing tokenization
+                and chunking parameters.
+
+        Returns:
+            MarkdownSplitter: Configured splitter instance using model's
+                chunk size, overlap, and tokenization settings.
+        """
+        return MarkdownSplitter(
+            chunk_size_in_tokens=embedding_model_configuration.splitting.chunk_size_in_tokens,
+            chunk_overlap_in_tokens=embedding_model_configuration.splitting.chunk_overlap_in_tokens,
+            tokenize_func=embedding_model_configuration.tokenizer_func,
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.core.builders.MarkdownSplitterBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build(embedding_model_configuration)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured markdown splitter instance.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>embedding_model_configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.embedding_model.embedding_model_configuration.EmbeddingModelConfiguration">EmbeddingModelConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Configuration containing tokenization
+and chunking parameters.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>MarkdownSplitter</code></b>(                  <code><span title="embedding.datasources.core.splitter.MarkdownSplitter">MarkdownSplitter</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured splitter instance using model's
+chunk size, overlap, and tokenization settings.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/core/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build(
+    embedding_model_configuration: EmbeddingModelConfiguration,
+) -&gt; MarkdownSplitter:
+    """Creates a configured markdown splitter instance.
+
+    Args:
+        embedding_model_configuration: Configuration containing tokenization
+            and chunking parameters.
+
+    Returns:
+        MarkdownSplitter: Configured splitter instance using model's
+            chunk size, overlap, and tokenization settings.
+    """
+    return MarkdownSplitter(
+        chunk_size_in_tokens=embedding_model_configuration.splitting.chunk_size_in_tokens,
+        chunk_overlap_in_tokens=embedding_model_configuration.splitting.chunk_overlap_in_tokens,
+        tokenize_func=embedding_model_configuration.tokenizer_func,
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../pdf/" class="btn btn-neutral float-left" title="Pdf"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../confluence/" class="btn btn-neutral float-right" title="Confluence">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../pdf/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../confluence/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

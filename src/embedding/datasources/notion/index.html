@@ -1,0 +1,3299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Notion - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Notion";
+        var mkdocs_page_input_path = "src/embedding/datasources/notion.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Developer Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">How To Add a New LLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../augmentation/utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Common</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../common/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/base_binder/">Base_binder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/dataset/">Dataset</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/retrievers/">Retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/query_engine/">Query_engine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Embedding</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" >Datasources</a>
+    <ul class="current">
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Notion</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#cleaner">Cleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.cleaner">cleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.cleaner.NotionCleaner">NotionCleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#document">Document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.document">document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.document.NotionDocument">NotionDocument</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exporter">Exporter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.exporter">exporter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.exporter.NotionExporter">NotionExporter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#manager">Manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.manager">manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.manager.NotionDatasourceManager">NotionDatasourceManager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#reader">Reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.reader">reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.reader.NotionReader">NotionReader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#splitter">Splitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.splitter">splitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.splitter.NotionSplitter">NotionSplitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#builders">Builders</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.builders">builders</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.builders.NotionCleanerBuilder">NotionCleanerBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.builders.NotionClientBuilder">NotionClientBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.builders.NotionDatasourceManagerBuilder">NotionDatasourceManagerBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.builders.NotionExporterBuilder">NotionExporterBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.builders.NotionReaderBuilder">NotionReaderBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.notion.builders.NotionSplitterBuilder">NotionSplitterBuilder</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../confluence/">Confluence</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Embedding</li>
+          <li class="breadcrumb-item">Datasources</li>
+      <li class="breadcrumb-item active">Notion</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/src/embedding/datasources/notion.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="notion-datasource">Notion Datasource</h1>
+<p>This module contains functionality related to the <code>Notion</code> datasource.</p>
+<h2 id="cleaner">Cleaner</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.notion.cleaner"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.notion.cleaner.NotionCleaner" class="doc doc-heading">
+            <code>NotionCleaner</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.cleaner.BaseCleaner">BaseCleaner</span></code></p>
+
+
+        <p>Cleaner for Notion document content.</p>
+<p>Implements cleaning logic for Notion databases and pages, removing HTML
+tags and comments while preserving meaningful content.</p>
+
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>Expects documents to be in markdown format.</p>
+</details>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/notion/cleaner.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionCleaner(BaseCleaner):
+    """Cleaner for Notion document content.
+
+    Implements cleaning logic for Notion databases and pages, removing HTML
+    tags and comments while preserving meaningful content.
+
+    Note:
+        Expects documents to be in markdown format.
+    """
+
+    def clean(self, documents: List[NotionDocument]) -&gt; List[NotionDocument]:
+        """Clean a collection of Notion documents.
+
+        Processes both databases and pages, removing HTML artifacts and empty content.
+
+        Args:
+            documents: Collection of Notion documents to clean
+
+        Returns:
+            List[NotionDocument]: Filtered and cleaned documents
+        """
+        cleaned_documents = []
+
+        for document in NotionCleaner._get_documents_with_tqdm(documents):
+            if document.extra_info["type"] == "database":
+                document.text = self._clean_database(document)
+            if document.extra_info["type"] == "page":
+                document.text = self._clean_page(document)
+
+            if not NotionCleaner._has_empty_content(document):
+                cleaned_documents.append(document)
+
+        return cleaned_documents
+
+    def _clean_database(self, document: NotionDocument) -&gt; str:
+        """Clean Notion database content.
+
+        Args:
+            document: Database document to clean
+
+        Returns:
+            str: Cleaned database content
+        """
+        return NotionCleaner._parse_html_in_markdown(document.text)
+
+    def _clean_page(self, document: NotionDocument) -&gt; str:
+        """Clean Notion page content.
+
+        Args:
+            document: Page document to clean
+
+        Returns:
+            str: Cleaned page content
+        """
+        return NotionCleaner._parse_html_in_markdown(document.text)
+
+    @staticmethod
+    def _parse_html_in_markdown(md_text: str) -&gt; str:
+        """Process HTML elements within markdown content.
+
+        Converts HTML to markdown and removes content without alphanumeric characters.
+
+        Args:
+            md_text: Text containing markdown and HTML
+
+        Returns:
+            str: Cleaned markdown text
+
+        Note:
+            Uses BeautifulSoup for HTML parsing
+        """
+
+        def replace_html(match):
+            html_content = match.group(0)
+            soup = BeautifulSoup(html_content, "html.parser")
+            markdown = md(str(soup))
+
+            if not re.search(r"[a-zA-Z0-9]", markdown):
+                return ""
+            return markdown
+
+        md_text = re.sub(r"&lt;!--.*?--&gt;", "", md_text, flags=re.DOTALL)
+        html_block_re = re.compile(r"&lt;.*?&gt;", re.DOTALL)
+        return re.sub(html_block_re, replace_html, md_text)
+
+    @staticmethod
+    def _get_documents_with_tqdm(documents: List[NotionDocument]):
+        """Wrap document iteration with optional progress bar.
+
+        Args:
+            documents: Collection of documents to process
+
+        Returns:
+            Iterator over documents, optionally with progress bar
+        """
+        return tqdm(documents, desc="[Notion] Cleaning documents")</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.cleaner.NotionCleaner.clean" class="doc doc-heading">
+            <code class="highlight language-python">clean(documents)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Clean a collection of Notion documents.</p>
+<p>Processes both databases and pages, removing HTML artifacts and empty content.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>documents</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="embedding.datasources.notion.document.NotionDocument">NotionDocument</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Collection of Notion documents to clean</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="embedding.datasources.notion.document.NotionDocument">NotionDocument</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[NotionDocument]: Filtered and cleaned documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/cleaner.py</code></summary>
+              <pre class="highlight"><code class="language-python">def clean(self, documents: List[NotionDocument]) -&gt; List[NotionDocument]:
+    """Clean a collection of Notion documents.
+
+    Processes both databases and pages, removing HTML artifacts and empty content.
+
+    Args:
+        documents: Collection of Notion documents to clean
+
+    Returns:
+        List[NotionDocument]: Filtered and cleaned documents
+    """
+    cleaned_documents = []
+
+    for document in NotionCleaner._get_documents_with_tqdm(documents):
+        if document.extra_info["type"] == "database":
+            document.text = self._clean_database(document)
+        if document.extra_info["type"] == "page":
+            document.text = self._clean_page(document)
+
+        if not NotionCleaner._has_empty_content(document):
+            cleaned_documents.append(document)
+
+    return cleaned_documents</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="document">Document</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.notion.document"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.notion.document.NotionDocument" class="doc doc-heading">
+            <code>NotionDocument</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.document.BaseDocument">BaseDocument</span></code></p>
+
+
+        <p>Document representation for Notion page content.</p>
+<p>Extends BaseDocument to handle Notion-specific document processing including
+metadata handling and filtering for embeddings and LLM contexts.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>attachments</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Dictionary of document attachments</p>
+              </div>
+            </li>
+            <li>
+              <b><code>text</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Document content in markdown format</p>
+              </div>
+            </li>
+            <li>
+              <b><code>metadata</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Extracted page metadata including dates and source info</p>
+              </div>
+            </li>
+            <li>
+              <b><code>excluded_embed_metadata_keys</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Metadata keys to exclude from embeddings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>excluded_llm_metadata_keys</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Metadata keys to exclude from LLM context</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/notion/document.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionDocument(BaseDocument):
+    """Document representation for Notion page content.
+
+    Extends BaseDocument to handle Notion-specific document processing including
+    metadata handling and filtering for embeddings and LLM contexts.
+
+    Attributes:
+        attachments: Dictionary of document attachments
+        text: Document content in markdown format
+        metadata: Extracted page metadata including dates and source info
+        excluded_embed_metadata_keys: Metadata keys to exclude from embeddings
+        excluded_llm_metadata_keys: Metadata keys to exclude from LLM context
+    """
+
+    @classmethod
+    def from_page(cls, metadata: dict, text: str) -&gt; "NotionDocument":
+        """Create NotionDocument instance from page data.
+
+        Args:
+            metadata: Dictionary containing page metadata
+            text: Extracted page content
+
+        Returns:
+            NotionDocument: Configured document instance
+        """
+        document = cls(
+            attachments={},
+            text=text,
+            metadata=NotionDocument._get_metadata(metadata),
+        )
+        document._set_excluded_embed_metadata_keys()
+        document._set_excluded_llm_metadata_keys()
+        return document
+
+    def _set_excluded_embed_metadata_keys(self) -&gt; None:
+        """Configure metadata keys to exclude from embeddings.
+
+        Identifies metadata keys not explicitly included in embedding
+        processing and marks them for exclusion.
+        """
+        metadata_keys = self.metadata.keys()
+        self.excluded_embed_metadata_keys = [
+            key
+            for key in metadata_keys
+            if key not in self.included_embed_metadata_keys
+        ]
+
+    def _set_excluded_llm_metadata_keys(self) -&gt; None:
+        """Configure metadata keys to exclude from LLM context.
+
+        Identifies metadata keys not explicitly included in LLM
+        processing and marks them for exclusion.
+        """
+        metadata_keys = self.metadata.keys()
+        self.excluded_llm_metadata_keys = [
+            key
+            for key in metadata_keys
+            if key not in self.included_llm_metadata_keys
+        ]
+
+    @staticmethod
+    def _get_metadata(metadata: dict) -&gt; dict:
+        """Process and enhance page metadata.
+
+        Args:
+            metadata: Raw page metadata dictionary
+
+        Returns:
+            dict: Enhanced metadata including source and formatted dates
+        """
+        metadata["datasource"] = "notion"
+        metadata["created_date"] = metadata["created_time"].split("T")[0]
+        metadata["last_edited_date"] = metadata["last_edited_time"].split("T")[
+            0
+        ]
+        return metadata</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.document.NotionDocument.from_page" class="doc doc-heading">
+            <code class="highlight language-python">from_page(metadata, text)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create NotionDocument instance from page data.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>metadata</code></b>
+                  (<code>dict</code>)
+              –
+              <div class="doc-md-description">
+                <p>Dictionary containing page metadata</p>
+              </div>
+            </li>
+            <li>
+              <b><code>text</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Extracted page content</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>NotionDocument</code></b>(                  <code><a class="autorefs autorefs-internal" title="src.embedding.datasources.notion.document.NotionDocument" href="#src.embedding.datasources.notion.document.NotionDocument">NotionDocument</a></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured document instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/document.py</code></summary>
+              <pre class="highlight"><code class="language-python">@classmethod
+def from_page(cls, metadata: dict, text: str) -&gt; "NotionDocument":
+    """Create NotionDocument instance from page data.
+
+    Args:
+        metadata: Dictionary containing page metadata
+        text: Extracted page content
+
+    Returns:
+        NotionDocument: Configured document instance
+    """
+    document = cls(
+        attachments={},
+        text=text,
+        metadata=NotionDocument._get_metadata(metadata),
+    )
+    document._set_excluded_embed_metadata_keys()
+    document._set_excluded_llm_metadata_keys()
+    return document</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="exporter">Exporter</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.notion.exporter"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.notion.exporter.NotionExporter" class="doc doc-heading">
+            <code>NotionExporter</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Exporter for converting Notion pages to markdown documents.</p>
+<p>Handles extraction and conversion of Notion pages and databases
+to NotionDocument instances with markdown content.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>notion_exporter</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Core exporter instance for content extraction</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/notion/exporter.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionExporter:
+    """Exporter for converting Notion pages to markdown documents.
+
+    Handles extraction and conversion of Notion pages and databases
+    to NotionDocument instances with markdown content.
+
+    Attributes:
+        notion_exporter: Core exporter instance for content extraction
+    """
+
+    def __init__(
+        self,
+        api_token: str,
+    ):
+        """Initialize Notion exporter.
+
+        Args:
+            api_token: Authentication token for Notion API
+        """
+        self.notion_exporter = _NotionExporterCore(
+            notion_token=api_token,
+            export_child_pages=False,
+            extract_page_metadata=True,
+        )
+
+    async def run(
+        self, page_ids: List[str] = None, database_ids: List[str] = None
+    ) -&gt; List[NotionDocument]:
+        """Export Notion content to document collection.
+
+        Args:
+            page_ids: List of page IDs to export
+            database_ids: List of database IDs to export
+
+        Returns:
+            List[NotionDocument]: Collection of exported documents
+
+        Raises:
+            ValueError: If neither page_ids nor database_ids provided
+        """
+        extracted_objects = await self.notion_exporter.async_export_pages(
+            page_ids=page_ids, database_ids=database_ids
+        )
+
+        documents = []
+        for object_id, extracted_data in extracted_objects.items():
+            document = NotionDocument.from_page(
+                metadata=extracted_data["metadata"],
+                text=extracted_data["content"],
+            )
+            documents.append(document)
+
+        return documents</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.exporter.NotionExporter.__init__" class="doc doc-heading">
+            <code class="highlight language-python">__init__(api_token)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize Notion exporter.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>api_token</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Authentication token for Notion API</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/exporter.py</code></summary>
+              <pre class="highlight"><code class="language-python">def __init__(
+    self,
+    api_token: str,
+):
+    """Initialize Notion exporter.
+
+    Args:
+        api_token: Authentication token for Notion API
+    """
+    self.notion_exporter = _NotionExporterCore(
+        notion_token=api_token,
+        export_child_pages=False,
+        extract_page_metadata=True,
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.exporter.NotionExporter.run" class="doc doc-heading">
+            <code class="highlight language-python">run(page_ids=None, database_ids=None)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Export Notion content to document collection.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>page_ids</code></b>
+                  (<code><span title="typing.List">List</span>[str]</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>List of page IDs to export</p>
+              </div>
+            </li>
+            <li>
+              <b><code>database_ids</code></b>
+                  (<code><span title="typing.List">List</span>[str]</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>List of database IDs to export</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="embedding.datasources.notion.document.NotionDocument">NotionDocument</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[NotionDocument]: Collection of exported documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code>ValueError</code>
+              –
+              <div class="doc-md-description">
+                <p>If neither page_ids nor database_ids provided</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/exporter.py</code></summary>
+              <pre class="highlight"><code class="language-python">async def run(
+    self, page_ids: List[str] = None, database_ids: List[str] = None
+) -&gt; List[NotionDocument]:
+    """Export Notion content to document collection.
+
+    Args:
+        page_ids: List of page IDs to export
+        database_ids: List of database IDs to export
+
+    Returns:
+        List[NotionDocument]: Collection of exported documents
+
+    Raises:
+        ValueError: If neither page_ids nor database_ids provided
+    """
+    extracted_objects = await self.notion_exporter.async_export_pages(
+        page_ids=page_ids, database_ids=database_ids
+    )
+
+    documents = []
+    for object_id, extracted_data in extracted_objects.items():
+        document = NotionDocument.from_page(
+            metadata=extracted_data["metadata"],
+            text=extracted_data["content"],
+        )
+        documents.append(document)
+
+    return documents</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="manager">Manager</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.notion.manager"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.notion.manager.NotionDatasourceManager" class="doc doc-heading">
+            <code>NotionDatasourceManager</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.manager.DatasourceManager">DatasourceManager</span></code></p>
+
+
+        <p>Manager for Notion content extraction and processing.</p>
+<p>Handles document retrieval, cleaning, splitting and embedding updates
+for Notion workspaces. Implements the base DatasourceManager
+interface for Notion-specific processing.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/notion/manager.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionDatasourceManager(DatasourceManager):
+    """Manager for Notion content extraction and processing.
+
+    Handles document retrieval, cleaning, splitting and embedding updates
+    for Notion workspaces. Implements the base DatasourceManager
+    interface for Notion-specific processing.
+    """
+
+    pass</code></pre>
+              </details>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="reader">Reader</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.notion.reader"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.notion.reader.NotionReader" class="doc doc-heading">
+            <code>NotionReader</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.reader.BaseReader">BaseReader</span></code></p>
+
+
+        <p>Reader for extracting documents from Notion workspace.</p>
+<p>Implements document extraction from Notion pages and databases with
+support for batched async operations and export limits.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>notion_client</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Client for Notion API interactions</p>
+              </div>
+            </li>
+            <li>
+              <b><code>export_batch_size</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Number of objects to export concurrently</p>
+              </div>
+            </li>
+            <li>
+              <b><code>export_limit</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Maximum number of objects to export</p>
+              </div>
+            </li>
+            <li>
+              <b><code>exporter</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Component for converting Notion content to documents</p>
+              </div>
+            </li>
+            <li>
+              <b><code>home_page_database_id</code></b>
+              –
+              <div class="doc-md-description">
+                <p>ID of root database containing content index</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/notion/reader.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionReader(BaseReader):
+    """Reader for extracting documents from Notion workspace.
+
+    Implements document extraction from Notion pages and databases with
+    support for batched async operations and export limits.
+
+    Attributes:
+        notion_client: Client for Notion API interactions
+        export_batch_size: Number of objects to export concurrently
+        export_limit: Maximum number of objects to export
+        exporter: Component for converting Notion content to documents
+        home_page_database_id: ID of root database containing content index
+    """
+
+    def __init__(
+        self,
+        configuration: NotionDatasourceConfiguration,
+        notion_client: Client,
+        exporter: NotionExporter,
+    ):
+        """Initialize Notion reader.
+
+        Args:
+            configuration: Settings for Notion access and limits
+            notion_client: Client for Notion API interaction
+            exporter: Component for content export and conversion
+        """
+        super().__init__()
+        self.notion_client = notion_client
+        self.export_batch_size = configuration.export_batch_size
+        self.export_limit = configuration.export_limit
+        self.exporter = exporter
+        self.home_page_database_id = configuration.home_page_database_id
+
+    def get_all_documents(self) -&gt; List[NotionDocument]:
+        """
+        Synchronous implementation for fetching all documents from the data source.
+        """
+        pass
+
+    async def get_all_documents_async(self) -&gt; List[NotionDocument]:
+        """Asynchronously retrieve all documents from Notion.
+
+        Fetches pages and databases in batches, respecting export limits
+        and batch sizes.
+
+        Returns:
+            List[NotionDocument]: Collection of processed documents
+        """
+        database_ids, page_ids = self._get_ids_from_home_page()
+        database_ids.extend(
+            self._get_all_ids(
+                NotionObjectType.DATABASE,
+                limit=self._get_current_limit(database_ids, page_ids),
+            )
+        )
+        page_ids.extend(
+            self._get_all_ids(
+                NotionObjectType.PAGE,
+                limit=self._get_current_limit(database_ids, page_ids),
+            )
+        )
+
+        # Process IDs
+        database_ids = set(database_ids)
+        database_ids.discard(self.home_page_database_id)
+        page_ids = set(page_ids)
+
+        # Batch and export
+        chunked_database_ids = list(
+            chunked(database_ids, self.export_batch_size)
+        )
+        chunked_page_ids = list(chunked(page_ids, self.export_batch_size))
+
+        database_documents, database_failed = await self._export_documents(
+            chunked_database_ids, NotionObjectType.DATABASE
+        )
+        page_documents, page_failed = await self._export_documents(
+            chunked_page_ids, NotionObjectType.PAGE
+        )
+
+        # Log failures
+        if database_failed:
+            logging.warning(
+                f"Failed to export {len(database_failed)} databases: {database_failed}"
+            )
+        if page_failed:
+            logging.warning(
+                f"Failed to export {len(page_failed)} pages: {page_failed}"
+            )
+
+        # Apply limit if needed
+        documents = database_documents + page_documents
+        return (
+            documents
+            if self.export_limit is None
+            else documents[: self.export_limit]
+        )
+
+    async def _export_documents(
+        self, chunked_ids: List[List[str]], objects_type: NotionObjectType
+    ) -&gt; Tuple[List[NotionDocument], List[str]]:
+        """Export documents in batches.
+
+        Args:
+            chunked_ids: Batched lists of object IDs
+            objects_type: Type of Notion objects to export
+
+        Returns:
+            Tuple containing:
+                - List of exported documents
+                - List of failed export IDs
+
+        Raises:
+            ValueError: If unsupported object type provided
+        """
+        all_documents = []
+        failed_exports = []
+        num_chunks = len(chunked_ids)
+
+        for i, chunk_ids in enumerate(chunked_ids):
+            logging.info(
+                f"[{i}/{num_chunks}] Exporting {objects_type.name} objects: {chunk_ids}"
+            )
+
+            try:
+                documents = await self.exporter.run(
+                    page_ids=(
+                        chunk_ids
+                        if objects_type == NotionObjectType.PAGE
+                        else None
+                    ),
+                    database_ids=(
+                        chunk_ids
+                        if objects_type == NotionObjectType.DATABASE
+                        else None
+                    ),
+                )
+                all_documents.extend(documents)
+                logging.info(
+                    f"[{i}/{num_chunks}] Added {len(documents)} documents"
+                )
+            except Exception as e:
+                logging.error(
+                    f"[{i}/{num_chunks}] Export failed for {objects_type.name}: {chunk_ids}. {e}"
+                )
+                failed_exports.extend(chunk_ids)
+
+        return all_documents, failed_exports
+
+    def _get_ids_from_home_page(self) -&gt; Tuple[List[str], List[str]]:
+        """Extract database and page IDs from home page database.
+
+        Queries the configured home page database and extracts IDs for
+        both databases and pages.
+
+        Returns:
+            Tuple containing:
+                - List of database IDs
+                - List of page IDs
+        """
+        logging.info(
+            f"Fetching all object ids from Notion's home page with limit {self.export_limit}..."
+        )
+        response = self._collect_paginated_api(
+            function=self.notion_client.databases.query,
+            limit=self.export_limit,
+            database_id=self.home_page_database_id,
+        )
+        database_ids = [
+            entry["id"] for entry in response if entry["object"] == "database"
+        ]
+        page_ids = [
+            entry["id"] for entry in response if entry["object"] == "page"
+        ]
+
+        logging.info(
+            f"Found {len(database_ids)} database ids and {len(page_ids)} page ids in Notion."
+        )
+
+        return database_ids, page_ids
+
+    def _get_all_ids(
+        self, objects_type: NotionObjectType, limit: int = None
+    ) -&gt; List[str]:
+        """Fetch all IDs for specified Notion object type.
+
+        Args:
+            objects_type: Type of Notion objects to fetch
+            limit: Maximum number of IDs to fetch (None for unlimited)
+
+        Returns:
+            List[str]: Collection of object IDs
+
+        Note:
+            Returns empty list if limit is 0 or negative
+        """
+        if limit is not None and limit &lt;= 0:
+            return []
+
+        logging.info(
+            f"Fetching all ids of {objects_type.name} objects from Notion with limit {limit}..."
+        )
+
+        params = {
+            "filter": {
+                "value": objects_type.name.lower(),
+                "property": "object",
+            },
+        }
+        results = NotionReader._collect_paginated_api(
+            self.notion_client.search, limit, **params
+        )
+        object_ids = [object["id"] for object in results]
+        object_ids = object_ids[:limit] if limit is not None else object_ids
+
+        logging.info(
+            f"Found {len(object_ids)} ids of {objects_type.name} objects in Notion."
+        )
+
+        return object_ids
+
+    def _get_current_limit(
+        self, database_ids: List[str], page_ids: List[str]
+    ) -&gt; int:
+        """Calculate remaining object limit based on existing IDs.
+
+        Args:
+            database_ids: Currently collected database IDs
+            page_ids: Currently collected page IDs
+
+        Returns:
+            int: Remaining limit (None if no limit configured)
+
+        Note:
+            Subtracts total of existing IDs from configured export limit
+        """
+        return (
+            self.export_limit - len(database_ids) - len(page_ids)
+            if self.export_limit
+            else None
+        )
+
+    @staticmethod
+    def _collect_paginated_api(
+        function: Callable[..., Any], limit: int, **kwargs: Any
+    ) -&gt; List[Any]:
+        """Collect all results from paginated Notion API endpoint.
+
+        Args:
+            function: API function to call
+            limit: Maximum number of results to collect
+            **kwargs: Additional arguments for API function
+
+        Returns:
+            List[Any]: Collected API results
+        """
+        next_cursor = kwargs.pop("start_cursor", None)
+        result = []
+
+        while True:
+            response = function(**kwargs, start_cursor=next_cursor)
+            result.extend(response.get("results"))
+
+            if NotionReader._limit_reached(result, limit):
+                return result[:limit]
+            if not NotionReader._has_more_pages(response):
+                return result[:limit] if limit else result
+
+            next_cursor = response.get("next_cursor")
+
+    @staticmethod
+    def _limit_reached(result: List[dict], limit: int) -&gt; bool:
+        """Check if result count has reached limit.
+
+        Args:
+            result: Current results
+            limit: Maximum allowed results
+
+        Returns:
+            bool: True if limit reached
+        """
+        return limit is not None and len(result) &gt;= limit
+
+    @staticmethod
+    def _has_more_pages(response: dict) -&gt; bool:
+        """Check if more pages are available.
+
+        Args:
+            response: API response dictionary
+
+        Returns:
+            bool: True if more pages available
+        """
+        return response.get("has_more") and response.get("next_cursor")</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.reader.NotionReader.__init__" class="doc doc-heading">
+            <code class="highlight language-python">__init__(configuration, notion_client, exporter)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize Notion reader.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.NotionDatasourceConfiguration">NotionDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Settings for Notion access and limits</p>
+              </div>
+            </li>
+            <li>
+              <b><code>notion_client</code></b>
+                  (<code><span title="notion_client.Client">Client</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Client for Notion API interaction</p>
+              </div>
+            </li>
+            <li>
+              <b><code>exporter</code></b>
+                  (<code><span title="embedding.datasources.notion.exporter.NotionExporter">NotionExporter</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for content export and conversion</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/reader.py</code></summary>
+              <pre class="highlight"><code class="language-python">def __init__(
+    self,
+    configuration: NotionDatasourceConfiguration,
+    notion_client: Client,
+    exporter: NotionExporter,
+):
+    """Initialize Notion reader.
+
+    Args:
+        configuration: Settings for Notion access and limits
+        notion_client: Client for Notion API interaction
+        exporter: Component for content export and conversion
+    """
+    super().__init__()
+    self.notion_client = notion_client
+    self.export_batch_size = configuration.export_batch_size
+    self.export_limit = configuration.export_limit
+    self.exporter = exporter
+    self.home_page_database_id = configuration.home_page_database_id</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.reader.NotionReader.get_all_documents" class="doc doc-heading">
+            <code class="highlight language-python">get_all_documents()</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Synchronous implementation for fetching all documents from the data source.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/reader.py</code></summary>
+              <pre class="highlight"><code class="language-python">def get_all_documents(self) -&gt; List[NotionDocument]:
+    """
+    Synchronous implementation for fetching all documents from the data source.
+    """
+    pass</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.reader.NotionReader.get_all_documents_async" class="doc doc-heading">
+            <code class="highlight language-python">get_all_documents_async()</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Asynchronously retrieve all documents from Notion.</p>
+<p>Fetches pages and databases in batches, respecting export limits
+and batch sizes.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="embedding.datasources.notion.document.NotionDocument">NotionDocument</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[NotionDocument]: Collection of processed documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/reader.py</code></summary>
+              <pre class="highlight"><code class="language-python">async def get_all_documents_async(self) -&gt; List[NotionDocument]:
+    """Asynchronously retrieve all documents from Notion.
+
+    Fetches pages and databases in batches, respecting export limits
+    and batch sizes.
+
+    Returns:
+        List[NotionDocument]: Collection of processed documents
+    """
+    database_ids, page_ids = self._get_ids_from_home_page()
+    database_ids.extend(
+        self._get_all_ids(
+            NotionObjectType.DATABASE,
+            limit=self._get_current_limit(database_ids, page_ids),
+        )
+    )
+    page_ids.extend(
+        self._get_all_ids(
+            NotionObjectType.PAGE,
+            limit=self._get_current_limit(database_ids, page_ids),
+        )
+    )
+
+    # Process IDs
+    database_ids = set(database_ids)
+    database_ids.discard(self.home_page_database_id)
+    page_ids = set(page_ids)
+
+    # Batch and export
+    chunked_database_ids = list(
+        chunked(database_ids, self.export_batch_size)
+    )
+    chunked_page_ids = list(chunked(page_ids, self.export_batch_size))
+
+    database_documents, database_failed = await self._export_documents(
+        chunked_database_ids, NotionObjectType.DATABASE
+    )
+    page_documents, page_failed = await self._export_documents(
+        chunked_page_ids, NotionObjectType.PAGE
+    )
+
+    # Log failures
+    if database_failed:
+        logging.warning(
+            f"Failed to export {len(database_failed)} databases: {database_failed}"
+        )
+    if page_failed:
+        logging.warning(
+            f"Failed to export {len(page_failed)} pages: {page_failed}"
+        )
+
+    # Apply limit if needed
+    documents = database_documents + page_documents
+    return (
+        documents
+        if self.export_limit is None
+        else documents[: self.export_limit]
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="splitter">Splitter</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.notion.splitter"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.notion.splitter.NotionSplitter" class="doc doc-heading">
+            <code>NotionSplitter</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.splitter.BaseSplitter">BaseSplitter</span></code></p>
+
+
+        <p>Splitter for Notion content with separate database and page handling.</p>
+<p>Implements content splitting for Notion documents by routing databases
+and pages to specialized splitters.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>database_splitter</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Splitter configured for database content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>page_splitter</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Splitter configured for page content</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/notion/splitter.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionSplitter(BaseSplitter):
+    """Splitter for Notion content with separate database and page handling.
+
+    Implements content splitting for Notion documents by routing databases
+    and pages to specialized splitters.
+
+    Attributes:
+        database_splitter: Splitter configured for database content
+        page_splitter: Splitter configured for page content
+    """
+
+    def __init__(
+        self,
+        database_splitter: MarkdownSplitter,
+        page_splitter: MarkdownSplitter,
+    ):
+        """Initialize Notion content splitter.
+
+        Args:
+            database_splitter: MarkdownSplitter instance for databases
+            page_splitter: MarkdownSplitter instance for pages
+        """
+        self.database_splitter = database_splitter
+        self.page_splitter = page_splitter
+
+    def split(self, documents: List[NotionDocument]) -&gt; List[TextNode]:
+        """Split Notion documents into text nodes.
+
+        Separates documents by type and processes them with appropriate
+        splitter.
+
+        Args:
+            documents: Collection of Notion documents to split
+
+        Returns:
+            List[TextNode]: Combined collection of text nodes from all documents
+        """
+        database_documents = [
+            doc
+            for doc in documents
+            if doc.extra_info["type"] == NotionObjectType.DATABASE.value
+        ]
+        page_documents = [
+            doc
+            for doc in documents
+            if doc.extra_info["type"] == NotionObjectType.PAGE.value
+        ]
+
+        nodes = self.database_splitter.split(database_documents)
+        nodes.extend(self.page_splitter.split(page_documents))
+
+        return nodes</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.splitter.NotionSplitter.__init__" class="doc doc-heading">
+            <code class="highlight language-python">__init__(database_splitter, page_splitter)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize Notion content splitter.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>database_splitter</code></b>
+                  (<code><span title="embedding.datasources.core.splitter.MarkdownSplitter">MarkdownSplitter</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>MarkdownSplitter instance for databases</p>
+              </div>
+            </li>
+            <li>
+              <b><code>page_splitter</code></b>
+                  (<code><span title="embedding.datasources.core.splitter.MarkdownSplitter">MarkdownSplitter</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>MarkdownSplitter instance for pages</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/splitter.py</code></summary>
+              <pre class="highlight"><code class="language-python">def __init__(
+    self,
+    database_splitter: MarkdownSplitter,
+    page_splitter: MarkdownSplitter,
+):
+    """Initialize Notion content splitter.
+
+    Args:
+        database_splitter: MarkdownSplitter instance for databases
+        page_splitter: MarkdownSplitter instance for pages
+    """
+    self.database_splitter = database_splitter
+    self.page_splitter = page_splitter</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.splitter.NotionSplitter.split" class="doc doc-heading">
+            <code class="highlight language-python">split(documents)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Split Notion documents into text nodes.</p>
+<p>Separates documents by type and processes them with appropriate
+splitter.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>documents</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="embedding.datasources.notion.document.NotionDocument">NotionDocument</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Collection of Notion documents to split</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[TextNode]: Combined collection of text nodes from all documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/splitter.py</code></summary>
+              <pre class="highlight"><code class="language-python">def split(self, documents: List[NotionDocument]) -&gt; List[TextNode]:
+    """Split Notion documents into text nodes.
+
+    Separates documents by type and processes them with appropriate
+    splitter.
+
+    Args:
+        documents: Collection of Notion documents to split
+
+    Returns:
+        List[TextNode]: Combined collection of text nodes from all documents
+    """
+    database_documents = [
+        doc
+        for doc in documents
+        if doc.extra_info["type"] == NotionObjectType.DATABASE.value
+    ]
+    page_documents = [
+        doc
+        for doc in documents
+        if doc.extra_info["type"] == NotionObjectType.PAGE.value
+    ]
+
+    nodes = self.database_splitter.split(database_documents)
+    nodes.extend(self.page_splitter.split(page_documents))
+
+    return nodes</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="builders">Builders</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.notion.builders"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.notion.builders.NotionCleanerBuilder" class="doc doc-heading">
+            <code>NotionCleanerBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Notion content cleaner instances.</p>
+<p>Provides factory method to create NotionCleaner objects.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/notion/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionCleanerBuilder:
+    """Builder for creating Notion content cleaner instances.
+
+    Provides factory method to create NotionCleaner objects.
+    """
+
+    @staticmethod
+    @inject
+    def build() -&gt; NotionCleaner:
+        """Creates a content cleaner for Notion.
+
+        Returns:
+            NotionCleaner: Configured cleaner instance
+        """
+        return NotionCleaner()</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.builders.NotionCleanerBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build()</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a content cleaner for Notion.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>NotionCleaner</code></b>(                  <code><span title="embedding.datasources.notion.cleaner.NotionCleaner">NotionCleaner</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured cleaner instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build() -&gt; NotionCleaner:
+    """Creates a content cleaner for Notion.
+
+    Returns:
+        NotionCleaner: Configured cleaner instance
+    """
+    return NotionCleaner()</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.notion.builders.NotionClientBuilder" class="doc doc-heading">
+            <code>NotionClientBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Notion API client instances.</p>
+<p>Provides factory method to create configured Notion API clients.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/notion/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionClientBuilder:
+    """Builder for creating Notion API client instances.
+
+    Provides factory method to create configured Notion API clients.
+    """
+
+    @staticmethod
+    @inject
+    def build(configuration: NotionDatasourceConfiguration) -&gt; Client:
+        """Creates a configured Notion API client.
+
+        Args:
+            configuration: Notion authentication settings
+
+        Returns:
+            Client: Configured API client instance
+        """
+        return Client(auth=configuration.secrets.api_token.get_secret_value())</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.builders.NotionClientBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build(configuration)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured Notion API client.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.NotionDatasourceConfiguration">NotionDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Notion authentication settings</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Client</code></b>(                  <code><span title="notion_client.Client">Client</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured API client instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build(configuration: NotionDatasourceConfiguration) -&gt; Client:
+    """Creates a configured Notion API client.
+
+    Args:
+        configuration: Notion authentication settings
+
+    Returns:
+        Client: Configured API client instance
+    """
+    return Client(auth=configuration.secrets.api_token.get_secret_value())</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.notion.builders.NotionDatasourceManagerBuilder" class="doc doc-heading">
+            <code>NotionDatasourceManagerBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Notion datasource manager instances.</p>
+<p>Provides factory method to create configured NotionDatasourceManager
+with required components for content processing.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/notion/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionDatasourceManagerBuilder:
+    """Builder for creating Notion datasource manager instances.
+
+    Provides factory method to create configured NotionDatasourceManager
+    with required components for content processing.
+    """
+
+    @staticmethod
+    @inject
+    def build(
+        configuration: NotionDatasourceConfiguration,
+        reader: NotionReader,
+        cleaner: NotionCleaner,
+        splitter: NotionSplitter,
+    ) -&gt; NotionDatasourceManager:
+        """Creates a configured Notion datasource manager.
+
+        Args:
+            configuration: Notion access and processing settings
+            reader: Component for reading Notion content
+            cleaner: Component for cleaning raw content
+            splitter: Component for splitting content into chunks
+
+        Returns:
+            NotionDatasourceManager: Configured manager instance
+        """
+        return NotionDatasourceManager(
+            configuration=configuration,
+            reader=reader,
+            cleaner=cleaner,
+            splitter=splitter,
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.builders.NotionDatasourceManagerBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build(configuration, reader, cleaner, splitter)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured Notion datasource manager.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.NotionDatasourceConfiguration">NotionDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Notion access and processing settings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>reader</code></b>
+                  (<code><span title="embedding.datasources.notion.reader.NotionReader">NotionReader</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for reading Notion content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>cleaner</code></b>
+                  (<code><span title="embedding.datasources.notion.cleaner.NotionCleaner">NotionCleaner</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for cleaning raw content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>splitter</code></b>
+                  (<code><span title="embedding.datasources.notion.splitter.NotionSplitter">NotionSplitter</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for splitting content into chunks</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>NotionDatasourceManager</code></b>(                  <code><span title="embedding.datasources.notion.manager.NotionDatasourceManager">NotionDatasourceManager</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured manager instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build(
+    configuration: NotionDatasourceConfiguration,
+    reader: NotionReader,
+    cleaner: NotionCleaner,
+    splitter: NotionSplitter,
+) -&gt; NotionDatasourceManager:
+    """Creates a configured Notion datasource manager.
+
+    Args:
+        configuration: Notion access and processing settings
+        reader: Component for reading Notion content
+        cleaner: Component for cleaning raw content
+        splitter: Component for splitting content into chunks
+
+    Returns:
+        NotionDatasourceManager: Configured manager instance
+    """
+    return NotionDatasourceManager(
+        configuration=configuration,
+        reader=reader,
+        cleaner=cleaner,
+        splitter=splitter,
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.notion.builders.NotionExporterBuilder" class="doc doc-heading">
+            <code>NotionExporterBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Notion content exporter instances.</p>
+<p>Provides factory method to create configured NotionExporter objects.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/notion/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionExporterBuilder:
+    """Builder for creating Notion content exporter instances.
+
+    Provides factory method to create configured NotionExporter objects.
+    """
+
+    @staticmethod
+    @inject
+    def build(configuration: NotionDatasourceConfiguration) -&gt; NotionExporter:
+        """Creates a configured Notion content exporter.
+
+        Args:
+            configuration: Notion authentication settings
+
+        Returns:
+            NotionExporter: Configured exporter instance
+        """
+        return NotionExporter(
+            api_token=configuration.secrets.api_token.get_secret_value()
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.builders.NotionExporterBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build(configuration)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured Notion content exporter.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.NotionDatasourceConfiguration">NotionDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Notion authentication settings</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>NotionExporter</code></b>(                  <code><span title="embedding.datasources.notion.exporter.NotionExporter">NotionExporter</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured exporter instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build(configuration: NotionDatasourceConfiguration) -&gt; NotionExporter:
+    """Creates a configured Notion content exporter.
+
+    Args:
+        configuration: Notion authentication settings
+
+    Returns:
+        NotionExporter: Configured exporter instance
+    """
+    return NotionExporter(
+        api_token=configuration.secrets.api_token.get_secret_value()
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.notion.builders.NotionReaderBuilder" class="doc doc-heading">
+            <code>NotionReaderBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Notion reader instances.</p>
+<p>Provides factory method to create configured NotionReader objects.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/notion/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionReaderBuilder:
+    """Builder for creating Notion reader instances.
+
+    Provides factory method to create configured NotionReader objects.
+    """
+
+    @staticmethod
+    @inject
+    def build(
+        configuration: NotionDatasourceConfiguration,
+        notion_client: Client,
+        exporter: NotionExporter,
+    ) -&gt; NotionReader:
+        """Creates a configured Notion reader.
+
+        Args:
+            configuration: Notion access settings
+            notion_client: Client for Notion API interaction
+            exporter: Component for content export
+
+        Returns:
+            NotionReader: Configured reader instance
+        """
+        return NotionReader(
+            configuration=configuration,
+            notion_client=notion_client,
+            exporter=exporter,
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.builders.NotionReaderBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build(configuration, notion_client, exporter)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured Notion reader.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.NotionDatasourceConfiguration">NotionDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Notion access settings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>notion_client</code></b>
+                  (<code><span title="notion_client.Client">Client</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Client for Notion API interaction</p>
+              </div>
+            </li>
+            <li>
+              <b><code>exporter</code></b>
+                  (<code><span title="embedding.datasources.notion.exporter.NotionExporter">NotionExporter</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for content export</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>NotionReader</code></b>(                  <code><span title="embedding.datasources.notion.reader.NotionReader">NotionReader</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured reader instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build(
+    configuration: NotionDatasourceConfiguration,
+    notion_client: Client,
+    exporter: NotionExporter,
+) -&gt; NotionReader:
+    """Creates a configured Notion reader.
+
+    Args:
+        configuration: Notion access settings
+        notion_client: Client for Notion API interaction
+        exporter: Component for content export
+
+    Returns:
+        NotionReader: Configured reader instance
+    """
+    return NotionReader(
+        configuration=configuration,
+        notion_client=notion_client,
+        exporter=exporter,
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.notion.builders.NotionSplitterBuilder" class="doc doc-heading">
+            <code>NotionSplitterBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Notion content splitter instances.</p>
+<p>Provides factory method to create configured NotionSplitter objects
+with separate splitters for databases and pages.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/notion/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NotionSplitterBuilder:
+    """Builder for creating Notion content splitter instances.
+
+    Provides factory method to create configured NotionSplitter objects
+    with separate splitters for databases and pages.
+    """
+
+    @staticmethod
+    @inject
+    def build(
+        database_splitter: BoundEmbeddingModelMarkdownSplitter,
+        page_splitter: BoundEmbeddingModelMarkdownSplitter,
+    ) -&gt; NotionSplitter:
+        """Creates a configured Notion content splitter.
+
+        Args:
+            database_splitter: Splitter for database content
+            page_splitter: Splitter for page content
+
+        Returns:
+            NotionSplitter: Configured splitter instance
+        """
+        return NotionSplitter(
+            database_splitter=database_splitter, page_splitter=page_splitter
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.notion.builders.NotionSplitterBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build(database_splitter, page_splitter)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured Notion content splitter.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>database_splitter</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.embedding_model.embedding_model_binding_keys.BoundEmbeddingModelMarkdownSplitter">BoundEmbeddingModelMarkdownSplitter</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Splitter for database content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>page_splitter</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.embedding_model.embedding_model_binding_keys.BoundEmbeddingModelMarkdownSplitter">BoundEmbeddingModelMarkdownSplitter</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Splitter for page content</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>NotionSplitter</code></b>(                  <code><span title="embedding.datasources.notion.splitter.NotionSplitter">NotionSplitter</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured splitter instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/notion/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build(
+    database_splitter: BoundEmbeddingModelMarkdownSplitter,
+    page_splitter: BoundEmbeddingModelMarkdownSplitter,
+) -&gt; NotionSplitter:
+    """Creates a configured Notion content splitter.
+
+    Args:
+        database_splitter: Splitter for database content
+        page_splitter: Splitter for page content
+
+    Returns:
+        NotionSplitter: Configured splitter instance
+    """
+    return NotionSplitter(
+        database_splitter=database_splitter, page_splitter=page_splitter
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../../common/query_engine/" class="btn btn-neutral float-left" title="Query_engine"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../pdf/" class="btn btn-neutral float-right" title="Pdf">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../../../common/query_engine/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../pdf/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

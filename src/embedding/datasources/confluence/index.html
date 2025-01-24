@@ -1,0 +1,2249 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Confluence - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Confluence";
+        var mkdocs_page_input_path = "src/embedding/datasources/confluence.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Developer Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">How To Add a New LLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../augmentation/utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Common</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../common/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/base_binder/">Base_binder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/dataset/">Dataset</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/retrievers/">Retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/query_engine/">Query_engine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Embedding</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" >Datasources</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" href="../notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../core/">Core</a>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Confluence</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#cleaner">Cleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.cleaner">cleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.cleaner.ConfluenceCleaner">ConfluenceCleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#document">Document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.document">document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.document.ConfluenceDocument">ConfluenceDocument</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#manager">Manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.manager">manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.manager.ConfluenceDatasourceManager">ConfluenceDatasourceManager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#reader">Reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.reader">reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.reader.ConfluenceReader">ConfluenceReader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#splitter">Splitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.splitter">splitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.splitter.ConfluenceSplitter">ConfluenceSplitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#builders">Builders</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.builders">builders</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.builders.ConfluenceCleanerBuilder">ConfluenceCleanerBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.builders.ConfluenceClientBuilder">ConfluenceClientBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.builders.ConfluenceDatasourceManagerBuilder">ConfluenceDatasourceManagerBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.builders.ConfluenceReaderBuilder">ConfluenceReaderBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.builders.ConfluenceSplitterBuilder">ConfluenceSplitterBuilder</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Embedding</li>
+          <li class="breadcrumb-item">Datasources</li>
+      <li class="breadcrumb-item active">Confluence</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/src/embedding/datasources/confluence.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="confluence-datasource">Confluence Datasource</h1>
+<p>This module contains functionality related to the <code>Confluence</code> datasource.</p>
+<h2 id="cleaner">Cleaner</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.confluence.cleaner"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.cleaner.ConfluenceCleaner" class="doc doc-heading">
+            <code>ConfluenceCleaner</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.cleaner.BaseCleaner">BaseCleaner</span></code></p>
+
+
+        <p>The <code>ConfluenceCleaner</code> class is a concrete implementation of <code>BaseCleaner</code> for cleaning Confluence documents.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/cleaner.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ConfluenceCleaner(BaseCleaner):
+    """
+    The `ConfluenceCleaner` class is a concrete implementation of `BaseCleaner` for cleaning Confluence documents.
+    """
+
+    def clean(
+        self, documents: List[ConfluenceDocument]
+    ) -&gt; List[ConfluenceDocument]:
+        """
+        Clean the list of Confluence documents. If the content is empty it is not added to the cleaned documents.
+
+        :param documents: List of ConfluenceDocument objects
+        :return: List of cleaned ConfluenceDocument objects
+        """
+        cleaned_documents = []
+
+        for document in ConfluenceCleaner._get_documents_with_tqdm(documents):
+            if not ConfluenceCleaner._has_empty_content(document):
+                cleaned_documents.append(document)
+
+        return cleaned_documents
+
+    @staticmethod
+    def _get_documents_with_tqdm(documents: List[ConfluenceDocument]):
+        """
+        Return the documents with tqdm progress bar if GlobalSettings.SHOW_PROGRESS is True, else return the documents as is.
+
+        :param documents: List of Notion document objects
+        """
+        return tqdm(documents, desc="[Confluence] Cleaning documents")</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.cleaner.ConfluenceCleaner.clean" class="doc doc-heading">
+            <code class="highlight language-python">clean(documents)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Clean the list of Confluence documents. If the content is empty it is not added to the cleaned documents.</p>
+<p>:param documents: List of ConfluenceDocument objects
+:return: List of cleaned ConfluenceDocument objects</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/cleaner.py</code></summary>
+              <pre class="highlight"><code class="language-python">def clean(
+    self, documents: List[ConfluenceDocument]
+) -&gt; List[ConfluenceDocument]:
+    """
+    Clean the list of Confluence documents. If the content is empty it is not added to the cleaned documents.
+
+    :param documents: List of ConfluenceDocument objects
+    :return: List of cleaned ConfluenceDocument objects
+    """
+    cleaned_documents = []
+
+    for document in ConfluenceCleaner._get_documents_with_tqdm(documents):
+        if not ConfluenceCleaner._has_empty_content(document):
+            cleaned_documents.append(document)
+
+    return cleaned_documents</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="document">Document</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.confluence.document"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.document.ConfluenceDocument" class="doc doc-heading">
+            <code>ConfluenceDocument</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.document.BaseDocument">BaseDocument</span></code></p>
+
+
+        <p>Document representation for Confluence page content.</p>
+<p>Extends BaseDocument to handle Confluence-specific document processing including
+content extraction, metadata handling, and exclusion configuration.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>text</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Markdown-formatted page content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>attachments</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Dictionary of page attachments (placeholder for future)</p>
+              </div>
+            </li>
+            <li>
+              <b><code>metadata</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Extracted page metadata including dates, IDs, and URLs</p>
+              </div>
+            </li>
+            <li>
+              <b><code>excluded_embed_metadata_keys</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Metadata keys to exclude from embeddings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>excluded_llm_metadata_keys</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Metadata keys to exclude from LLM context</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>Handles conversion of HTML content to markdown and manages metadata
+filtering for both embedding and LLM contexts.</p>
+</details>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/document.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ConfluenceDocument(BaseDocument):
+    """Document representation for Confluence page content.
+
+    Extends BaseDocument to handle Confluence-specific document processing including
+    content extraction, metadata handling, and exclusion configuration.
+
+    Attributes:
+        text: Markdown-formatted page content
+        attachments: Dictionary of page attachments (placeholder for future)
+        metadata: Extracted page metadata including dates, IDs, and URLs
+        excluded_embed_metadata_keys: Metadata keys to exclude from embeddings
+        excluded_llm_metadata_keys: Metadata keys to exclude from LLM context
+
+    Note:
+        Handles conversion of HTML content to markdown and manages metadata
+        filtering for both embedding and LLM contexts.
+    """
+
+    @classmethod
+    def from_page(cls, page: dict, base_url: str) -&gt; "ConfluenceDocument":
+        """Create ConfluenceDocument instance from page data.
+
+        Args:
+            page: Dictionary containing Confluence page details
+            base_url: Base URL of the Confluence instance
+
+        Returns:
+            ConfluenceDocument: Configured document instance
+        """
+        document = cls(
+            text=md(page["body"]["view"]["value"]),
+            attachments={},  # TBD
+            metadata=ConfluenceDocument._get_metadata(page, base_url),
+        )
+        document._set_excluded_embed_metadata_keys()
+        document._set_excluded_llm_metadata_keys()
+        return document
+
+    def _set_excluded_embed_metadata_keys(self) -&gt; None:
+        """Configure metadata keys to exclude from embeddings.
+
+        Identifies metadata keys not explicitly included in embedding
+        processing and marks them for exclusion.
+        """
+        metadata_keys = self.metadata.keys()
+        self.excluded_embed_metadata_keys = [
+            key
+            for key in metadata_keys
+            if key not in self.included_embed_metadata_keys
+        ]
+
+    def _set_excluded_llm_metadata_keys(self) -&gt; None:
+        """Configure metadata keys to exclude from LLM context.
+
+        Identifies metadata keys not explicitly included in LLM
+        processing and marks them for exclusion.
+        """
+        metadata_keys = self.metadata.keys()
+        self.excluded_llm_metadata_keys = [
+            key
+            for key in metadata_keys
+            if key not in self.included_llm_metadata_keys
+        ]
+
+    @staticmethod
+    def _get_metadata(page: dict, base_url: str) -&gt; dict:
+        """Extract and format page metadata.
+
+        Args:
+            page: Dictionary containing Confluence page details
+            base_url: Base URL of the Confluence instance
+
+        Returns:
+            dict: Structured metadata including dates, IDs, and URLs
+        """
+        return {
+            "created_time": page["history"]["createdDate"],
+            "created_date": page["history"]["createdDate"].split("T")[0],
+            "datasource": "confluence",
+            "format": "md",
+            "last_edited_date": page["history"]["lastUpdated"]["when"],
+            "last_edited_time": page["history"]["lastUpdated"]["when"].split(
+                "T"
+            )[0],
+            "page_id": page["id"],
+            "space": page["_expandable"]["space"].split("/")[-1],
+            "title": page["title"],
+            "type": "page",
+            "url": base_url + page["_links"]["webui"],
+        }</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.document.ConfluenceDocument.from_page" class="doc doc-heading">
+            <code class="highlight language-python">from_page(page, base_url)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create ConfluenceDocument instance from page data.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>page</code></b>
+                  (<code>dict</code>)
+              –
+              <div class="doc-md-description">
+                <p>Dictionary containing Confluence page details</p>
+              </div>
+            </li>
+            <li>
+              <b><code>base_url</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Base URL of the Confluence instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>ConfluenceDocument</code></b>(                  <code><a class="autorefs autorefs-internal" title="src.embedding.datasources.confluence.document.ConfluenceDocument" href="#src.embedding.datasources.confluence.document.ConfluenceDocument">ConfluenceDocument</a></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured document instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/document.py</code></summary>
+              <pre class="highlight"><code class="language-python">@classmethod
+def from_page(cls, page: dict, base_url: str) -&gt; "ConfluenceDocument":
+    """Create ConfluenceDocument instance from page data.
+
+    Args:
+        page: Dictionary containing Confluence page details
+        base_url: Base URL of the Confluence instance
+
+    Returns:
+        ConfluenceDocument: Configured document instance
+    """
+    document = cls(
+        text=md(page["body"]["view"]["value"]),
+        attachments={},  # TBD
+        metadata=ConfluenceDocument._get_metadata(page, base_url),
+    )
+    document._set_excluded_embed_metadata_keys()
+    document._set_excluded_llm_metadata_keys()
+    return document</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="manager">Manager</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.confluence.manager"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.manager.ConfluenceDatasourceManager" class="doc doc-heading">
+            <code>ConfluenceDatasourceManager</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.manager.DatasourceManager">DatasourceManager</span></code></p>
+
+
+        <p>Manager for Confluence content extraction and processing.</p>
+<p>Handles document retrieval, cleaning, splitting and embedding updates
+for Confluence workspace content. Implements the base DatasourceManager
+interface for Confluence-specific processing.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/manager.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ConfluenceDatasourceManager(DatasourceManager):
+    """Manager for Confluence content extraction and processing.
+
+    Handles document retrieval, cleaning, splitting and embedding updates
+    for Confluence workspace content. Implements the base DatasourceManager
+    interface for Confluence-specific processing.
+    """
+
+    pass</code></pre>
+              </details>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="reader">Reader</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.confluence.reader"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.reader.ConfluenceReader" class="doc doc-heading">
+            <code>ConfluenceReader</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.reader.BaseReader">BaseReader</span></code></p>
+
+
+        <p>Reader for extracting documents from Confluence spaces.</p>
+<p>Implements document extraction from Confluence spaces, handling pagination
+and export limits. Supports both synchronous and asynchronous retrieval.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>export_limit</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Maximum number of documents to extract</p>
+              </div>
+            </li>
+            <li>
+              <b><code>confluence_client</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Client for Confluence API interactions</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/reader.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ConfluenceReader(BaseReader):
+    """Reader for extracting documents from Confluence spaces.
+
+    Implements document extraction from Confluence spaces, handling pagination
+    and export limits. Supports both synchronous and asynchronous retrieval.
+
+    Attributes:
+        export_limit: Maximum number of documents to extract
+        confluence_client: Client for Confluence API interactions
+    """
+
+    def __init__(
+        self,
+        configuration: ConfluenceDatasourceConfiguration,
+        confluence_client: Confluence,
+    ):
+        """Initialize the Confluence reader.
+
+        Args:
+            configuration: Settings for Confluence access and limits
+            confluence_client: Client for Confluence API interactions
+        """
+        super().__init__()
+        self.export_limit = configuration.export_limit
+        self.confluence_client = confluence_client
+
+    def get_all_documents(self) -&gt; List[ConfluenceDocument]:
+        """Synchronously fetch all documents from Confluence.
+
+        Returns:
+            List[ConfluenceDocument]: List of extracted documents
+
+        Note:
+            Not implemented - use get_all_documents_async instead.
+        """
+        pass
+
+    async def get_all_documents_async(self) -&gt; List[ConfluenceDocument]:
+        """Asynchronously fetch all documents from Confluence.
+
+        Retrieves documents from all global spaces, respecting export limit.
+
+        Returns:
+            List[ConfluenceDocument]: List of extracted and processed documents
+        """
+        logging.info(
+            f"Fetching documents from Confluence with limit {self.export_limit}"
+        )
+        response = self.confluence_client.get_all_spaces(space_type="global")
+        pages = []
+
+        for space in response["results"]:
+            space_limit = (
+                self.export_limit - len(pages)
+                if self.export_limit is not None
+                else None
+            )
+            pages.extend(self._get_all_pages(space["key"], space_limit))
+            if (
+                self.export_limit is not None
+                and len(pages) &gt;= self.export_limit
+            ):
+                break
+
+        pages = (
+            pages if self.export_limit is None else pages[: self.export_limit]
+        )
+        documents = [
+            ConfluenceDocument.from_page(page, self.confluence_client.url)
+            for page in pages
+        ]
+        return documents
+
+    def _get_all_pages(self, space: str, limit: int) -&gt; List[dict]:
+        """Fetch all pages from a Confluence space.
+
+        Args:
+            space: Space key to fetch pages from
+            limit: Maximum number of pages to fetch (None for unlimited)
+
+        Returns:
+            List[dict]: List of page details from the space
+        """
+        start = 0
+        params = {
+            "space": space,
+            "start": start,
+            "status": None,
+            "expand": "body.view,history.lastUpdated",
+        }
+        all_pages = []
+
+        try:
+            with tqdm(
+                desc=f"[Confluence] Reading {space}'s pages content",
+                unit="pages",
+            ) as pbar:
+                while True:
+                    pages = self.confluence_client.get_all_pages_from_space(
+                        **params
+                    )
+                    all_pages.extend(pages)
+                    pbar.update(len(pages))
+
+                    if len(pages) == 0 or ConfluenceReader._limit_reached(
+                        all_pages, limit
+                    ):
+                        break
+
+                    start = len(all_pages)
+                    params["start"] = start
+        except HTTPError as e:
+            logging.debug(f"Error while fetching pages from {space}: {e}")
+
+        return all_pages if limit is None else all_pages[:limit]
+
+    @staticmethod
+    def _limit_reached(pages: List[dict], limit: int) -&gt; bool:
+        """Check if page limit has been reached.
+
+        Args:
+            pages: List of retrieved pages
+            limit: Maximum number of pages (None for unlimited)
+
+        Returns:
+            bool: True if limit reached, False otherwise
+        """
+        return limit is not None and len(pages) &gt;= limit</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.reader.ConfluenceReader.__init__" class="doc doc-heading">
+            <code class="highlight language-python">__init__(configuration, confluence_client)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize the Confluence reader.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.ConfluenceDatasourceConfiguration">ConfluenceDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Settings for Confluence access and limits</p>
+              </div>
+            </li>
+            <li>
+              <b><code>confluence_client</code></b>
+                  (<code><span title="atlassian.Confluence">Confluence</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Client for Confluence API interactions</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/reader.py</code></summary>
+              <pre class="highlight"><code class="language-python">def __init__(
+    self,
+    configuration: ConfluenceDatasourceConfiguration,
+    confluence_client: Confluence,
+):
+    """Initialize the Confluence reader.
+
+    Args:
+        configuration: Settings for Confluence access and limits
+        confluence_client: Client for Confluence API interactions
+    """
+    super().__init__()
+    self.export_limit = configuration.export_limit
+    self.confluence_client = confluence_client</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.reader.ConfluenceReader.get_all_documents" class="doc doc-heading">
+            <code class="highlight language-python">get_all_documents()</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Synchronously fetch all documents from Confluence.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="embedding.datasources.confluence.document.ConfluenceDocument">ConfluenceDocument</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[ConfluenceDocument]: List of extracted documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>Not implemented - use get_all_documents_async instead.</p>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/reader.py</code></summary>
+              <pre class="highlight"><code class="language-python">def get_all_documents(self) -&gt; List[ConfluenceDocument]:
+    """Synchronously fetch all documents from Confluence.
+
+    Returns:
+        List[ConfluenceDocument]: List of extracted documents
+
+    Note:
+        Not implemented - use get_all_documents_async instead.
+    """
+    pass</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.reader.ConfluenceReader.get_all_documents_async" class="doc doc-heading">
+            <code class="highlight language-python">get_all_documents_async()</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Asynchronously fetch all documents from Confluence.</p>
+<p>Retrieves documents from all global spaces, respecting export limit.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="embedding.datasources.confluence.document.ConfluenceDocument">ConfluenceDocument</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[ConfluenceDocument]: List of extracted and processed documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/reader.py</code></summary>
+              <pre class="highlight"><code class="language-python">async def get_all_documents_async(self) -&gt; List[ConfluenceDocument]:
+    """Asynchronously fetch all documents from Confluence.
+
+    Retrieves documents from all global spaces, respecting export limit.
+
+    Returns:
+        List[ConfluenceDocument]: List of extracted and processed documents
+    """
+    logging.info(
+        f"Fetching documents from Confluence with limit {self.export_limit}"
+    )
+    response = self.confluence_client.get_all_spaces(space_type="global")
+    pages = []
+
+    for space in response["results"]:
+        space_limit = (
+            self.export_limit - len(pages)
+            if self.export_limit is not None
+            else None
+        )
+        pages.extend(self._get_all_pages(space["key"], space_limit))
+        if (
+            self.export_limit is not None
+            and len(pages) &gt;= self.export_limit
+        ):
+            break
+
+    pages = (
+        pages if self.export_limit is None else pages[: self.export_limit]
+    )
+    documents = [
+        ConfluenceDocument.from_page(page, self.confluence_client.url)
+        for page in pages
+    ]
+    return documents</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="splitter">Splitter</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.confluence.splitter"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.splitter.ConfluenceSplitter" class="doc doc-heading">
+            <code>ConfluenceSplitter</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.splitter.BaseSplitter">BaseSplitter</span></code></p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/splitter.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ConfluenceSplitter(BaseSplitter):
+
+    def __init__(
+        self,
+        markdown_splitter: BoundEmbeddingModelMarkdownSplitter,
+    ):
+        """
+        The `ConfluenceSplitter` class is a concrete class that defines the interface for splitting documents into text nodes.
+
+        :param markdown_splitter: MarkdownSplitter object for splitting documents
+        """
+        self.markdown_splitter = markdown_splitter
+
+    def split(self, documents: List[ConfluenceDocument]) -&gt; List[TextNode]:
+        """
+        Split the given list of documents into text nodes using `markdown_splitter`. Documents should be in markdown format.
+
+        :param documents: List of Document objects
+        :return: List of TextNode objects
+        """
+        return self.markdown_splitter.split(documents)</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.splitter.ConfluenceSplitter.__init__" class="doc doc-heading">
+            <code class="highlight language-python">__init__(markdown_splitter)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The <code>ConfluenceSplitter</code> class is a concrete class that defines the interface for splitting documents into text nodes.</p>
+<p>:param markdown_splitter: MarkdownSplitter object for splitting documents</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/splitter.py</code></summary>
+              <pre class="highlight"><code class="language-python">def __init__(
+    self,
+    markdown_splitter: BoundEmbeddingModelMarkdownSplitter,
+):
+    """
+    The `ConfluenceSplitter` class is a concrete class that defines the interface for splitting documents into text nodes.
+
+    :param markdown_splitter: MarkdownSplitter object for splitting documents
+    """
+    self.markdown_splitter = markdown_splitter</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.splitter.ConfluenceSplitter.split" class="doc doc-heading">
+            <code class="highlight language-python">split(documents)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Split the given list of documents into text nodes using <code>markdown_splitter</code>. Documents should be in markdown format.</p>
+<p>:param documents: List of Document objects
+:return: List of TextNode objects</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/splitter.py</code></summary>
+              <pre class="highlight"><code class="language-python">def split(self, documents: List[ConfluenceDocument]) -&gt; List[TextNode]:
+    """
+    Split the given list of documents into text nodes using `markdown_splitter`. Documents should be in markdown format.
+
+    :param documents: List of Document objects
+    :return: List of TextNode objects
+    """
+    return self.markdown_splitter.split(documents)</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="builders">Builders</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.confluence.builders"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.builders.ConfluenceCleanerBuilder" class="doc doc-heading">
+            <code>ConfluenceCleanerBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Confluence content cleaner instances.</p>
+<p>Provides factory method to create Cleaner objects for Confluence content.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ConfluenceCleanerBuilder:
+    """Builder for creating Confluence content cleaner instances.
+
+    Provides factory method to create Cleaner objects for Confluence content.
+    """
+
+    @staticmethod
+    @inject
+    def build() -&gt; ConfluenceCleaner:
+        """Creates a content cleaner for Confluence.
+
+        Returns:
+            Cleaner: Configured cleaner instance
+        """
+        return ConfluenceCleaner()</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.builders.ConfluenceCleanerBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build()</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a content cleaner for Confluence.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Cleaner</code></b>(                  <code><span title="embedding.datasources.confluence.cleaner.ConfluenceCleaner">ConfluenceCleaner</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured cleaner instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build() -&gt; ConfluenceCleaner:
+    """Creates a content cleaner for Confluence.
+
+    Returns:
+        Cleaner: Configured cleaner instance
+    """
+    return ConfluenceCleaner()</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.builders.ConfluenceClientBuilder" class="doc doc-heading">
+            <code>ConfluenceClientBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Confluence API client instances.</p>
+<p>Provides factory method to create configured Confluence API clients.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ConfluenceClientBuilder:
+    """Builder for creating Confluence API client instances.
+
+    Provides factory method to create configured Confluence API clients.
+    """
+
+    @staticmethod
+    @inject
+    def build(configuration: ConfluenceDatasourceConfiguration) -&gt; Confluence:
+        """Creates a configured Confluence API client.
+
+        Args:
+            configuration: Confluence connection settings
+
+        Returns:
+            Confluence: Configured API client instance
+        """
+        return Confluence(
+            url=configuration.host,
+            username=configuration.secrets.username.get_secret_value(),
+            password=configuration.secrets.password.get_secret_value(),
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.builders.ConfluenceClientBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build(configuration)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured Confluence API client.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.ConfluenceDatasourceConfiguration">ConfluenceDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Confluence connection settings</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Confluence</code></b>(                  <code><span title="atlassian.Confluence">Confluence</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured API client instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build(configuration: ConfluenceDatasourceConfiguration) -&gt; Confluence:
+    """Creates a configured Confluence API client.
+
+    Args:
+        configuration: Confluence connection settings
+
+    Returns:
+        Confluence: Configured API client instance
+    """
+    return Confluence(
+        url=configuration.host,
+        username=configuration.secrets.username.get_secret_value(),
+        password=configuration.secrets.password.get_secret_value(),
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.builders.ConfluenceDatasourceManagerBuilder" class="doc doc-heading">
+            <code>ConfluenceDatasourceManagerBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Confluence datasource manager instances.</p>
+<p>Provides factory method to create configured ConfluenceDatasourceManager
+with required components for content processing.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ConfluenceDatasourceManagerBuilder:
+    """Builder for creating Confluence datasource manager instances.
+
+    Provides factory method to create configured ConfluenceDatasourceManager
+    with required components for content processing.
+    """
+
+    @staticmethod
+    @inject
+    def build(
+        configuration: ConfluenceDatasourceConfiguration,
+        reader: ConfluenceReader,
+        cleaner: Cleaner,
+        splitter: ConfluenceSplitter,
+    ) -&gt; ConfluenceDatasourceManager:
+        """Creates a configured Confluence datasource manager.
+
+        Args:
+            configuration: Confluence access and processing settings
+            reader: Component for reading Confluence content
+            cleaner: Component for cleaning raw content
+            splitter: Component for splitting content into chunks
+
+        Returns:
+            ConfluenceDatasourceManager: Configured manager instance
+        """
+        return ConfluenceDatasourceManager(
+            configuration=configuration,
+            reader=reader,
+            cleaner=cleaner,
+            splitter=splitter,
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.builders.ConfluenceDatasourceManagerBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build(configuration, reader, cleaner, splitter)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured Confluence datasource manager.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.ConfluenceDatasourceConfiguration">ConfluenceDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Confluence access and processing settings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>reader</code></b>
+                  (<code><span title="embedding.datasources.confluence.reader.ConfluenceReader">ConfluenceReader</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for reading Confluence content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>cleaner</code></b>
+                  (<code><span title="embedding.datasources.core.cleaner.Cleaner">Cleaner</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for cleaning raw content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>splitter</code></b>
+                  (<code><span title="embedding.datasources.confluence.splitter.ConfluenceSplitter">ConfluenceSplitter</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for splitting content into chunks</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>ConfluenceDatasourceManager</code></b>(                  <code><span title="embedding.datasources.confluence.manager.ConfluenceDatasourceManager">ConfluenceDatasourceManager</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured manager instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build(
+    configuration: ConfluenceDatasourceConfiguration,
+    reader: ConfluenceReader,
+    cleaner: Cleaner,
+    splitter: ConfluenceSplitter,
+) -&gt; ConfluenceDatasourceManager:
+    """Creates a configured Confluence datasource manager.
+
+    Args:
+        configuration: Confluence access and processing settings
+        reader: Component for reading Confluence content
+        cleaner: Component for cleaning raw content
+        splitter: Component for splitting content into chunks
+
+    Returns:
+        ConfluenceDatasourceManager: Configured manager instance
+    """
+    return ConfluenceDatasourceManager(
+        configuration=configuration,
+        reader=reader,
+        cleaner=cleaner,
+        splitter=splitter,
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.builders.ConfluenceReaderBuilder" class="doc doc-heading">
+            <code>ConfluenceReaderBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Confluence reader instances.</p>
+<p>Provides factory method to create configured ConfluenceReader objects.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ConfluenceReaderBuilder:
+    """Builder for creating Confluence reader instances.
+
+    Provides factory method to create configured ConfluenceReader objects.
+    """
+
+    @staticmethod
+    @inject
+    def build(
+        configuration: ConfluenceDatasourceConfiguration,
+        confluence_client: Confluence,
+    ) -&gt; ConfluenceReader:
+        """Creates a configured Confluence reader.
+
+        Args:
+            configuration: Confluence access settings
+            confluence_client: Client for Confluence API interaction
+
+        Returns:
+            ConfluenceReader: Configured reader instance
+        """
+        return ConfluenceReader(
+            configuration=configuration,
+            confluence_client=confluence_client,
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.builders.ConfluenceReaderBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build(configuration, confluence_client)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured Confluence reader.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.ConfluenceDatasourceConfiguration">ConfluenceDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Confluence access settings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>confluence_client</code></b>
+                  (<code><span title="atlassian.Confluence">Confluence</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Client for Confluence API interaction</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>ConfluenceReader</code></b>(                  <code><span title="embedding.datasources.confluence.reader.ConfluenceReader">ConfluenceReader</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured reader instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build(
+    configuration: ConfluenceDatasourceConfiguration,
+    confluence_client: Confluence,
+) -&gt; ConfluenceReader:
+    """Creates a configured Confluence reader.
+
+    Args:
+        configuration: Confluence access settings
+        confluence_client: Client for Confluence API interaction
+
+    Returns:
+        ConfluenceReader: Configured reader instance
+    """
+    return ConfluenceReader(
+        configuration=configuration,
+        confluence_client=confluence_client,
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.builders.ConfluenceSplitterBuilder" class="doc doc-heading">
+            <code>ConfluenceSplitterBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class ConfluenceSplitterBuilder:
+
+    @staticmethod
+    @inject
+    def build(
+        markdown_splitter: BoundEmbeddingModelMarkdownSplitter,
+    ) -&gt; ConfluenceSplitter:
+        """
+        Builds a `ConfluenceSplitter` instance using `MarkdownSplitter`.
+
+        :param markdown_splitter: MarkdownSplitter object
+        :return: ConfluenceSplitter object
+        """
+        return ConfluenceSplitter(markdown_splitter)</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.builders.ConfluenceSplitterBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build(markdown_splitter)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Builds a <code>ConfluenceSplitter</code> instance using <code>MarkdownSplitter</code>.</p>
+<p>:param markdown_splitter: MarkdownSplitter object
+:return: ConfluenceSplitter object</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build(
+    markdown_splitter: BoundEmbeddingModelMarkdownSplitter,
+) -&gt; ConfluenceSplitter:
+    """
+    Builds a `ConfluenceSplitter` instance using `MarkdownSplitter`.
+
+    :param markdown_splitter: MarkdownSplitter object
+    :return: ConfluenceSplitter object
+    """
+    return ConfluenceSplitter(markdown_splitter)</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../core/" class="btn btn-neutral float-left" title="Core"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../validators/vector_store_validators/" class="btn btn-neutral float-right" title="Vector_store_validators">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../core/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../validators/vector_store_validators/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

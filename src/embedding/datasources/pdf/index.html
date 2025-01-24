@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Pdf - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Pdf";
+        var mkdocs_page_input_path = "src/embedding/datasources/pdf.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Developer Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">How To Add a New LLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../augmentation/utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Common</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../common/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/base_binder/">Base_binder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/dataset/">Dataset</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/retrievers/">Retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/query_engine/">Query_engine</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Embedding</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" >Datasources</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" href="../notion/">Notion</a>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Pdf</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#document">Document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.document">document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.document.PdfDocument">PdfDocument</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#manager">Manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.manager">manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.manager.PdfDatasourceManager">PdfDatasourceManager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#reader">Reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.reader">reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.reader.DefaultPDFParser">DefaultPDFParser</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.reader.NLMPDFParser">NLMPDFParser</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.reader.PdfReader">PdfReader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.reader.preprocess_text">preprocess_text</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#builders">Builders</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.builders">builders</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.builders.PdfCleanerBuilder">PdfCleanerBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.builders.PdfDatasourceManagerBuilder">PdfDatasourceManagerBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.pdf.builders.PdfReaderBuilder">PdfReaderBuilder</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../confluence/">Confluence</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/base/">Base</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Embedding</li>
+          <li class="breadcrumb-item">Datasources</li>
+      <li class="breadcrumb-item active">Pdf</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/src/embedding/datasources/pdf.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="pdf-datasource">Pdf Datasource</h1>
+<p>This module contains functionality related to the <code>Pdf</code> datasource.</p>
+<h2 id="document">Document</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.pdf.document"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.pdf.document.PdfDocument" class="doc doc-heading">
+            <code>PdfDocument</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.document.BaseDocument">BaseDocument</span></code></p>
+
+
+        <p>Document representation for PDF file content.</p>
+<p>Extends BaseDocument to handle PDF-specific document processing including
+metadata filtering for embeddings and LLM contexts.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>included_embed_metadata_keys</code></b>
+                  (<code><span title="typing.List">List</span>[str]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Metadata keys to include in embeddings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>included_llm_metadata_keys</code></b>
+                  (<code><span title="typing.List">List</span>[str]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Metadata keys to include in LLM context</p>
+              </div>
+            </li>
+            <li>
+              <b><code>text</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Document content in text format</p>
+              </div>
+            </li>
+            <li>
+              <b><code>metadata</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Extracted PDF metadata</p>
+              </div>
+            </li>
+            <li>
+              <b><code>attachments</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Dictionary of document attachments</p>
+              </div>
+            </li>
+            <li>
+              <b><code>excluded_embed_metadata_keys</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Metadata keys to exclude from embeddings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>excluded_llm_metadata_keys</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Metadata keys to exclude from LLM context</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/pdf/document.py</code></summary>
+                <pre class="highlight"><code class="language-python">class PdfDocument(BaseDocument):
+    """Document representation for PDF file content.
+
+    Extends BaseDocument to handle PDF-specific document processing including
+    metadata filtering for embeddings and LLM contexts.
+
+    Attributes:
+        included_embed_metadata_keys: Metadata keys to include in embeddings
+        included_llm_metadata_keys: Metadata keys to include in LLM context
+        text: Document content in text format
+        metadata: Extracted PDF metadata
+        attachments: Dictionary of document attachments
+        excluded_embed_metadata_keys: Metadata keys to exclude from embeddings
+        excluded_llm_metadata_keys: Metadata keys to exclude from LLM context
+    """
+
+    included_embed_metadata_keys: List[str] = [
+        "Title",
+        "CreationDate",
+        "ModDate",
+        "creation_date",
+        "client_name",
+        "offer_name",
+        "project_lead",
+    ]
+    included_llm_metadata_keys: List[str] = [
+        "Title",
+        "CreationDate",
+        "ModDate",
+        "creation_date",
+        "client_name",
+        "offer_name",
+        "project_lead",
+    ]
+
+    def __init__(self, text: str, metadata: dict, attachments: dict = None):
+        """Initialize PDF document.
+
+        Args:
+            text: Extracted text content
+            metadata: PDF metadata dictionary
+            attachments: Optional dictionary of attachments
+        """
+        super().__init__()
+        self.text = text
+        self.metadata = metadata
+        self.attachments = attachments or {}
+        self.excluded_embed_metadata_keys = self._set_excluded_metadata_keys(
+            self.metadata, self.included_embed_metadata_keys
+        )
+        self.excluded_llm_metadata_keys = self._set_excluded_metadata_keys(
+            self.metadata, self.included_llm_metadata_keys
+        )
+
+    @staticmethod
+    def _set_excluded_metadata_keys(
+        metadata: dict, included_keys: List[str]
+    ) -&gt; List[str]:
+        """Determine metadata keys to exclude from processing.
+
+        Args:
+            metadata: Complete metadata dictionary
+            included_keys: Keys to include in processing
+
+        Returns:
+            List[str]: Keys that should be excluded
+
+        Note:
+            Returns any key from metadata that isn't in included_keys
+        """
+        return [key for key in metadata.keys() if key not in included_keys]</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.pdf.document.PdfDocument.__init__" class="doc doc-heading">
+            <code class="highlight language-python">__init__(text, metadata, attachments=None)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize PDF document.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>text</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Extracted text content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>metadata</code></b>
+                  (<code>dict</code>)
+              –
+              <div class="doc-md-description">
+                <p>PDF metadata dictionary</p>
+              </div>
+            </li>
+            <li>
+              <b><code>attachments</code></b>
+                  (<code>dict</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Optional dictionary of attachments</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/pdf/document.py</code></summary>
+              <pre class="highlight"><code class="language-python">def __init__(self, text: str, metadata: dict, attachments: dict = None):
+    """Initialize PDF document.
+
+    Args:
+        text: Extracted text content
+        metadata: PDF metadata dictionary
+        attachments: Optional dictionary of attachments
+    """
+    super().__init__()
+    self.text = text
+    self.metadata = metadata
+    self.attachments = attachments or {}
+    self.excluded_embed_metadata_keys = self._set_excluded_metadata_keys(
+        self.metadata, self.included_embed_metadata_keys
+    )
+    self.excluded_llm_metadata_keys = self._set_excluded_metadata_keys(
+        self.metadata, self.included_llm_metadata_keys
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="manager">Manager</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.pdf.manager"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.pdf.manager.PdfDatasourceManager" class="doc doc-heading">
+            <code>PdfDatasourceManager</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.manager.DatasourceManager">DatasourceManager</span></code></p>
+
+
+        <p>Manager for PDF content extraction and processing.</p>
+<p>Handles document retrieval, cleaning, splitting and embedding updates
+for PDF documents. Implements the base DatasourceManager
+interface for PDF-specific processing.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/pdf/manager.py</code></summary>
+                <pre class="highlight"><code class="language-python">class PdfDatasourceManager(DatasourceManager):
+    """Manager for PDF content extraction and processing.
+
+    Handles document retrieval, cleaning, splitting and embedding updates
+    for PDF documents. Implements the base DatasourceManager
+    interface for PDF-specific processing.
+    """
+
+    pass</code></pre>
+              </details>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="reader">Reader</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.pdf.reader"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.pdf.reader.DefaultPDFParser" class="doc doc-heading">
+            <code>DefaultPDFParser</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/pdf/reader.py</code></summary>
+                <pre class="highlight"><code class="language-python">class DefaultPDFParser:
+    def parse(self, file_path: str) -&gt; List[PdfDocument]:
+        with open(file_path, "rb") as f:
+            reader = pypdf.PdfReader(f)
+            text = "\n\n".join(
+                page.extract_text() or "" for page in reader.pages
+            )
+            metadata = self._extract_metadata(reader)
+            return [PdfDocument(text=text, metadata=metadata)]
+
+    def _extract_metadata(self, reader: pypdf.PdfReader) -&gt; dict:
+        """Extract and process PDF metadata.
+
+        Args:
+            reader: PDF reader instance
+
+        Returns:
+            dict: Processed metadata dictionary
+
+        Note:
+            Converts date strings to ISO format where possible
+        """
+        pdf_metadata = reader.metadata
+        metadata = {}
+        if pdf_metadata is not None:
+            for key, value in pdf_metadata.items():
+                clean_key = key.strip("/")
+                if clean_key in ["CreationDate", "ModDate"]:
+                    date_str = value.strip("D:")
+                    try:
+                        parsed_date = datetime.strptime(
+                            date_str[:14], "%Y%m%d%H%M%S"
+                        )
+                        metadata[clean_key] = parsed_date.isoformat()
+                    except ValueError:
+                        metadata[clean_key] = value
+                else:
+                    metadata[clean_key] = value
+        return metadata</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.pdf.reader.NLMPDFParser" class="doc doc-heading">
+            <code>NLMPDFParser</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/pdf/reader.py</code></summary>
+                <pre class="highlight"><code class="language-python">class NLMPDFParser:
+    # Field patterns as class constant
+    FIELDS_TO_EXTRACT = [
+        {
+            "name": "valid_until",
+            "search_patterns": r"(?:Gültig bis|Valid until)\s*[:\s]*([\d/]+)",
+        },
+        {
+            "name": "client_name",
+            "search_patterns": r"(?:Client|Kunde)\s*[:\s]*([\S ]+?)(?=\s*\b(?:Quote No\.|Quote|Angebotsnummer|Date|Contact|Conta ct|Contents|Project Lead|Projektnummer)\b)",
+        },
+        {
+            "name": "offer_name",
+            "search_patterns": r"(?:Angebot|Quote)\s*[:\s]*([\S ]+?)(?=\s*\b(?:Datum|Date|Valid until|Contact|Project Lead|Projektleiter|Projektnummer)\b)",
+        },
+        {
+            "name": "project_lead",
+            "search_patterns": r"(?:Project\s*Lead|Projektleiter)\s*[:\s]*([\w\s.]+?)(?=\s*(Contact|Kontakt|Project Number|Quote Number|Valid until|$))",
+        },
+    ]
+
+    def __init__(self, api_base: str):
+        self.reader = LayoutPDFReader(api_base)
+
+    def parse(self, file_path: str) -&gt; List[PdfDocument]:
+        """
+        Parses the given PDF file and enriches its metadata with additional fields.
+
+        Args:
+            file_path (str): Path to the PDF file.
+
+        Returns:
+            List[PdfDocument]: List of enriched PdfDocument objects.
+        """
+        doc = self.reader.read_pdf(file_path)
+        metadata = default_file_metadata_func(file_path)
+        additional_metadata = self._extract_page_metadata(file_path)
+        documents = []
+
+        for chunk in doc.chunks():
+            chunk_metadata = metadata.copy()
+            chunk_metadata["page_label"] = chunk.page_idx
+            enriched_metadata = {**chunk_metadata, **additional_metadata}
+            documents.append(
+                PdfDocument(
+                    text=chunk.to_context_text(),
+                    metadata=enriched_metadata,
+                )
+            )
+
+        return documents
+
+    def _extract_page_metadata(self, file_path: str) -&gt; dict:
+        """Extract metadata from first pages of PDF.
+
+        Args:
+            file_path: Path to PDF file
+
+        Returns:
+            dict: Extracted metadata fields
+        """
+        reader = pypdf.PdfReader(file_path)
+        text = "".join(page.extract_text() or "" for page in reader.pages[:2])
+        text = preprocess_text(text)
+        return self._extract_fields(text, self.FIELDS_TO_EXTRACT)
+
+    def _extract_fields(self, text: str, fields_to_extract: List[dict]) -&gt; dict:
+        extracted_fields = {}
+
+        for field in fields_to_extract:
+            match = re.search(field["search_patterns"], text, re.IGNORECASE)
+            if match:
+                extracted_fields[field["name"]] = match.group(1).strip()
+
+        # Fallback/default values
+        extracted_fields.setdefault("valid_until", "01/01/2024")
+        extracted_fields.setdefault("client_name", "Unknown Client")
+        extracted_fields.setdefault("offer_name", "Generic Offer")
+        extracted_fields.setdefault("project_lead", "Not Assigned")
+
+        return extracted_fields</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.pdf.reader.NLMPDFParser.parse" class="doc doc-heading">
+            <code class="highlight language-python">parse(file_path)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Parses the given PDF file and enriches its metadata with additional fields.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>file_path</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Path to the PDF file.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="embedding.datasources.pdf.document.PdfDocument">PdfDocument</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[PdfDocument]: List of enriched PdfDocument objects.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/pdf/reader.py</code></summary>
+              <pre class="highlight"><code class="language-python">def parse(self, file_path: str) -&gt; List[PdfDocument]:
+    """
+    Parses the given PDF file and enriches its metadata with additional fields.
+
+    Args:
+        file_path (str): Path to the PDF file.
+
+    Returns:
+        List[PdfDocument]: List of enriched PdfDocument objects.
+    """
+    doc = self.reader.read_pdf(file_path)
+    metadata = default_file_metadata_func(file_path)
+    additional_metadata = self._extract_page_metadata(file_path)
+    documents = []
+
+    for chunk in doc.chunks():
+        chunk_metadata = metadata.copy()
+        chunk_metadata["page_label"] = chunk.page_idx
+        enriched_metadata = {**chunk_metadata, **additional_metadata}
+        documents.append(
+            PdfDocument(
+                text=chunk.to_context_text(),
+                metadata=enriched_metadata,
+            )
+        )
+
+    return documents</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.pdf.reader.PdfReader" class="doc doc-heading">
+            <code>PdfReader</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.reader.BaseReader">BaseReader</span>[<span title="embedding.datasources.pdf.document.PdfDocument">PdfDocument</span>]</code></p>
+
+
+        <p>Reader for extracting content from PDF files.</p>
+<p>Implements document extraction from PDF files with support for
+text and metadata extraction.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>export_limit</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Maximum number of documents to process</p>
+              </div>
+            </li>
+            <li>
+              <b><code>base_path</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Root directory containing PDF files</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/pdf/reader.py</code></summary>
+                <pre class="highlight"><code class="language-python">class PdfReader(BaseReader[PdfDocument]):
+    """Reader for extracting content from PDF files.
+
+    Implements document extraction from PDF files with support for
+    text and metadata extraction.
+
+    Attributes:
+        export_limit: Maximum number of documents to process
+        base_path: Root directory containing PDF files
+    """
+
+    def __init__(self, configuration: PdfDatasourceConfiguration):
+        """Initialize PDF reader.
+
+        Args:
+            configuration: Settings for PDF processing
+        """
+        super().__init__()
+        self.export_limit = configuration.export_limit
+        self.base_path = configuration.base_path
+
+        if configuration.nlm_parser_enabled:
+            self.parser = NLMPDFParser(configuration.nlm_parser_api_base)
+        else:
+            self.parser = DefaultPDFParser()
+
+    def get_all_documents(self) -&gt; List[PdfDocument]:
+        documents = []
+        files = os.listdir(self.base_path)
+        files_to_load = (
+            files if self.export_limit is None else files[: self.export_limit]
+        )
+
+        for file_name in tqdm(files_to_load, desc="Loading PDFs"):
+            file_path = os.path.join(self.base_path, file_name)
+            if os.path.isfile(file_path) and file_name.endswith(".pdf"):
+                try:
+                    parsed_docs = self.parser.parse(file_path)
+                    documents.extend(parsed_docs)
+                except Exception as e:
+                    logging.error(f"Failed to load PDF {file_name}: {str(e)}")
+
+        return documents
+
+    async def get_all_documents_async(self) -&gt; List[PdfDocument]:
+        """Load documents asynchronously from configured path.
+
+        Returns:
+            List[PdfDocument]: Collection of processed documents
+
+        Note:
+            Currently calls synchronous implementation
+        """
+        return self.get_all_documents()</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.pdf.reader.PdfReader.__init__" class="doc doc-heading">
+            <code class="highlight language-python">__init__(configuration)</code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize PDF reader.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.PdfDatasourceConfiguration">PdfDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Settings for PDF processing</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/pdf/reader.py</code></summary>
+              <pre class="highlight"><code class="language-python">def __init__(self, configuration: PdfDatasourceConfiguration):
+    """Initialize PDF reader.
+
+    Args:
+        configuration: Settings for PDF processing
+    """
+    super().__init__()
+    self.export_limit = configuration.export_limit
+    self.base_path = configuration.base_path
+
+    if configuration.nlm_parser_enabled:
+        self.parser = NLMPDFParser(configuration.nlm_parser_api_base)
+    else:
+        self.parser = DefaultPDFParser()</code></pre>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.pdf.reader.PdfReader.get_all_documents_async" class="doc doc-heading">
+            <code class="highlight language-python">get_all_documents_async()</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Load documents asynchronously from configured path.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="embedding.datasources.pdf.document.PdfDocument">PdfDocument</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[PdfDocument]: Collection of processed documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>Currently calls synchronous implementation</p>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/pdf/reader.py</code></summary>
+              <pre class="highlight"><code class="language-python">async def get_all_documents_async(self) -&gt; List[PdfDocument]:
+    """Load documents asynchronously from configured path.
+
+    Returns:
+        List[PdfDocument]: Collection of processed documents
+
+    Note:
+        Currently calls synchronous implementation
+    """
+    return self.get_all_documents()</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="src.embedding.datasources.pdf.reader.preprocess_text" class="doc doc-heading">
+            <code class="highlight language-python">preprocess_text(text)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Preprocess text to clean split labels and values while preserving structure.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>text</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Raw extracted text.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>str</code></b>(                  <code>str</code>
+)              –
+              <div class="doc-md-description">
+                <p>Cleaned and normalized text.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/pdf/reader.py</code></summary>
+              <pre class="highlight"><code class="language-python">def preprocess_text(text: str) -&gt; str:
+    """
+    Preprocess text to clean split labels and values while preserving structure.
+
+    Args:
+        text (str): Raw extracted text.
+
+    Returns:
+        str: Cleaned and normalized text.
+    """
+    # Normalize known splits or errors
+    text = re.sub(r"Conta\s*ct", "Contact", text)
+    text = re.sub(r"Projektl\s*eiter", "Projektleiter", text)
+    text = re.sub(r"Proje\s*ct\s*Lead", "Project Lead", text)
+    # Join lines where a label is split from its value (without look-behind)
+    text = re.sub(
+        r"(Client|Kunde|Projektleiter|Project Lead|Gültig bis|Valid until)\s*\n\s*",
+        r"\1 ",
+        text,
+    )
+    # Remove excessive spaces
+    text = re.sub(r"\s{2,}", " ", text)
+
+    return text</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="builders">Builders</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.pdf.builders"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.pdf.builders.PdfCleanerBuilder" class="doc doc-heading">
+            <code>PdfCleanerBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating PDF content cleaner instances.</p>
+<p>Provides factory method to create Cleaner objects for PDF content.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/pdf/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class PdfCleanerBuilder:
+    """Builder for creating PDF content cleaner instances.
+
+    Provides factory method to create Cleaner objects for PDF content.
+    """
+
+    @staticmethod
+    @inject
+    def build() -&gt; Cleaner:
+        """Creates a content cleaner for PDFs.
+
+        Returns:
+            Cleaner: Configured cleaner instance
+        """
+        return Cleaner()</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.pdf.builders.PdfCleanerBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build()</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a content cleaner for PDFs.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Cleaner</code></b>(                  <code><span title="embedding.datasources.core.cleaner.Cleaner">Cleaner</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured cleaner instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/pdf/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build() -&gt; Cleaner:
+    """Creates a content cleaner for PDFs.
+
+    Returns:
+        Cleaner: Configured cleaner instance
+    """
+    return Cleaner()</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.pdf.builders.PdfDatasourceManagerBuilder" class="doc doc-heading">
+            <code>PdfDatasourceManagerBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating PDF datasource manager instances.</p>
+<p>Provides factory method to create configured PdfDatasourceManager
+with required components for content processing.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/pdf/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class PdfDatasourceManagerBuilder:
+    """Builder for creating PDF datasource manager instances.
+
+    Provides factory method to create configured PdfDatasourceManager
+    with required components for content processing.
+    """
+
+    @staticmethod
+    @inject
+    def build(
+        configuration: PdfDatasourceConfiguration,
+        reader: PdfReader,
+        cleaner: Cleaner,
+        splitter: BoundEmbeddingModelMarkdownSplitter,
+    ) -&gt; PdfDatasourceManager:
+        """Creates a configured PDF datasource manager.
+
+        Args:
+            configuration: Settings for PDF processing
+            reader: Component for reading PDF content
+            cleaner: Component for cleaning extracted content
+            splitter: Component for splitting content into chunks
+
+        Returns:
+            PdfDatasourceManager: Configured manager instance
+        """
+        return PdfDatasourceManager(
+            configuration=configuration,
+            reader=reader,
+            cleaner=cleaner,
+            splitter=splitter,
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.pdf.builders.PdfDatasourceManagerBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build(configuration, reader, cleaner, splitter)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured PDF datasource manager.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.PdfDatasourceConfiguration">PdfDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Settings for PDF processing</p>
+              </div>
+            </li>
+            <li>
+              <b><code>reader</code></b>
+                  (<code><span title="embedding.datasources.pdf.reader.PdfReader">PdfReader</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for reading PDF content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>cleaner</code></b>
+                  (<code><span title="embedding.datasources.core.cleaner.Cleaner">Cleaner</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for cleaning extracted content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>splitter</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.embedding_model.embedding_model_binding_keys.BoundEmbeddingModelMarkdownSplitter">BoundEmbeddingModelMarkdownSplitter</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for splitting content into chunks</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>PdfDatasourceManager</code></b>(                  <code><span title="embedding.datasources.pdf.manager.PdfDatasourceManager">PdfDatasourceManager</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured manager instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/pdf/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build(
+    configuration: PdfDatasourceConfiguration,
+    reader: PdfReader,
+    cleaner: Cleaner,
+    splitter: BoundEmbeddingModelMarkdownSplitter,
+) -&gt; PdfDatasourceManager:
+    """Creates a configured PDF datasource manager.
+
+    Args:
+        configuration: Settings for PDF processing
+        reader: Component for reading PDF content
+        cleaner: Component for cleaning extracted content
+        splitter: Component for splitting content into chunks
+
+    Returns:
+        PdfDatasourceManager: Configured manager instance
+    """
+    return PdfDatasourceManager(
+        configuration=configuration,
+        reader=reader,
+        cleaner=cleaner,
+        splitter=splitter,
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.pdf.builders.PdfReaderBuilder" class="doc doc-heading">
+            <code>PdfReaderBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating PDF reader instances.</p>
+<p>Provides factory method to create configured PdfReader objects.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/pdf/builders.py</code></summary>
+                <pre class="highlight"><code class="language-python">class PdfReaderBuilder:
+    """Builder for creating PDF reader instances.
+
+    Provides factory method to create configured PdfReader objects.
+    """
+
+    @staticmethod
+    @inject
+    def build(
+        configuration: PdfDatasourceConfiguration,
+    ) -&gt; PdfReader:
+        """Creates a configured PDF reader.
+
+        Args:
+            configuration: Settings for PDF processing
+
+        Returns:
+            PdfReader: Configured reader instance
+        """
+        return PdfReader(
+            configuration=configuration,
+        )</code></pre>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.pdf.builders.PdfReaderBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python">build(configuration)</code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured PDF reader.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.PdfDatasourceConfiguration">PdfDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Settings for PDF processing</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>PdfReader</code></b>(                  <code><span title="embedding.datasources.pdf.reader.PdfReader">PdfReader</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured reader instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/pdf/builders.py</code></summary>
+              <pre class="highlight"><code class="language-python">@staticmethod
+@inject
+def build(
+    configuration: PdfDatasourceConfiguration,
+) -&gt; PdfReader:
+    """Creates a configured PDF reader.
+
+    Args:
+        configuration: Settings for PDF processing
+
+    Returns:
+        PdfReader: Configured reader instance
+    """
+    return PdfReader(
+        configuration=configuration,
+    )</code></pre>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../notion/" class="btn btn-neutral float-left" title="Notion"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../core/" class="btn btn-neutral float-right" title="Core">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../notion/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../core/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
