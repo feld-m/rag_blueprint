@@ -28,19 +28,24 @@ jobs:
       - name: Generate Documentation
         run: python docs/create_docs.py 
 
-      # TODO: add commit/publishing to gh pages
-      # - name: Commit and Push Docs
-      #   if: github.ref == 'refs/heads/main'
-      #   run: |
-      #     git config --global user.name "${{ github.actor }}"
-      #     git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-      #     git add docs/
-      #     git commit -m "Update documentation"
-      #     git push origin main
+      - name: Check for changes in docs
+        run: |
+          git diff --quiet docs/ || echo "Changes detected"
+        id: check_changes
+        continue-on-error: true
 
-      # - name: Deploy to GitHub Pages
-      #   if: github.ref == 'refs/heads/main'
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./docs
+      - name: Commit and Push Docs
+        if: steps.check_changes.outcome == 'success'
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git add docs/
+          git commit -m "Update documentation"
+          git push origin main
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
