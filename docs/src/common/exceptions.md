@@ -5,3 +5,4 @@ This module contains functionality related to the the `exceptions` module for `c
 ## Exceptions
 
 ::: src.common.exceptions
+
