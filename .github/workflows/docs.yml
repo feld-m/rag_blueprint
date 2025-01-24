@@ -32,15 +32,13 @@ jobs:
         id: check_changes
         run: |
           if git diff --quiet docs/ mkdocs.yml; then
-            echo "Changes detected in docs or mkdocs.yml"
-            echo "no_changes=true" >> $GITHUB_ENV
+            echo "changes=true" >> $GITHUB_ENV
           else
-            echo "No changes detected in docs or mkdocs.yml"
-            echo "no_changes=false" >> $GITHUB_ENV
+            echo "changes=false" >> $GITHUB_ENV
           fi
 
       - name: Commit and Push Docs
-        if: env.no_changes == 'false'
+        if: env.changes == 'true'
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
@@ -49,5 +47,5 @@ jobs:
           git push origin main
 
       - name: Deploy to GitHub Pages
-        if: env.no_changes == 'false'
+        if: env.changes == 'true'
         run: mkdocs gh-deploy --force
