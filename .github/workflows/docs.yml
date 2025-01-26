@@ -33,10 +33,10 @@ jobs:
         run: |
           if git diff --exit-code; then
             echo "No changes to commit."
-            echo "::set-output name=changes::false"
+            echo "changes=false" >> $GITHUB_OUTPUT
           else
             echo $(git diff)
-            echo "::set-output name=changes::true"
+            echo "changes=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Commit and Push Docs
