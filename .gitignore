@@ -18,3 +18,4 @@ build/**/logs
 .venv
 tmp
 .secrets
+site
