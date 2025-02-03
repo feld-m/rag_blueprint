@@ -8,11 +8,12 @@
             "datasources": [
                 {
                     "name": "notion",
-                    "export_limit": null,
+                    "export_limit": 10,
                     "home_page_database_id": "4c962a24-67d4-4b8d-9d25-b235ed46ae92"
                 }
             ],
             "embedding_model": {
+                "provider": "hugging_face",
                 "name": "BAAI/bge-small-en-v1.5",
                 "tokenizer_name": "BAAI/bge-small-en-v1.5",
                 "splitting": {
@@ -23,7 +24,8 @@
             },
             "vector_store": {
                 "name": "qdrant",
-                "collection_name": "ragkb-v9-baai",
+                "collection_name": "ragkb-v11",
+                "host": "http://qdrant",
                 "ports": {
                     "rest": 6333,
                     "grpc": 6334
@@ -39,6 +41,7 @@
                 "synthesizer": {
                     "name": "tree",
                     "llm": {
+                        "provider": "openai-like",
                         "name": "nemo",
                         "max_tokens": 1024,
                         "max_retries": 3,
@@ -48,8 +51,10 @@
                 "postprocessors": []
             },
             "langfuse": {
+                "host": "http://langfuse",
                 "port": 3003,
                 "database": {
+                    "host": "http://langfuse-db",
                     "port": 5532,
                     "db": "langfuse"
                 }
@@ -60,12 +65,14 @@
         },
         "evaluation": {
             "judge_llm": {
+                "provider": "openai-like",
                 "name": "nemo",
                 "max_tokens": 1024,
                 "max_retries": 3,
                 "context_window": 16384
             },
             "judge_embedding_model": {
+                "provider": "hugging_face",
                 "name": "BAAI/bge-small-en-v1.5",
                 "tokenizer_name": "BAAI/bge-small-en-v1.5"
             }
