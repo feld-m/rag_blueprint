@@ -7,7 +7,7 @@ on:
 
 permissions: 
   contents: write
-  
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -22,7 +22,7 @@ jobs:
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Update Test Branch
+      - name: Update FELD M RAG Knowledge Base Branch
         run: |
           git checkout main
           git fetch origin
