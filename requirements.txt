@@ -1,5 +1,5 @@
-atlassian-python-api==3.41.11
 annotated-types==0.7.0
+atlassian-python-api==3.41.11
 backoff==2.2.1
 beautifulsoup4==4.12.3
 bs4==0.0.2

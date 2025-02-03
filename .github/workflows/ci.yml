@@ -30,10 +30,10 @@ jobs:
           python-version-file: "pyproject.toml"
 
       - name: Install requirements
-        run: uv sync --all-extras 
+        run: uv sync --all-extras
 
       - name: Lint code
         run: uv run pre-commit run --all-files
 
       - name: Run tests
-        run: uv run pytest tests 
+        run: uv run pytest tests

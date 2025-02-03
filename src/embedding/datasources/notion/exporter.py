@@ -375,9 +375,7 @@ class _NotionExporterCore(NotionExporterCore):
                 for child_page_id in child_page_ids:
                     parent_page_ids[child_page_id] = page_details["page_id"]
                 for child_database_id in child_database_ids:
-                    parent_page_ids[child_database_id] = page_details[
-                        "page_id"
-                    ]
+                    parent_page_ids[child_database_id] = page_details["page_id"]
                 ## Custom modification ---
                 # Remove frontmatter
                 extracted_pages[page_details["page_id"]] = {
