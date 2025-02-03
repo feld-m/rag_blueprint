@@ -5,30 +5,28 @@ on:
     branches:
       - main
 
+permissions: 
+  contents: write
+  
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Configure Git
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Fetch All Branches
-        run: git fetch --all
-
-      - name: Switch to feld-m-ragkb-main
-        run: git checkout feld-m-ragkb-main
-
-      - name: Merge main into feld-m-ragkb-main
+      - name: Update Test Branch
         run: |
-          git merge main --allow-unrelated-histories
-          if [ $? -eq 0 ]; then
-            git push origin feld-m-ragkb-main
-          else
-            echo "Merge conflict detected. Manual resolution required."
-            exit 1
-          fi
+          git checkout main
+          git fetch origin
+          git checkout feld-m-ragkb-main
+          git pull
+          git merge origin/main
+          git push origin feld-m-ragkb-main
