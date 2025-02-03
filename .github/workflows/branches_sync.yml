@@ -25,7 +25,7 @@ jobs:
 
       - name: Merge main into feld-m-ragkb-main
         run: |
-          git merge main
+          git merge main --allow-unrelated-histories
           if [ $? -eq 0 ]; then
             git push origin feld-m-ragkb-main
           else
