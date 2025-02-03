@@ -182,6 +182,4 @@ class EvaluationInitializer(AugmentationInitializer):
             binder: Injector binder
         """
         super()._bind(binder)
-        EvaluationBinder(
-            configuration=self.configuration, binder=binder
-        ).bind()
+        EvaluationBinder(configuration=self.configuration, binder=binder).bind()

@@ -26,7 +26,7 @@ jobs:
           python -m pip install pyyaml mkdocs mkdocs-material mkdocstrings
 
       - name: Generate Documentation
-        run: python docs/create_docs.py 
+        run: python docs/create_docs.py
 
       - name: Check for changes in docs
         id: check_changes

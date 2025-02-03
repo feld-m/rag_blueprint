@@ -2,7 +2,7 @@
 
 A comprehensive open-source framework for building production-ready Retrieval-Augmented Generation (RAG) systems. This blueprint simplifies the development of RAG applications while providing full control over performance, resource usage, and evaluation capabilities.
 
-While building or buying RAG systems has become increasingly accessible, deploying them as production-ready data products remains challenging. Our framework bridges this gap by providing a streamlined development experience with easy configuration and customization options, while maintaining complete oversight of performance and resource usage. 
+While building or buying RAG systems has become increasingly accessible, deploying them as production-ready data products remains challenging. Our framework bridges this gap by providing a streamlined development experience with easy configuration and customization options, while maintaining complete oversight of performance and resource usage.
 
 It comes with built-in monitoring and observability tools for better troubleshooting, integrated LLM-based metrics for evaluation, and human feedback collection capabilities. Whether you're building a lightweight knowledge base or an enterprise-grade application, this blueprint offers the flexibility and scalability needed for production deployments.
 
@@ -13,7 +13,7 @@ It comes with built-in monitoring and observability tools for better troubleshoo
 ## 🚀 Features
 
 - **Multiple Knowledge Sources**: Native integration with Notion, Confluence and PDF files, while also being extensible for other data sources
-- **RAG Pipeline**: 
+- **RAG Pipeline**:
   - Chunking with markdown-aware text splitting
   - Local high-performance embedding with `BAAI/bge-small-en`
   - Vector storage with Qdrant
@@ -41,7 +41,7 @@ It comes with built-in monitoring and observability tools for better troubleshoo
 
 #### Embedding Models
 - [BAAI/bge-small-en](https://huggingface.co/BAAI/bge-small-en) - Base embedding model
-- [VoyageAI](https://www.voyageai.com/) 
+- [VoyageAI](https://www.voyageai.com/)
 - [OpenAI](https://openai.com/) embeddings support
 - Any embedding model in the [Hugging Face](https://huggingface.co/) model hub
 
@@ -70,7 +70,7 @@ It comes with built-in monitoring and observability tools for better troubleshoo
 
 ### Data Flow
 
-1. **Extraction**: 
+1. **Extraction**:
    - Fetches content from the data sources pages through their respective APIs
    - Handles rate limiting and retries
    - Extracts metadata (title, creation time, URLs, etc.)
