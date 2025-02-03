@@ -24,8 +24,9 @@ services:
         BUILD_NAME: "default-build-name"
         CONFIGURATION_FILE: "src/common/bootstrap/configuration/configuration.json"
         SECRETS_FILE: "env_vars/.env"
+        CHAINLIT_PORT: "${RAGKB__CHAINLIT__PORT}"
     ports:
-      -  "${RAGKB__CHAINLIT__PORT}:8000"
+      -  "${RAGKB__CHAINLIT__PORT}:${RAGKB__CHAINLIT__PORT}"
     restart: unless-stopped
 
   evaluate:
