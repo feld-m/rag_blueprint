@@ -81,6 +81,7 @@ dependencies = [
     "python-dotenv==1.0.1",
     "python-engineio==4.9.0",
     "python-multipart==0.0.18",
+    "python-on-whales==0.74.0",
     "python-slugify==8.0.4",
     "python-socketio==5.11.2",
     "pytz==2024.1",

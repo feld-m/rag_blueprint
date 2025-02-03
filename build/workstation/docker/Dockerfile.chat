@@ -10,11 +10,10 @@ ENV SECRETS_FILE=${SECRETS_FILE}
 ENV UV_SYSTEM_PYTHON=1
 
 WORKDIR /app
-ADD ./requirements.txt /app/requirements.txt
-RUN --mount=type=cache,target=/root/.cache \
-            uv pip install -r requirements.txt
 ADD . /app
+RUN --mount=type=cache,target=/root/.cache \
+    uv sync --all-extras
 
 ENV TOKENIZERS_PARALLELISM=false
 
-CMD python src/chat.py --build-name ${BUILD_NAME} --config-file ${CONFIGURATION_FILE} --secrets-file ${SECRETS_FILE}
+CMD uv run python src/chat.py --build-name ${BUILD_NAME} --config-file ${CONFIGURATION_FILE} --secrets-file ${SECRETS_FILE}
