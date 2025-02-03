@@ -3,11 +3,10 @@ FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 ENV UV_SYSTEM_PYTHON=1
 
 WORKDIR /app
-ADD ./requirements.txt /app/requirements.txt
-RUN --mount=type=cache,target=/root/.cache \
-            uv pip install -r requirements.txt
 ADD . /app
+RUN --mount=type=cache,target=/root/.cache \
+    uv sync --all-extras
 
 ENV TOKENIZERS_PARALLELISM=false
 
-CMD ["pytest"]
+CMD uv run pytest

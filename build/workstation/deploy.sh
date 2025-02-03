@@ -18,20 +18,15 @@ if [ -z "$VIRTUAL_ENV" ]; then
     exit 1
 fi
 
-if ! command -v python &> /dev/null; then
-    echo "Python is not installed. Please install python and try again."
+if ! command -v uv &> /dev/null; then
+    echo "UV is not installed. Please install uv and try again."
     exit 2
-fi
-
-if ! command -v pip &> /dev/null; then
-    echo "Pip is not installed. Please install pip and try again."
-    exit 3
 fi
 
 # Install required packages
 echo "Installing required packages"
 
-pip install -r requirements.txt
+uv sync --all-extras
 
 # Run deployment
 echo "Running deployment script in the background. You can find live logs at ${log_file}"
