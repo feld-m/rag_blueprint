@@ -51,7 +51,7 @@ Once initialized, access the Langfuse web server on your localhost (port defined
 2. Set up a project for the application.
 3. Generate secret and public keys for the project.
 
-Add the generated keys to the env_vars/.env file as follows:
+Add the generated keys to the `env_vars/.env` file as follows:
 
 ```sh
 RAGKB__LANGFUSE__SECRET_KEY=<generated_secret_key>
