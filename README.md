@@ -15,7 +15,7 @@ It comes with built-in monitoring and observability tools for better troubleshoo
 - **Multiple Knowledge Sources**: Native integration with Notion, Confluence and PDF files, while also being extensible for other data sources
 - **RAG Pipeline**:
   - Chunking with markdown-aware text splitting
-  - Local high-performance embedding with `BAAI/bge-small-en`
+  - Various embedding and large languagee models
   - Vector storage with Qdrant
 - **Production Ready**:
   - Comprehensive evaluation metrics using RAGAS
@@ -40,27 +40,22 @@ It comes with built-in monitoring and observability tools for better troubleshoo
 ### Models
 
 #### Embedding Models
-- [BAAI/bge-small-en](https://huggingface.co/BAAI/bge-small-en) - Base embedding model
 - [VoyageAI](https://www.voyageai.com/)
-- [OpenAI](https://openai.com/) embeddings support
+- [OpenAI](https://openai.com/)
 - Any embedding model in the [Hugging Face](https://huggingface.co/) model hub
 
 #### Language Models
-- [NVIDIA NeMo](https://www.nvidia.com/en-us/ai-data-science/generative-ai/nemo-framework/)
-- Support for:
-  - [Llama 3.1](https://ai.meta.com/llama/)
-  - [Phi-4](https://www.microsoft.com/en-us/research/project/phi-2/)
-  - Any OpenAI-compatible API
-  - OpenAI models
+- Any OpenAI-compatible API models
+- [OpenAI](https://openai.com/) models
 
 ### Infrastructure
 - [Qdrant](https://qdrant.tech/) - Vector database
 - [PostgreSQL](https://www.postgresql.org/) - Metadata storage
 - Docker for containerization
 
-## 🚀 Quick Start
+## 🚀 Quickstart
 
-1. Check the detailed [Build Guide](build/README.md)
+1. Check the detailed [Quickstart Setup](https://feld-m.github.io/rag_blueprint/quickstart/quickstart_setup/)
 2. Access points after deployment:
    - Chat UI: `http://localhost:8001`
    - Qdrant Dashboard: `http://localhost:6333/dashboard`
@@ -129,4 +124,4 @@ The system includes comprehensive evaluation capabilities:
 
 For detailed documentation on setup, configuration, and development:
 - [Documentation Site](https://feld-m.github.io/rag_blueprint/)
-- [Build Guide](build/README.md)
+- [Quickstart Setup](https://feld-m.github.io/rag_blueprint/quickstart/quickstart_setup/)

@@ -88,17 +88,19 @@ RAGKB__LANGFUSE__PUBLIC_KEY=<generated_public_key>
 
 ### Python Environment
 
-1. Create a virtual environment and activate it:
+1. Install uv on you OS following this [installation](https://docs.astral.sh/uv/getting-started/installation/) guide.
+
+2. In the root of the project, create a virtual environment and activate it:
 
 ```sh
-python -m venv .venv
+uv init
 source .venv/bin/activate
 ```
 
 2. Install the required dependencies:
 
 ```sh
-pip install -r requirements.txt
+uv sync --all-extras
 ```
 
 ### Running RAG
