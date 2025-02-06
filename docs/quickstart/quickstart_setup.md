@@ -37,7 +37,26 @@ RAGKB__LANGFUSE__PUBLIC_KEY=...
 
 ## Initialization
 
-To initialize Langfuse and vector store services, execute the initialization script:
+### Python Environment
+
+1. Install uv on you OS following this [installation](https://docs.astral.sh/uv/getting-started/installation/) guide.
+
+2. In the root of the project, create a virtual environment and activate it:
+
+```sh
+uv venv
+source .venv/bin/activate
+```
+
+3. Install the required dependencies:
+
+```sh
+uv sync --all-extras
+```
+
+### Services Initialization
+
+To initialize the Langfuse and vector store services, run the initialization script:
 
 ```sh
 build/workstation/init.sh
@@ -57,7 +76,6 @@ Add the generated keys to the `env_vars/.env` file as follows:
 RAGKB__LANGFUSE__SECRET_KEY=<generated_secret_key>
 RAGKB__LANGFUSE__PUBLIC_KEY=<generated_public_key>
 ```
-
 
 
 ## Deployment
