@@ -110,7 +110,7 @@ The system includes comprehensive evaluation capabilities:
 ```
 .
 ├── build/          # Build and deployment scripts
-│   └── workstation/  # Local deployment configs
+│   └── workstation/  # Build scripts for workstation setup
 ├── env_vars/       # Environment configuration
 ├── res/           # Assets
 └── src/           # Source code
