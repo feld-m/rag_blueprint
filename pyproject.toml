@@ -3,7 +3,7 @@ name = "rag-blueprint"
 version = "0.1.0"
 description = ""
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.13"
 dependencies = [
     "atlassian-python-api==3.41.11",
     "annotated-types==0.7.0",
