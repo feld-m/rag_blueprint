@@ -63,6 +63,25 @@ The default configuration assumes a Docker-based setup. For local development, m
 
 ## Initialization
 
+### Python Environment
+
+1. Install uv on you OS following this [installation](https://docs.astral.sh/uv/getting-started/installation/) guide.
+
+2. In the root of the project, create a virtual environment and activate it:
+
+```sh
+uv venv
+source .venv/bin/activate
+```
+
+3. Install the required dependencies:
+
+```sh
+uv sync --all-extras
+```
+
+### Services Initialization
+
 To initialize the Langfuse and vector store services, run the initialization script:
 
 ```sh
@@ -85,23 +104,6 @@ RAGKB__LANGFUSE__PUBLIC_KEY=<generated_public_key>
 ```
 
 ## Development
-
-### Python Environment
-
-1. Install uv on you OS following this [installation](https://docs.astral.sh/uv/getting-started/installation/) guide.
-
-2. In the root of the project, create a virtual environment and activate it:
-
-```sh
-uv init
-source .venv/bin/activate
-```
-
-2. Install the required dependencies:
-
-```sh
-uv sync --all-extras
-```
 
 ### Running RAG
 
