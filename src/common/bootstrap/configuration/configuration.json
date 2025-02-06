@@ -8,7 +8,7 @@
             "datasources": [
                 {
                     "name": "notion",
-                    "export_limit": 10,
+                    "export_limit": null,
                     "home_page_database_id": "4c962a24-67d4-4b8d-9d25-b235ed46ae92"
                 }
             ],
