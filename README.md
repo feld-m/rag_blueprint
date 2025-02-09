@@ -27,7 +27,7 @@ It comes with built-in monitoring and observability tools for better troubleshoo
 
 ### Core
 - [Python](https://www.python.org/)
-- [LlamaIndex](https://www.llamaindex.ai/) - RAG framework
+- [LlamaIndex](https://www.llamaindex.ai/) -  RAG framework
 - [Chainlit](https://chainlit.io/) - Chat interface
 - [Langfuse](https://langfuse.com/) - LLM observability
 - [RAGAS](https://docs.ragas.io/) - RAG evaluation
