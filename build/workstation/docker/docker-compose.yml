@@ -43,13 +43,21 @@ services:
     image: qdrant/qdrant:v1.9.0
     environment:
       QDRANT__SERVICE__REST_PORT: ${RAGKB__VECTOR_STORE__PORT_REST}
-      QDRANT__SERVICE__GRPC_PORT: ${RAGKB__VECTOR_STORE__PORT_GRPC}
     ports:
       - "${RAGKB__VECTOR_STORE__PORT_REST}:${RAGKB__VECTOR_STORE__PORT_REST}"
-      - "${RAGKB__VECTOR_STORE__PORT_GRPC}:${RAGKB__VECTOR_STORE__PORT_GRPC}"
     restart: unless-stopped
     volumes:
       - ./.docker-data/qdrant:/qdrant/storage
+
+  chroma:
+    image: chromadb/chroma:0.6.4.dev19
+    environment:
+      CHROMA_HOST_PORT: ${RAGKB__VECTOR_STORE__PORT_REST}
+    ports:
+      - "${RAGKB__VECTOR_STORE__PORT_REST}:${RAGKB__VECTOR_STORE__PORT_REST}"
+    restart: unless-stopped
+    volumes:
+      - ./.docker-data/chroma:/chroma/chroma/
 
   langfuse-db:
     build:

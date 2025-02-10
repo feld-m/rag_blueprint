@@ -85,7 +85,10 @@ class DatasourceConfiguration(BaseModel):
 
 class ConfluenceDatasourceConfiguration(DatasourceConfiguration):
     host: str = Field(
-        "http://127.0.0.1", description="Host of the Confluence server"
+        "127.0.0.1", description="Host of the vector store server"
+    )
+    protocol: Union[Literal["http"], Literal["https"]] = Field(
+        "http", description="The protocol for the vector store."
     )
     name: Literal[DatasourceName.CONFLUENCE] = Field(
         ..., description="The name of the data source."
@@ -93,6 +96,10 @@ class ConfluenceDatasourceConfiguration(DatasourceConfiguration):
     secrets: Optional[ConfluenceSecrets] = Field(
         None, description="The secrets for the data source."
     )
+
+    @property
+    def base_url(self) -> str:
+        return f"{self.protocol}://{self.host}"
 
 
 class NotionDatasourceConfiguration(DatasourceConfiguration):

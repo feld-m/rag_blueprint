@@ -12,7 +12,7 @@ import logging
 from injector import Injector
 
 from common.bootstrap.initializer import EmbeddingInitializer
-from common.exceptions import QdrantCollectionExistsException
+from common.exceptions import CollectionExistsException
 from embedding.orchestrators.datasource_orchestrator import (
     DatasourceOrchestrator,
 )
@@ -53,7 +53,7 @@ def main(injector: Injector):
     try:
         vector_store_validator = injector.get(VectorStoreValidator)
         vector_store_validator.validate()
-    except QdrantCollectionExistsException as e:
+    except CollectionExistsException as e:
         logging.info(f"{e.message}. Skipping embedding.")
         exit(100)
 
