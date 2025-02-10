@@ -53,21 +53,6 @@ class PdfSecrets(BaseSettings):
     pass
 
 
-class DatasourceSecretsMapping:
-    mapping: dict = {
-        DatasourceName.NOTION: NotionSecrets,
-        DatasourceName.CONFLUENCE: ConfluenceSecrets,
-        DatasourceName.PDF: PdfSecrets,
-    }
-
-    @staticmethod
-    def get_secrets(datasource_name: DatasourceName) -> BaseSettings:
-        secrets = DatasourceSecretsMapping.mapping.get(datasource_name)()
-        if secrets is None:
-            raise ValueError(f"Secrets for {datasource_name} not found.")
-        return secrets
-
-
 # Configuration
 
 
@@ -80,7 +65,14 @@ class DatasourceConfiguration(BaseModel):
     )
 
     def model_post_init(self, __context):
-        self.secrets = DatasourceSecretsMapping.get_secrets(self.name)
+        self.secrets = self.get_secrets()
+
+    def get_secrets(self) -> BaseSettings:
+        secrets_class = self.model_fields["secrets"].annotation
+        secrets = secrets_class()
+        if secrets is None:
+            raise ValueError(f"Secrets for {self.name} not found.")
+        return secrets
 
 
 class ConfluenceDatasourceConfiguration(DatasourceConfiguration):
@@ -93,7 +85,7 @@ class ConfluenceDatasourceConfiguration(DatasourceConfiguration):
     name: Literal[DatasourceName.CONFLUENCE] = Field(
         ..., description="The name of the data source."
     )
-    secrets: Optional[ConfluenceSecrets] = Field(
+    secrets: ConfluenceSecrets = Field(
         None, description="The secrets for the data source."
     )
 
@@ -114,7 +106,7 @@ class NotionDatasourceConfiguration(DatasourceConfiguration):
         3,
         description="Number of pages being exported ansychronously. Decrease to avoid NotionAPI rate limits, smaller batch slows the export down.",
     )
-    secrets: Optional[NotionSecrets] = Field(
+    secrets: NotionSecrets = Field(
         None, description="The secrets for the data source."
     )
 
@@ -137,7 +129,7 @@ class PdfDatasourceConfiguration(DatasourceConfiguration):
     nlm_parser_api_base: str = Field(
         None, description="NLM parser API base URL"
     )
-    secrets: Optional[PdfSecrets] = Field(
+    secrets: PdfSecrets = Field(
         None, description="The secrets for the data source."
     )
 
