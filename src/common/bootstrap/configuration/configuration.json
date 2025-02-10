@@ -25,10 +25,10 @@
             "vector_store": {
                 "name": "qdrant",
                 "collection_name": "ragkb-v11",
-                "host": "http://qdrant",
+                "host": "qdrant",
+                "protocol": "http",
                 "ports": {
-                    "rest": 6333,
-                    "grpc": 6334
+                    "rest": 6333
                 }
             }
         },
@@ -51,10 +51,11 @@
                 "postprocessors": []
             },
             "langfuse": {
-                "host": "http://langfuse",
+                "host": "langfuse",
+                "protocol": "http",
                 "port": 3003,
                 "database": {
-                    "host": "http://langfuse-db",
+                    "host": "langfuse-db",
                     "port": 5532,
                     "db": "langfuse"
                 }

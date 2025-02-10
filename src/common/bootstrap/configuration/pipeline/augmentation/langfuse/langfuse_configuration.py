@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field, SecretStr
 from pydantic_settings import BaseSettings
@@ -42,7 +42,7 @@ class LangfuseDatabaseSecrets(BaseSettings):
 # Configuration
 class LangfuseDatabaseConfiguration(BaseModel):
     host: str = Field(
-        "http://127.0.0.1", description="Host of the Langfuse database server"
+        "127.0.0.1", description="Host of the Langfuse database server"
     )
     port: int = Field(
         5432,
@@ -95,9 +95,9 @@ class LangfuseDatasetsConfiguration(BaseModel):
 
 
 class LangfuseConfiguration(BaseModel):
-
-    host: str = Field(
-        "http://127.0.0.1", description="Host of the Langfuse server"
+    host: str = Field("127.0.0.1", description="Host of the Langfuse server")
+    protocol: Union[Literal["http"], Literal["https"]] = Field(
+        "http", description="The protocol for the vector store."
     )
     port: int = Field(3000, description="Port of the Langfuse server")
     database: LangfuseDatabaseConfiguration = Field(
@@ -118,7 +118,7 @@ class LangfuseConfiguration(BaseModel):
 
     @property
     def url(self) -> str:
-        return f"{self.host}:{self.port}"
+        return f"{self.protocol}://{self.host}:{self.port}"
 
     def model_post_init(self, __context):
         secrets = LangfuseSecrets()

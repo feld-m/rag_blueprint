@@ -1,5 +1,5 @@
-class QdrantCollectionExistsException(Exception):
-    """Exception raised when attempting to create a Qdrant collection that already exists.
+class CollectionExistsException(Exception):
+    """Exception raised when attempting to create a vector store collection that already exists.
 
     Attributes:
         collection_name: Name of the existing collection.

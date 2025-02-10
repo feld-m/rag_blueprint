@@ -192,10 +192,6 @@ class CommandRunner:
         os.environ["RAGKB__VECTOR_STORE__PORT_REST"] = str(
             vector_store_configuration.ports.rest
         )
-        if vector_store_configuration.ports.grpc:
-            os.environ["RAGKB__VECTOR_STORE__PORT_GRPC"] = str(
-                vector_store_configuration.ports.grpc
-            )
 
         langfuse_configuration = (
             self.configuration.pipeline.augmentation.langfuse
@@ -332,18 +328,10 @@ class Initialization:
             self.command_runner.configuration.pipeline.embedding.vector_store
         )
         vector_store_port_rest = vector_store_configuration.ports.rest
-        vector_store_port_grpc = vector_store_configuration.ports.grpc
 
         if self.command_runner.is_port_in_use(vector_store_port_rest):
             self.logger.write(
                 f"REST port {vector_store_port_rest} is already in use. Skipping {vector_store_configuration.name.value} initialization."
-            )
-            return
-        if vector_store_port_grpc and self.command_runner.is_port_in_use(
-            vector_store_port_grpc
-        ):
-            self.logger.write(
-                f"GRPC port {vector_store_port_grpc} is already in use. Skipping {vector_store_configuration.name.value} initialization."
             )
             return
         else:

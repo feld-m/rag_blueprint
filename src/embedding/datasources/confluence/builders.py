@@ -93,7 +93,7 @@ class ConfluenceClientBuilder:
             Confluence: Configured API client instance
         """
         return Confluence(
-            url=configuration.host,
+            url=configuration.base_url,
             username=configuration.secrets.username.get_secret_value(),
             password=configuration.secrets.password.get_secret_value(),
         )
