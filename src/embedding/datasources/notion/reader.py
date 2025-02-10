@@ -67,7 +67,12 @@ class NotionReader(BaseReader):
         Returns:
             List[NotionDocument]: Collection of processed documents
         """
-        database_ids, page_ids = self._get_ids_from_home_page()
+        if self.home_page_database_id is None:
+            database_ids = []
+            page_ids = []
+        else:
+            database_ids, page_ids = self._get_ids_from_home_page()
+
         database_ids.extend(
             self._get_all_ids(
                 NotionObjectType.DATABASE,

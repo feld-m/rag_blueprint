@@ -106,9 +106,9 @@ class NotionDatasourceConfiguration(DatasourceConfiguration):
     name: Literal[DatasourceName.NOTION] = Field(
         ..., description="The name of the data source."
     )
-    home_page_database_id: str = Field(
-        ...,
-        description="The home page database ID for the data source. Used for notion",
+    home_page_database_id: Optional[str] = Field(
+        None,
+        description="Notion home page database id used for extraction of pages and database. If null, this extraction will be skipped.",
     )
     export_batch_size: int = Field(
         3,
