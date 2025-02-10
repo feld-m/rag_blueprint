@@ -16,11 +16,7 @@ class ConversationUtils:
     """
 
     WELCOME_TEMPLATE = "Hello and welcome to our FELD M's Chat UI! 👋 We're here to help you find the information you need from our FELD M's knowledge base. To get started, simply type your question or statement into the chat box below and press enter. Enjoy your exploration and happy chatting! 😊"
-    REFERENCES_TEMPLATE = """
-
-    **References**:
-    {references}
-        """
+    REFERENCES_TEMPLATE = "\n\n**References**:\n" "{references}\n"
 
     @staticmethod
     def get_welcome_message() -> Message:
