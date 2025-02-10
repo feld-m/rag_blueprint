@@ -23,7 +23,7 @@ jobs:
       - name: Install requirements
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pyyaml mkdocs mkdocs-material mkdocstrings
+          python -m pip install pyyaml mkdocs mkdocs-material mkdocstrings mkdocstrings-python
 
       - name: Generate Documentation
         run: python docs/create_docs.py
