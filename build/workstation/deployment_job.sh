@@ -5,7 +5,7 @@ echo "[$(date '+%Y-%m-%d %H:%M:%S')] Deployment job started for branch $branch."
 cd /home/feld/repos/ragkb/
 git checkout $branch
 
-if git pull | grep -q 'Already up to date.'; then
+if git pull --rebase | grep -q 'Already up to date.'; then
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] Everything is up to date for branch $branch."
 else
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] New changes were pulled for branch $branch. Starting deployment."
