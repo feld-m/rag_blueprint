@@ -2,11 +2,11 @@
 
 This guide outlines the process of adding support for a new embedding model implementation. We use the existing `OpenAIEmbeddingModelConfiguration` as an example, located in [embedding_model_configuration.py](src/common/bootstrap/configuration/pipeline/embedding/embedding_model/embedding_model_configuration.py) file.
 
-## Update requirements.txt
+## Update Project Dependencies
 
-Since we will use [OpenAI](https://openai.com/)'s embedding models through [llamaindex](https://docs.llamaindex.ai/en/stable/) implementation add correspodning entry to `requirements.txt`:
+Since we will use [OpenAI](https://openai.com/)'s embedding models through [llamaindex](https://docs.llamaindex.ai/en/stable/) implementation add correspodning entry to `pyproject.toml`:
 
-```txt
+```toml
 ...
 llama-index-embeddings-openai=0.2.4
 ...

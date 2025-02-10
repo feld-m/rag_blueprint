@@ -2,6 +2,16 @@
 
 This guide outlines the process of adding support for a new language model (LLM) implementation. We use the existing `OpenAILLMConfiguration` as an example, located in [llm_configuration.py](src/common/bootstrap/configuration/pipeline/augmentation/query_engine/llm_configuration.py) file.
 
+## Update Project Dependencies
+
+Since we will use [OpenAI](https://openai.com/)'s LLM through [llamaindex](https://docs.llamaindex.ai/en/stable/) implementation add correspodning entry to `pyproject.toml`:
+
+```toml
+...
+llama-index-llms-openai==0.2.16
+...
+```
+
 ## Define the LLM Provider
 
 LLM configurations in *llm_configuration.py* are scoped by provider. Each provider, such as [OpenAI](https://openai.com/), , requires its own Pydantic configuration class. Begin by assigning a meaningful name to the new provider in the `LLMProviderNames` enumeration:
