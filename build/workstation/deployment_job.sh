@@ -10,7 +10,7 @@ if git pull --rebase | grep -q 'Already up to date.'; then
 else
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] New changes were pulled for branch $branch. Starting deployment."
     . .venv/bin/activate
-    build/workstation/deploy.sh
+    build/workstation/deploy.sh --env prod
 fi
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] Deployment job finished for branch $branch."
