@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Logger - RAG Systems</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Logger";
+        var mkdocs_page_input_path = "src/common/logger.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../augmentation/chainlit/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../augmentation/utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Common</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../langfuse/dataset/">Dataset</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../langfuse/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../query_engine/">Query_engine</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../bootstrap/secrets_configuration/">Secrets_configuration</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../bootstrap/base_binder/">Base_binder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Logger</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#logger_1">Logger</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#src.common.logger">logger</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#src.common.logger.LoggerConfiguration">LoggerConfiguration</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#src.common.logger.LoggerConfiguration.config">config</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.common.logger.LoggerConfiguration.filterwarnings">filterwarnings</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../retrievers/">Retrievers</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding/validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding/validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding/orchestrators/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding/orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding/orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding/datasources/confluence/">Confluence</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding/datasources/pdf/">Pdf</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding/embedders/default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding/embedders/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding/embedders/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Common</li>
+      <li class="breadcrumb-item active">Logger</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/src/common/logger.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="logger">Logger</h1>
+<p>This module contains functionality related to the the <code>logger</code> module for <code>common</code>.</p>
+<h2 id="logger_1">Logger</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.common.logger"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.logger.LoggerConfiguration" class="doc doc-heading">
+            <code>LoggerConfiguration</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Utility class for configuring application-wide logging.</p>
+<p>Provides static methods to set up logging formats, handlers, and warning filters.
+Configures both root logger and specific module loggers (e.g., httpx).</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/logger.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LoggerConfiguration</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Utility class for configuring application-wide logging.</span>
+
+<span class="sd">    Provides static methods to set up logging formats, handlers, and warning filters.</span>
+<span class="sd">    Configures both root logger and specific module loggers (e.g., httpx).</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        None - all methods are static</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">config</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure application logging settings.</span>
+
+<span class="sd">        Sets up logging with the following configuration:</span>
+<span class="sd">        - Formats logs with timestamp, logger name, level, and message</span>
+<span class="sd">        - Directs output to stdout</span>
+<span class="sd">        - Sets root logger level to INFO</span>
+<span class="sd">        - Configures httpx logger with WARN level</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Define log format</span>
+        <span class="n">log_format</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(name)s</span><span class="s2"> - </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+
+        <span class="c1"># Create formatters</span>
+        <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">log_format</span><span class="p">)</span>
+
+        <span class="c1"># Create handlers</span>
+        <span class="n">screen_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="n">screen_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+
+        <span class="c1"># Configure root logger</span>
+        <span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+        <span class="n">root_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+        <span class="n">root_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">screen_handler</span><span class="p">)</span>
+
+        <span class="c1"># Configure httpx logger</span>
+        <span class="n">httpx_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;httpx&quot;</span><span class="p">)</span>
+        <span class="n">httpx_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARN</span><span class="p">)</span>
+        <span class="n">httpx_logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Allow propagation to parent logger</span>
+        <span class="n">httpx_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">screen_handler</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">filterwarnings</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure warning filters for the application.</span>
+
+<span class="sd">        Suppresses specific warnings:</span>
+<span class="sd">        - DeprecationWarnings from langchain module</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Suppress specific warnings from external dependencies</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+            <span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="s2">&quot;langchain&quot;</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.logger.LoggerConfiguration.config" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">config</span><span class="p">()</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure application logging settings.</p>
+<p>Sets up logging with the following configuration:
+- Formats logs with timestamp, logger name, level, and message
+- Directs output to stdout
+- Sets root logger level to INFO
+- Configures httpx logger with WARN level</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/logger.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">config</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configure application logging settings.</span>
+
+<span class="sd">    Sets up logging with the following configuration:</span>
+<span class="sd">    - Formats logs with timestamp, logger name, level, and message</span>
+<span class="sd">    - Directs output to stdout</span>
+<span class="sd">    - Sets root logger level to INFO</span>
+<span class="sd">    - Configures httpx logger with WARN level</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Define log format</span>
+    <span class="n">log_format</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(name)s</span><span class="s2"> - </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Create formatters</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">log_format</span><span class="p">)</span>
+
+    <span class="c1"># Create handlers</span>
+    <span class="n">screen_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+    <span class="n">screen_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+
+    <span class="c1"># Configure root logger</span>
+    <span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+    <span class="n">root_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="n">root_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">screen_handler</span><span class="p">)</span>
+
+    <span class="c1"># Configure httpx logger</span>
+    <span class="n">httpx_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;httpx&quot;</span><span class="p">)</span>
+    <span class="n">httpx_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARN</span><span class="p">)</span>
+    <span class="n">httpx_logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Allow propagation to parent logger</span>
+    <span class="n">httpx_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">screen_handler</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.logger.LoggerConfiguration.filterwarnings" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">filterwarnings</span><span class="p">()</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure warning filters for the application.</p>
+<p>Suppresses specific warnings:
+- DeprecationWarnings from langchain module</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/logger.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">filterwarnings</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configure warning filters for the application.</span>
+
+<span class="sd">    Suppresses specific warnings:</span>
+<span class="sd">    - DeprecationWarnings from langchain module</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Suppress specific warnings from external dependencies</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+        <span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="s2">&quot;langchain&quot;</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../exceptions/" class="btn btn-neutral float-left" title="Exceptions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../retrievers/" class="btn btn-neutral float-right" title="Retrievers">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../exceptions/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../retrievers/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

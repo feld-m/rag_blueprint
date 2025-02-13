@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Datasource_orchestrator - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Datasource_orchestrator";
+        var mkdocs_page_input_path = "src/embedding/orchestrators/datasource_orchestrator.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../augmentation/utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Common</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/dataset/">Dataset</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/query_engine/">Query_engine</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/secrets_configuration/">Secrets_configuration</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/base_binder/">Base_binder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../common/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/retrievers/">Retrievers</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Embedding</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" >Orchestrators</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" href="../base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../builders/">Builders</a>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Datasource_orchestrator</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#datasource_orchestrator_1">Datasource_orchestrator</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.orchestrators.datasource_orchestrator">datasource_orchestrator</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.orchestrators.datasource_orchestrator.DatasourceOrchestrator">DatasourceOrchestrator</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../datasources/confluence/">Confluence</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../datasources/pdf/">Pdf</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Embedding</li>
+          <li class="breadcrumb-item">Orchestrators</li>
+      <li class="breadcrumb-item active">Datasource_orchestrator</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/src/embedding/orchestrators/datasource_orchestrator.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="datasource_orchestrator">Datasource_orchestrator</h1>
+<p>This module contains functionality related to the the <code>datasource_orchestrator</code> module for <code>embedding.orchestrators</code>.</p>
+<h2 id="datasource_orchestrator_1">Datasource_orchestrator</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.orchestrators.datasource_orchestrator"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.orchestrators.datasource_orchestrator.DatasourceOrchestrator" class="doc doc-heading">
+            <code>DatasourceOrchestrator</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.orchestrators.base.BaseDatasourceOrchestrator">BaseDatasourceOrchestrator</span></code></p>
+
+
+        <p>Orchestrator for multi-datasource content processing.</p>
+<p>Manages extraction, embedding and storage of content from multiple
+datasources through a unified interface.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>embedder</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Component for generating embeddings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>datasources</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Mapping of datasource type to manager</p>
+              </div>
+            </li>
+            <li>
+              <b><code>documents</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="llama_index.core.schema.Document">Document</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Raw documents from datasources</p>
+              </div>
+            </li>
+            <li>
+              <b><code>cleaned_documents</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="llama_index.core.schema.Document">Document</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Processed documents</p>
+              </div>
+            </li>
+            <li>
+              <b><code>nodes</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Text nodes for embedding</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/orchestrators/datasource_orchestrator.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DatasourceOrchestrator</span><span class="p">(</span><span class="n">BaseDatasourceOrchestrator</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Orchestrator for multi-datasource content processing.</span>
+
+<span class="sd">    Manages extraction, embedding and storage of content from multiple</span>
+<span class="sd">    datasources through a unified interface.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        embedder: Component for generating embeddings</span>
+<span class="sd">        datasources: Mapping of datasource type to manager</span>
+<span class="sd">        documents: Raw documents from datasources</span>
+<span class="sd">        cleaned_documents: Processed documents</span>
+<span class="sd">        nodes: Text nodes for embedding</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">datasource_managers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">DatasourceName</span><span class="p">,</span> <span class="n">BaseDatasourceManager</span><span class="p">],</span>
+        <span class="n">embedder</span><span class="p">:</span> <span class="n">BaseEmbedder</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize orchestrator with managers and embedder.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            datasource_managers: Mapping of datasource types to managers</span>
+<span class="sd">            embedder: Component for generating embeddings</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedder</span> <span class="o">=</span> <span class="n">embedder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datasources</span> <span class="o">=</span> <span class="n">datasource_managers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TextNode</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract and process content from all datasources.</span>
+
+<span class="sd">        Processes each configured datasource to extract documents,</span>
+<span class="sd">        clean content and generate text nodes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">datasource_manager</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasources</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract</span><span class="p">(</span><span class="n">datasource_manager</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate embeddings for extracted content.</span>
+
+<span class="sd">        Creates vector embeddings for all text nodes using</span>
+<span class="sd">        configured embedding model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedder</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_to_vector_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Persist embedded content to vector store.</span>
+
+<span class="sd">        Saves all embedded text nodes to configured vector</span>
+<span class="sd">        storage backend.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedder</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_vector_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update existing vector store content.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            NotImplementedError: Method must be implemented by subclass</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datasource_manager</span><span class="p">:</span> <span class="n">BaseDatasourceManager</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract and store content from single datasource.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            datasource_manager: Manager for specific datasource type</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            Updates documents, cleaned_documents and nodes lists in-place</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">documents</span><span class="p">,</span> <span class="n">cleaned_documents</span><span class="p">,</span> <span class="n">nodes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">datasource_manager</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">documents</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_documents</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">cleaned_documents</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.orchestrators.datasource_orchestrator.DatasourceOrchestrator.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">datasource_managers</span><span class="p">,</span> <span class="n">embedder</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize orchestrator with managers and embedder.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>datasource_managers</code></b>
+                  (<code><span title="typing.Dict">Dict</span>[<span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.DatasourceName">DatasourceName</span>, <span title="embedding.datasources.core.manager.BaseDatasourceManager">BaseDatasourceManager</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Mapping of datasource types to managers</p>
+              </div>
+            </li>
+            <li>
+              <b><code>embedder</code></b>
+                  (<code><span title="embedding.embedders.base.BaseEmbedder">BaseEmbedder</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for generating embeddings</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/orchestrators/datasource_orchestrator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">datasource_managers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">DatasourceName</span><span class="p">,</span> <span class="n">BaseDatasourceManager</span><span class="p">],</span>
+    <span class="n">embedder</span><span class="p">:</span> <span class="n">BaseEmbedder</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize orchestrator with managers and embedder.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        datasource_managers: Mapping of datasource types to managers</span>
+<span class="sd">        embedder: Component for generating embeddings</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">embedder</span> <span class="o">=</span> <span class="n">embedder</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">datasources</span> <span class="o">=</span> <span class="n">datasource_managers</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Document</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TextNode</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.orchestrators.datasource_orchestrator.DatasourceOrchestrator._extract" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_extract</span><span class="p">(</span><span class="n">datasource_manager</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extract and store content from single datasource.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>datasource_manager</code></b>
+                  (<code><span title="embedding.datasources.core.manager.BaseDatasourceManager">BaseDatasourceManager</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Manager for specific datasource type</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>Updates documents, cleaned_documents and nodes lists in-place</p>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/orchestrators/datasource_orchestrator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datasource_manager</span><span class="p">:</span> <span class="n">BaseDatasourceManager</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract and store content from single datasource.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        datasource_manager: Manager for specific datasource type</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        Updates documents, cleaned_documents and nodes lists in-place</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">documents</span><span class="p">,</span> <span class="n">cleaned_documents</span><span class="p">,</span> <span class="n">nodes</span> <span class="o">=</span> <span class="k">await</span> <span class="n">datasource_manager</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">documents</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_documents</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">cleaned_documents</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.orchestrators.datasource_orchestrator.DatasourceOrchestrator.embed" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">embed</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Generate embeddings for extracted content.</p>
+<p>Creates vector embeddings for all text nodes using
+configured embedding model.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/orchestrators/datasource_orchestrator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">embed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate embeddings for extracted content.</span>
+
+<span class="sd">    Creates vector embeddings for all text nodes using</span>
+<span class="sd">    configured embedding model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">embedder</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.orchestrators.datasource_orchestrator.DatasourceOrchestrator.extract" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extract</span><span class="p">()</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extract and process content from all datasources.</p>
+<p>Processes each configured datasource to extract documents,
+clean content and generate text nodes.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/orchestrators/datasource_orchestrator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract and process content from all datasources.</span>
+
+<span class="sd">    Processes each configured datasource to extract documents,</span>
+<span class="sd">    clean content and generate text nodes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">datasource_manager</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasources</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract</span><span class="p">(</span><span class="n">datasource_manager</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.orchestrators.datasource_orchestrator.DatasourceOrchestrator.save_to_vector_storage" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">save_to_vector_storage</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Persist embedded content to vector store.</p>
+<p>Saves all embedded text nodes to configured vector
+storage backend.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/orchestrators/datasource_orchestrator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">save_to_vector_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Persist embedded content to vector store.</span>
+
+<span class="sd">    Saves all embedded text nodes to configured vector</span>
+<span class="sd">    storage backend.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">embedder</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.orchestrators.datasource_orchestrator.DatasourceOrchestrator.update_vector_storage" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">update_vector_storage</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Update existing vector store content.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code>NotImplementedError</code>
+              –
+              <div class="doc-md-description">
+                <p>Method must be implemented by subclass</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/orchestrators/datasource_orchestrator.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">update_vector_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update existing vector store content.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        NotImplementedError: Method must be implemented by subclass</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../builders/" class="btn btn-neutral float-left" title="Builders"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../datasources/core/" class="btn btn-neutral float-right" title="Core">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../builders/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../datasources/core/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,3374 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Confluence - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Confluence";
+        var mkdocs_page_input_path = "src/embedding/datasources/confluence.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../augmentation/utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Common</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/dataset/">Dataset</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/query_engine/">Query_engine</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/secrets_configuration/">Secrets_configuration</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/base_binder/">Base_binder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../common/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/retrievers/">Retrievers</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Embedding</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" >Datasources</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" href="../core/">Core</a>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Confluence</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#cleaner">Cleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.cleaner">cleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.cleaner.ConfluenceCleaner">ConfluenceCleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#document">Document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.document">document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.document.ConfluenceDocument">ConfluenceDocument</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#manager">Manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.manager">manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.manager.ConfluenceDatasourceManager">ConfluenceDatasourceManager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#reader">Reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.reader">reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.reader.ConfluenceReader">ConfluenceReader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#splitter">Splitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.splitter">splitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.splitter.ConfluenceSplitter">ConfluenceSplitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#builders">Builders</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.builders">builders</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.builders.ConfluenceCleanerBuilder">ConfluenceCleanerBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.builders.ConfluenceClientBuilder">ConfluenceClientBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.builders.ConfluenceDatasourceManagerBuilder">ConfluenceDatasourceManagerBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.builders.ConfluenceReaderBuilder">ConfluenceReaderBuilder</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.datasources.confluence.builders.ConfluenceSplitterBuilder">ConfluenceSplitterBuilder</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../pdf/">Pdf</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Embedding</li>
+          <li class="breadcrumb-item">Datasources</li>
+      <li class="breadcrumb-item active">Confluence</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/src/embedding/datasources/confluence.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="confluence-datasource">Confluence Datasource</h1>
+<p>This module contains functionality related to the <code>Confluence</code> datasource.</p>
+<h2 id="cleaner">Cleaner</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.confluence.cleaner"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.cleaner.ConfluenceCleaner" class="doc doc-heading">
+            <code>ConfluenceCleaner</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.cleaner.BaseCleaner">BaseCleaner</span></code></p>
+
+
+        <p>The <code>ConfluenceCleaner</code> class is a concrete implementation of <code>BaseCleaner</code> for cleaning Confluence documents.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/cleaner.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfluenceCleaner</span><span class="p">(</span><span class="n">BaseCleaner</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The `ConfluenceCleaner` class is a concrete implementation of `BaseCleaner` for cleaning Confluence documents.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfluenceDocument</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfluenceDocument</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clean the list of Confluence documents. If the content is empty it is not added to the cleaned documents.</span>
+
+<span class="sd">        :param documents: List of ConfluenceDocument objects</span>
+<span class="sd">        :return: List of cleaned ConfluenceDocument objects</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cleaned_documents</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">ConfluenceCleaner</span><span class="o">.</span><span class="n">_get_documents_with_tqdm</span><span class="p">(</span><span class="n">documents</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">ConfluenceCleaner</span><span class="o">.</span><span class="n">_has_empty_content</span><span class="p">(</span><span class="n">document</span><span class="p">):</span>
+                <span class="n">cleaned_documents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">cleaned_documents</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_documents_with_tqdm</span><span class="p">(</span><span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfluenceDocument</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the documents with tqdm progress bar if GlobalSettings.SHOW_PROGRESS is True, else return the documents as is.</span>
+
+<span class="sd">        :param documents: List of Notion document objects</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;[Confluence] Cleaning documents&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.cleaner.ConfluenceCleaner._get_documents_with_tqdm" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_get_documents_with_tqdm</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the documents with tqdm progress bar if GlobalSettings.SHOW_PROGRESS is True, else return the documents as is.</p>
+<p>:param documents: List of Notion document objects</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/cleaner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_documents_with_tqdm</span><span class="p">(</span><span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfluenceDocument</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the documents with tqdm progress bar if GlobalSettings.SHOW_PROGRESS is True, else return the documents as is.</span>
+
+<span class="sd">    :param documents: List of Notion document objects</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;[Confluence] Cleaning documents&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.cleaner.ConfluenceCleaner.clean" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">clean</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Clean the list of Confluence documents. If the content is empty it is not added to the cleaned documents.</p>
+<p>:param documents: List of ConfluenceDocument objects
+:return: List of cleaned ConfluenceDocument objects</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/cleaner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfluenceDocument</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfluenceDocument</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clean the list of Confluence documents. If the content is empty it is not added to the cleaned documents.</span>
+
+<span class="sd">    :param documents: List of ConfluenceDocument objects</span>
+<span class="sd">    :return: List of cleaned ConfluenceDocument objects</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cleaned_documents</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">ConfluenceCleaner</span><span class="o">.</span><span class="n">_get_documents_with_tqdm</span><span class="p">(</span><span class="n">documents</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ConfluenceCleaner</span><span class="o">.</span><span class="n">_has_empty_content</span><span class="p">(</span><span class="n">document</span><span class="p">):</span>
+            <span class="n">cleaned_documents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">cleaned_documents</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="document">Document</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.confluence.document"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.document.ConfluenceDocument" class="doc doc-heading">
+            <code>ConfluenceDocument</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.document.BaseDocument">BaseDocument</span></code></p>
+
+
+        <p>Document representation for Confluence page content.</p>
+<p>Extends BaseDocument to handle Confluence-specific document processing including
+content extraction, metadata handling, and exclusion configuration.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>text</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Markdown-formatted page content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>attachments</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Dictionary of page attachments (placeholder for future)</p>
+              </div>
+            </li>
+            <li>
+              <b><code>metadata</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Extracted page metadata including dates, IDs, and URLs</p>
+              </div>
+            </li>
+            <li>
+              <b><code>excluded_embed_metadata_keys</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Metadata keys to exclude from embeddings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>excluded_llm_metadata_keys</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Metadata keys to exclude from LLM context</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>Handles conversion of HTML content to markdown and manages metadata
+filtering for both embedding and LLM contexts.</p>
+</details>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/document.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfluenceDocument</span><span class="p">(</span><span class="n">BaseDocument</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Document representation for Confluence page content.</span>
+
+<span class="sd">    Extends BaseDocument to handle Confluence-specific document processing including</span>
+<span class="sd">    content extraction, metadata handling, and exclusion configuration.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        text: Markdown-formatted page content</span>
+<span class="sd">        attachments: Dictionary of page attachments (placeholder for future)</span>
+<span class="sd">        metadata: Extracted page metadata including dates, IDs, and URLs</span>
+<span class="sd">        excluded_embed_metadata_keys: Metadata keys to exclude from embeddings</span>
+<span class="sd">        excluded_llm_metadata_keys: Metadata keys to exclude from LLM context</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        Handles conversion of HTML content to markdown and manages metadata</span>
+<span class="sd">        filtering for both embedding and LLM contexts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_page</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">page</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ConfluenceDocument&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create ConfluenceDocument instance from page data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            page: Dictionary containing Confluence page details</span>
+<span class="sd">            base_url: Base URL of the Confluence instance</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ConfluenceDocument: Configured document instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">document</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">text</span><span class="o">=</span><span class="n">md</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;body&quot;</span><span class="p">][</span><span class="s2">&quot;view&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]),</span>
+            <span class="n">attachments</span><span class="o">=</span><span class="p">{},</span>  <span class="c1"># TBD</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="n">ConfluenceDocument</span><span class="o">.</span><span class="n">_get_metadata</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">base_url</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">document</span><span class="o">.</span><span class="n">_set_excluded_embed_metadata_keys</span><span class="p">()</span>
+        <span class="n">document</span><span class="o">.</span><span class="n">_set_excluded_llm_metadata_keys</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">document</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_excluded_embed_metadata_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure metadata keys to exclude from embeddings.</span>
+
+<span class="sd">        Identifies metadata keys not explicitly included in embedding</span>
+<span class="sd">        processing and marks them for exclusion.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">metadata_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">excluded_embed_metadata_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">key</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">metadata_keys</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_embed_metadata_keys</span>
+        <span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_excluded_llm_metadata_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure metadata keys to exclude from LLM context.</span>
+
+<span class="sd">        Identifies metadata keys not explicitly included in LLM</span>
+<span class="sd">        processing and marks them for exclusion.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">metadata_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">excluded_llm_metadata_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">key</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">metadata_keys</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_llm_metadata_keys</span>
+        <span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_metadata</span><span class="p">(</span><span class="n">page</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract and format page metadata.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            page: Dictionary containing Confluence page details</span>
+<span class="sd">            base_url: Base URL of the Confluence instance</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Structured metadata including dates, IDs, and URLs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;created_time&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">][</span><span class="s2">&quot;createdDate&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;created_date&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">][</span><span class="s2">&quot;createdDate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s2">&quot;datasource&quot;</span><span class="p">:</span> <span class="s2">&quot;confluence&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;md&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;last_edited_date&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">][</span><span class="s2">&quot;lastUpdated&quot;</span><span class="p">][</span><span class="s2">&quot;when&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;last_edited_time&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">][</span><span class="s2">&quot;lastUpdated&quot;</span><span class="p">][</span><span class="s2">&quot;when&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+                <span class="s2">&quot;T&quot;</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="s2">&quot;page_id&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;space&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;_expandable&quot;</span><span class="p">][</span><span class="s2">&quot;space&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;page&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;_links&quot;</span><span class="p">][</span><span class="s2">&quot;webui&quot;</span><span class="p">],</span>
+        <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.document.ConfluenceDocument._get_metadata" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_get_metadata</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">base_url</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extract and format page metadata.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>page</code></b>
+                  (<code>dict</code>)
+              –
+              <div class="doc-md-description">
+                <p>Dictionary containing Confluence page details</p>
+              </div>
+            </li>
+            <li>
+              <b><code>base_url</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Base URL of the Confluence instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>dict</code></b>(                  <code>dict</code>
+)              –
+              <div class="doc-md-description">
+                <p>Structured metadata including dates, IDs, and URLs</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_metadata</span><span class="p">(</span><span class="n">page</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract and format page metadata.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        page: Dictionary containing Confluence page details</span>
+<span class="sd">        base_url: Base URL of the Confluence instance</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: Structured metadata including dates, IDs, and URLs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;created_time&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">][</span><span class="s2">&quot;createdDate&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;created_date&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">][</span><span class="s2">&quot;createdDate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;datasource&quot;</span><span class="p">:</span> <span class="s2">&quot;confluence&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;md&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_edited_date&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">][</span><span class="s2">&quot;lastUpdated&quot;</span><span class="p">][</span><span class="s2">&quot;when&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;last_edited_time&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;history&quot;</span><span class="p">][</span><span class="s2">&quot;lastUpdated&quot;</span><span class="p">][</span><span class="s2">&quot;when&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+            <span class="s2">&quot;T&quot;</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;page_id&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;space&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;_expandable&quot;</span><span class="p">][</span><span class="s2">&quot;space&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;page&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">base_url</span> <span class="o">+</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;_links&quot;</span><span class="p">][</span><span class="s2">&quot;webui&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.document.ConfluenceDocument._set_excluded_embed_metadata_keys" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_set_excluded_embed_metadata_keys</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure metadata keys to exclude from embeddings.</p>
+<p>Identifies metadata keys not explicitly included in embedding
+processing and marks them for exclusion.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_set_excluded_embed_metadata_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configure metadata keys to exclude from embeddings.</span>
+
+<span class="sd">    Identifies metadata keys not explicitly included in embedding</span>
+<span class="sd">    processing and marks them for exclusion.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">metadata_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">excluded_embed_metadata_keys</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">key</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">metadata_keys</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_embed_metadata_keys</span>
+    <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.document.ConfluenceDocument._set_excluded_llm_metadata_keys" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_set_excluded_llm_metadata_keys</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure metadata keys to exclude from LLM context.</p>
+<p>Identifies metadata keys not explicitly included in LLM
+processing and marks them for exclusion.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_set_excluded_llm_metadata_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configure metadata keys to exclude from LLM context.</span>
+
+<span class="sd">    Identifies metadata keys not explicitly included in LLM</span>
+<span class="sd">    processing and marks them for exclusion.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">metadata_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">excluded_llm_metadata_keys</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">key</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">metadata_keys</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_llm_metadata_keys</span>
+    <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.document.ConfluenceDocument.from_page" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">from_page</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">base_url</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create ConfluenceDocument instance from page data.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>page</code></b>
+                  (<code>dict</code>)
+              –
+              <div class="doc-md-description">
+                <p>Dictionary containing Confluence page details</p>
+              </div>
+            </li>
+            <li>
+              <b><code>base_url</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Base URL of the Confluence instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>ConfluenceDocument</code></b>(                  <code><a class="autorefs autorefs-internal" title="src.embedding.datasources.confluence.document.ConfluenceDocument" href="#src.embedding.datasources.confluence.document.ConfluenceDocument">ConfluenceDocument</a></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured document instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">from_page</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">page</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ConfluenceDocument&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create ConfluenceDocument instance from page data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        page: Dictionary containing Confluence page details</span>
+<span class="sd">        base_url: Base URL of the Confluence instance</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ConfluenceDocument: Configured document instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">document</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span>
+        <span class="n">text</span><span class="o">=</span><span class="n">md</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;body&quot;</span><span class="p">][</span><span class="s2">&quot;view&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]),</span>
+        <span class="n">attachments</span><span class="o">=</span><span class="p">{},</span>  <span class="c1"># TBD</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="n">ConfluenceDocument</span><span class="o">.</span><span class="n">_get_metadata</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">base_url</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">document</span><span class="o">.</span><span class="n">_set_excluded_embed_metadata_keys</span><span class="p">()</span>
+    <span class="n">document</span><span class="o">.</span><span class="n">_set_excluded_llm_metadata_keys</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">document</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="manager">Manager</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.confluence.manager"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.manager.ConfluenceDatasourceManager" class="doc doc-heading">
+            <code>ConfluenceDatasourceManager</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.manager.DatasourceManager">DatasourceManager</span></code></p>
+
+
+        <p>Manager for Confluence content extraction and processing.</p>
+<p>Handles document retrieval, cleaning, splitting and embedding updates
+for Confluence workspace content. Implements the base DatasourceManager
+interface for Confluence-specific processing.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/manager.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfluenceDatasourceManager</span><span class="p">(</span><span class="n">DatasourceManager</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Manager for Confluence content extraction and processing.</span>
+
+<span class="sd">    Handles document retrieval, cleaning, splitting and embedding updates</span>
+<span class="sd">    for Confluence workspace content. Implements the base DatasourceManager</span>
+<span class="sd">    interface for Confluence-specific processing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="reader">Reader</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.confluence.reader"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.reader.ConfluenceReader" class="doc doc-heading">
+            <code>ConfluenceReader</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.reader.BaseReader">BaseReader</span></code></p>
+
+
+        <p>Reader for extracting documents from Confluence spaces.</p>
+<p>Implements document extraction from Confluence spaces, handling pagination
+and export limits. Supports both synchronous and asynchronous retrieval.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>export_limit</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Maximum number of documents to extract</p>
+              </div>
+            </li>
+            <li>
+              <b><code>confluence_client</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Client for Confluence API interactions</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/reader.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfluenceReader</span><span class="p">(</span><span class="n">BaseReader</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reader for extracting documents from Confluence spaces.</span>
+
+<span class="sd">    Implements document extraction from Confluence spaces, handling pagination</span>
+<span class="sd">    and export limits. Supports both synchronous and asynchronous retrieval.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        export_limit: Maximum number of documents to extract</span>
+<span class="sd">        confluence_client: Client for Confluence API interactions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">configuration</span><span class="p">:</span> <span class="n">ConfluenceDatasourceConfiguration</span><span class="p">,</span>
+        <span class="n">confluence_client</span><span class="p">:</span> <span class="n">Confluence</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the Confluence reader.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            configuration: Settings for Confluence access and limits</span>
+<span class="sd">            confluence_client: Client for Confluence API interactions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">export_limit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">confluence_client</span> <span class="o">=</span> <span class="n">confluence_client</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_all_documents</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfluenceDocument</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Synchronously fetch all documents from Confluence.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[ConfluenceDocument]: List of extracted documents</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            Not implemented - use get_all_documents_async instead.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_all_documents_async</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfluenceDocument</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Asynchronously fetch all documents from Confluence.</span>
+
+<span class="sd">        Retrieves documents from all global spaces, respecting export limit.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[ConfluenceDocument]: List of extracted and processed documents</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Fetching documents from Confluence with limit </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">confluence_client</span><span class="o">.</span><span class="n">get_all_spaces</span><span class="p">(</span><span class="n">space_type</span><span class="o">=</span><span class="s2">&quot;global&quot;</span><span class="p">)</span>
+        <span class="n">pages</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">space</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]:</span>
+            <span class="n">space_limit</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="kc">None</span>
+            <span class="p">)</span>
+            <span class="n">pages</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_all_pages</span><span class="p">(</span><span class="n">space</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">],</span> <span class="n">space_limit</span><span class="p">))</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span>
+            <span class="p">):</span>
+                <span class="k">break</span>
+
+        <span class="n">pages</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">pages</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">pages</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ConfluenceDocument</span><span class="o">.</span><span class="n">from_page</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">confluence_client</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">pages</span>
+        <span class="p">]</span>
+        <span class="k">return</span> <span class="n">documents</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_all_pages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch all pages from a Confluence space.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            space: Space key to fetch pages from</span>
+<span class="sd">            limit: Maximum number of pages to fetch (None for unlimited)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[dict]: List of page details from the space</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;space&quot;</span><span class="p">:</span> <span class="n">space</span><span class="p">,</span>
+            <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;expand&quot;</span><span class="p">:</span> <span class="s2">&quot;body.view,history.lastUpdated&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">all_pages</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">tqdm</span><span class="p">(</span>
+                <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;[Confluence] Reading </span><span class="si">{</span><span class="n">space</span><span class="si">}</span><span class="s2">&#39;s pages content&quot;</span><span class="p">,</span>
+                <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;pages&quot;</span><span class="p">,</span>
+            <span class="p">)</span> <span class="k">as</span> <span class="n">pbar</span><span class="p">:</span>
+                <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="n">pages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">confluence_client</span><span class="o">.</span><span class="n">get_all_pages_from_space</span><span class="p">(</span>
+                        <span class="o">**</span><span class="n">params</span>
+                    <span class="p">)</span>
+                    <span class="n">all_pages</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span>
+                    <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pages</span><span class="p">))</span>
+
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">ConfluenceReader</span><span class="o">.</span><span class="n">_limit_reached</span><span class="p">(</span>
+                        <span class="n">all_pages</span><span class="p">,</span> <span class="n">limit</span>
+                    <span class="p">):</span>
+                        <span class="k">break</span>
+
+                    <span class="n">start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_pages</span><span class="p">)</span>
+                    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start</span>
+        <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error while fetching pages from </span><span class="si">{</span><span class="n">space</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">all_pages</span> <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">all_pages</span><span class="p">[:</span><span class="n">limit</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_limit_reached</span><span class="p">(</span><span class="n">pages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if page limit has been reached.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pages: List of retrieved pages</span>
+<span class="sd">            limit: Maximum number of pages (None for unlimited)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if limit reached, False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">limit</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.reader.ConfluenceReader.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">confluence_client</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize the Confluence reader.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.ConfluenceDatasourceConfiguration">ConfluenceDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Settings for Confluence access and limits</p>
+              </div>
+            </li>
+            <li>
+              <b><code>confluence_client</code></b>
+                  (<code><span title="atlassian.Confluence">Confluence</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Client for Confluence API interactions</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/reader.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">configuration</span><span class="p">:</span> <span class="n">ConfluenceDatasourceConfiguration</span><span class="p">,</span>
+    <span class="n">confluence_client</span><span class="p">:</span> <span class="n">Confluence</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize the Confluence reader.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        configuration: Settings for Confluence access and limits</span>
+<span class="sd">        confluence_client: Client for Confluence API interactions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">export_limit</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">confluence_client</span> <span class="o">=</span> <span class="n">confluence_client</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.reader.ConfluenceReader._get_all_pages" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_get_all_pages</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Fetch all pages from a Confluence space.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>space</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Space key to fetch pages from</p>
+              </div>
+            </li>
+            <li>
+              <b><code>limit</code></b>
+                  (<code>int</code>)
+              –
+              <div class="doc-md-description">
+                <p>Maximum number of pages to fetch (None for unlimited)</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[dict]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[dict]: List of page details from the space</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/reader.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_get_all_pages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch all pages from a Confluence space.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        space: Space key to fetch pages from</span>
+<span class="sd">        limit: Maximum number of pages to fetch (None for unlimited)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[dict]: List of page details from the space</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;space&quot;</span><span class="p">:</span> <span class="n">space</span><span class="p">,</span>
+        <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span>
+        <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;expand&quot;</span><span class="p">:</span> <span class="s2">&quot;body.view,history.lastUpdated&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">all_pages</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">tqdm</span><span class="p">(</span>
+            <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;[Confluence] Reading </span><span class="si">{</span><span class="n">space</span><span class="si">}</span><span class="s2">&#39;s pages content&quot;</span><span class="p">,</span>
+            <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;pages&quot;</span><span class="p">,</span>
+        <span class="p">)</span> <span class="k">as</span> <span class="n">pbar</span><span class="p">:</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">pages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">confluence_client</span><span class="o">.</span><span class="n">get_all_pages_from_space</span><span class="p">(</span>
+                    <span class="o">**</span><span class="n">params</span>
+                <span class="p">)</span>
+                <span class="n">all_pages</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span>
+                <span class="n">pbar</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pages</span><span class="p">))</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">ConfluenceReader</span><span class="o">.</span><span class="n">_limit_reached</span><span class="p">(</span>
+                    <span class="n">all_pages</span><span class="p">,</span> <span class="n">limit</span>
+                <span class="p">):</span>
+                    <span class="k">break</span>
+
+                <span class="n">start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_pages</span><span class="p">)</span>
+                <span class="n">params</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start</span>
+    <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error while fetching pages from </span><span class="si">{</span><span class="n">space</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">all_pages</span> <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">all_pages</span><span class="p">[:</span><span class="n">limit</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.reader.ConfluenceReader._limit_reached" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_limit_reached</span><span class="p">(</span><span class="n">pages</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check if page limit has been reached.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>pages</code></b>
+                  (<code><span title="typing.List">List</span>[dict]</code>)
+              –
+              <div class="doc-md-description">
+                <p>List of retrieved pages</p>
+              </div>
+            </li>
+            <li>
+              <b><code>limit</code></b>
+                  (<code>int</code>)
+              –
+              <div class="doc-md-description">
+                <p>Maximum number of pages (None for unlimited)</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>bool</code></b>(                  <code>bool</code>
+)              –
+              <div class="doc-md-description">
+                <p>True if limit reached, False otherwise</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/reader.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_limit_reached</span><span class="p">(</span><span class="n">pages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if page limit has been reached.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pages: List of retrieved pages</span>
+<span class="sd">        limit: Maximum number of pages (None for unlimited)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if limit reached, False otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">limit</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.reader.ConfluenceReader.get_all_documents" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_all_documents</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Synchronously fetch all documents from Confluence.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="embedding.datasources.confluence.document.ConfluenceDocument">ConfluenceDocument</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[ConfluenceDocument]: List of extracted documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>Not implemented - use get_all_documents_async instead.</p>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/reader.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_all_documents</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfluenceDocument</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Synchronously fetch all documents from Confluence.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[ConfluenceDocument]: List of extracted documents</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        Not implemented - use get_all_documents_async instead.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.reader.ConfluenceReader.get_all_documents_async" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_all_documents_async</span><span class="p">()</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Asynchronously fetch all documents from Confluence.</p>
+<p>Retrieves documents from all global spaces, respecting export limit.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="embedding.datasources.confluence.document.ConfluenceDocument">ConfluenceDocument</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List[ConfluenceDocument]: List of extracted and processed documents</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/reader.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_all_documents_async</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfluenceDocument</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Asynchronously fetch all documents from Confluence.</span>
+
+<span class="sd">    Retrieves documents from all global spaces, respecting export limit.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[ConfluenceDocument]: List of extracted and processed documents</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Fetching documents from Confluence with limit </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">confluence_client</span><span class="o">.</span><span class="n">get_all_spaces</span><span class="p">(</span><span class="n">space_type</span><span class="o">=</span><span class="s2">&quot;global&quot;</span><span class="p">)</span>
+    <span class="n">pages</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">space</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">]:</span>
+        <span class="n">space_limit</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+        <span class="n">pages</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_all_pages</span><span class="p">(</span><span class="n">space</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">],</span> <span class="n">space_limit</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span>
+        <span class="p">):</span>
+            <span class="k">break</span>
+
+    <span class="n">pages</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">pages</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">pages</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">documents</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">ConfluenceDocument</span><span class="o">.</span><span class="n">from_page</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">confluence_client</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">pages</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="n">documents</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="splitter">Splitter</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.confluence.splitter"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.splitter.ConfluenceSplitter" class="doc doc-heading">
+            <code>ConfluenceSplitter</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="embedding.datasources.core.splitter.BaseSplitter">BaseSplitter</span></code></p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/splitter.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfluenceSplitter</span><span class="p">(</span><span class="n">BaseSplitter</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">markdown_splitter</span><span class="p">:</span> <span class="n">BoundEmbeddingModelMarkdownSplitter</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The `ConfluenceSplitter` class is a concrete class that defines the interface for splitting documents into text nodes.</span>
+
+<span class="sd">        :param markdown_splitter: MarkdownSplitter object for splitting documents</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">markdown_splitter</span> <span class="o">=</span> <span class="n">markdown_splitter</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfluenceDocument</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TextNode</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Split the given list of documents into text nodes using `markdown_splitter`. Documents should be in markdown format.</span>
+
+<span class="sd">        :param documents: List of Document objects</span>
+<span class="sd">        :return: List of TextNode objects</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">markdown_splitter</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.splitter.ConfluenceSplitter.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">markdown_splitter</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The <code>ConfluenceSplitter</code> class is a concrete class that defines the interface for splitting documents into text nodes.</p>
+<p>:param markdown_splitter: MarkdownSplitter object for splitting documents</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/splitter.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">markdown_splitter</span><span class="p">:</span> <span class="n">BoundEmbeddingModelMarkdownSplitter</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The `ConfluenceSplitter` class is a concrete class that defines the interface for splitting documents into text nodes.</span>
+
+<span class="sd">    :param markdown_splitter: MarkdownSplitter object for splitting documents</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">markdown_splitter</span> <span class="o">=</span> <span class="n">markdown_splitter</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.splitter.ConfluenceSplitter.split" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">split</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Split the given list of documents into text nodes using <code>markdown_splitter</code>. Documents should be in markdown format.</p>
+<p>:param documents: List of Document objects
+:return: List of TextNode objects</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/splitter.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ConfluenceDocument</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TextNode</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Split the given list of documents into text nodes using `markdown_splitter`. Documents should be in markdown format.</span>
+
+<span class="sd">    :param documents: List of Document objects</span>
+<span class="sd">    :return: List of TextNode objects</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">markdown_splitter</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="builders">Builders</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.datasources.confluence.builders"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.builders.ConfluenceCleanerBuilder" class="doc doc-heading">
+            <code>ConfluenceCleanerBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Confluence content cleaner instances.</p>
+<p>Provides factory method to create Cleaner objects for Confluence content.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfluenceCleanerBuilder</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Builder for creating Confluence content cleaner instances.</span>
+
+<span class="sd">    Provides factory method to create Cleaner objects for Confluence content.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@inject</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ConfluenceCleaner</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a content cleaner for Confluence.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Cleaner: Configured cleaner instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ConfluenceCleaner</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.builders.ConfluenceCleanerBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">build</span><span class="p">()</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a content cleaner for Confluence.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Cleaner</code></b>(                  <code><span title="embedding.datasources.confluence.cleaner.ConfluenceCleaner">ConfluenceCleaner</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured cleaner instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="nd">@inject</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ConfluenceCleaner</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a content cleaner for Confluence.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Cleaner: Configured cleaner instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ConfluenceCleaner</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.builders.ConfluenceClientBuilder" class="doc doc-heading">
+            <code>ConfluenceClientBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Confluence API client instances.</p>
+<p>Provides factory method to create configured Confluence API clients.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span>
+<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfluenceClientBuilder</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Builder for creating Confluence API client instances.</span>
+
+<span class="sd">    Provides factory method to create configured Confluence API clients.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@inject</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="n">ConfluenceDatasourceConfiguration</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Confluence</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a configured Confluence API client.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            configuration: Confluence connection settings</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Confluence: Configured API client instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Confluence</span><span class="p">(</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">base_url</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">username</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">(),</span>
+            <span class="n">password</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">password</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">(),</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.builders.ConfluenceClientBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">build</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured Confluence API client.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.ConfluenceDatasourceConfiguration">ConfluenceDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Confluence connection settings</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Confluence</code></b>(                  <code><span title="atlassian.Confluence">Confluence</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured API client instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span>
+<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="nd">@inject</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="n">ConfluenceDatasourceConfiguration</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Confluence</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a configured Confluence API client.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        configuration: Confluence connection settings</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Confluence: Configured API client instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Confluence</span><span class="p">(</span>
+        <span class="n">url</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">base_url</span><span class="p">,</span>
+        <span class="n">username</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">username</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">(),</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">password</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">(),</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.builders.ConfluenceDatasourceManagerBuilder" class="doc doc-heading">
+            <code>ConfluenceDatasourceManagerBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Confluence datasource manager instances.</p>
+<p>Provides factory method to create configured ConfluenceDatasourceManager
+with required components for content processing.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfluenceDatasourceManagerBuilder</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Builder for creating Confluence datasource manager instances.</span>
+
+<span class="sd">    Provides factory method to create configured ConfluenceDatasourceManager</span>
+<span class="sd">    with required components for content processing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@inject</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span>
+        <span class="n">configuration</span><span class="p">:</span> <span class="n">ConfluenceDatasourceConfiguration</span><span class="p">,</span>
+        <span class="n">reader</span><span class="p">:</span> <span class="n">ConfluenceReader</span><span class="p">,</span>
+        <span class="n">cleaner</span><span class="p">:</span> <span class="n">Cleaner</span><span class="p">,</span>
+        <span class="n">splitter</span><span class="p">:</span> <span class="n">ConfluenceSplitter</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConfluenceDatasourceManager</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a configured Confluence datasource manager.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            configuration: Confluence access and processing settings</span>
+<span class="sd">            reader: Component for reading Confluence content</span>
+<span class="sd">            cleaner: Component for cleaning raw content</span>
+<span class="sd">            splitter: Component for splitting content into chunks</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ConfluenceDatasourceManager: Configured manager instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ConfluenceDatasourceManager</span><span class="p">(</span>
+            <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">,</span>
+            <span class="n">reader</span><span class="o">=</span><span class="n">reader</span><span class="p">,</span>
+            <span class="n">cleaner</span><span class="o">=</span><span class="n">cleaner</span><span class="p">,</span>
+            <span class="n">splitter</span><span class="o">=</span><span class="n">splitter</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.builders.ConfluenceDatasourceManagerBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">build</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">reader</span><span class="p">,</span> <span class="n">cleaner</span><span class="p">,</span> <span class="n">splitter</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured Confluence datasource manager.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.ConfluenceDatasourceConfiguration">ConfluenceDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Confluence access and processing settings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>reader</code></b>
+                  (<code><span title="embedding.datasources.confluence.reader.ConfluenceReader">ConfluenceReader</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for reading Confluence content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>cleaner</code></b>
+                  (<code><span title="embedding.datasources.core.cleaner.Cleaner">Cleaner</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for cleaning raw content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>splitter</code></b>
+                  (<code><span title="embedding.datasources.confluence.splitter.ConfluenceSplitter">ConfluenceSplitter</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for splitting content into chunks</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>ConfluenceDatasourceManager</code></b>(                  <code><span title="embedding.datasources.confluence.manager.ConfluenceDatasourceManager">ConfluenceDatasourceManager</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured manager instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="nd">@inject</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span>
+    <span class="n">configuration</span><span class="p">:</span> <span class="n">ConfluenceDatasourceConfiguration</span><span class="p">,</span>
+    <span class="n">reader</span><span class="p">:</span> <span class="n">ConfluenceReader</span><span class="p">,</span>
+    <span class="n">cleaner</span><span class="p">:</span> <span class="n">Cleaner</span><span class="p">,</span>
+    <span class="n">splitter</span><span class="p">:</span> <span class="n">ConfluenceSplitter</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConfluenceDatasourceManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a configured Confluence datasource manager.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        configuration: Confluence access and processing settings</span>
+<span class="sd">        reader: Component for reading Confluence content</span>
+<span class="sd">        cleaner: Component for cleaning raw content</span>
+<span class="sd">        splitter: Component for splitting content into chunks</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ConfluenceDatasourceManager: Configured manager instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ConfluenceDatasourceManager</span><span class="p">(</span>
+        <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">,</span>
+        <span class="n">reader</span><span class="o">=</span><span class="n">reader</span><span class="p">,</span>
+        <span class="n">cleaner</span><span class="o">=</span><span class="n">cleaner</span><span class="p">,</span>
+        <span class="n">splitter</span><span class="o">=</span><span class="n">splitter</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.builders.ConfluenceReaderBuilder" class="doc doc-heading">
+            <code>ConfluenceReaderBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Builder for creating Confluence reader instances.</p>
+<p>Provides factory method to create configured ConfluenceReader objects.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfluenceReaderBuilder</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Builder for creating Confluence reader instances.</span>
+
+<span class="sd">    Provides factory method to create configured ConfluenceReader objects.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@inject</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span>
+        <span class="n">configuration</span><span class="p">:</span> <span class="n">ConfluenceDatasourceConfiguration</span><span class="p">,</span>
+        <span class="n">confluence_client</span><span class="p">:</span> <span class="n">Confluence</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConfluenceReader</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a configured Confluence reader.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            configuration: Confluence access settings</span>
+<span class="sd">            confluence_client: Client for Confluence API interaction</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ConfluenceReader: Configured reader instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ConfluenceReader</span><span class="p">(</span>
+            <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">,</span>
+            <span class="n">confluence_client</span><span class="o">=</span><span class="n">confluence_client</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.builders.ConfluenceReaderBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">build</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">confluence_client</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured Confluence reader.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration.ConfluenceDatasourceConfiguration">ConfluenceDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Confluence access settings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>confluence_client</code></b>
+                  (<code><span title="atlassian.Confluence">Confluence</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Client for Confluence API interaction</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>ConfluenceReader</code></b>(                  <code><span title="embedding.datasources.confluence.reader.ConfluenceReader">ConfluenceReader</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured reader instance</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="nd">@inject</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span>
+    <span class="n">configuration</span><span class="p">:</span> <span class="n">ConfluenceDatasourceConfiguration</span><span class="p">,</span>
+    <span class="n">confluence_client</span><span class="p">:</span> <span class="n">Confluence</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConfluenceReader</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a configured Confluence reader.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        configuration: Confluence access settings</span>
+<span class="sd">        confluence_client: Client for Confluence API interaction</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ConfluenceReader: Configured reader instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ConfluenceReader</span><span class="p">(</span>
+        <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">,</span>
+        <span class="n">confluence_client</span><span class="o">=</span><span class="n">confluence_client</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.datasources.confluence.builders.ConfluenceSplitterBuilder" class="doc doc-heading">
+            <code>ConfluenceSplitterBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfluenceSplitterBuilder</span><span class="p">:</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@inject</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span>
+        <span class="n">markdown_splitter</span><span class="p">:</span> <span class="n">BoundEmbeddingModelMarkdownSplitter</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConfluenceSplitter</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Builds a `ConfluenceSplitter` instance using `MarkdownSplitter`.</span>
+
+<span class="sd">        :param markdown_splitter: MarkdownSplitter object</span>
+<span class="sd">        :return: ConfluenceSplitter object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ConfluenceSplitter</span><span class="p">(</span><span class="n">markdown_splitter</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.datasources.confluence.builders.ConfluenceSplitterBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">build</span><span class="p">(</span><span class="n">markdown_splitter</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Builds a <code>ConfluenceSplitter</code> instance using <code>MarkdownSplitter</code>.</p>
+<p>:param markdown_splitter: MarkdownSplitter object
+:return: ConfluenceSplitter object</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/embedding/datasources/confluence/builders.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="nd">@inject</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span>
+    <span class="n">markdown_splitter</span><span class="p">:</span> <span class="n">BoundEmbeddingModelMarkdownSplitter</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConfluenceSplitter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builds a `ConfluenceSplitter` instance using `MarkdownSplitter`.</span>
+
+<span class="sd">    :param markdown_splitter: MarkdownSplitter object</span>
+<span class="sd">    :return: ConfluenceSplitter object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ConfluenceSplitter</span><span class="p">(</span><span class="n">markdown_splitter</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../core/" class="btn btn-neutral float-left" title="Core"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../notion/" class="btn btn-neutral float-right" title="Notion">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../core/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../notion/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

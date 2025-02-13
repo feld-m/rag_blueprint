@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Add a New Vector Store - RAG Systems</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Add a New Vector Store";
+        var mkdocs_page_input_path = "how_to/how_to_add_new_vector_store.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Add a New Vector Store</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#step-1-add-dependencies">Step 1: Add Dependencies</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-2-configure-docker-service">Step 2: Configure Docker Service</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-3-define-vector-store-type">Step 3: Define Vector Store Type</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4-configure-secrets-management">Step 4: Configure Secrets Management</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-5-implement-the-vector-store-configuration">Step 5: Implement the Vector Store Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-6-expose-llm-configuration">Step 6: Expose LLM Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-7-create-the-vector-store-client-builder">Step 7: Create the Vector Store Client Builder</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-8-create-the-vector-store-builder">Step 8: Create the Vector Store Builder</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-9-vector-store-validation">Step 9: Vector Store Validation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-10-vector-store-validator-builder">Step 10: Vector Store Validator Builder</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-11-create-vector-store-binder">Step 11: Create Vector Store Binder</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/augmentation/utils/">Utils</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Common</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/langfuse/dataset/">Dataset</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/langfuse/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/embedding_builders/">Embedding_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/common/query_engine/">Query_engine</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/bootstrap/secrets_configuration/">Secrets_configuration</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/bootstrap/base_binder/">Base_binder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/common/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/common/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/common/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/common/retrievers/">Retrievers</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/validators/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/datasources/confluence/">Confluence</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/datasources/pdf/">Pdf</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/default_embedder/">Default_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/builders/">Builders</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">How to</li>
+      <li class="breadcrumb-item active">Add a New Vector Store</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/rag_blueprint/edit/master/docs/how_to/how_to_add_new_vector_store.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="how-to-add-a-new-vector-store-implementation">How to Add a New Vector Store Implementation</h1>
+<p>This guide demonstrates how to add support for a new vector store implementation, using <code>Chroma</code> as an example. The implementation is defined in <a href="https://github.com/feld-m/rag_blueprint/blob/main/src/common/bootstrap/configuration/pipeline/embedding/vector_store/vector_store_configuration.py">vector_store_configuration.py</a>.</p>
+<h2 id="step-1-add-dependencies">Step 1: Add Dependencies</h2>
+<p>Add the required packages to <code>pyproject.toml</code>:</p>
+<pre><code class="language-toml">...
+chromadb==0.6.3
+llama-index-vector-stores-chroma==0.3.0
+...
+</code></pre>
+<h2 id="step-2-configure-docker-service">Step 2: Configure Docker Service</h2>
+<p>Add the vector store service to <a href="https://github.com/feld-m/rag_blueprint/blob/main/build/workstation/docker/docker-compose.yml">docker-compose.yml</a>:</p>
+<pre><code class="language-yml">name: rag
+services:
+...
+  chroma:
+    image: chromadb/chroma:0.6.4.dev19
+    environment:
+      CHROMA_HOST_PORT: ${RAG__VECTOR_STORE__PORT_REST}
+    ports:
+      - &quot;${RAG__VECTOR_STORE__PORT_REST}:${RAG__VECTOR_STORE__PORT_REST}&quot;
+    restart: unless-stopped
+    volumes:
+      - ./.docker-data/chroma:/chroma/chroma/
+...
+</code></pre>
+<h2 id="step-3-define-vector-store-type">Step 3: Define Vector Store Type</h2>
+<p>Add the vector store to the <code>VectorStoreName</code> enum in <code>vector_store_configuration.py</code>:</p>
+<pre><code class="language-py">class VectorStoreName(str, Enum):
+    ...
+    CHROMA = &quot;chroma&quot;
+</code></pre>
+<p>The enum value must match the service name in the Docker configuration.</p>
+<h2 id="step-4-configure-secrets-management">Step 4: Configure Secrets Management</h2>
+<p>Define a secrets configuration class. For services without secrets:</p>
+<pre><code class="language-py">class ChromaSecrets(BaseSettings):
+    model_config = ConfigDict(
+        extra=&quot;ignore&quot;,
+    )
+</code></pre>
+<p>For services requiring secrets:</p>
+<pre><code class="language-py">class ChromaSecrets(BaseSettings):
+    model_config = ConfigDict(
+        env_file_encoding=&quot;utf-8&quot;,
+        env_prefix=&quot;RAG__VECTOR_STORE__&quot;,
+        env_nested_delimiter=&quot;__&quot;,
+        extra=&quot;ignore&quot;,
+    )
+
+    some_secret_1: Optional[SecretStr] = Field(
+        None, description=&quot;First secret.&quot;
+    )
+    some_secret_2: Optional[SecretStr] = Field(
+        None, description=&quot;Second secret.&quot;
+    )
+</code></pre>
+<p>Secrets are read from <code>configurations/secrets.{environment}.env</code> during client initialization.</p>
+<h2 id="step-5-implement-the-vector-store-configuration">Step 5: Implement the Vector Store Configuration</h2>
+<p>Define the Chroma configuration class for the LLM, extending the base <code>ChromaConfiguration</code>:</p>
+<pre><code class="language-py">class ChromaConfiguration(VectorStoreConfiguration):
+    name: Literal[VectorStoreName.CHROMA] = Field(
+        ..., description=&quot;The name of the vector store.&quot;
+    )
+    secrets: ChromaSecrets = Field(
+        None, description=&quot;The secrets for the Qdrant vector store.&quot;
+    )
+</code></pre>
+<p>This class includes fields from <code>VectorStoreConfiguration</code>, plus the ones defined in the snippet.</p>
+<ul>
+<li><code>name</code>: Constrained to the Chroma value, ensuring only configurations matching <code>VectorStoreName.CHROMA</code> are valid.</li>
+<li><code>secrets</code>: Links the configuration to the <code>ChromaSecrets</code> class.</li>
+</ul>
+<p><strong>Example JSON Configuration</strong></p>
+<pre><code class="language-json">...
+    &quot;vector_store&quot;: {
+        &quot;name&quot;: &quot;chroma&quot;,
+        &quot;collection_name&quot;: &quot;new-collection&quot;,
+        &quot;host&quot;: &quot;chroma&quot;,
+        &quot;protocol&quot;: &quot;http&quot;,
+        &quot;ports&quot;: {
+            &quot;rest&quot;: 6333
+        }
+    }
+...
+</code></pre>
+<ul>
+<li><code>name</code>: Name of the vector store to be used, corresponds to the vector store name from <a href="https://github.com/feld-m/rag_blueprint/blob/main/build/workstation/docker/docker-compose.yml">docker-compose.yml</a>.</li>
+<li><code>collection_name</code>: Name of the collection to which documents will be embedded.</li>
+<li><code>host</code>: Vector store host in the form of IP or domain e.g. 127.0.0.1.</li>
+<li><code>protocol</code>: Used for creating URL in combination with <code>host</code>.</li>
+<li><code>ports</code>: Ports on which the vector store is available. Used for creating URL in combination with <code>protocol</code> and <code>host</code>.</li>
+</ul>
+<h2 id="step-6-expose-llm-configuration">Step 6: Expose LLM Configuration</h2>
+<p>To make Pydantic parse the corresponding JSON object to our <code>ChromaConfiguration</code>, add it to the <code>AVAILABLE_VECTOR_STORES</code> variable:</p>
+<pre><code class="language-py">AVAILABLE_VECTOR_STORES = Union[..., ChromaConfiguration]
+</code></pre>
+<h2 id="step-7-create-the-vector-store-client-builder">Step 7: Create the Vector Store Client Builder</h2>
+<p>Define how the Chroma client is built to enable pre-run validation. Update <a href="https://github.com/feld-m/rag_blueprint/blob/main/src/common/builders/client_builders.py">client_builders.py</a>:</p>
+<pre><code class="language-py">from chromadb import HttpClient as ChromaHttpClient
+from chromadb.api import ClientAPI as ChromaClient
+from injector import inject
+
+from common.bootstrap.configuration.pipeline.embedding.vector_store.vector_store_configuration import (
+    ChromaConfiguration,
+    ...
+)
+
+class ChromaClientBuilder:
+    &quot;&quot;&quot;Builder for creating configured Chroma client instances.
+
+    Provides factory method to create ChromaClient with vector store settings.
+    &quot;&quot;&quot;
+
+    @staticmethod
+    @inject
+    def build(configuration: ChromaConfiguration) -&gt; ChromaClient:
+        &quot;&quot;&quot;Creates a configured Chroma client instance.
+
+        Args:
+            configuration: Chroma connection settings.
+
+        Returns:
+            HttpClient: Configured HTTP client instance for Chroma.
+        &quot;&quot;&quot;
+        return ChromaHttpClient(
+            host=configuration.host,
+            port=configuration.ports.rest,
+        )
+</code></pre>
+<p><strong>Explanation</strong>:</p>
+<ul>
+<li><strong>Dependencies</strong>: Use dependency injection (@inject) to ensure proper initialization.</li>
+<li><strong>Configuration</strong>: Extracts <code>host</code>, <code>port</code> from the <code>ChromaConfiguration</code>.</li>
+</ul>
+<h2 id="step-8-create-the-vector-store-builder">Step 8: Create the Vector Store Builder</h2>
+<p>The builder is responsible for initializing the vector store. Our implementation leverages <a href="https://docs.llamaindex.ai/en/stable/">llamaindex</a>. Add the builder logic to <a href="https://github.com/feld-m/rag_blueprint/blob/main/src/common/builders/vector_store_builders.py">vector_store_builders.py</a>:</p>
+<pre><code class="language-py">from injector import inject
+from llama_index.vector_stores.chroma import ChromaVectorStore
+...
+import (
+    ChromaConfiguration,
+    ...
+)
+
+...
+
+class ChromaStoreBuilder:
+    &quot;&quot;&quot;Builder for creating configured Chroma vector store instances.
+
+    Provides factory method to create ChromaVectorStore with client and collection settings.
+    &quot;&quot;&quot;
+
+    @staticmethod
+    @inject
+    def build(
+        configuration: ChromaConfiguration,
+    ) -&gt; ChromaVectorStore:
+        &quot;&quot;&quot;Creates a configured Chroma vector store instance.
+
+        Args:
+            chroma_client: Client for Chroma vector database interaction.
+            configuration: Chroma settings including collection name.
+
+        Returns:
+            ChromaVectorStore: Configured Chroma instance.
+        &quot;&quot;&quot;
+        return ChromaVectorStore(
+            host=configuration.host,
+            port=str(configuration.ports.rest),
+            collection_name=configuration.collection_name,
+        )
+</code></pre>
+<p><strong>Explanation</strong>:</p>
+<ul>
+<li><strong>Dependencies</strong>: Use dependency injection (@inject) to ensure proper initialization.</li>
+<li><strong>Configuration</strong>: Extracts <code>host</code>, <code>port</code>, and <code>collection_name</code> from the <code>ChromaConfiguration</code>.</li>
+<li><strong>Library Integration</strong>: Uses <code>llama_index.vector_stores.chroma</code> to create the vector store instance.</li>
+</ul>
+<h2 id="step-9-vector-store-validation">Step 9: Vector Store Validation</h2>
+<p>Before the embedding process, it is checked if the defined <code>collection-name</code> already exists at the vector store. In such a case, the embedding process is skipped. Implement the vector store validator in <a href="https://github.com/feld-m/rag_blueprint/blob/main/src/embedding/validators/vector_store_validators.py">vector_store_validators.py</a>:</p>
+<pre><code class="language-py">from chromadb.api import ClientAPI as ChromaClient
+from common.bootstrap.configuration.pipeline.embedding.vector_store.vector_store_configuration import (
+    ChromaConfiguration,
+    ...
+)
+
+class ChromaVectorStoreValidator(VectorStoreValidator):
+    &quot;&quot;&quot;Validator for Chroma vector store configuration.
+
+    Validates collection settings and existence for Chroma
+    vector store backend.
+
+    Attributes:
+        configuration: Settings for vector store
+        chroma_client: Client for Chroma interactions
+    &quot;&quot;&quot;
+
+    def __init__(
+        self,
+        configuration: ChromaConfiguration,
+        chroma_client: ChromaClient,
+    ):
+        &quot;&quot;&quot;Initialize validator with configuration and client.
+
+        Args:
+            configuration: Chroma vector store settings
+            chroma_client: Client for Chroma operations
+        &quot;&quot;&quot;
+        self.configuration = configuration
+        self.chroma_client = chroma_client
+
+    def validate(self) -&gt; None:
+        &quot;&quot;&quot;
+        Validate the Chroma vector store settings.
+        &quot;&quot;&quot;
+        self.validate_collection()
+
+    def validate_collection(self) -&gt; None:
+        &quot;&quot;&quot;Validate Chroma collection existence.
+
+        Raises:
+            CollectionExistsException: If collection already exists
+        &quot;&quot;&quot;
+        collection_name = self.configuration.collection_name
+        if collection_name in self.chroma_client.list_collections():
+            raise CollectionExistsException(collection_name)
+</code></pre>
+<h2 id="step-10-vector-store-validator-builder">Step 10: Vector Store Validator Builder</h2>
+<p>For the above vector store validator, add a builder to <a href="https://github.com/feld-m/rag_blueprint/blob/main/src/embedding/validators/builders.py">vector_store_builders.py</a>:</p>
+<pre><code class="language-py">from common.bootstrap.configuration.pipeline.embedding.vector_store.vector_store_configuration import (
+    ChromaConfiguration,
+    ...
+)
+
+...
+
+class ChromaVectorStoreValidatorBuilder:
+    &quot;&quot;&quot;Builder for creating Chroma vector store validator instances.
+
+    Provides factory method to create configured ChromaVectorStoreValidator
+    objects with required components.
+    &quot;&quot;&quot;
+
+    @staticmethod
+    @inject
+    def build(
+        configuration: ChromaConfiguration, chroma_client: ChromaClient
+    ) -&gt; ChromaVectorStoreValidator:
+        &quot;&quot;&quot;Create configured Chroma validator instance.
+
+        Args:
+            configuration: Settings for vector store
+            chroma_client: Client for Chroma interactions
+
+        Returns:
+            ChromaVectorStoreValidator: Configured validator instance
+        &quot;&quot;&quot;
+        return ChromaVectorStoreValidator(
+            configuration=configuration, chroma_client=chroma_client
+        )
+
+</code></pre>
+<h2 id="step-11-create-vector-store-binder">Step 11: Create Vector Store Binder</h2>
+<p>The last step is to add the corresponding binder responsible for initializing the vector store. Update <a href="https://github.com/feld-m/rag_blueprint/blob/main/src/common/bootstrap/configuration/pipeline/embedding/vector_store/vector_store_binder.py">vector_store_binders.py</a>:</p>
+<pre><code class="language-py">from chromadb.api import ClientAPI as ChromaClient
+
+from common.bootstrap.configuration.pipeline.embedding.vector_store.vector_store_configuration import (
+    ChromaConfiguration,
+    ...
+)
+
+from common.builders.client_builders import (
+    ChromaClientBuilder,
+    ...
+)
+from common.builders.vector_store_builders import (
+    ChromaStoreBuilder,
+    ...
+)
+from embedding.validators.builders import (
+    ChromaVectorStoreValidatorBuilder,
+    ...
+)
+
+...
+
+class ChromaBinder(BaseBinder):
+    &quot;&quot;&quot;Binder for the Chroma components.&quot;&quot;&quot;
+
+    def bind(self) -&gt; None:
+        &quot;&quot;&quot;Bind the Chroma components.&quot;&quot;&quot;
+        self._bind_configuration()
+        self._bind_client()
+        self._bind_vector_store()
+        self._bind_validator()
+
+    def _bind_configuration(self) -&gt; None:
+        &quot;&quot;&quot;Bind the Chroma configuration.&quot;&quot;&quot;
+        self.binder.bind(
+            ChromaConfiguration,
+            to=self.configuration.pipeline.embedding.vector_store,
+            scope=singleton,
+        )
+
+    def _bind_client(self) -&gt; None:
+        &quot;&quot;&quot;Bind the Chroma client.&quot;&quot;&quot;
+        self.binder.bind(
+            ChromaClient,
+            to=ChromaClientBuilder.build,
+            scope=singleton,
+        )
+
+    def _bind_vector_store(self) -&gt; None:
+        &quot;&quot;&quot;Bind the Qdrant store.&quot;&quot;&quot;
+        self.binder.bind(
+            VectorStore,
+            to=ChromaStoreBuilder.build,
+            scope=singleton,
+        )
+
+    def _bind_validator(self) -&gt; None:
+        &quot;&quot;&quot;Bind the Chroma vector store validator.&quot;&quot;&quot;
+        self.binder.bind(
+            VectorStoreValidator,
+            to=ChromaVectorStoreValidatorBuilder.build,
+        )
+
+...
+
+class VectorStoreBinder(BaseBinder):
+    &quot;&quot;&quot;Binder for the vector store component.&quot;&quot;&quot;
+
+    mapping = {
+        ...
+        VectorStoreName.CHROMA: ChromaBinder,
+    }
+
+    ...
+</code></pre>
+<p>This ensures that all instances defined in this guide are successfully initialized during the bootstrap and ready to use. From this point, the Chroma database is available for use in the pipeline.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../how_to_add_new_embedding_model/" class="btn btn-neutral float-left" title="Add a New Embedding Model"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../how_to_add_new_datasource/" class="btn btn-neutral float-right" title="Add a New Datasource">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../how_to_add_new_embedding_model/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../how_to_add_new_datasource/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
