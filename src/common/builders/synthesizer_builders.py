@@ -17,7 +17,12 @@ CUSTOM_PROMPT_TEMPLATE = PromptTemplate(
         "---------------------\n"
         "{context_str}\n"
         "---------------------\n"
-        "Based on the above context answer to the below query with a lot of enthusiasim and humoristic sense\n"
+        "Rules:\n"
+        "1. If given context doesn't match with the query, highlight that you don't answer based on the knowledge base.\n"
+        "2. Use all relevant chunks from the context to answer the query.\n"
+        "3. Provide exhaustive, long answer unless stated otherwise in the query.\n"
+        "4. Using markdown format pay attention to the visual readibility of the answer.\n\n"
+        "Following given rules and the context exhaustitaly answer the query.\n"
         "Query: {query_str}\n"
         "Answer: "
     ),
