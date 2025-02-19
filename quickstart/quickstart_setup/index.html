@@ -264,13 +264,10 @@
 <li>Docker</li>
 </ul>
 <h2 id="configuration-secrets">Configuration &amp; Secrets</h2>
-<p>The default configuration is located in <a href="https://github.com/feld-m/rag_blueprint/blob/main/configurations/configuration.default.json">configuration.default.json</a>. This file configures Notion as the document datasource and defines default settings for embedding, augmentation, and evaluation stages. To customize the setup, refer to the configuration <a href="../../how_to/how_to_configure/">Configuration Setup</a>.</p>
+<p>The default configuration is located in <a href="https://github.com/feld-m/rag_blueprint/blob/main/configurations/configuration.default.json">configuration.default.json</a>. This file configures toy PDF dataset as the document datasource and defines default settings for embedding, augmentation, and evaluation stages. To customize the setup, refer to the configuration <a href="../../how_to/how_to_configure/">Configuration Setup</a>.</p>
 <h3 id="secrets-configuration">Secrets Configuration</h3>
 <p>Create a secrets file at <code>configurations/secrets.default.env</code>. Below is a template:</p>
-<pre><code class="language-sh"># Datasources
-RAG__DATASOURCES__NOTION__API_TOKEN=...
-
-# LLMs
+<pre><code class="language-sh"># LLMs
 RAG__LLMS__OPENAI__API_KEY=...
 
 # Langfuse
@@ -281,7 +278,6 @@ RAG__LANGFUSE__SECRET_KEY=...
 RAG__LANGFUSE__PUBLIC_KEY=...
 </code></pre>
 <ul>
-<li><code>RAG__DATASOURCES__NOTION__API_TOKEN</code>: Notion integration token to extract the documents.</li>
 <li><code>RAG__LLMS__OPENAI__API_KEY</code>: Required for connecting to <a href="https://openai.com/">OpenAI</a> LLM.</li>
 <li><strong>Langfuse Keys</strong>: <code>RAG__LANGFUSE__SECRET_KEY</code> and <code>RAG__LANGFUSE__PUBLIC_KEY</code> are generated during initialization and will need to be updated later.</li>
 </ul>
