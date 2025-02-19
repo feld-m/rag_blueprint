@@ -15,7 +15,7 @@ class ConversationUtils:
         REFERENCES_TEMPLATE: Template string for formatting references section.
     """
 
-    WELCOME_TEMPLATE = "Welcome to our Bavarian Beer Chat! 🍻 We're here to guide you through the rich tapestry of Bavarian beer culture. Whether you're curious about traditional brews, local beer festivals, or the history behind Bavaria's renowned beer purity law, you've come to the right place. Type your question below, and let's embark on this flavorful journey together. Prost!"
+    WELCOME_TEMPLATE = "Hello and welcome to our FELD M's Chat UI! 👋 We're here to help you find the information you need from our FELD M's knowledge base. To get started, simply type your question or statement into the chat box below and press enter. Enjoy your exploration and happy chatting! 😊"
     REFERENCES_TEMPLATE = "\n\n**References**:\n" "{references}\n"
 
     @staticmethod
