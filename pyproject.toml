@@ -46,7 +46,6 @@ dependencies = [
     "llama-index-vector-stores-chroma==0.3.0",
     "llama-index-vector-stores-qdrant==0.3.2",
     "llamaindex-py-client==0.1.19",
-    "llmsherpa==0.1.4",
     "markdownify==0.13.1",
     "mkdocs==1.6.1",
     "mkdocs-autorefs==1.2.0",
@@ -75,7 +74,6 @@ dependencies = [
     "pydantic-settings==2.2.1",
     "pyjwt==2.8.0",
     "pymdown-extensions==10.12",
-    "pypdf==4.2.0",
     "pytest==8.3.1",
     "pytest-asyncio==0.23.8",
     "pytest-mock==3.14.0",
@@ -133,6 +131,7 @@ dependencies = [
     "xxhash==3.5.0",
     "yarl==1.9.4",
     "zipp==3.18.1",
+    "markitdown>=0.0.1a4",
 ]
 
 [build-system]

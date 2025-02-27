@@ -104,18 +104,20 @@ class NotionDatasourceConfiguration(DatasourceConfiguration):
     )
 
 
+class PDFParser(str, Enum):
+    DEFAULT = "default"
+    CONTRACT = "contract"
+
+
 class PdfDatasourceConfiguration(DatasourceConfiguration):
     name: Literal[DatasourceName.PDF] = Field(
         ..., description="The name of the data source."
     )
     base_path: str = Field(
-        ..., description="Base path to the directory containing PDF files"
+        ..., description="Base path to the directory containing PDF files."
     )
-    nlm_parser_enabled: bool = Field(
-        False, description="Use NLM parser for PDF files"
-    )
-    nlm_parser_api_base: str = Field(
-        None, description="NLM parser API base URL"
+    parser: PDFParser = Field(
+        PDFParser.DEFAULT, description="Parser used to read the PDF files."
     )
     secrets: PdfSecrets = Field(
         None, description="The secrets for the data source."

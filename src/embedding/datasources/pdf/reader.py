@@ -1,36 +1,44 @@
 import logging
 import os
 import re
-from datetime import datetime
-from typing import List
+from typing import Any, Dict, List
 
-import pypdf
 from llama_index.core.readers.file.base import default_file_metadata_func
-from llmsherpa.readers import LayoutPDFReader
+from markitdown import MarkItDown
 from tqdm import tqdm
 
 from common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration import (
     PdfDatasourceConfiguration,
+    PDFParser,
 )
 from embedding.datasources.core.reader import BaseReader
 from embedding.datasources.pdf.document import PdfDocument
 
 
 class DefaultPDFParser:
-    def parse(self, file_path: str) -> List[PdfDocument]:
-        with open(file_path, "rb") as f:
-            reader = pypdf.PdfReader(f)
-            text = "\n\n".join(
-                page.extract_text() or "" for page in reader.pages
-            )
-            metadata = self._extract_metadata(
-                reader=reader, file_path=file_path
-            )
-            return [PdfDocument(text=text, metadata=metadata)]
 
-    def _extract_metadata(
-        self, reader: pypdf.PdfReader, file_path: str
-    ) -> dict:
+    def __init__(self):
+        """
+        Attributes:
+            parser: MarkItDown parser instance
+        """
+        self.parser = MarkItDown()
+
+    def parse(self, file_path: str) -> PdfDocument:
+        """
+        Parses the given PDF file.
+
+        Args:
+            file_path (str): Path to the PDF file.
+
+        Returns:
+            PdfDocument: PdfDocument objects.
+        """
+        text = self.parser.convert(file_path, file_extension="pdf").text_content
+        metadata = self._extract_metadata(file_path)
+        return PdfDocument(text=text, metadata=metadata)
+
+    def _extract_metadata(self, file_path: str) -> dict:
         """Extract and process PDF metadata.
 
         Args:
@@ -38,60 +46,24 @@ class DefaultPDFParser:
 
         Returns:
             dict: Processed metadata dictionary
-
-        Note:
-            Converts date strings to ISO format where possible
         """
-        pdf_metadata = reader.metadata
-        metadata = {
-            "datasource": "pdf",
-            "url": file_path,
-            "title": os.path.basename(file_path),
-        }
-        if pdf_metadata is not None:
-            for key, value in pdf_metadata.items():
-                clean_key = key.strip("/")
-                if clean_key in ["CreationDate", "ModDate"]:
-                    date_str = value.strip("D:")
-                    try:
-                        parsed_date = datetime.strptime(
-                            date_str[:14], "%Y%m%d%H%M%S"
-                        )
-                        metadata[clean_key] = parsed_date.isoformat()
-                    except ValueError:
-                        metadata[clean_key] = value
-                else:
-                    metadata[clean_key] = value
+        metadata = default_file_metadata_func(file_path)
+        metadata.update(
+            {
+                "datasource": "pdf",
+                "format": "pdf",
+                "url": None,
+                "title": os.path.basename(file_path),
+                "last_edited_date": metadata["last_modified_date"],
+                "created_date": metadata["creation_date"],
+            }
+        )
+        del metadata["last_modified_date"]
+        del metadata["creation_date"]
         return metadata
 
 
-def preprocess_text(text: str) -> str:
-    """
-    Preprocess text to clean split labels and values while preserving structure.
-
-    Args:
-        text (str): Raw extracted text.
-
-    Returns:
-        str: Cleaned and normalized text.
-    """
-    # Normalize known splits or errors
-    text = re.sub(r"Conta\s*ct", "Contact", text)
-    text = re.sub(r"Projektl\s*eiter", "Projektleiter", text)
-    text = re.sub(r"Proje\s*ct\s*Lead", "Project Lead", text)
-    # Join lines where a label is split from its value (without look-behind)
-    text = re.sub(
-        r"(Client|Kunde|Projektleiter|Project Lead|Gültig bis|Valid until)\s*\n\s*",
-        r"\1 ",
-        text,
-    )
-    # Remove excessive spaces
-    text = re.sub(r"\s{2,}", " ", text)
-
-    return text
-
-
-class NLMPDFParser:
+class ContractPDFParser(DefaultPDFParser):
     # Field patterns as class constant
     FIELDS_TO_EXTRACT = [
         {
@@ -112,10 +84,14 @@ class NLMPDFParser:
         },
     ]
 
-    def __init__(self, api_base: str):
-        self.reader = LayoutPDFReader(api_base)
+    def __init__(self):
+        """
+        Attributes:
+            parser: MarkItDown parser instance
+        """
+        self.parser = MarkItDown()
 
-    def parse(self, file_path: str) -> List[PdfDocument]:
+    def parse(self, file_path: str) -> PdfDocument:
         """
         Parses the given PDF file and enriches its metadata with additional fields.
 
@@ -123,39 +99,55 @@ class NLMPDFParser:
             file_path (str): Path to the PDF file.
 
         Returns:
-            List[PdfDocument]: List of enriched PdfDocument objects.
+            PdfDocument: Enriched PdfDocument objects.
         """
-        doc = self.reader.read_pdf(file_path)
-        metadata = default_file_metadata_func(file_path)
-        additional_metadata = self._extract_page_metadata(file_path)
-        documents = []
+        text = self.parser.convert(file_path, file_extension="pdf").text_content
+        text = self._preprocess_text(text)
+        metadata = self._extract_metadata(file_path, text=text)
+        return PdfDocument(text=text, metadata=metadata)
 
-        for chunk in doc.chunks():
-            chunk_metadata = metadata.copy()
-            chunk_metadata["page_label"] = chunk.page_idx
-            enriched_metadata = {**chunk_metadata, **additional_metadata}
-            documents.append(
-                PdfDocument(
-                    text=chunk.to_context_text(),
-                    metadata=enriched_metadata,
-                )
-            )
-
-        return documents
-
-    def _extract_page_metadata(self, file_path: str) -> dict:
-        """Extract metadata from first pages of PDF.
+    def _extract_metadata(self, file_path: str, text: str) -> dict:
+        """Extract and process PDF metadata.
 
         Args:
-            file_path: Path to PDF file
+            reader: PDF reader instance
 
         Returns:
-            dict: Extracted metadata fields
+            dict: Processed metadata dictionary
+
+        Note:
+            Converts date strings to ISO format where possible
         """
-        reader = pypdf.PdfReader(file_path)
-        text = "".join(page.extract_text() or "" for page in reader.pages[:2])
-        text = preprocess_text(text)
-        return self._extract_fields(text, self.FIELDS_TO_EXTRACT)
+        metadata = super()._extract_metadata(file_path)
+
+        metadata.update(self._extract_fields(text, self.FIELDS_TO_EXTRACT))
+
+        return metadata
+
+    def _preprocess_text(self, text: str) -> str:
+        """
+        Preprocess text to clean split labels and values while preserving structure.
+
+        Args:
+            text (str): Raw extracted text.
+
+        Returns:
+            str: Cleaned and normalized text.
+        """
+        # Normalize known splits or errors
+        text = re.sub(r"Conta\s*ct", "Contact", text)
+        text = re.sub(r"Projektl\s*eiter", "Projektleiter", text)
+        text = re.sub(r"Proje\s*ct\s*Lead", "Project Lead", text)
+        # Join lines where a label is split from its value (without look-behind)
+        text = re.sub(
+            r"(Client|Kunde|Projektleiter|Project Lead|Gültig bis|Valid until)\s*\n\s*",
+            r"\1 ",
+            text,
+        )
+        # Remove excessive spaces
+        text = re.sub(r"\s{2,}", " ", text)
+
+        return text
 
     def _extract_fields(self, text: str, fields_to_extract: List[dict]) -> dict:
         extracted_fields = {}
@@ -185,6 +177,11 @@ class PdfReader(BaseReader[PdfDocument]):
         base_path: Root directory containing PDF files
     """
 
+    parsers_mapping: Dict[PDFParser, Any] = {
+        PDFParser.DEFAULT: DefaultPDFParser,
+        PDFParser.CONTRACT: ContractPDFParser,
+    }
+
     def __init__(self, configuration: PdfDatasourceConfiguration):
         """Initialize PDF reader.
 
@@ -194,11 +191,7 @@ class PdfReader(BaseReader[PdfDocument]):
         super().__init__()
         self.export_limit = configuration.export_limit
         self.base_path = configuration.base_path
-
-        if configuration.nlm_parser_enabled:
-            self.parser = NLMPDFParser(configuration.nlm_parser_api_base)
-        else:
-            self.parser = DefaultPDFParser()
+        self.parser = self.parsers_mapping[configuration.parser]()
 
     def get_all_documents(self) -> List[PdfDocument]:
         documents = []
@@ -215,8 +208,8 @@ class PdfReader(BaseReader[PdfDocument]):
             file_path = os.path.join(self.base_path, file_name)
             if os.path.isfile(file_path):
                 try:
-                    parsed_docs = self.parser.parse(file_path)
-                    documents.extend(parsed_docs)
+                    parsed_doc = self.parser.parse(file_path)
+                    documents.append(parsed_doc)
                 except Exception as e:
                     logging.error(f"Failed to load PDF {file_name}: {str(e)}")
 
