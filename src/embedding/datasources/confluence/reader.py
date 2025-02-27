@@ -1,7 +1,9 @@
 import logging
+import tempfile
 from typing import List
 
 from atlassian import Confluence
+from markitdown import MarkItDown
 from requests import HTTPError
 from tqdm import tqdm
 
@@ -37,6 +39,7 @@ class ConfluenceReader(BaseReader):
         super().__init__()
         self.export_limit = configuration.export_limit
         self.confluence_client = confluence_client
+        self.parser = MarkItDown()
 
     def get_all_documents(self) -> List[ConfluenceDocument]:
         """Synchronously fetch all documents from Confluence.
@@ -80,7 +83,11 @@ class ConfluenceReader(BaseReader):
             pages if self.export_limit is None else pages[: self.export_limit]
         )
         documents = [
-            ConfluenceDocument.from_page(page, self.confluence_client.url)
+            ConfluenceDocument.from_page(
+                markdown=self._get_page_markdown(page),
+                page=page,
+                base_url=self.confluence_client.url,
+            )
             for page in pages
         ]
         return documents
@@ -127,6 +134,27 @@ class ConfluenceReader(BaseReader):
             logging.debug(f"Error while fetching pages from {space}: {e}")
 
         return all_pages if limit is None else all_pages[:limit]
+
+    def _get_page_markdown(self, page: dict) -> str:
+        """Extract markdown content from a Confluence page. Because of MarkItDown,
+        we need to write the HTML content to a temporary file and then convert it to markdown.
+
+        Args:
+            page: Dictionary containing Confluence page details
+
+        Returns:
+            str: Markdown content of the page
+        """
+        html_content = page["body"]["view"]["value"]
+        if not html_content:
+            return ""
+
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".html") as temp_file:
+            temp_file.write(html_content)
+            temp_file.flush()
+            return self.parser.convert(
+                temp_file.name, file_extension=".html"
+            ).text_content
 
     @staticmethod
     def _limit_reached(pages: List[dict], limit: int) -> bool:

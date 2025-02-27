@@ -1,5 +1,3 @@
-from markdownify import markdownify as md
-
 from embedding.datasources.core.document import BaseDocument
 
 
@@ -10,7 +8,7 @@ class ConfluenceDocument(BaseDocument):
     content extraction, metadata handling, and exclusion configuration.
 
     Attributes:
-        text: Markdown-formatted page content
+        markdown: Markdown-formatted page content
         attachments: Dictionary of page attachments (placeholder for future)
         metadata: Extracted page metadata including dates, IDs, and URLs
         excluded_embed_metadata_keys: Metadata keys to exclude from embeddings
@@ -22,7 +20,9 @@ class ConfluenceDocument(BaseDocument):
     """
 
     @classmethod
-    def from_page(cls, page: dict, base_url: str) -> "ConfluenceDocument":
+    def from_page(
+        cls, markdown: str, page: dict, base_url: str
+    ) -> "ConfluenceDocument":
         """Create ConfluenceDocument instance from page data.
 
         Args:
@@ -33,7 +33,7 @@ class ConfluenceDocument(BaseDocument):
             ConfluenceDocument: Configured document instance
         """
         document = cls(
-            text=md(page["body"]["view"]["value"]),
+            text=markdown,
             attachments={},  # TBD
             metadata=ConfluenceDocument._get_metadata(page, base_url),
         )
