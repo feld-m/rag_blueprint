@@ -38,16 +38,16 @@ class PdfDocument(BaseDocument):
         "project_lead",
     ]
 
-    def __init__(self, text: str, metadata: dict, attachments: dict = None):
+    def __init__(self, markdown: str, metadata: dict, attachments: dict = None):
         """Initialize PDF document.
 
         Args:
-            text: Extracted text content
+            markdown: Extracted text content in markdown format
             metadata: PDF metadata dictionary
             attachments: Optional dictionary of attachments
         """
         super().__init__()
-        self.text = text
+        self.text = markdown
         self.metadata = metadata
         self.attachments = attachments or {}
         self.excluded_embed_metadata_keys = self._set_excluded_metadata_keys(

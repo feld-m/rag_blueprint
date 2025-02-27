@@ -34,9 +34,11 @@ class DefaultPDFParser:
         Returns:
             PdfDocument: PdfDocument objects.
         """
-        text = self.parser.convert(file_path, file_extension="pdf").text_content
+        markdown = self.parser.convert(
+            file_path, file_extension=".pdf"
+        ).text_content
         metadata = self._extract_metadata(file_path)
-        return PdfDocument(text=text, metadata=metadata)
+        return PdfDocument(markdown=markdown, metadata=metadata)
 
     def _extract_metadata(self, file_path: str) -> dict:
         """Extract and process PDF metadata.
@@ -101,10 +103,12 @@ class ContractPDFParser(DefaultPDFParser):
         Returns:
             PdfDocument: Enriched PdfDocument objects.
         """
-        text = self.parser.convert(file_path, file_extension="pdf").text_content
-        text = self._preprocess_text(text)
-        metadata = self._extract_metadata(file_path, text=text)
-        return PdfDocument(text=text, metadata=metadata)
+        markdown = self.parser.convert(
+            file_path, file_extension="pdf"
+        ).text_content
+        markdown = self._preprocess_text(markdown)
+        metadata = self._extract_metadata(file_path, text=markdown)
+        return PdfDocument(markdown=markdown, metadata=metadata)
 
     def _extract_metadata(self, file_path: str, text: str) -> dict:
         """Extract and process PDF metadata.
