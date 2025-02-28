@@ -17,11 +17,11 @@ class Fixtures:
         """
         Adds a valid document with text to the fixtures.
         """
-        document = PdfDocument(text="This is page document", metadata={})
+        document = PdfDocument(markdown="This is page document", metadata={})
         self.pdf_documents.append(document)
 
         cleaned_document = PdfDocument(
-            text="This is page document", metadata={}
+            markdown="This is page document", metadata={}
         )
         self.pdf_cleaned_documents.append(cleaned_document)
 
@@ -31,7 +31,7 @@ class Fixtures:
         """
         Adds an empty document to the fixtures.
         """
-        document = PdfDocument(text=" \n   \t\n\t ", metadata={})
+        document = PdfDocument(markdown=" \n   \t\n\t ", metadata={})
         self.pdf_documents.append(document)
         # No corresponding cleaned document for empty input
         return self

@@ -8,7 +8,6 @@ from unittest.mock import Mock
 
 import pytest
 from atlassian import Confluence
-from markdownify import markdownify as md
 
 from common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration import (
     ConfluenceDatasourceConfiguration,
@@ -23,6 +22,7 @@ class Fixtures:
         self.base_url: str = None
         self.spaces: List[str] = None
         self.spaces_pages: dict = {}
+        self.expected_body: str = None
 
     def with_export_limit(self, export_limit: int) -> "Fixtures":
         self.export_limit = export_limit
@@ -42,6 +42,7 @@ class Fixtures:
                 self._create_page(space=space)
                 for _ in range(number_of_pages_per_space)
             ]
+        self.expected_body = "# Title\n\nContent"
         return self
 
     def _create_page(self, space: str) -> dict:
@@ -132,9 +133,7 @@ class Assertions:
         for i, actual_document in enumerate(documents):
             expected_page = all_available_pages[i]
             assert actual_document.extra_info["page_id"] == expected_page["id"]
-            assert actual_document.text == md(
-                expected_page["body"]["view"]["value"]
-            )
+            assert actual_document.text == self.fixtures.expected_body
 
 
 class Manager:
