@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Feedback - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Feedback";
+        var mkdocs_page_input_path = "src/augmentation/chainlit/feedback.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Augmentation</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../../utils/">Utils</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" >Chainlit</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" href="../builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../service/">Service</a>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Feedback</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#feedback_1">Feedback</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.augmentation.chainlit.feedback">feedback</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.augmentation.chainlit.feedback.ChainlitFeedbackService">ChainlitFeedbackService</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Common</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/builders/embedding_builders/">Embedding_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/base_binder/">Base_binder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/secrets_configuration/">Secrets_configuration</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../common/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/retrievers/">Retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/query_engine/">Query_engine</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../common/langfuse/dataset/">Dataset</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../common/logger/">Logger</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/validators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/datasources/confluence/">Confluence</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/default_embedder/">Default_embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Augmentation</li>
+          <li class="breadcrumb-item">Chainlit</li>
+      <li class="breadcrumb-item active">Feedback</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/src/augmentation/chainlit/feedback.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="feedback">Feedback</h1>
+<p>This module contains functionality related to the the <code>feedback</code> module for <code>augmentation.chainlit</code>.</p>
+<h2 id="feedback_1">Feedback</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.augmentation.chainlit.feedback"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.augmentation.chainlit.feedback.ChainlitFeedbackService" class="doc doc-heading">
+            <code>ChainlitFeedbackService</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Service for handling Chainlit feedback and Langfuse integration.</p>
+<p>This service associates feedbacks with value, comment and message, and persists
+information about retrieved nodes used for message generation in Langfuse database
+as trace scores. This allows feedback display in the Langfuse UI.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>SCORE_NAME</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Name used for feedback scores in Langfuse.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>langfuse_dataset_service</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Service for managing Langfuse datasets.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>langfuse_client</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Client for Langfuse API interactions.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>feedback_dataset</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Configuration for feedback dataset.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>chainlit_tag_format</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Format string for trace retrieval tags.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/augmentation/chainlit/feedback.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ChainlitFeedbackService</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Service for handling Chainlit feedback and Langfuse integration.</span>
+
+<span class="sd">    This service associates feedbacks with value, comment and message, and persists</span>
+<span class="sd">    information about retrieved nodes used for message generation in Langfuse database</span>
+<span class="sd">    as trace scores. This allows feedback display in the Langfuse UI.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        SCORE_NAME: Name used for feedback scores in Langfuse.</span>
+<span class="sd">        langfuse_dataset_service: Service for managing Langfuse datasets.</span>
+<span class="sd">        langfuse_client: Client for Langfuse API interactions.</span>
+<span class="sd">        feedback_dataset: Configuration for feedback dataset.</span>
+<span class="sd">        chainlit_tag_format: Format string for trace retrieval tags.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">SCORE_NAME</span> <span class="o">=</span> <span class="s2">&quot;User Feedback&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">langfuse_dataset_service</span><span class="p">:</span> <span class="n">LangfuseDatasetService</span><span class="p">,</span>
+        <span class="n">langfuse_client</span><span class="p">:</span> <span class="n">Langfuse</span><span class="p">,</span>
+        <span class="n">feedback_dataset</span><span class="p">:</span> <span class="n">LangfuseDatasetConfiguration</span><span class="p">,</span>
+        <span class="n">chainlit_tag_format</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the feedback service.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            langfuse_dataset_service: Service for managing Langfuse datasets.</span>
+<span class="sd">            langfuse_client: Client for Langfuse API interactions.</span>
+<span class="sd">            feedback_dataset: Configuration for feedback dataset.</span>
+<span class="sd">            chainlit_tag_format: Format string for trace retrieval tags.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_dataset_service</span> <span class="o">=</span> <span class="n">langfuse_dataset_service</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_client</span> <span class="o">=</span> <span class="n">langfuse_client</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feedback_dataset</span> <span class="o">=</span> <span class="n">feedback_dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chainlit_tag_format</span> <span class="o">=</span> <span class="n">chainlit_tag_format</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_dataset_service</span><span class="o">.</span><span class="n">create_if_does_not_exist</span><span class="p">(</span><span class="n">feedback_dataset</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">upsert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feedback</span><span class="p">:</span> <span class="n">Feedback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Upsert Chainlit feedback to Langfuse database.</span>
+
+<span class="sd">        Updates or inserts feedback as a score of associated trace and saves positive</span>
+<span class="sd">        feedback in the associated dataset.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            feedback: Feedback object containing value and comment.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if feedback was successfully upserted, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">trace</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fetch_trace</span><span class="p">(</span><span class="n">feedback</span><span class="o">.</span><span class="n">forId</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_positive</span><span class="p">(</span><span class="n">feedback</span><span class="p">):</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Uploading trace </span><span class="si">{</span><span class="n">trace</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> to dataset </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">feedback_dataset</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_upload_trace_to_dataset</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_client</span><span class="o">.</span><span class="n">score</span><span class="p">(</span>
+                <span class="n">trace_id</span><span class="o">=</span><span class="n">trace</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">ChainlitFeedbackService</span><span class="o">.</span><span class="n">SCORE_NAME</span><span class="p">,</span>
+                <span class="n">value</span><span class="o">=</span><span class="n">feedback</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                <span class="n">comment</span><span class="o">=</span><span class="n">feedback</span><span class="o">.</span><span class="n">comment</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Upserted feedback for </span><span class="si">{</span><span class="n">trace</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> trace with value </span><span class="si">{</span><span class="n">feedback</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">trace_id</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="n">trace</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Failed to upsert feedback for </span><span class="si">{</span><span class="n">trace_id</span><span class="si">}</span><span class="s2"> trace: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_fetch_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TraceWithDetails</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch trace by message ID.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            message_id: Message identifier to fetch trace for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            TraceWithDetails: Found trace object.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            TraceNotFoundException: If no trace is found for message ID.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_client</span><span class="o">.</span><span class="n">fetch_traces</span><span class="p">(</span>
+            <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">chainlit_tag_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message_id</span><span class="o">=</span><span class="n">message_id</span><span class="p">)]</span>
+        <span class="p">)</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">trace</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">TraceNotFoundException</span><span class="p">(</span><span class="n">message_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">trace</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_upload_trace_to_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trace</span><span class="p">:</span> <span class="n">TraceWithDetails</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload trace details to feedback dataset.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            trace: Trace object containing interaction details.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">retrieve_observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fetch_last_retrieve_observation</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
+        <span class="n">last_templating_observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fetch_last_templating_observation</span><span class="p">(</span>
+            <span class="n">trace</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_client</span><span class="o">.</span><span class="n">create_dataset_item</span><span class="p">(</span>
+            <span class="n">dataset_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">feedback_dataset</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="nb">input</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;query_str&quot;</span><span class="p">:</span> <span class="n">trace</span><span class="o">.</span><span class="n">input</span><span class="p">,</span>
+                <span class="s2">&quot;nodes&quot;</span><span class="p">:</span> <span class="n">retrieve_observation</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;nodes&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;templating&quot;</span><span class="p">:</span> <span class="n">last_templating_observation</span><span class="o">.</span><span class="n">input</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="n">expected_output</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">trace</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">),</span>
+            <span class="p">},</span>
+            <span class="n">source_trace_id</span><span class="o">=</span><span class="n">trace</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;generated_by&quot;</span><span class="p">:</span> <span class="n">trace</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;raw&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">),</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_fetch_last_retrieve_observation</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">trace</span><span class="p">:</span> <span class="n">TraceWithDetails</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ObservationsView</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch most recent retrieve observation for trace.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            trace: Trace object containing observations.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ObservationsView: Latest retrieve observation sorted by creation time.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">retrieve_observations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_client</span><span class="o">.</span><span class="n">fetch_observations</span><span class="p">(</span>
+            <span class="n">trace_id</span><span class="o">=</span><span class="n">trace</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;retrieve&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">retrieve_observations</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">createdAt</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_fetch_last_templating_observation</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">trace</span><span class="p">:</span> <span class="n">TraceWithDetails</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ObservationsView</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch most recent templating observation for trace.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            trace: Trace object containing observations.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ObservationsView: Latest templating observation sorted by creation time.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">templating_observations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_client</span><span class="o">.</span><span class="n">fetch_observations</span><span class="p">(</span>
+            <span class="n">trace_id</span><span class="o">=</span><span class="n">trace</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;templating&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">templating_observations</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">createdAt</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_positive</span><span class="p">(</span><span class="n">feedback</span><span class="p">:</span> <span class="n">Feedback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if feedback value is positive.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            feedback: Feedback object containing user feedback.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if feedback value is greater than 0.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">feedback</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.chainlit.feedback.ChainlitFeedbackService.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">langfuse_dataset_service</span><span class="p">,</span> <span class="n">langfuse_client</span><span class="p">,</span> <span class="n">feedback_dataset</span><span class="p">,</span> <span class="n">chainlit_tag_format</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize the feedback service.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>langfuse_dataset_service</code></b>
+                  (<code><span title="common.langfuse.dataset.LangfuseDatasetService">LangfuseDatasetService</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Service for managing Langfuse datasets.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>langfuse_client</code></b>
+                  (<code><span title="langfuse.Langfuse">Langfuse</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Client for Langfuse API interactions.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>feedback_dataset</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.augmentation.langfuse.langfuse_configuration.LangfuseDatasetConfiguration">LangfuseDatasetConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Configuration for feedback dataset.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>chainlit_tag_format</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Format string for trace retrieval tags.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/chainlit/feedback.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">langfuse_dataset_service</span><span class="p">:</span> <span class="n">LangfuseDatasetService</span><span class="p">,</span>
+    <span class="n">langfuse_client</span><span class="p">:</span> <span class="n">Langfuse</span><span class="p">,</span>
+    <span class="n">feedback_dataset</span><span class="p">:</span> <span class="n">LangfuseDatasetConfiguration</span><span class="p">,</span>
+    <span class="n">chainlit_tag_format</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize the feedback service.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        langfuse_dataset_service: Service for managing Langfuse datasets.</span>
+<span class="sd">        langfuse_client: Client for Langfuse API interactions.</span>
+<span class="sd">        feedback_dataset: Configuration for feedback dataset.</span>
+<span class="sd">        chainlit_tag_format: Format string for trace retrieval tags.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_dataset_service</span> <span class="o">=</span> <span class="n">langfuse_dataset_service</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_client</span> <span class="o">=</span> <span class="n">langfuse_client</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">feedback_dataset</span> <span class="o">=</span> <span class="n">feedback_dataset</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">chainlit_tag_format</span> <span class="o">=</span> <span class="n">chainlit_tag_format</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_dataset_service</span><span class="o">.</span><span class="n">create_if_does_not_exist</span><span class="p">(</span><span class="n">feedback_dataset</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.chainlit.feedback.ChainlitFeedbackService._fetch_last_retrieve_observation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_fetch_last_retrieve_observation</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Fetch most recent retrieve observation for trace.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>trace</code></b>
+                  (<code><span title="langfuse.api.resources.commons.types.trace_with_details.TraceWithDetails">TraceWithDetails</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Trace object containing observations.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>ObservationsView</code></b>(                  <code><span title="langfuse.api.resources.commons.types.observations_view.ObservationsView">ObservationsView</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Latest retrieve observation sorted by creation time.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/chainlit/feedback.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_fetch_last_retrieve_observation</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">trace</span><span class="p">:</span> <span class="n">TraceWithDetails</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ObservationsView</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch most recent retrieve observation for trace.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        trace: Trace object containing observations.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ObservationsView: Latest retrieve observation sorted by creation time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">retrieve_observations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_client</span><span class="o">.</span><span class="n">fetch_observations</span><span class="p">(</span>
+        <span class="n">trace_id</span><span class="o">=</span><span class="n">trace</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;retrieve&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">retrieve_observations</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">createdAt</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.chainlit.feedback.ChainlitFeedbackService._fetch_last_templating_observation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_fetch_last_templating_observation</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Fetch most recent templating observation for trace.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>trace</code></b>
+                  (<code><span title="langfuse.api.resources.commons.types.trace_with_details.TraceWithDetails">TraceWithDetails</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Trace object containing observations.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>ObservationsView</code></b>(                  <code><span title="langfuse.api.resources.commons.types.observations_view.ObservationsView">ObservationsView</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Latest templating observation sorted by creation time.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/chainlit/feedback.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_fetch_last_templating_observation</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">trace</span><span class="p">:</span> <span class="n">TraceWithDetails</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ObservationsView</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch most recent templating observation for trace.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        trace: Trace object containing observations.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        ObservationsView: Latest templating observation sorted by creation time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">templating_observations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_client</span><span class="o">.</span><span class="n">fetch_observations</span><span class="p">(</span>
+        <span class="n">trace_id</span><span class="o">=</span><span class="n">trace</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;templating&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">templating_observations</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">createdAt</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.chainlit.feedback.ChainlitFeedbackService._fetch_trace" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_fetch_trace</span><span class="p">(</span><span class="n">message_id</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Fetch trace by message ID.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>message_id</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Message identifier to fetch trace for.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>TraceWithDetails</code></b>(                  <code><span title="langfuse.api.resources.commons.types.trace_with_details.TraceWithDetails">TraceWithDetails</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Found trace object.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="common.exceptions.TraceNotFoundException">TraceNotFoundException</span></code>
+              –
+              <div class="doc-md-description">
+                <p>If no trace is found for message ID.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/chainlit/feedback.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_fetch_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TraceWithDetails</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch trace by message ID.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message_id: Message identifier to fetch trace for.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        TraceWithDetails: Found trace object.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TraceNotFoundException: If no trace is found for message ID.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_client</span><span class="o">.</span><span class="n">fetch_traces</span><span class="p">(</span>
+        <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">chainlit_tag_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message_id</span><span class="o">=</span><span class="n">message_id</span><span class="p">)]</span>
+    <span class="p">)</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">trace</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">TraceNotFoundException</span><span class="p">(</span><span class="n">message_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">trace</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.chainlit.feedback.ChainlitFeedbackService._is_positive" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_is_positive</span><span class="p">(</span><span class="n">feedback</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check if feedback value is positive.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>feedback</code></b>
+                  (<code><span title="chainlit.types.Feedback">Feedback</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Feedback object containing user feedback.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>bool</code></b>(                  <code><span title="bool">bool</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>True if feedback value is greater than 0.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/chainlit/feedback.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_positive</span><span class="p">(</span><span class="n">feedback</span><span class="p">:</span> <span class="n">Feedback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if feedback value is positive.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        feedback: Feedback object containing user feedback.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if feedback value is greater than 0.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">feedback</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.chainlit.feedback.ChainlitFeedbackService._upload_trace_to_dataset" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_upload_trace_to_dataset</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Upload trace details to feedback dataset.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>trace</code></b>
+                  (<code><span title="langfuse.api.resources.commons.types.trace_with_details.TraceWithDetails">TraceWithDetails</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Trace object containing interaction details.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/chainlit/feedback.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_upload_trace_to_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trace</span><span class="p">:</span> <span class="n">TraceWithDetails</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Upload trace details to feedback dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        trace: Trace object containing interaction details.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">retrieve_observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fetch_last_retrieve_observation</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
+    <span class="n">last_templating_observation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fetch_last_templating_observation</span><span class="p">(</span>
+        <span class="n">trace</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_client</span><span class="o">.</span><span class="n">create_dataset_item</span><span class="p">(</span>
+        <span class="n">dataset_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">feedback_dataset</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="nb">input</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;query_str&quot;</span><span class="p">:</span> <span class="n">trace</span><span class="o">.</span><span class="n">input</span><span class="p">,</span>
+            <span class="s2">&quot;nodes&quot;</span><span class="p">:</span> <span class="n">retrieve_observation</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;nodes&quot;</span><span class="p">),</span>
+            <span class="s2">&quot;templating&quot;</span><span class="p">:</span> <span class="n">last_templating_observation</span><span class="o">.</span><span class="n">input</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">expected_output</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">trace</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">),</span>
+        <span class="p">},</span>
+        <span class="n">source_trace_id</span><span class="o">=</span><span class="n">trace</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;generated_by&quot;</span><span class="p">:</span> <span class="n">trace</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;raw&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">),</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.chainlit.feedback.ChainlitFeedbackService.upsert" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">upsert</span><span class="p">(</span><span class="n">feedback</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Upsert Chainlit feedback to Langfuse database.</p>
+<p>Updates or inserts feedback as a score of associated trace and saves positive
+feedback in the associated dataset.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>feedback</code></b>
+                  (<code><span title="chainlit.types.Feedback">Feedback</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Feedback object containing value and comment.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>bool</code></b>(                  <code><span title="bool">bool</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>True if feedback was successfully upserted, False otherwise.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/chainlit/feedback.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">upsert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feedback</span><span class="p">:</span> <span class="n">Feedback</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Upsert Chainlit feedback to Langfuse database.</span>
+
+<span class="sd">    Updates or inserts feedback as a score of associated trace and saves positive</span>
+<span class="sd">    feedback in the associated dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        feedback: Feedback object containing value and comment.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if feedback was successfully upserted, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fetch_trace</span><span class="p">(</span><span class="n">feedback</span><span class="o">.</span><span class="n">forId</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_positive</span><span class="p">(</span><span class="n">feedback</span><span class="p">):</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Uploading trace </span><span class="si">{</span><span class="n">trace</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> to dataset </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">feedback_dataset</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_upload_trace_to_dataset</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">langfuse_client</span><span class="o">.</span><span class="n">score</span><span class="p">(</span>
+            <span class="n">trace_id</span><span class="o">=</span><span class="n">trace</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">ChainlitFeedbackService</span><span class="o">.</span><span class="n">SCORE_NAME</span><span class="p">,</span>
+            <span class="n">value</span><span class="o">=</span><span class="n">feedback</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">comment</span><span class="o">=</span><span class="n">feedback</span><span class="o">.</span><span class="n">comment</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Upserted feedback for </span><span class="si">{</span><span class="n">trace</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> trace with value </span><span class="si">{</span><span class="n">feedback</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">trace_id</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">id</span> <span class="k">if</span> <span class="n">trace</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Failed to upsert feedback for </span><span class="si">{</span><span class="n">trace_id</span><span class="si">}</span><span class="s2"> trace: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../service/" class="btn btn-neutral float-left" title="Service"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../../common/builders/synthesizer_builders/" class="btn btn-neutral float-right" title="Synthesizer_builders">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../service/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../../common/builders/synthesizer_builders/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Add a New Datasource - RAG Systems</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Add a New Datasource";
+        var mkdocs_page_input_path = "how_to/how_to_add_new_datasource.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Add a New Datasource</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#step-1-add-dependencies">Step 1: Add Dependencies</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-2-define-the-datasource-type">Step 2: Define the Datasource Type</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-3-configure-datasource-secrets">Step 3: Configure Datasource Secrets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-4-implement-the-datasource-configuration">Step 4: Implement the Datasource Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-5-project-structure">Step 5: Project Structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-6-create-core-components">Step 6: Create Core Components</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#document-class">Document Class</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reader-component">Reader Component</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cleaner-component">Cleaner Component</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#splitter-component">Splitter Component</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-7-create-component-builders">Step 7: Create Component Builders</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-8-create-datasource-binder">Step 8: Create Datasource Binder</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#step-9-example-configuration">Step 9: Example Configuration</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/augmentation/utils/">Utils</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Common</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/builders/embedding_builders/">Embedding_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/bootstrap/base_binder/">Base_binder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/bootstrap/secrets_configuration/">Secrets_configuration</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/common/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/common/retrievers/">Retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/common/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/common/query_engine/">Query_engine</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/langfuse/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/common/langfuse/dataset/">Dataset</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/common/logger/">Logger</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/validators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/datasources/confluence/">Confluence</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/default_embedder/">Default_embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">How to</li>
+      <li class="breadcrumb-item active">Add a New Datasource</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/how_to/how_to_add_new_datasource.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="how-to-add-a-new-datasource-implementation">How to Add a New Datasource Implementation</h1>
+<p>This guide demonstrates how to add support for a new datasource implementation, using Confluence as an example.</p>
+<h2 id="step-1-add-dependencies">Step 1: Add Dependencies</h2>
+<p>Add the required packages to <code>pyproject.toml</code>:</p>
+<pre><code class="language-toml">...
+atlassian-python-api==3.41.11
+...
+</code></pre>
+<h2 id="step-2-define-the-datasource-type">Step 2: Define the Datasource Type</h2>
+<p>In <a href="https://github.com/feld-m/rag_blueprint/blob/main/src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_configuration.py">datasources_configuration.py</a>, add the new datasource to the <code>DatasourceName</code> enumeration:</p>
+<pre><code class="language-py">class DatasourceName(str, Enum):
+    ...
+    CONFLUENCE = &quot;confluence&quot;
+</code></pre>
+<h2 id="step-3-configure-datasource-secrets">Step 3: Configure Datasource Secrets</h2>
+<p>Create a secrets class for the new datasource:</p>
+<pre><code class="language-py">class ConfluenceSecrets(BaseSettings):
+    model_config = ConfigDict(
+        env_file_encoding=&quot;utf-8&quot;,
+        env_prefix=&quot;RAG__DATASOURCES__CONFLUENCE__&quot;,
+        env_nested_delimiter=&quot;__&quot;,
+        extra=&quot;ignore&quot;,
+    )
+
+    username: SecretStr = Field(
+        ...,
+        description=&quot;The username for the confluence data source&quot;,
+    )
+    password: SecretStr = Field(
+        ...,
+        description=&quot;The password for the confluence data source&quot;,
+    )
+</code></pre>
+<p>Add the corresponding environment variables to <code>configurations/secrets.{environment}.env</code>:</p>
+<pre><code class="language-sh">RAG__DATASOURCES__CONFLUENCE__USERNAME=&lt;confluence_username&gt;
+RAG__DATASOURCES__CONFLUENCE__PASSWORD=&lt;confluence_password&gt;
+</code></pre>
+<h2 id="step-4-implement-the-datasource-configuration">Step 4: Implement the Datasource Configuration</h2>
+<p>Define the configuration class for the new datasource:</p>
+<pre><code class="language-py">class ConfluenceDatasourceConfiguration(DatasourceConfiguration):
+    host: str = Field(
+        &quot;127.0.0.1&quot;, description=&quot;Host of the vector store server&quot;
+    )
+    protocol: Union[Literal[&quot;http&quot;], Literal[&quot;https&quot;]] = Field(
+        &quot;http&quot;, description=&quot;The protocol for the vector store.&quot;
+    )
+    name: Literal[DatasourceName.CONFLUENCE] = Field(
+        ..., description=&quot;The name of the data source.&quot;
+    )
+    secrets: ConfluenceSecrets = Field(
+        None, description=&quot;The secrets for the data source.&quot;
+    )
+
+    @property
+    def base_url(self) -&gt; str:
+        return f&quot;{self.protocol}://{self.host}&quot;
+</code></pre>
+<p>Add it to <code>AVAILABLE_DATASOURCES</code>:</p>
+<pre><code class="language-py">AVAIALBLE_DATASOURCES = Union[
+    ...,
+    ConfluenceDatasourceConfiguration,
+]
+</code></pre>
+<h2 id="step-5-project-structure">Step 5: Project Structure</h2>
+<p>Create the following structure for your new datasource:</p>
+<pre><code>src/
+└── embedding/
+    └── datasources/
+        └── confluence/
+            ├── document.py
+            ├── reader.py
+            ├── cleaner.py
+            ├── splitter.py
+            ├── builders.py
+            └── manager.py
+</code></pre>
+<h2 id="step-6-create-core-components">Step 6: Create Core Components</h2>
+<h3 id="document-class">Document Class</h3>
+<p>Create a new file <code>src/embedding/datasources/confluence/document.py</code>:</p>
+<pre><code class="language-py">class ConfluenceDocument:
+    def __init__(self, id: str, title: str, content: str, url: str):
+        self.id = id
+        self.title = title
+        self.content = content
+        self.url = url
+
+    @staticmethod
+    def from_page(page: dict, base_url: str) -&gt; &quot;ConfluenceDocument&quot;:
+        &quot;&quot;&quot;Create document from Confluence page data.&quot;&quot;&quot;
+        return ConfluenceDocument(
+            id=page[&quot;id&quot;],
+            title=page[&quot;title&quot;],
+            content=page[&quot;body&quot;][&quot;view&quot;][&quot;value&quot;],
+            url=f&quot;{base_url}{page['_links']['webui']}&quot;,
+        )
+</code></pre>
+<h3 id="reader-component">Reader Component</h3>
+<p>Create a new file <code>src/embedding/datasources/confluence/reader.py</code>:</p>
+<pre><code class="language-py">class ConfluenceReader(BaseReader):
+    def __init__(
+        self,
+        configuration: ConfluenceDatasourceConfiguration,
+        confluence_client: Confluence,
+    ):
+        self.export_limit = configuration.export_limit
+        self.confluence_client = confluence_client
+
+    async def get_all_documents_async(self) -&gt; List[ConfluenceDocument]:
+        &quot;&quot;&quot;Fetch and process documents from Confluence.&quot;&quot;&quot;
+        # Implementation for fetching documents
+</code></pre>
+<h3 id="cleaner-component">Cleaner Component</h3>
+<p>Create a new file <code>src/embedding/datasources/confluence/cleaner.py</code>:</p>
+<pre><code class="language-py">class ConfluenceCleaner(BaseCleaner):
+    def clean(
+        self, documents: List[ConfluenceDocument]
+    ) -&gt; List[ConfluenceDocument]:
+        &quot;&quot;&quot;Clean and filter documents.&quot;&quot;&quot;
+        # Implementation for cleaning documents
+</code></pre>
+<h3 id="splitter-component">Splitter Component</h3>
+<p>Create a new file <code>src/embedding/datasources/confluence/splitter.py</code>:</p>
+<pre><code class="language-py">class ConfluenceSplitter(BaseSplitter):
+    def __init__(
+        self,
+        markdown_splitter: BoundEmbeddingModelMarkdownSplitter,
+    ):
+        self.markdown_splitter = markdown_splitter
+
+    def split(self, documents: List[ConfluenceDocument]) -&gt; List[TextNode]:
+        &quot;&quot;&quot;Split documents into text nodes.&quot;&quot;&quot;
+        return self.markdown_splitter.split(documents)
+</code></pre>
+<h2 id="step-7-create-component-builders">Step 7: Create Component Builders</h2>
+<p>Create a new file <code>src/embedding/datasources/confluence/builders.py</code>:</p>
+<pre><code class="language-py">class ConfluenceClientBuilder:
+    @staticmethod
+    @inject
+    def build(configuration: ConfluenceDatasourceConfiguration) -&gt; Confluence:
+        return Confluence(
+            url=configuration.base_url,
+            username=configuration.secrets.username.get_secret_value(),
+            password=configuration.secrets.password.get_secret_value(),
+        )
+
+class ConfluenceReaderBuilder:
+    @staticmethod
+    @inject
+    def build(
+        configuration: ConfluenceDatasourceConfiguration,
+        confluence_client: Confluence,
+    ) -&gt; ConfluenceReader:
+        return ConfluenceReader(
+            configuration=configuration,
+            confluence_client=confluence_client,
+        )
+
+# Similar builders for Cleaner and Splitter components
+</code></pre>
+<h2 id="step-8-create-datasource-binder">Step 8: Create Datasource Binder</h2>
+<p>Update the existing <a href="https://github.com/feld-m/rag_blueprint/blob/main/src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py">datasources_binder.py</a> file:</p>
+<pre><code class="language-py">class ConfluenceBinder(BaseBinder):
+    def bind(self) -&gt; Type:
+        self._bind_confluence_cofuguration()
+        self._bind_client()
+        self._bind_reader()
+        self._bind_cleaner()
+        self._bind_splitter()
+        self._bind_manager()
+        return ConfluenceDatasourceManager
+
+    # Internal methods implementation...
+
+class DatasourcesBinder(BaseBinder):
+    mapping = {
+        ...
+        DatasourceName.CONFLUENCE: ConfluenceBinder,
+    }
+</code></pre>
+<h2 id="step-9-example-configuration">Step 9: Example Configuration</h2>
+<p>Add your datasource configuration to <code>configurations/configuration.{environment}.json</code>:</p>
+<pre><code class="language-json">{
+    &quot;pipeline&quot;: {
+        &quot;embedding&quot;: {
+            &quot;datasources&quot;: [
+                {
+                    &quot;name&quot;: &quot;confluence&quot;,
+                    &quot;host&quot;: &quot;confluence.example.com&quot;,
+                    &quot;protocol&quot;: &quot;https&quot;,
+                    &quot;export_limit&quot;: 100
+                }
+            ]
+        }
+    }
+}
+</code></pre>
+<p>This structure follows the existing pattern used for other datasources in the project.</p>
+<p>After completing these steps, the new datasource will be available for use in the RAG system, capable of extracting, cleaning, and processing content for embeddings.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../how_to_add_new_vector_store/" class="btn btn-neutral float-left" title="Add a New Vector Store"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../evaluation/in_progress/" class="btn btn-neutral float-right" title="In progress">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../how_to_add_new_vector_store/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../evaluation/in_progress/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

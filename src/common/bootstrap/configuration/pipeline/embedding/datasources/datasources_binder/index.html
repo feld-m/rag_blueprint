@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../../../../../img/favicon.ico" />
+    <title>Datasources_binder - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Datasources_binder";
+        var mkdocs_page_input_path = "src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../../../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../../../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../chat/">Chat</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../../augmentation/utils/">Utils</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../augmentation/chainlit/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../augmentation/chainlit/feedback/">Feedback</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Common</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" >Builders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/synthesizer_builders/">Synthesizer_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/retriever_builders/">Retriever_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/llm_builders/">Llm_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/postprocessor_builders/">Postprocessor_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/callback_builders/">Callback_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/query_engine_builders/">Query_engine_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/vector_store_builders/">Vector_store_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/client_builders/">Client_builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../builders/embedding_builders/">Embedding_builders</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" >Bootstrap</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../base_binder/">Base_binder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../secrets_configuration/">Secrets_configuration</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" >Configuration</a>
+    <ul class="current">
+                <li class="toctree-l4 current"><a class="reference internal current" >Pipeline</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Metadata</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../retrievers/">Retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../query_engine/">Query_engine</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../langfuse/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../langfuse/dataset/">Dataset</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../logger/">Logger</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Validators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/validators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/validators/vector_store_validators/">Vector_store_validators</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/datasources/confluence/">Confluence</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/embedders/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/embedders/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/embedders/default_embedder/">Default_embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/orchestrators/builders/">Builders</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/orchestrators/base/">Base</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../../../embedding/orchestrators/datasource_orchestrator/">Datasource_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../../evaluation/builders/">Builders</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../../../evaluation/evaluators/">Evaluators</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Common</li>
+          <li class="breadcrumb-item">Bootstrap</li>
+          <li class="breadcrumb-item">Configuration</li>
+          <li class="breadcrumb-item">Pipeline</li>
+          <li class="breadcrumb-item">Embedding</li>
+          <li class="breadcrumb-item">Datasources</li>
+      <li class="breadcrumb-item active">Datasources_binder</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="datasources_binder">Datasources_binder</h1>
+<p>This module contains functionality related to the the <code>datasources_binder</code> module for <code>common.bootstrap.configuration.pipeline.embedding.datasources</code>.</p>
+<h2 id="datasources_binder_1">Datasources_binder</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.ConfluenceBinder" class="doc doc-heading">
+            <code>ConfluenceBinder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="common.bootstrap.base_binder.BaseBinder">BaseBinder</span></code></p>
+
+
+        <p>Binder for the Confluence datasources components.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConfluenceBinder</span><span class="p">(</span><span class="n">BaseBinder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Binder for the Confluence datasources components.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">bind</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Confluence datasources components.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Type: The Confluence datasource manager.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_confluence_cofuguration</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_client</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_reader</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_cleaner</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_splitter</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_manager</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ConfluenceDatasourceManager</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_confluence_cofuguration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Confluence datasource configuration.&quot;&quot;&quot;</span>
+        <span class="n">confluence_configuration</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">configuration</span>
+            <span class="k">for</span> <span class="n">configuration</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">datasources</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">ConfluenceDatasourceConfiguration</span><span class="p">)</span>
+        <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">ConfluenceDatasourceConfiguration</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">confluence_configuration</span><span class="p">,</span>
+            <span class="n">scope</span><span class="o">=</span><span class="n">singleton</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Confluence client.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">Confluence</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">ConfluenceClientBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_reader</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Confluence reader.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">ConfluenceReader</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">ConfluenceReaderBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_cleaner</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Confluence cleaner.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ConfluenceCleaner</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">ConfluenceCleanerBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_splitter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Confluence splitter.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">ConfluenceSplitter</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">ConfluenceSplitterBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Confluence datasource manager.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">ConfluenceDatasourceManager</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">ConfluenceDatasourceManagerBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.ConfluenceBinder._bind_cleaner" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_cleaner</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Confluence cleaner.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_cleaner</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Confluence cleaner.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ConfluenceCleaner</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">ConfluenceCleanerBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.ConfluenceBinder._bind_client" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_client</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Confluence client.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Confluence client.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">Confluence</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">ConfluenceClientBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.ConfluenceBinder._bind_confluence_cofuguration" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_confluence_cofuguration</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Confluence datasource configuration.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_confluence_cofuguration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Confluence datasource configuration.&quot;&quot;&quot;</span>
+    <span class="n">confluence_configuration</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">configuration</span>
+        <span class="k">for</span> <span class="n">configuration</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">datasources</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">ConfluenceDatasourceConfiguration</span><span class="p">)</span>
+    <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">ConfluenceDatasourceConfiguration</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">confluence_configuration</span><span class="p">,</span>
+        <span class="n">scope</span><span class="o">=</span><span class="n">singleton</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.ConfluenceBinder._bind_manager" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_manager</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Confluence datasource manager.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Confluence datasource manager.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">ConfluenceDatasourceManager</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">ConfluenceDatasourceManagerBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.ConfluenceBinder._bind_reader" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_reader</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Confluence reader.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_reader</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Confluence reader.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">ConfluenceReader</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">ConfluenceReaderBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.ConfluenceBinder._bind_splitter" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_splitter</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Confluence splitter.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_splitter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Confluence splitter.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">ConfluenceSplitter</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">ConfluenceSplitterBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.ConfluenceBinder.bind" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">bind</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Confluence datasources components.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Type</code></b>(                  <code><span title="typing.Type">Type</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>The Confluence datasource manager.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">bind</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Confluence datasources components.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Type: The Confluence datasource manager.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_confluence_cofuguration</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_client</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_reader</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_cleaner</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_splitter</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_manager</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">ConfluenceDatasourceManager</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.DatasourcesBinder" class="doc doc-heading">
+            <code>DatasourcesBinder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="common.bootstrap.base_binder.BaseBinder">BaseBinder</span></code></p>
+
+
+        <p>Binder for the datasources components.</p>
+<p>Bind the list of datasource managers based on the configuration.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DatasourcesBinder</span><span class="p">(</span><span class="n">BaseBinder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Binder for the datasources components.</span>
+
+<span class="sd">    Bind the list of datasource managers based on the configuration.&quot;&quot;&quot;</span>
+
+    <span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">DatasourceName</span><span class="o">.</span><span class="n">CONFLUENCE</span><span class="p">:</span> <span class="n">ConfluenceBinder</span><span class="p">,</span>
+        <span class="n">DatasourceName</span><span class="o">.</span><span class="n">NOTION</span><span class="p">:</span> <span class="n">NotionDatasourceBinder</span><span class="p">,</span>
+        <span class="n">DatasourceName</span><span class="o">.</span><span class="n">PDF</span><span class="p">:</span> <span class="n">PdfDatasourcesBinder</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">bind</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_datasource_managers</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_embedder</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_datasource_orchestrator</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_datasource_managers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the datasource managers.</span>
+
+<span class="sd">        Bind the datasource managers based on the configuration.&quot;&quot;&quot;</span>
+        <span class="n">datasources_configuration</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">datasources</span>
+        <span class="p">)</span>
+        <span class="n">datasources</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">datasource_configuration</span> <span class="ow">in</span> <span class="n">datasources_configuration</span><span class="p">:</span>
+            <span class="n">datasource_manager_key</span> <span class="o">=</span> <span class="n">DatasourcesBinder</span><span class="o">.</span><span class="n">mapping</span><span class="p">[</span>
+                <span class="n">datasource_configuration</span><span class="o">.</span><span class="n">name</span>
+            <span class="p">](</span><span class="n">configuration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span> <span class="n">binder</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="p">)</span><span class="o">.</span><span class="n">bind</span><span class="p">()</span>
+            <span class="n">datasources</span><span class="p">[</span><span class="n">datasource_configuration</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bind</span><span class="p">(</span>
+                <span class="n">datasource_manager_key</span>
+            <span class="p">)()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">BoundDatasourceManagers</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">datasources</span><span class="p">,</span>
+            <span class="n">scope</span><span class="o">=</span><span class="n">singleton</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_embedder</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the embedder.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">Embedder</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">EmbedderBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_datasource_orchestrator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the datasource orchestrator.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">DatasourceOrchestrator</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">DatasourceOrchestratorBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+            <span class="n">scope</span><span class="o">=</span><span class="n">singleton</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.DatasourcesBinder._bind_datasource_managers" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_datasource_managers</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the datasource managers.</p>
+<p>Bind the datasource managers based on the configuration.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_datasource_managers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the datasource managers.</span>
+
+<span class="sd">    Bind the datasource managers based on the configuration.&quot;&quot;&quot;</span>
+    <span class="n">datasources_configuration</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">datasources</span>
+    <span class="p">)</span>
+    <span class="n">datasources</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">datasource_configuration</span> <span class="ow">in</span> <span class="n">datasources_configuration</span><span class="p">:</span>
+        <span class="n">datasource_manager_key</span> <span class="o">=</span> <span class="n">DatasourcesBinder</span><span class="o">.</span><span class="n">mapping</span><span class="p">[</span>
+            <span class="n">datasource_configuration</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">](</span><span class="n">configuration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span> <span class="n">binder</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="p">)</span><span class="o">.</span><span class="n">bind</span><span class="p">()</span>
+        <span class="n">datasources</span><span class="p">[</span><span class="n">datasource_configuration</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bind</span><span class="p">(</span>
+            <span class="n">datasource_manager_key</span>
+        <span class="p">)()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">BoundDatasourceManagers</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">datasources</span><span class="p">,</span>
+        <span class="n">scope</span><span class="o">=</span><span class="n">singleton</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.DatasourcesBinder._bind_datasource_orchestrator" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_datasource_orchestrator</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the datasource orchestrator.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_datasource_orchestrator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the datasource orchestrator.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">DatasourceOrchestrator</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">DatasourceOrchestratorBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="n">scope</span><span class="o">=</span><span class="n">singleton</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.DatasourcesBinder._bind_embedder" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_embedder</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the embedder.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_embedder</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the embedder.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">Embedder</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">EmbedderBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.NotionDatasourceBinder" class="doc doc-heading">
+            <code>NotionDatasourceBinder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="common.bootstrap.base_binder.BaseBinder">BaseBinder</span></code></p>
+
+
+        <p>Binder for the Notion datasources components.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">NotionDatasourceBinder</span><span class="p">(</span><span class="n">BaseBinder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Binder for the Notion datasources components.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">bind</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Notion datasources components.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Type: The Notion datasource manager.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_notion_cofuguration</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_exporter</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_client</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_reader</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_cleaner</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_splitter</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_manager</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">NotionDatasourceManager</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_notion_cofuguration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Notion datasource configuration.&quot;&quot;&quot;</span>
+        <span class="n">notion_configuration</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">configuration</span>
+            <span class="k">for</span> <span class="n">configuration</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">datasources</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">NotionDatasourceConfiguration</span><span class="p">)</span>
+        <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">NotionDatasourceConfiguration</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">notion_configuration</span><span class="p">,</span>
+            <span class="n">scope</span><span class="o">=</span><span class="n">singleton</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_exporter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Notion exporter.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">NotionExporter</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">NotionExporterBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Notion client.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">Client</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">NotionClientBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_reader</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Notion reader.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">NotionReader</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">NotionReaderBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_cleaner</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Notion cleaner.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">NotionCleaner</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">NotionCleanerBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_splitter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Notion splitter.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">NotionSplitter</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">NotionSplitterBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the Notion datasource manager.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">NotionDatasourceManager</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">NotionDatasourceManagerBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.NotionDatasourceBinder._bind_cleaner" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_cleaner</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Notion cleaner.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_cleaner</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Notion cleaner.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">NotionCleaner</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">NotionCleanerBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.NotionDatasourceBinder._bind_client" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_client</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Notion client.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Notion client.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">Client</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">NotionClientBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.NotionDatasourceBinder._bind_exporter" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_exporter</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Notion exporter.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_exporter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Notion exporter.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">NotionExporter</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">NotionExporterBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.NotionDatasourceBinder._bind_manager" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_manager</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Notion datasource manager.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Notion datasource manager.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">NotionDatasourceManager</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">NotionDatasourceManagerBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.NotionDatasourceBinder._bind_notion_cofuguration" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_notion_cofuguration</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Notion datasource configuration.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_notion_cofuguration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Notion datasource configuration.&quot;&quot;&quot;</span>
+    <span class="n">notion_configuration</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">configuration</span>
+        <span class="k">for</span> <span class="n">configuration</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">datasources</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">NotionDatasourceConfiguration</span><span class="p">)</span>
+    <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">NotionDatasourceConfiguration</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">notion_configuration</span><span class="p">,</span>
+        <span class="n">scope</span><span class="o">=</span><span class="n">singleton</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.NotionDatasourceBinder._bind_reader" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_reader</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Notion reader.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_reader</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Notion reader.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">NotionReader</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">NotionReaderBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.NotionDatasourceBinder._bind_splitter" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_splitter</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Notion splitter.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_splitter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Notion splitter.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">NotionSplitter</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">NotionSplitterBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.NotionDatasourceBinder.bind" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">bind</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the Notion datasources components.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Type</code></b>(                  <code><span title="typing.Type">Type</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>The Notion datasource manager.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">bind</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the Notion datasources components.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Type: The Notion datasource manager.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_notion_cofuguration</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_exporter</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_client</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_reader</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_cleaner</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_splitter</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_manager</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">NotionDatasourceManager</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.PdfDatasourcesBinder" class="doc doc-heading">
+            <code>PdfDatasourcesBinder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="common.bootstrap.base_binder.BaseBinder">BaseBinder</span></code></p>
+
+
+        <p>Binder for the PDF datasources components.</p>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PdfDatasourcesBinder</span><span class="p">(</span><span class="n">BaseBinder</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Binder for the PDF datasources components.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">bind</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the PDF datasources components.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Type: The PDF datasource manager.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_pdf_configuration</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_reader</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bind_manager</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">PdfDatasourceManager</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_pdf_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the PDF datasource configuration.&quot;&quot;&quot;</span>
+        <span class="n">confluence_configuration</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">configuration</span>
+            <span class="k">for</span> <span class="n">configuration</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">datasources</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">PdfDatasourceConfiguration</span><span class="p">)</span>
+        <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">PdfDatasourceConfiguration</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">confluence_configuration</span><span class="p">,</span>
+            <span class="n">scope</span><span class="o">=</span><span class="n">singleton</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_reader</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the PDF reader.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">PdfReader</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">PdfReaderBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_bind_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bind the PDF datasource manager.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+            <span class="n">PdfDatasourceManager</span><span class="p">,</span>
+            <span class="n">to</span><span class="o">=</span><span class="n">PdfDatasourceManagerBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.PdfDatasourcesBinder._bind_manager" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_manager</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the PDF datasource manager.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the PDF datasource manager.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">PdfDatasourceManager</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">PdfDatasourceManagerBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.PdfDatasourcesBinder._bind_pdf_configuration" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_pdf_configuration</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the PDF datasource configuration.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_pdf_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the PDF datasource configuration.&quot;&quot;&quot;</span>
+    <span class="n">confluence_configuration</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">configuration</span>
+        <span class="k">for</span> <span class="n">configuration</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">datasources</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">PdfDatasourceConfiguration</span><span class="p">)</span>
+    <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">PdfDatasourceConfiguration</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">confluence_configuration</span><span class="p">,</span>
+        <span class="n">scope</span><span class="o">=</span><span class="n">singleton</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.PdfDatasourcesBinder._bind_reader" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">_bind_reader</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the PDF reader.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_bind_reader</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the PDF reader.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">binder</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="n">PdfReader</span><span class="p">,</span>
+        <span class="n">to</span><span class="o">=</span><span class="n">PdfReaderBuilder</span><span class="o">.</span><span class="n">build</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binder.PdfDatasourcesBinder.bind" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">bind</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bind the PDF datasources components.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>Type</code></b>(                  <code><span title="typing.Type">Type</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>The PDF datasource manager.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/common/bootstrap/configuration/pipeline/embedding/datasources/datasources_binder.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">bind</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bind the PDF datasources components.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Type: The PDF datasource manager.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_pdf_configuration</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_reader</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_bind_manager</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">PdfDatasourceManager</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../vector_store/vector_store_configuration/" class="btn btn-neutral float-left" title="Vector_store_configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../datasources_configuration/" class="btn btn-neutral float-right" title="Datasources_configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../../vector_store/vector_store_configuration/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../datasources_configuration/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../../../../../..";</script>
+    <script src="../../../../../../../../js/theme_extra.js"></script>
+    <script src="../../../../../../../../js/theme.js"></script>
+      <script src="../../../../../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
