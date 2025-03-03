@@ -133,6 +133,8 @@ dependencies = [
     "xxhash==3.5.0",
     "yarl==1.9.4",
     "zipp==3.18.1",
+    "requests-mock>=1.12.1",
+    "aioresponses>=0.7.8",
 ]
 
 [build-system]

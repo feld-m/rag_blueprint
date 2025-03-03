@@ -14,6 +14,7 @@ class DatasourceName(str, Enum):
     NOTION = "notion"
     CONFLUENCE = "confluence"
     PDF = "pdf"
+    HACKERNEWS = "hackernews"
 
 
 # Secrets
@@ -51,6 +52,12 @@ class ConfluenceSecrets(BaseSettings):
 
 
 class PdfSecrets(BaseSettings):
+    model_config = ConfigDict(
+        extra="ignore",
+    )
+
+
+class HackerNewsSecrets(BaseSettings):
     model_config = ConfigDict(
         extra="ignore",
     )
@@ -127,8 +134,40 @@ class PdfDatasourceConfiguration(DatasourceConfiguration):
     )
 
 
+class HackerNewsDatasourceConfiguration(DatasourceConfiguration):
+    """Configuration for Hacker News data source.
+
+    Settings for accessing and processing Hacker News data.
+
+    Attributes:
+        max_depth: Maximum depth for fetching comments.
+        max_comments: Maximum number of comments to fetch.
+        chunk_size: Size of chunks for processing.
+        chunk_overlap: Overlap size between chunks.
+        request_delay: Delay between requests to avoid rate limits.
+        limit: Maximum number of items to fetch.
+    """
+
+    max_depth: int = Field(
+        3, description="Maximum depth for fetching comments."
+    )
+    max_comments: int = Field(
+        100, description="Maximum number of comments to fetch."
+    )
+    chunk_size: int = Field(512, description="Size of chunks for processing.")
+    chunk_overlap: int = Field(50, description="Overlap size between chunks.")
+    request_delay: float = Field(
+        0.1, description="Delay between requests to avoid rate limits."
+    )
+    limit: int = Field(100, description="Maximum number of items to fetch.")
+    secrets: HackerNewsSecrets = Field(
+        None, description="The secrets for the data source."
+    )
+
+
 AVAIALBLE_DATASOURCES = Union[
     NotionDatasourceConfiguration,
     ConfluenceDatasourceConfiguration,
     PdfDatasourceConfiguration,
+    HackerNewsDatasourceConfiguration,
 ]
