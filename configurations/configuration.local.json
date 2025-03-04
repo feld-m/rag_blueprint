@@ -7,12 +7,12 @@
             "datasources": [
                 {
                     "name": "hackernews",
-                    "export_limit": 10,
-                    "max_depth": 2,
-                    "max_comments": 50,
-                    "chunk_size": 768,
-                    "chunk_overlap": 50,
-                    "request_delay": 0.1,
+                    "export_limit": 100,
+                    "max_depth": 3,
+                    "max_comments": 10,
+                    "chunk_size": 1000,
+                    "chunk_overlap": 200,
+                    "request_delay": 0.5,
                     "limit": 200
                 }
             ],
@@ -28,7 +28,7 @@
             },
             "vector_store": {
                 "name": "qdrant",
-                "collection_name": "collection-default",
+                "collection_name": "collection2-default",
                 "host": "127.0.0.1",
                 "protocol": "http",
                 "ports": {
