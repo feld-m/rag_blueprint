@@ -6,9 +6,14 @@
         "embedding": {
             "datasources": [
                 {
-                    "name": "pdf",
-                    "export_limit": 10,
-                    "base_path": "data/bavarian_beer"
+                    "name": "hackernews",
+                    "export_limit": 100,
+                    "max_depth": 3,
+                    "max_comments": 10,
+                    "chunk_size": 1000,
+                    "chunk_overlap": 200,
+                    "request_delay": 0.5,
+                    "limit": 200
                 }
             ],
             "embedding_model": {
@@ -23,7 +28,7 @@
             },
             "vector_store": {
                 "name": "qdrant",
-                "collection_name": "collection-local",
+                "collection_name": "collection2-default",
                 "host": "127.0.0.1",
                 "protocol": "http",
                 "ports": {
