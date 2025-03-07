@@ -106,22 +106,29 @@ src/
 Create a new file `src/embedding/datasources/confluence/document.py`:
 
 ```py
-class ConfluenceDocument:
-    def __init__(self, id: str, title: str, content: str, url: str):
-        self.id = id
-        self.title = title
-        self.content = content
-        self.url = url
+class ConfluenceDocument(BaseDocument):
 
-    @staticmethod
-    def from_page(page: dict, base_url: str) -> "ConfluenceDocument":
-        """Create document from Confluence page data."""
-        return ConfluenceDocument(
-            id=page["id"],
-            title=page["title"],
-            content=page["body"]["view"]["value"],
-            url=f"{base_url}{page['_links']['webui']}",
+    @classmethod
+    def from_page(
+        cls, markdown: str, page: dict, base_url: str
+    ) -> "ConfluenceDocument":
+        """Create ConfluenceDocument instance from page data.
+
+        Args:
+            page: Dictionary containing Confluence page details
+            base_url: Base URL of the Confluence instance
+
+        Returns:
+            ConfluenceDocument: Configured document instance
+        """
+        document = cls(
+            text=markdown,
+            attachments={},  # TBD
+            metadata=ConfluenceDocument._get_metadata(page, base_url),
         )
+        document._set_excluded_embed_metadata_keys()
+        document._set_excluded_llm_metadata_keys()
+        return document
 ```
 
 ### Reader Component
@@ -138,7 +145,7 @@ class ConfluenceReader(BaseReader):
         self.confluence_client = confluence_client
 
     async def get_all_documents_async(self) -> List[ConfluenceDocument]:
-        """Fetch and process documents from Confluence."""
+        """Fetch from Confluence and parse them to markdown format."""
         # Implementation for fetching documents
 ```
 
