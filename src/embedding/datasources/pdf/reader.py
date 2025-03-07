@@ -86,13 +86,6 @@ class ContractPDFParser(DefaultPDFParser):
         },
     ]
 
-    def __init__(self):
-        """
-        Attributes:
-            parser: MarkItDown parser instance
-        """
-        self.parser = MarkItDown()
-
     def parse(self, file_path: str) -> PdfDocument:
         """
         Parses the given PDF file and enriches its metadata with additional fields.
@@ -123,9 +116,7 @@ class ContractPDFParser(DefaultPDFParser):
             Converts date strings to ISO format where possible
         """
         metadata = super()._extract_metadata(file_path)
-
         metadata.update(self._extract_fields(text, self.FIELDS_TO_EXTRACT))
-
         return metadata
 
     def _preprocess_text(self, text: str) -> str:
