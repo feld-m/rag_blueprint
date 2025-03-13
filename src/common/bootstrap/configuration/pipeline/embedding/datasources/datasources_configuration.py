@@ -11,25 +11,12 @@ from common.bootstrap.secrets_configuration import ConfigurationWithSecrets
 
 
 class DatasourceName(str, Enum):
-    NOTION = "notion"
     CONFLUENCE = "confluence"
+    NOTION_AIRBYTE = "notion-airbyte"
     PDF = "pdf"
 
 
 # Secrets
-
-
-class NotionSecrets(BaseSettings):
-    model_config = ConfigDict(
-        env_file_encoding="utf-8",
-        env_prefix="RAG__DATASOURCES__NOTION__",
-        env_nested_delimiter="__",
-        extra="ignore",
-    )
-
-    api_token: SecretStr = Field(
-        ..., description="The token for the notion data source"
-    )
 
 
 class ConfluenceSecrets(BaseSettings):
@@ -81,23 +68,6 @@ class ConfluenceDatasourceConfiguration(DatasourceConfiguration):
         return f"{self.protocol}://{self.host}"
 
 
-class NotionDatasourceConfiguration(DatasourceConfiguration):
-    name: Literal[DatasourceName.NOTION] = Field(
-        ..., description="The name of the data source."
-    )
-    home_page_database_id: Optional[str] = Field(
-        None,
-        description="Notion home page database id used for extraction of pages and database. If null, this extraction will be skipped.",
-    )
-    export_batch_size: int = Field(
-        3,
-        description="Number of pages being exported ansychronously. Decrease to avoid NotionAPI rate limits, smaller batch slows the export down.",
-    )
-    secrets: NotionSecrets = Field(
-        None, description="The secrets for the data source."
-    )
-
-
 class PdfDatasourceConfiguration(DatasourceConfiguration):
     name: Literal[DatasourceName.PDF] = Field(
         ..., description="The name of the data source."
@@ -113,8 +83,56 @@ class PdfDatasourceConfiguration(DatasourceConfiguration):
     )
 
 
+# Airbyte Configuration
+
+
+class AirbyteDestinationTypeName(str, Enum):
+    SQL = "sql"
+
+
+class AirbyteSQLDestinationConfiguration(ConfigurationWithSecrets):
+    class Secrets(BaseSettings):
+        model_config = ConfigDict(
+            env_file_encoding="utf-8",
+            env_prefix="RAG__DATASOURCES__AIRBYTE_SQL_DESTINATION__",
+            env_nested_delimiter="__",
+            extra="ignore",
+        )
+
+        username: SecretStr = Field(
+            ..., description="Username to connect to the database."
+        )
+        password: SecretStr = Field(
+            ..., description="Password to connect to the database."
+        )
+
+    type: Literal[AirbyteDestinationTypeName.SQL] = Field(
+        ..., description="Type of destination"
+    )
+    protocol: str = Field("postgresql", description="Database protocol")
+    host: str = Field("127.0.0.1", description="Database host")
+    port: int = Field(5432, description="Database port")
+    database_name: str = Field("notion", description="Database name")
+    secrets: Secrets = Field(
+        None, description="The secrets for the data source."
+    )
+
+    @property
+    def connection_url(self) -> str:
+        return f"{self.protocol}://{self.secrets.username.get_secret_value()}:{self.secrets.password.get_secret_value()}@{self.host}:{self.port}/{self.database_name}"
+
+
+class NotionAirbyteDatasourceConfiguration(DatasourceConfiguration):
+    name: Literal[DatasourceName.NOTION_AIRBYTE] = Field(
+        ..., description="The name of the data source."
+    )
+    destination: Union[AirbyteSQLDestinationConfiguration] = Field(
+        ..., description="Destination configuration"
+    )
+
+
 AVAIALBLE_DATASOURCES = Union[
-    NotionDatasourceConfiguration,
+    NotionAirbyteDatasourceConfiguration,
     ConfluenceDatasourceConfiguration,
     PdfDatasourceConfiguration,
 ]

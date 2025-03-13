@@ -1,8 +1,8 @@
 import sys
 from unittest.mock import Mock
 
-from embedding.datasources.notion.cleaner import NotionCleaner
-from embedding.datasources.notion.document import NotionDocument
+from embedding.datasources.notion_airbyte.cleaner import NotionCleaner
+from embedding.datasources.notion_airbyte.document import NotionDocument
 
 sys.path.append("./src")
 

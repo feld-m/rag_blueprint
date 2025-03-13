@@ -1,8 +1,5 @@
 import sys
 
-from embedding.datasources.notion.exporter import NotionExporter
-from embedding.datasources.notion.reader import NotionReader
-
 sys.path.append("./src")
 
 from typing import List
@@ -15,7 +12,7 @@ from notion_client import Client
 from common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration import (
     NotionDatasourceConfiguration,
 )
-from embedding.datasources.notion.document import NotionDocument
+from embedding.datasources.notion_airbyte.document import NotionDocument
 
 
 class Fixtures:

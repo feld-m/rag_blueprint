@@ -3,8 +3,7 @@ from typing import List
 from llama_index.core.schema import TextNode
 
 from embedding.datasources.core.splitter import BaseSplitter, MarkdownSplitter
-from embedding.datasources.notion.document import NotionDocument
-from embedding.datasources.notion.reader import NotionObjectType
+from embedding.datasources.notion_airbyte.document import NotionDocument
 
 
 class NotionSplitter(BaseSplitter):
@@ -47,12 +46,12 @@ class NotionSplitter(BaseSplitter):
         database_documents = [
             doc
             for doc in documents
-            if doc.extra_info["type"] == NotionObjectType.DATABASE.value
+            if doc.extra_info["type"] == NotionDocument.Type.DATABASE.value
         ]
         page_documents = [
             doc
             for doc in documents
-            if doc.extra_info["type"] == NotionObjectType.PAGE.value
+            if doc.extra_info["type"] == NotionDocument.Type.PAGE.value
         ]
 
         nodes = self.database_splitter.split(database_documents)

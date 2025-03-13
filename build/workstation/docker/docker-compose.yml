@@ -64,6 +64,7 @@ services:
       PGPORT: ${RAG__VECTOR_STORE__PORT_REST}
     ports:
       - "${RAG__VECTOR_STORE__PORT_REST}:${RAG__VECTOR_STORE__PORT_REST}"
+    restart: unless-stopped
     volumes:
       - ./.docker-data/pgvector:/var/lib/postgresql/data
 

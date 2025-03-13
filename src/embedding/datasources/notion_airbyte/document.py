@@ -1,3 +1,5 @@
+from enum import Enum
+
 from embedding.datasources.core.document import BaseDocument
 
 
@@ -15,25 +17,14 @@ class NotionDocument(BaseDocument):
         excluded_llm_metadata_keys: Metadata keys to exclude from LLM context
     """
 
-    @classmethod
-    def from_page(cls, metadata: dict, text: str) -> "NotionDocument":
-        """Create NotionDocument instance from page data.
+    class Type(str, Enum):
+        PAGE = "page"
+        DATABASE = "database"
 
-        Args:
-            metadata: Dictionary containing page metadata
-            text: Extracted page content
-
-        Returns:
-            NotionDocument: Configured document instance
-        """
-        document = cls(
-            attachments={},
-            text=text,
-            metadata=NotionDocument._get_metadata(metadata),
-        )
-        document._set_excluded_embed_metadata_keys()
-        document._set_excluded_llm_metadata_keys()
-        return document
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._set_excluded_embed_metadata_keys()
+        self._set_excluded_llm_metadata_keys()
 
     def _set_excluded_embed_metadata_keys(self) -> None:
         """Configure metadata keys to exclude from embeddings.
@@ -60,20 +51,3 @@ class NotionDocument(BaseDocument):
             for key in metadata_keys
             if key not in self.included_llm_metadata_keys
         ]
-
-    @staticmethod
-    def _get_metadata(metadata: dict) -> dict:
-        """Process and enhance page metadata.
-
-        Args:
-            metadata: Raw page metadata dictionary
-
-        Returns:
-            dict: Enhanced metadata including source and formatted dates
-        """
-        metadata["datasource"] = "notion"
-        metadata["created_date"] = metadata["created_time"].split("T")[0]
-        metadata["last_edited_date"] = metadata["last_edited_time"].split("T")[
-            0
-        ]
-        return metadata

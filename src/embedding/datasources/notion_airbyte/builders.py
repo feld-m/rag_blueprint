@@ -1,20 +1,20 @@
 from injector import inject
-from notion_client import Client
+from sqlalchemy import create_engine
 
 from common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration import (
-    NotionDatasourceConfiguration,
+    NotionAirbyteDatasourceConfiguration,
 )
 from common.bootstrap.configuration.pipeline.embedding.embedding_model.embedding_model_binding_keys import (
     BoundEmbeddingModelMarkdownSplitter,
 )
-from embedding.datasources.notion.cleaner import NotionCleaner
-from embedding.datasources.notion.exporter import NotionExporter
-from embedding.datasources.notion.manager import NotionDatasourceManager
-from embedding.datasources.notion.reader import NotionReader
-from embedding.datasources.notion.splitter import NotionSplitter
+from embedding.datasources.notion_airbyte.cleaner import NotionCleaner
+from embedding.datasources.notion_airbyte.manager import NotionDatasourceManager
+from embedding.datasources.notion_airbyte.parser import NotionParser
+from embedding.datasources.notion_airbyte.reader import NotionAirbyteReader
+from embedding.datasources.notion_airbyte.splitter import NotionSplitter
 
 
-class NotionDatasourceManagerBuilder:
+class NotionAirbyteDatasourceManagerBuilder:
     """Builder for creating Notion datasource manager instances.
 
     Provides factory method to create configured NotionDatasourceManager
@@ -24,8 +24,8 @@ class NotionDatasourceManagerBuilder:
     @staticmethod
     @inject
     def build(
-        configuration: NotionDatasourceConfiguration,
-        reader: NotionReader,
+        configuration: NotionAirbyteDatasourceConfiguration,
+        reader: NotionAirbyteReader,
         cleaner: NotionCleaner,
         splitter: NotionSplitter,
     ) -> NotionDatasourceManager:
@@ -48,7 +48,7 @@ class NotionDatasourceManagerBuilder:
         )
 
 
-class NotionReaderBuilder:
+class NotionAirbyteReaderBuilder:
     """Builder for creating Notion reader instances.
 
     Provides factory method to create configured NotionReader objects.
@@ -57,66 +57,22 @@ class NotionReaderBuilder:
     @staticmethod
     @inject
     def build(
-        configuration: NotionDatasourceConfiguration,
-        notion_client: Client,
-        exporter: NotionExporter,
-    ) -> NotionReader:
+        configuration: NotionAirbyteDatasourceConfiguration,
+    ) -> NotionAirbyteReader:
         """Creates a configured Notion reader.
 
         Args:
-            configuration: Notion access settings
-            notion_client: Client for Notion API interaction
-            exporter: Component for content export
+            configuration: Notion airbyte datasource configuration
+            engine: SQLAlchemy engine for airbyte destination database
+            parser: Notion parser for processing raw content from destination
 
         Returns:
             NotionReader: Configured reader instance
         """
-        return NotionReader(
+        return NotionAirbyteReader(
             configuration=configuration,
-            notion_client=notion_client,
-            exporter=exporter,
-        )
-
-
-class NotionClientBuilder:
-    """Builder for creating Notion API client instances.
-
-    Provides factory method to create configured Notion API clients.
-    """
-
-    @staticmethod
-    @inject
-    def build(configuration: NotionDatasourceConfiguration) -> Client:
-        """Creates a configured Notion API client.
-
-        Args:
-            configuration: Notion authentication settings
-
-        Returns:
-            Client: Configured API client instance
-        """
-        return Client(auth=configuration.secrets.api_token.get_secret_value())
-
-
-class NotionExporterBuilder:
-    """Builder for creating Notion content exporter instances.
-
-    Provides factory method to create configured NotionExporter objects.
-    """
-
-    @staticmethod
-    @inject
-    def build(configuration: NotionDatasourceConfiguration) -> NotionExporter:
-        """Creates a configured Notion content exporter.
-
-        Args:
-            configuration: Notion authentication settings
-
-        Returns:
-            NotionExporter: Configured exporter instance
-        """
-        return NotionExporter(
-            api_token=configuration.secrets.api_token.get_secret_value()
+            engine=create_engine(configuration.destination.connection_url),
+            parser=NotionParser(),
         )
 
 

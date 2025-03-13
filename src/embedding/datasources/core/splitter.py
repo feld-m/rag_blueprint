@@ -5,6 +5,7 @@ from typing import Callable, Generic, List
 from llama_index.core import Document
 from llama_index.core.node_parser import MarkdownNodeParser, SentenceSplitter
 from llama_index.core.schema import TextNode
+from tqdm import tqdm
 
 from embedding.datasources.core.document import DocType
 
@@ -80,7 +81,10 @@ class MarkdownSplitter(BaseSplitter):
         """
         nodes = []
 
-        for document in documents:
+        for document in tqdm(
+            documents,
+            total=len(documents),
+        ):
             document_nodes = self.markdown_node_parser.get_nodes_from_documents(
                 [document]
             )

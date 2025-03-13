@@ -2,7 +2,6 @@ from typing import Type
 
 from atlassian import Confluence
 from injector import singleton
-from notion_client import Client
 
 from common.bootstrap.base_binder import BaseBinder
 from common.bootstrap.configuration.pipeline.embedding.datasources.datasources_binding_keys import (
@@ -11,7 +10,7 @@ from common.bootstrap.configuration.pipeline.embedding.datasources.datasources_b
 from common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration import (
     ConfluenceDatasourceConfiguration,
     DatasourceName,
-    NotionDatasourceConfiguration,
+    NotionAirbyteDatasourceConfiguration,
     PdfDatasourceConfiguration,
 )
 from embedding.datasources.confluence.builders import (
@@ -25,19 +24,16 @@ from embedding.datasources.confluence.cleaner import ConfluenceCleaner
 from embedding.datasources.confluence.manager import ConfluenceDatasourceManager
 from embedding.datasources.confluence.reader import ConfluenceReader
 from embedding.datasources.confluence.splitter import ConfluenceSplitter
-from embedding.datasources.notion.builders import (
+from embedding.datasources.notion_airbyte.builders import (
+    NotionAirbyteDatasourceManagerBuilder,
+    NotionAirbyteReader,
+    NotionAirbyteReaderBuilder,
     NotionCleanerBuilder,
-    NotionClientBuilder,
-    NotionDatasourceManagerBuilder,
-    NotionExporterBuilder,
-    NotionReaderBuilder,
     NotionSplitterBuilder,
 )
-from embedding.datasources.notion.cleaner import NotionCleaner
-from embedding.datasources.notion.exporter import NotionExporter
-from embedding.datasources.notion.manager import NotionDatasourceManager
-from embedding.datasources.notion.reader import NotionReader
-from embedding.datasources.notion.splitter import NotionSplitter
+from embedding.datasources.notion_airbyte.cleaner import NotionCleaner
+from embedding.datasources.notion_airbyte.manager import NotionDatasourceManager
+from embedding.datasources.notion_airbyte.splitter import NotionSplitter
 from embedding.datasources.pdf.builders import (
     PdfDatasourceManagerBuilder,
     PdfReaderBuilder,
@@ -52,7 +48,7 @@ from embedding.orchestrators.datasource_orchestrator import (
 )
 
 
-class NotionDatasourceBinder(BaseBinder):
+class NotionAirybteDatasourceBinder(BaseBinder):
     """Binder for the Notion datasources components."""
 
     def bind(self) -> Type:
@@ -61,8 +57,6 @@ class NotionDatasourceBinder(BaseBinder):
         Returns:
             Type: The Notion datasource manager."""
         self._bind_notion_cofuguration()
-        self._bind_exporter()
-        self._bind_client()
         self._bind_reader()
         self._bind_cleaner()
         self._bind_splitter()
@@ -74,33 +68,19 @@ class NotionDatasourceBinder(BaseBinder):
         notion_configuration = [
             configuration
             for configuration in self.configuration.pipeline.embedding.datasources
-            if isinstance(configuration, NotionDatasourceConfiguration)
+            if isinstance(configuration, NotionAirbyteDatasourceConfiguration)
         ][0]
         self.binder.bind(
-            NotionDatasourceConfiguration,
+            NotionAirbyteDatasourceConfiguration,
             to=notion_configuration,
             scope=singleton,
-        )
-
-    def _bind_exporter(self) -> None:
-        """Bind the Notion exporter."""
-        self.binder.bind(
-            NotionExporter,
-            to=NotionExporterBuilder.build,
-        )
-
-    def _bind_client(self) -> None:
-        """Bind the Notion client."""
-        self.binder.bind(
-            Client,
-            to=NotionClientBuilder.build,
         )
 
     def _bind_reader(self) -> None:
         """Bind the Notion reader."""
         self.binder.bind(
-            NotionReader,
-            to=NotionReaderBuilder.build,
+            NotionAirbyteReader,
+            to=NotionAirbyteReaderBuilder.build,
         )
 
     def _bind_cleaner(self) -> None:
@@ -121,7 +101,7 @@ class NotionDatasourceBinder(BaseBinder):
         """Bind the Notion datasource manager."""
         self.binder.bind(
             NotionDatasourceManager,
-            to=NotionDatasourceManagerBuilder.build,
+            to=NotionAirbyteDatasourceManagerBuilder.build,
         )
 
 
@@ -235,7 +215,7 @@ class DatasourcesBinder(BaseBinder):
 
     mapping = {
         DatasourceName.CONFLUENCE: ConfluenceBinder,
-        DatasourceName.NOTION: NotionDatasourceBinder,
+        DatasourceName.NOTION_AIRBYTE: NotionAirybteDatasourceBinder,
         DatasourceName.PDF: PdfDatasourcesBinder,
     }
 

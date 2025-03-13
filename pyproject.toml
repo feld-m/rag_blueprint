@@ -55,8 +55,6 @@ dependencies = [
     "mkdocstrings-python==1.12.2",
     "more-itertools==10.3.0",
     "networkx==3.3",
-    "notion==0.0.28",
-    "notion-client==2.2.1",
     "notion-exporter==0.1.1",
     "notion2md==2.9.0",
     "numpy==1.26.4",
