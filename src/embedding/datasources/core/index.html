@@ -422,99 +422,6 @@ through generic typing.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="src.embedding.datasources.core.cleaner.BaseCleaner._has_empty_content" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">_has_empty_content</span><span class="p">(</span><span class="n">document</span><span class="p">)</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
-  </span>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Check if document content is empty.</p>
-
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Parameters:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-              <b><code>document</code></b>
-                  (<code><span title="llama_index.core.schema.TextNode">TextNode</span></code>)
-              –
-              <div class="doc-md-description">
-                <p>Document to check for content</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Returns:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-<b><code>bool</code></b>(                  <code><span title="bool">bool</span></code>
-)              –
-              <div class="doc-md-description">
-                <p>True if document text is empty after stripping whitespace</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-            <details class="quote">
-              <summary>Source code in <code>src/embedding/datasources/core/cleaner.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">_has_empty_content</span><span class="p">(</span><span class="n">document</span><span class="p">:</span> <span class="n">TextNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if document content is empty.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        document: Document to check for content</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        bool: True if document text is empty after stripping whitespace</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="ow">not</span> <span class="n">document</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
 <h3 id="src.embedding.datasources.core.cleaner.BaseCleaner.clean" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">clean</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span></code>
 
@@ -779,203 +686,6 @@ Supports any document type with a text attribute.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="src.embedding.datasources.core.cleaner.Cleaner._get_documents_with_tqdm" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">_get_documents_with_tqdm</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">document_type_name</span><span class="p">)</span></code>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Wrap document iteration with optional progress bar.</p>
-
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Parameters:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-              <b><code>documents</code></b>
-                  (<code><span title="typing.List">List</span>[<span title="typing.Any">Any</span>]</code>)
-              –
-              <div class="doc-md-description">
-                <p>List of documents to process</p>
-              </div>
-            </li>
-            <li>
-              <b><code>document_type_name</code></b>
-                  (<code><span title="str">str</span></code>)
-              –
-              <div class="doc-md-description">
-                <p>Name of document type for progress display</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Returns:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-              –
-              <div class="doc-md-description">
-                <p>Iterator over documents, optionally wrapped with progress bar</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-            <details class="quote">
-              <summary>Source code in <code>src/embedding/datasources/core/cleaner.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_get_documents_with_tqdm</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">documents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">document_type_name</span><span class="p">:</span> <span class="nb">str</span>
-<span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrap document iteration with optional progress bar.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        documents: List of documents to process</span>
-<span class="sd">        document_type_name: Name of document type for progress display</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        Iterator over documents, optionally wrapped with progress bar</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">tqdm</span><span class="p">(</span>
-        <span class="n">documents</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">document_type_name</span><span class="si">}</span><span class="s2">] Cleaning documents&quot;</span>
-    <span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="src.embedding.datasources.core.cleaner.Cleaner._has_empty_content" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">_has_empty_content</span><span class="p">(</span><span class="n">document</span><span class="p">)</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
-  </span>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Check if document has empty content.</p>
-
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Parameters:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-              <b><code>document</code></b>
-                  (<code><span title="typing.Any">Any</span></code>)
-              –
-              <div class="doc-md-description">
-                <p>Document to check (must have text attribute)</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Returns:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-<b><code>bool</code></b>(                  <code><span title="bool">bool</span></code>
-)              –
-              <div class="doc-md-description">
-                <p>True if document text is empty after stripping whitespace</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-            <details class="quote">
-              <summary>Source code in <code>src/embedding/datasources/core/cleaner.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">_has_empty_content</span><span class="p">(</span><span class="n">document</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if document has empty content.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        document: Document to check (must have text attribute)</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        bool: True if document text is empty after stripping whitespace</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="ow">not</span> <span class="n">document</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
 <h3 id="src.embedding.datasources.core.cleaner.Cleaner.clean" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">clean</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span></code>
 
@@ -1171,7 +881,7 @@ metadata filtering for embedding and LLM contexts.</p>
         <ul class="first simple">
             <li>
               <b><code>attachments</code></b>
-                  (<code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="str">str</span>]]</code>)
+                  (<code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[str, str]]</code>)
               –
               <div class="doc-md-description">
                 <p>Dictionary mapping placeholder keys to attachment content</p>
@@ -1179,7 +889,7 @@ metadata filtering for embedding and LLM contexts.</p>
             </li>
             <li>
               <b><code>included_embed_metadata_keys</code></b>
-                  (<code><span title="typing.List">List</span>[<span title="str">str</span>]</code>)
+                  (<code><span title="typing.List">List</span>[str]</code>)
               –
               <div class="doc-md-description">
                 <p>Metadata fields to include in embeddings</p>
@@ -1187,7 +897,7 @@ metadata filtering for embedding and LLM contexts.</p>
             </li>
             <li>
               <b><code>included_llm_metadata_keys</code></b>
-                  (<code><span title="typing.List">List</span>[<span title="str">str</span>]</code>)
+                  (<code><span title="typing.List">List</span>[str]</code>)
               –
               <div class="doc-md-description">
                 <p>Metadata fields to include in LLM context</p>
@@ -1943,7 +1653,7 @@ for reading, cleaning, splitting and embedding content.</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-                  <code><span title="NotImplementedError">NotImplementedError</span></code>
+                  <code>NotImplementedError</code>
               –
               <div class="doc-md-description">
                 <p>Method must be implemented by subclasses</p>
@@ -2178,7 +1888,7 @@ generic typing for document types.</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-                  <code><span title="NotImplementedError">NotImplementedError</span></code>
+                  <code>NotImplementedError</code>
               –
               <div class="doc-md-description">
                 <p>Must be implemented by concrete classes</p>
@@ -2271,7 +1981,7 @@ generic typing for document types.</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-                  <code><span title="NotImplementedError">NotImplementedError</span></code>
+                  <code>NotImplementedError</code>
               –
               <div class="doc-md-description">
                 <p>Must be implemented by concrete classes</p>
@@ -2912,7 +2622,7 @@ consistent chunk sizes.</p>
         <ul class="first simple">
             <li>
               <b><code>chunk_size_in_tokens</code></b>
-                  (<code><span title="int">int</span></code>)
+                  (<code>int</code>)
               –
               <div class="doc-md-description">
                 <p>Maximum tokens per chunk</p>
@@ -2920,7 +2630,7 @@ consistent chunk sizes.</p>
             </li>
             <li>
               <b><code>chunk_overlap_in_tokens</code></b>
-                  (<code><span title="int">int</span></code>)
+                  (<code>int</code>)
               –
               <div class="doc-md-description">
                 <p>Token overlap between chunks</p>
@@ -2984,351 +2694,6 @@ consistent chunk sizes.</p>
         <span class="n">chunk_overlap</span><span class="o">=</span><span class="n">chunk_overlap_in_tokens</span><span class="p">,</span>
         <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenize_func</span><span class="p">,</span>
     <span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="src.embedding.datasources.core.splitter.MarkdownSplitter._merge_small_nodes" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">_merge_small_nodes</span><span class="p">(</span><span class="n">document_nodes</span><span class="p">)</span></code>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Merge adjacent small nodes into larger chunks.</p>
-
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Parameters:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-              <b><code>document_nodes</code></b>
-                  (<code><span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]</code>)
-              –
-              <div class="doc-md-description">
-                <p>Collection of nodes to process</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Returns:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-                  <code><span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]</code>
-              –
-              <div class="doc-md-description">
-                <p>List[TextNode]: Collection of merged nodes</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-            <details class="quote">
-              <summary>Source code in <code>src/embedding/datasources/core/splitter.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
-<span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span>
-<span class="normal">157</span>
-<span class="normal">158</span>
-<span class="normal">159</span>
-<span class="normal">160</span>
-<span class="normal">161</span>
-<span class="normal">162</span>
-<span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
-<span class="normal">166</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_merge_small_nodes</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">document_nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TextNode</span><span class="p">]</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TextNode</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Merge adjacent small nodes into larger chunks.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        document_nodes: Collection of nodes to process</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        List[TextNode]: Collection of merged nodes</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">new_document_nodes</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">current_node</span> <span class="o">=</span> <span class="n">document_nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">document_nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-        <span class="n">current_text</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="n">text</span>
-        <span class="n">current_node_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tokenize_func</span><span class="p">(</span><span class="n">current_text</span><span class="p">))</span>
-        <span class="n">node_text</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">text</span>
-        <span class="n">node_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tokenize_func</span><span class="p">(</span><span class="n">node_text</span><span class="p">))</span>
-
-        <span class="k">if</span> <span class="n">current_node_size</span> <span class="o">+</span> <span class="n">node_size</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_in_tokens</span><span class="p">:</span>
-            <span class="n">current_node</span><span class="o">.</span><span class="n">text</span> <span class="o">+=</span> <span class="n">node</span><span class="o">.</span><span class="n">text</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">new_document_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_node</span><span class="p">)</span>
-            <span class="n">current_node</span> <span class="o">=</span> <span class="n">node</span>
-
-    <span class="n">new_document_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_node</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">new_document_nodes</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="src.embedding.datasources.core.splitter.MarkdownSplitter._split_big_node" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">_split_big_node</span><span class="p">(</span><span class="n">document_node</span><span class="p">)</span></code>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Split single oversized node into smaller nodes.</p>
-
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Parameters:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-              <b><code>document_node</code></b>
-                  (<code><span title="llama_index.core.schema.TextNode">TextNode</span></code>)
-              –
-              <div class="doc-md-description">
-                <p>Node to split</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Returns:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-                  <code><span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]</code>
-              –
-              <div class="doc-md-description">
-                <p>List[TextNode]: Collection of smaller nodes</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-            <details class="quote">
-              <summary>Source code in <code>src/embedding/datasources/core/splitter.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_split_big_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document_node</span><span class="p">:</span> <span class="n">TextNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TextNode</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Split single oversized node into smaller nodes.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        document_node: Node to split</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        List[TextNode]: Collection of smaller nodes</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">document_node</span><span class="o">.</span><span class="n">text</span>
-    <span class="n">sub_texts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sentence_splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">sub_nodes</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">for</span> <span class="n">sub_text</span> <span class="ow">in</span> <span class="n">sub_texts</span><span class="p">:</span>
-        <span class="n">sub_node</span> <span class="o">=</span> <span class="n">document_node</span><span class="o">.</span><span class="n">model_copy</span><span class="p">()</span>
-        <span class="n">sub_node</span><span class="o">.</span><span class="n">id_</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
-        <span class="n">sub_node</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">sub_text</span>
-        <span class="n">sub_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_node</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">sub_nodes</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="src.embedding.datasources.core.splitter.MarkdownSplitter._split_big_nodes" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">_split_big_nodes</span><span class="p">(</span><span class="n">document_nodes</span><span class="p">)</span></code>
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Split oversized nodes into smaller chunks.</p>
-
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Parameters:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-              <b><code>document_nodes</code></b>
-                  (<code><span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]</code>)
-              –
-              <div class="doc-md-description">
-                <p>Collection of nodes to process</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Returns:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-                  <code><span title="typing.List">List</span>[<span title="llama_index.core.schema.TextNode">TextNode</span>]</code>
-              –
-              <div class="doc-md-description">
-                <p>List[TextNode]: Processed nodes within size limits</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-            <details class="quote">
-              <summary>Source code in <code>src/embedding/datasources/core/splitter.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_split_big_nodes</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">document_nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TextNode</span><span class="p">]</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TextNode</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Split oversized nodes into smaller chunks.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        document_nodes: Collection of nodes to process</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        List[TextNode]: Processed nodes within size limits</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">new_document_nodes</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">for</span> <span class="n">document_node</span> <span class="ow">in</span> <span class="n">document_nodes</span><span class="p">:</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="n">document_node</span><span class="o">.</span><span class="n">text</span>
-        <span class="n">document_node_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tokenize_func</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
-
-        <span class="k">if</span> <span class="n">document_node_size</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size_in_tokens</span><span class="p">:</span>
-            <span class="n">document_sub_nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_big_node</span><span class="p">(</span><span class="n">document_node</span><span class="p">)</span>
-            <span class="n">new_document_nodes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">document_sub_nodes</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">new_document_nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">document_node</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">new_document_nodes</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

@@ -305,6 +305,9 @@ atlassian-python-api==3.41.11
 <pre><code class="language-sh">RAG__DATASOURCES__CONFLUENCE__USERNAME=&lt;confluence_username&gt;
 RAG__DATASOURCES__CONFLUENCE__PASSWORD=&lt;confluence_password&gt;
 </code></pre>
+<blockquote>
+<p><strong>Note</strong>: If your datasource doesn't require secrets you can skip this step</p>
+</blockquote>
 <h2 id="step-4-implement-the-datasource-configuration">Step 4: Implement the Datasource Configuration</h2>
 <p>Define the configuration class for the new datasource:</p>
 <pre><code class="language-py">class ConfluenceDatasourceConfiguration(DatasourceConfiguration):

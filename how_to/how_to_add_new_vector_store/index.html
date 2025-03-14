@@ -489,7 +489,7 @@ class ChromaVectorStoreValidator(VectorStoreValidator):
             raise CollectionExistsException(collection_name)
 </code></pre>
 <h2 id="step-10-vector-store-validator-builder">Step 10: Vector Store Validator Builder</h2>
-<p>For the above vector store validator, add a builder to <a href="https://github.com/feld-m/rag_blueprint/blob/main/src/embedding/validators/builders.py">vector_store_builders.py</a>:</p>
+<p>For the above vector store validator, add a builder to <a href="https://github.com/feld-m/rag_blueprint/blob/main/src/embedding/validators/builders.py">validators/builders.py</a>:</p>
 <pre><code class="language-py">from common.bootstrap.configuration.pipeline.embedding.vector_store.vector_store_configuration import (
     ChromaConfiguration,
     ...

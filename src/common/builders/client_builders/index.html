@@ -124,6 +124,8 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#src.common.builders.client_builders.ChromaClientBuilder">ChromaClientBuilder</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.common.builders.client_builders.PGVectorClientBuilder">PGVectorClientBuilder</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#src.common.builders.client_builders.QdrantClientBuilder">QdrantClientBuilder</a>
     </li>
     </ul>
@@ -302,10 +304,7 @@
 
               <details class="quote">
                 <summary>Source code in <code>src/common/builders/client_builders.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
 <span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span>
@@ -322,7 +321,10 @@
 <span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span>
-<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ChromaClientBuilder</span><span class="p">:</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ChromaClientBuilder</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Builder for creating configured Chroma client instances.</span>
 
 <span class="sd">    Provides factory method to create ChromaClient with vector store settings.</span>
@@ -424,10 +426,7 @@
 </table>
             <details class="quote">
               <summary>Source code in <code>src/common/builders/client_builders.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
@@ -438,7 +437,10 @@
 <span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span>
-<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
 <span class="nd">@inject</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="n">ChromaConfiguration</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChromaClient</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a configured Chroma client instance.</span>
@@ -452,6 +454,196 @@
     <span class="k">return</span> <span class="n">ChromaHttpClient</span><span class="p">(</span>
         <span class="n">host</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">host</span><span class="p">,</span>
         <span class="n">port</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">ports</span><span class="o">.</span><span class="n">rest</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.common.builders.client_builders.PGVectorClientBuilder" class="doc doc-heading">
+            <code>PGVectorClientBuilder</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/common/builders/client_builders.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PGVectorClientBuilder</span><span class="p">:</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@inject</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="n">PGVectorConfiguration</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PGVectorClient</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a configured Postgres connection instance.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            configuration: Postgres connection settings.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            connection: Configured psycopg2 connection instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">connect</span><span class="p">(</span>
+            <span class="n">host</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">host</span><span class="p">,</span>
+            <span class="n">port</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">ports</span><span class="o">.</span><span class="n">rest</span><span class="p">,</span>
+            <span class="n">database</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">database_name</span><span class="p">,</span>
+            <span class="n">user</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">username</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">(),</span>
+            <span class="n">password</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">password</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">(),</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.common.builders.client_builders.PGVectorClientBuilder.build" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">build</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a configured Postgres connection instance.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="common.bootstrap.configuration.pipeline.embedding.vector_store.vector_store_configuration.PGVectorConfiguration">PGVectorConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Postgres connection settings.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>connection</code></b>(                  <code><span title="psycopg2.extensions.connection">connection</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Configured psycopg2 connection instance.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>src/common/builders/client_builders.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="nd">@inject</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="n">PGVectorConfiguration</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PGVectorClient</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a configured Postgres connection instance.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        configuration: Postgres connection settings.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        connection: Configured psycopg2 connection instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">host</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">ports</span><span class="o">.</span><span class="n">rest</span><span class="p">,</span>
+        <span class="n">database</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">database_name</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">username</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">(),</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">password</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">(),</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -491,10 +683,7 @@
 
               <details class="quote">
                 <summary>Source code in <code>src/common/builders/client_builders.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
@@ -510,7 +699,10 @@
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">QdrantClientBuilder</span><span class="p">:</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">QdrantClientBuilder</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Builder for creating configured Qdrant client instances.</span>
 
 <span class="sd">    Provides factory method to create QdrantClient with vector store settings.</span>
@@ -611,10 +803,7 @@
 </table>
             <details class="quote">
               <summary>Source code in <code>src/common/builders/client_builders.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
@@ -624,7 +813,10 @@
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
 <span class="nd">@inject</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="n">QDrantConfiguration</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QdrantClient</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a configured Qdrant client instance.</span>
