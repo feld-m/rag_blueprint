@@ -10,7 +10,7 @@ from common.bootstrap.configuration.pipeline.embedding.datasources.datasources_b
 from common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration import (
     ConfluenceDatasourceConfiguration,
     DatasourceName,
-    NotionAirbyteDatasourceConfiguration,
+    NotionPostgresAirbyteDatasourceConfiguration,
     PdfDatasourceConfiguration,
 )
 from embedding.datasources.confluence.builders import (
@@ -24,16 +24,20 @@ from embedding.datasources.confluence.cleaner import ConfluenceCleaner
 from embedding.datasources.confluence.manager import ConfluenceDatasourceManager
 from embedding.datasources.confluence.reader import ConfluenceReader
 from embedding.datasources.confluence.splitter import ConfluenceSplitter
-from embedding.datasources.notion_airbyte.builders import (
-    NotionAirbyteDatasourceManagerBuilder,
-    NotionAirbyteReader,
-    NotionAirbyteReaderBuilder,
+from embedding.datasources.notion.airbyte_postgres.builders import (
+    NotionPostgresAirbyteDatasourceManagerBuilder,
+    NotionPostgresAirbyteReaderBuilder,
+)
+from embedding.datasources.notion.airbyte_postgres.reader import (
+    NotionPostgresAirbyteReader,
+)
+from embedding.datasources.notion.builders import (
     NotionCleanerBuilder,
     NotionSplitterBuilder,
 )
-from embedding.datasources.notion_airbyte.cleaner import NotionCleaner
-from embedding.datasources.notion_airbyte.manager import NotionDatasourceManager
-from embedding.datasources.notion_airbyte.splitter import NotionSplitter
+from embedding.datasources.notion.cleaner import NotionCleaner
+from embedding.datasources.notion.manager import NotionDatasourceManager
+from embedding.datasources.notion.splitter import NotionSplitter
 from embedding.datasources.pdf.builders import (
     PdfDatasourceManagerBuilder,
     PdfReaderBuilder,
@@ -48,7 +52,7 @@ from embedding.orchestrators.datasource_orchestrator import (
 )
 
 
-class NotionAirybteDatasourceBinder(BaseBinder):
+class NotionPostgresAirbyteDatasourceBinder(BaseBinder):
     """Binder for the Notion datasources components."""
 
     def bind(self) -> Type:
@@ -68,10 +72,12 @@ class NotionAirybteDatasourceBinder(BaseBinder):
         notion_configuration = [
             configuration
             for configuration in self.configuration.pipeline.embedding.datasources
-            if isinstance(configuration, NotionAirbyteDatasourceConfiguration)
+            if isinstance(
+                configuration, NotionPostgresAirbyteDatasourceConfiguration
+            )
         ][0]
         self.binder.bind(
-            NotionAirbyteDatasourceConfiguration,
+            NotionPostgresAirbyteDatasourceConfiguration,
             to=notion_configuration,
             scope=singleton,
         )
@@ -79,8 +85,8 @@ class NotionAirybteDatasourceBinder(BaseBinder):
     def _bind_reader(self) -> None:
         """Bind the Notion reader."""
         self.binder.bind(
-            NotionAirbyteReader,
-            to=NotionAirbyteReaderBuilder.build,
+            NotionPostgresAirbyteReader,
+            to=NotionPostgresAirbyteReaderBuilder.build,
         )
 
     def _bind_cleaner(self) -> None:
@@ -101,7 +107,7 @@ class NotionAirybteDatasourceBinder(BaseBinder):
         """Bind the Notion datasource manager."""
         self.binder.bind(
             NotionDatasourceManager,
-            to=NotionAirbyteDatasourceManagerBuilder.build,
+            to=NotionPostgresAirbyteDatasourceManagerBuilder.build,
         )
 
 
@@ -215,7 +221,7 @@ class DatasourcesBinder(BaseBinder):
 
     mapping = {
         DatasourceName.CONFLUENCE: ConfluenceBinder,
-        DatasourceName.NOTION_AIRBYTE: NotionAirybteDatasourceBinder,
+        DatasourceName.NOTION_POSTGRES_AIRBYTE: NotionPostgresAirbyteDatasourceBinder,
         DatasourceName.PDF: PdfDatasourcesBinder,
     }
 

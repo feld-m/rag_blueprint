@@ -7,7 +7,7 @@ from notion_exporter.property_converter import PropertyConverter
 from common.bootstrap.configuration.pipeline.embedding.datasources.datasources_configuration import (
     DatasourceName,
 )
-from embedding.datasources.notion_airbyte.document import NotionDocument
+from embedding.datasources.notion.document import NotionDocument
 
 
 def extract(dict: dict, *args) -> str:
@@ -102,7 +102,7 @@ class NotionParser:
             dict: Metadata dictionary
         """
         return {
-            "datasource": DatasourceName.NOTION_AIRBYTE,
+            "datasource": DatasourceName.NOTION_POSTGRES_AIRBYTE,
             "id": page["id"],
             "type": NotionDocument.Type.PAGE,
             "parent": page["parent"],
@@ -177,7 +177,7 @@ class NotionParser:
 
     def get_database_metadata(self, database: dict) -> dict:
         return {
-            "datasource": DatasourceName.NOTION_AIRBYTE,
+            "datasource": DatasourceName.NOTION_POSTGRES_AIRBYTE,
             "id": database["id"],
             "type": NotionDocument.Type.DATABASE,
             "parent": database["parent"],

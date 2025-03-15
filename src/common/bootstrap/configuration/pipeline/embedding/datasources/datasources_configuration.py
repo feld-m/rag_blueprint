@@ -12,7 +12,7 @@ from common.bootstrap.secrets_configuration import ConfigurationWithSecrets
 
 class DatasourceName(str, Enum):
     CONFLUENCE = "confluence"
-    NOTION_AIRBYTE = "notion-airbyte"
+    NOTION_POSTGRES_AIRBYTE = "notion-postgres-airbyte"
     PDF = "pdf"
 
 
@@ -83,56 +83,46 @@ class PdfDatasourceConfiguration(DatasourceConfiguration):
     )
 
 
-# Airbyte Configuration
+class NotionPostgresAirbyteDatasourceConfiguration(DatasourceConfiguration):
 
+    class PostgresAirbyteDestinationConfiguration(ConfigurationWithSecrets):
+        class Secrets(BaseSettings):
+            model_config = ConfigDict(
+                env_file_encoding="utf-8",
+                env_prefix="RAG__DATASOURCES__NOTION_POSTGRES_AIRBYTE__",
+                env_nested_delimiter="__",
+                extra="ignore",
+            )
 
-class AirbyteDestinationTypeName(str, Enum):
-    SQL = "sql"
+            username: SecretStr = Field(
+                ..., description="Username to connect to the database."
+            )
+            password: SecretStr = Field(
+                ..., description="Password to connect to the database."
+            )
 
-
-class AirbyteSQLDestinationConfiguration(ConfigurationWithSecrets):
-    class Secrets(BaseSettings):
-        model_config = ConfigDict(
-            env_file_encoding="utf-8",
-            env_prefix="RAG__DATASOURCES__AIRBYTE_SQL_DESTINATION__",
-            env_nested_delimiter="__",
-            extra="ignore",
+        database_name: str = Field(..., description="Database name")
+        protocol: str = Field("postgresql", description="Database protocol")
+        host: str = Field("127.0.0.1", description="Database host")
+        port: int = Field(5432, description="Database port")
+        secrets: Secrets = Field(
+            None, description="The secrets for the data source."
         )
 
-        username: SecretStr = Field(
-            ..., description="Username to connect to the database."
-        )
-        password: SecretStr = Field(
-            ..., description="Password to connect to the database."
-        )
+        @property
+        def connection_url(self) -> str:
+            return f"{self.protocol}://{self.secrets.username.get_secret_value()}:{self.secrets.password.get_secret_value()}@{self.host}:{self.port}/{self.database_name}"
 
-    type: Literal[AirbyteDestinationTypeName.SQL] = Field(
-        ..., description="Type of destination"
-    )
-    protocol: str = Field("postgresql", description="Database protocol")
-    host: str = Field("127.0.0.1", description="Database host")
-    port: int = Field(5432, description="Database port")
-    database_name: str = Field("notion", description="Database name")
-    secrets: Secrets = Field(
-        None, description="The secrets for the data source."
-    )
-
-    @property
-    def connection_url(self) -> str:
-        return f"{self.protocol}://{self.secrets.username.get_secret_value()}:{self.secrets.password.get_secret_value()}@{self.host}:{self.port}/{self.database_name}"
-
-
-class NotionAirbyteDatasourceConfiguration(DatasourceConfiguration):
-    name: Literal[DatasourceName.NOTION_AIRBYTE] = Field(
+    name: Literal[DatasourceName.NOTION_POSTGRES_AIRBYTE] = Field(
         ..., description="The name of the data source."
     )
-    destination: Union[AirbyteSQLDestinationConfiguration] = Field(
+    destination: PostgresAirbyteDestinationConfiguration = Field(
         ..., description="Destination configuration"
     )
 
 
 AVAIALBLE_DATASOURCES = Union[
-    NotionAirbyteDatasourceConfiguration,
+    NotionPostgresAirbyteDatasourceConfiguration,
     ConfluenceDatasourceConfiguration,
     PdfDatasourceConfiguration,
 ]

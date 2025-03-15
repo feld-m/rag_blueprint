@@ -141,11 +141,11 @@ class TestDatasourceOrchestrator:
     @pytest.mark.parametrize(
         "datasources",
         [
-            [DatasourceName.NOTION],
+            [DatasourceName.NOTION_POSTGRES_AIRBYTE],
             [DatasourceName.CONFLUENCE],
             [DatasourceName.PDF],
             [
-                DatasourceName.NOTION,
+                DatasourceName.NOTION_POSTGRES_AIRBYTE,
                 DatasourceName.CONFLUENCE,
                 DatasourceName.PDF,
             ],
@@ -176,11 +176,11 @@ class TestDatasourceOrchestrator:
     @pytest.mark.parametrize(
         "datasources",
         [
-            [DatasourceName.NOTION],
+            [DatasourceName.NOTION_POSTGRES_AIRBYTE],
             [DatasourceName.CONFLUENCE],
             [DatasourceName.PDF],
             [
-                DatasourceName.NOTION,
+                DatasourceName.NOTION_POSTGRES_AIRBYTE,
                 DatasourceName.CONFLUENCE,
                 DatasourceName.PDF,
             ],
@@ -206,11 +206,11 @@ class TestDatasourceOrchestrator:
     @pytest.mark.parametrize(
         "datasources",
         [
-            [DatasourceName.NOTION],
+            [DatasourceName.NOTION_POSTGRES_AIRBYTE],
             [DatasourceName.CONFLUENCE],
             [DatasourceName.PDF],
             [
-                DatasourceName.NOTION,
+                DatasourceName.NOTION_POSTGRES_AIRBYTE,
                 DatasourceName.CONFLUENCE,
                 DatasourceName.PDF,
             ],

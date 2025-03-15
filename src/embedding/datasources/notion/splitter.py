@@ -3,7 +3,7 @@ from typing import List
 from llama_index.core.schema import TextNode
 
 from embedding.datasources.core.splitter import BaseSplitter, MarkdownSplitter
-from embedding.datasources.notion_airbyte.document import NotionDocument
+from embedding.datasources.notion.document import NotionDocument
 
 
 class NotionSplitter(BaseSplitter):

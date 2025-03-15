@@ -6,7 +6,7 @@ from markdownify import markdownify as md
 from tqdm import tqdm
 
 from embedding.datasources.core.cleaner import BaseCleaner
-from embedding.datasources.notion_airbyte.document import NotionDocument
+from embedding.datasources.notion.document import NotionDocument
 
 
 class NotionCleaner(BaseCleaner):
