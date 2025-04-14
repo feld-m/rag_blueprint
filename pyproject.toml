@@ -29,6 +29,8 @@ extraction = [
     "notion-exporter>=0.1.1",
     "notion-client>=2.3.0",
     "notion>=0.0.28",
+    # HackerNews
+    "requests>=2.31.0",
 ]
 embedding = [
     "chromadb>=0.6.3",
