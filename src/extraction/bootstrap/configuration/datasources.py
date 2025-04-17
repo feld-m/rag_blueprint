@@ -22,6 +22,7 @@ class DatasourceName(str, Enum):
     CONFLUENCE = "confluence"
     NOTION = "notion"
     PDF = "pdf"
+    HACKERNEWS = "hackernews"
 
 
 # Configuration
