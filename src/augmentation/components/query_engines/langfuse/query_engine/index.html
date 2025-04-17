@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../../../img/favicon.ico" />
+    <title>Query_engine - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Query_engine";
+        var mkdocs_page_input_path = "src/augmentation/components/query_engines/langfuse/query_engine.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../augment/">Augment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Augmentation</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../bootstrap/configuration/chainlit_configuration/">Chainlit_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../bootstrap/configuration/langfuse_configuration/">Langfuse_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Components</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" >Components</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" >Llms</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Openai_like</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Openai</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../llms/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Core</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" >Query_engines</a>
+    <ul class="current">
+                <li class="toctree-l4"><a class="reference internal" href="../../registry/">Registry</a>
+                </li>
+                <li class="toctree-l4 current"><a class="reference internal current" >Langfuse</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Postprocessors</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Colbert_rerank</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../postprocessors/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Retrievers</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Auto</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../retrievers/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Synthesizers</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Tree</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../synthesizers/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../langfuse/dataset_service/">Dataset_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../langfuse/prompt_service/">Prompt_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../langfuse/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../chainlit/feedback_service/">Feedback_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../chainlit/exceptions/">Exceptions</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../chainlit/utils/">Utils</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../chainlit/service/">Service</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../core/base_configuration/">Base_configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../core/base_factory/">Base_factory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../core/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../core/base_initializer/">Base_initializer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../core/configuration_retrievers/">Configuration_retrievers</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/bootstrap/configuration/vector_store_configuration/">Vector_store_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/bootstrap/configuration/embedding_model_configuration/">Embedding_model_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/bootstrap/configuration/splitting_configuration/">Splitting_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedding_models</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Hugging_face</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedding_models/hugging_face/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedding_models/hugging_face/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Openai</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedding_models/openai/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedding_models/openai/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/embedding_models/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Voyage</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedding_models/voyage/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedding_models/voyage/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Vector_stores</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/vector_stores/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Pgvector</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/pgvector/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/pgvector/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/pgvector/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/pgvector/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/core/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/core/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chroma</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/chroma/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/chroma/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/chroma/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/chroma/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Qdrant</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/qdrant/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/qdrant/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/qdrant/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/qdrant/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Splitters</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/splitters/base_splitter/">Base_splitter</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/splitters/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic_markdown</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/splitters/basic_markdown/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/splitters/basic_markdown/basic_markdown_splitter/">Basic_markdown_splitter</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/embedders/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedders/basic/embedder/">Embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/embedders/base_embedder/">Base_embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/orchestrators/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/orchestrators/base_orchestrator/">Base_orchestrator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../evaluation/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../evaluation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Evaluators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../evaluation/evaluators/ragas/">Ragas</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../evaluation/evaluators/langfuse/">Langfuse</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Extraction</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/bootstrap/initializer/">Initializer</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../extraction/bootstrap/configuration/datasources/">Datasources</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../extraction/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/datasources/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/datasources/confluence/">Confluence</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/orchestrators/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/orchestrators/base_orchestator/">Base_orchestator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../extraction/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Augmentation</li>
+          <li class="breadcrumb-item">Components</li>
+          <li class="breadcrumb-item">Query_engines</li>
+          <li class="breadcrumb-item">Langfuse</li>
+      <li class="breadcrumb-item active">Query_engine</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/src/augmentation/components/query_engines/langfuse/query_engine.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="query_engine">Query_engine</h1>
+<p>This module contains functionality related to the the <code>query_engine</code> module for <code>augmentation.components.query_engines.langfuse</code>.</p>
+<h2 id="query_engine_1">Query_engine</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.augmentation.components.query_engines.langfuse.query_engine"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.augmentation.components.query_engines.langfuse.query_engine.LangfuseQueryEngine" class="doc doc-heading">
+            <code>LangfuseQueryEngine</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="llama_index.core.query_engine.CustomQueryEngine">CustomQueryEngine</span></code></p>
+
+
+        <p>Custom query engine implementing Retrieval-Augmented Generation (RAG).</p>
+<p>Coordinates retrieval, post-processing, and response generation for RAG workflow.
+Integrates with Langfuse for tracing and Chainlit for message tracking.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>retriever</code></b>
+                  (<code><span title="llama_index.core.retrievers.BaseRetriever">BaseRetriever</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for retrieving relevant documents from vector store</p>
+              </div>
+            </li>
+            <li>
+              <b><code>postprocessors</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="llama_index.core.postprocessor.types.BaseNodePostprocessor">BaseNodePostprocessor</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Sequential chain of document post-processors for refining results</p>
+              </div>
+            </li>
+            <li>
+              <b><code>response_synthesizer</code></b>
+                  (<code><span title="llama_index.core.response_synthesizers.BaseSynthesizer">BaseSynthesizer</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Component for generating coherent responses from retrieved context</p>
+              </div>
+            </li>
+            <li>
+              <b><code>callback_manager</code></b>
+                  (<code><span title="llama_index.core.callbacks.CallbackManager">CallbackManager</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Manager for handling observability and tracing callbacks</p>
+              </div>
+            </li>
+            <li>
+              <b><code>chainlit_tag_format</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Format string for creating Chainlit message reference tags</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/augmentation/components/query_engines/langfuse/query_engine.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LangfuseQueryEngine</span><span class="p">(</span><span class="n">CustomQueryEngine</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom query engine implementing Retrieval-Augmented Generation (RAG).</span>
+
+<span class="sd">    Coordinates retrieval, post-processing, and response generation for RAG workflow.</span>
+<span class="sd">    Integrates with Langfuse for tracing and Chainlit for message tracking.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        retriever: Component for retrieving relevant documents from vector store</span>
+<span class="sd">        postprocessors: Sequential chain of document post-processors for refining results</span>
+<span class="sd">        response_synthesizer: Component for generating coherent responses from retrieved context</span>
+<span class="sd">        callback_manager: Manager for handling observability and tracing callbacks</span>
+<span class="sd">        chainlit_tag_format: Format string for creating Chainlit message reference tags</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">retriever</span><span class="p">:</span> <span class="n">BaseRetriever</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The retriever used to retrieve relevant nodes based on a given query.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">postprocessors</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseNodePostprocessor</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The postprocessor used to process the retrieved nodes.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">response_synthesizer</span><span class="p">:</span> <span class="n">BaseSynthesizer</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The response synthesizer used to generate a response based on the retrieved nodes and the original query.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">callback_manager</span><span class="p">:</span> <span class="n">CallbackManager</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The callback manager used to handle callbacks.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">chainlit_tag_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Format of the tag used to retrieve the trace by chainlit message id in Langfuse.&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">str_or_query_bundle</span><span class="p">:</span> <span class="n">QueryType</span><span class="p">,</span>
+        <span class="n">chainlit_message_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">source_process</span><span class="p">:</span> <span class="n">SourceProcess</span> <span class="o">=</span> <span class="n">SourceProcess</span><span class="o">.</span><span class="n">CHAT_COMPLETION</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RESPONSE_TYPE</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process a query using RAG pipeline with Langfuse tracing.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            str_or_query_bundle: Raw query string or structured query bundle</span>
+<span class="sd">            chainlit_message_id: Optional ID for linking to Chainlit message in UI</span>
+<span class="sd">            source_process: Context identifier indicating query&#39;s origin source</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            RESPONSE_TYPE: Generated response from RAG pipeline with metadata</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_chainlit_message_id</span><span class="p">(</span>
+            <span class="n">message_id</span><span class="o">=</span><span class="n">chainlit_message_id</span><span class="p">,</span> <span class="n">source_process</span><span class="o">=</span><span class="n">source_process</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">str_or_query_bundle</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">aquery</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">str_or_query_bundle</span><span class="p">:</span> <span class="n">QueryType</span><span class="p">,</span>
+        <span class="n">chainlit_message_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">source_process</span><span class="p">:</span> <span class="n">SourceProcess</span> <span class="o">=</span> <span class="n">SourceProcess</span><span class="o">.</span><span class="n">CHAT_COMPLETION</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RESPONSE_TYPE</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Asynchronously process a query using RAG pipeline with Langfuse tracing.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            str_or_query_bundle: Raw query string or structured query bundle</span>
+<span class="sd">            chainlit_message_id: Optional ID for linking to Chainlit message in UI</span>
+<span class="sd">            source_process: Context identifier indicating query&#39;s origin source</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            RESPONSE_TYPE: Generated response from RAG pipeline with metadata</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_chainlit_message_id</span><span class="p">(</span>
+            <span class="n">message_id</span><span class="o">=</span><span class="n">chainlit_message_id</span><span class="p">,</span> <span class="n">source_process</span><span class="o">=</span><span class="n">source_process</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">aquery</span><span class="p">(</span><span class="n">str_or_query_bundle</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">custom_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RESPONSE_TYPE</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute custom RAG query processing pipeline with explicit control flow.</span>
+
+<span class="sd">        Implements the core RAG workflow steps in sequence:</span>
+<span class="sd">        1. Retrieve relevant documents using configured retriever</span>
+<span class="sd">        2. Apply all registered post-processors to refine results</span>
+<span class="sd">        3. Synthesize final response using the configured synthesizer</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query_str: Raw query string to process</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Response object containing generated answer and metadata</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">query_str</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">postprocessor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">postprocessors</span><span class="p">:</span>
+            <span class="n">nodes</span> <span class="o">=</span> <span class="n">postprocessor</span><span class="o">.</span><span class="n">postprocess_nodes</span><span class="p">(</span>
+                <span class="n">nodes</span><span class="p">,</span> <span class="n">QueryBundle</span><span class="p">(</span><span class="n">query_str</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">response_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">response_synthesizer</span><span class="o">.</span><span class="n">synthesize</span><span class="p">(</span><span class="n">query_str</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response_obj</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_langfuse_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatefulTraceClient</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve current Langfuse trace from registered callback handler.</span>
+
+<span class="sd">        Searches through callback handlers to find active LlamaIndexCallbackHandler</span>
+<span class="sd">        and extract its associated Langfuse trace for monitoring or annotation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            StatefulTraceClient: Active Langfuse trace or None if not found</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_manager</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">LlamaIndexCallbackHandler</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">handler</span><span class="o">.</span><span class="n">trace</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_session_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set session ID for Langfuse tracing to group related queries.</span>
+
+<span class="sd">        Updates the session identifier in all registered Langfuse callback handlers</span>
+<span class="sd">        to enable session-level analytics and trace grouping.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            session_id: Unique identifier for current user session</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_manager</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">LlamaIndexCallbackHandler</span><span class="p">):</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">session_id</span> <span class="o">=</span> <span class="n">session_id</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_chainlit_message_id</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source_process</span><span class="p">:</span> <span class="n">SourceProcess</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure Chainlit message tracking in Langfuse trace.</span>
+
+<span class="sd">        Links the current Langfuse trace to a Chainlit message ID and tags</span>
+<span class="sd">        with the processing source context for traceability in the Langfuse UI.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            message_id: Chainlit message identifier to reference</span>
+<span class="sd">            source_process: Source context enum categorizing the query origin</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_manager</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">LlamaIndexCallbackHandler</span><span class="p">):</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">set_trace_params</span><span class="p">(</span>
+                    <span class="n">tags</span><span class="o">=</span><span class="p">[</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">chainlit_tag_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message_id</span><span class="o">=</span><span class="n">message_id</span><span class="p">),</span>
+                        <span class="n">source_process</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.components.query_engines.langfuse.query_engine.LangfuseQueryEngine.aquery" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">aquery</span><span class="p">(</span><span class="n">str_or_query_bundle</span><span class="p">,</span> <span class="n">chainlit_message_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">source_process</span><span class="o">=</span><span class="n">SourceProcess</span><span class="o">.</span><span class="n">CHAT_COMPLETION</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Asynchronously process a query using RAG pipeline with Langfuse tracing.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>str_or_query_bundle</code></b>
+                  (<code><span title="llama_index.core.schema.QueryType">QueryType</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Raw query string or structured query bundle</p>
+              </div>
+            </li>
+            <li>
+              <b><code>chainlit_message_id</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Optional ID for linking to Chainlit message in UI</p>
+              </div>
+            </li>
+            <li>
+              <b><code>source_process</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="SourceProcess (src.augmentation.components.query_engines.langfuse.query_engine.SourceProcess)" href="#src.augmentation.components.query_engines.langfuse.query_engine.SourceProcess">SourceProcess</a></code>, default:
+                      <code><span title="src.augmentation.components.query_engines.langfuse.query_engine.SourceProcess.CHAT_COMPLETION">CHAT_COMPLETION</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Context identifier indicating query's origin source</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>RESPONSE_TYPE</code></b>(                  <code><span title="llama_index.core.base.response.schema.RESPONSE_TYPE">RESPONSE_TYPE</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Generated response from RAG pipeline with metadata</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/components/query_engines/langfuse/query_engine.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">aquery</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">str_or_query_bundle</span><span class="p">:</span> <span class="n">QueryType</span><span class="p">,</span>
+    <span class="n">chainlit_message_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">source_process</span><span class="p">:</span> <span class="n">SourceProcess</span> <span class="o">=</span> <span class="n">SourceProcess</span><span class="o">.</span><span class="n">CHAT_COMPLETION</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RESPONSE_TYPE</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Asynchronously process a query using RAG pipeline with Langfuse tracing.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        str_or_query_bundle: Raw query string or structured query bundle</span>
+<span class="sd">        chainlit_message_id: Optional ID for linking to Chainlit message in UI</span>
+<span class="sd">        source_process: Context identifier indicating query&#39;s origin source</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        RESPONSE_TYPE: Generated response from RAG pipeline with metadata</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_set_chainlit_message_id</span><span class="p">(</span>
+        <span class="n">message_id</span><span class="o">=</span><span class="n">chainlit_message_id</span><span class="p">,</span> <span class="n">source_process</span><span class="o">=</span><span class="n">source_process</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">aquery</span><span class="p">(</span><span class="n">str_or_query_bundle</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.components.query_engines.langfuse.query_engine.LangfuseQueryEngine.custom_query" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">custom_query</span><span class="p">(</span><span class="n">query_str</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Execute custom RAG query processing pipeline with explicit control flow.</p>
+<p>Implements the core RAG workflow steps in sequence:
+1. Retrieve relevant documents using configured retriever
+2. Apply all registered post-processors to refine results
+3. Synthesize final response using the configured synthesizer</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>query_str</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Raw query string to process</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="llama_index.core.base.response.schema.RESPONSE_TYPE">RESPONSE_TYPE</span></code>
+              –
+              <div class="doc-md-description">
+                <p>Response object containing generated answer and metadata</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/components/query_engines/langfuse/query_engine.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">custom_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RESPONSE_TYPE</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute custom RAG query processing pipeline with explicit control flow.</span>
+
+<span class="sd">    Implements the core RAG workflow steps in sequence:</span>
+<span class="sd">    1. Retrieve relevant documents using configured retriever</span>
+<span class="sd">    2. Apply all registered post-processors to refine results</span>
+<span class="sd">    3. Synthesize final response using the configured synthesizer</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        query_str: Raw query string to process</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Response object containing generated answer and metadata</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">query_str</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">postprocessor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">postprocessors</span><span class="p">:</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="n">postprocessor</span><span class="o">.</span><span class="n">postprocess_nodes</span><span class="p">(</span>
+            <span class="n">nodes</span><span class="p">,</span> <span class="n">QueryBundle</span><span class="p">(</span><span class="n">query_str</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="n">response_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">response_synthesizer</span><span class="o">.</span><span class="n">synthesize</span><span class="p">(</span><span class="n">query_str</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response_obj</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.components.query_engines.langfuse.query_engine.LangfuseQueryEngine.get_current_langfuse_trace" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_current_langfuse_trace</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Retrieve current Langfuse trace from registered callback handler.</p>
+<p>Searches through callback handlers to find active LlamaIndexCallbackHandler
+and extract its associated Langfuse trace for monitoring or annotation.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>StatefulTraceClient</code></b>(                  <code><span title="langfuse.client.StatefulTraceClient">StatefulTraceClient</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Active Langfuse trace or None if not found</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/components/query_engines/langfuse/query_engine.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_current_langfuse_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatefulTraceClient</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve current Langfuse trace from registered callback handler.</span>
+
+<span class="sd">    Searches through callback handlers to find active LlamaIndexCallbackHandler</span>
+<span class="sd">    and extract its associated Langfuse trace for monitoring or annotation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        StatefulTraceClient: Active Langfuse trace or None if not found</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_manager</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">LlamaIndexCallbackHandler</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">handler</span><span class="o">.</span><span class="n">trace</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.components.query_engines.langfuse.query_engine.LangfuseQueryEngine.query" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">query</span><span class="p">(</span><span class="n">str_or_query_bundle</span><span class="p">,</span> <span class="n">chainlit_message_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">source_process</span><span class="o">=</span><span class="n">SourceProcess</span><span class="o">.</span><span class="n">CHAT_COMPLETION</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Process a query using RAG pipeline with Langfuse tracing.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>str_or_query_bundle</code></b>
+                  (<code><span title="llama_index.core.schema.QueryType">QueryType</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Raw query string or structured query bundle</p>
+              </div>
+            </li>
+            <li>
+              <b><code>chainlit_message_id</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Optional ID for linking to Chainlit message in UI</p>
+              </div>
+            </li>
+            <li>
+              <b><code>source_process</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="SourceProcess (src.augmentation.components.query_engines.langfuse.query_engine.SourceProcess)" href="#src.augmentation.components.query_engines.langfuse.query_engine.SourceProcess">SourceProcess</a></code>, default:
+                      <code><span title="src.augmentation.components.query_engines.langfuse.query_engine.SourceProcess.CHAT_COMPLETION">CHAT_COMPLETION</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Context identifier indicating query's origin source</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>RESPONSE_TYPE</code></b>(                  <code><span title="llama_index.core.base.response.schema.RESPONSE_TYPE">RESPONSE_TYPE</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Generated response from RAG pipeline with metadata</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/components/query_engines/langfuse/query_engine.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">str_or_query_bundle</span><span class="p">:</span> <span class="n">QueryType</span><span class="p">,</span>
+    <span class="n">chainlit_message_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">source_process</span><span class="p">:</span> <span class="n">SourceProcess</span> <span class="o">=</span> <span class="n">SourceProcess</span><span class="o">.</span><span class="n">CHAT_COMPLETION</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RESPONSE_TYPE</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process a query using RAG pipeline with Langfuse tracing.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        str_or_query_bundle: Raw query string or structured query bundle</span>
+<span class="sd">        chainlit_message_id: Optional ID for linking to Chainlit message in UI</span>
+<span class="sd">        source_process: Context identifier indicating query&#39;s origin source</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        RESPONSE_TYPE: Generated response from RAG pipeline with metadata</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_set_chainlit_message_id</span><span class="p">(</span>
+        <span class="n">message_id</span><span class="o">=</span><span class="n">chainlit_message_id</span><span class="p">,</span> <span class="n">source_process</span><span class="o">=</span><span class="n">source_process</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">str_or_query_bundle</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.components.query_engines.langfuse.query_engine.LangfuseQueryEngine.set_session_id" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">set_session_id</span><span class="p">(</span><span class="n">session_id</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Set session ID for Langfuse tracing to group related queries.</p>
+<p>Updates the session identifier in all registered Langfuse callback handlers
+to enable session-level analytics and trace grouping.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>session_id</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Unique identifier for current user session</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="quote">
+              <summary>Source code in <code>src/augmentation/components/query_engines/langfuse/query_engine.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_session_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set session ID for Langfuse tracing to group related queries.</span>
+
+<span class="sd">    Updates the session identifier in all registered Langfuse callback handlers</span>
+<span class="sd">    to enable session-level analytics and trace grouping.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        session_id: Unique identifier for current user session</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_manager</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">LlamaIndexCallbackHandler</span><span class="p">):</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">session_id</span> <span class="o">=</span> <span class="n">session_id</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.augmentation.components.query_engines.langfuse.query_engine.LangfuseQueryEngineFactory" class="doc doc-heading">
+            <code>LangfuseQueryEngineFactory</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="core.base_factory.Factory">Factory</span></code></p>
+
+
+        <p>Factory for creating configured LangfuseQueryEngine instances.</p>
+<p>Constructs and connects components needed for the RAG pipeline including:
+- Retriever for document fetching
+- Postprocessors for refining results
+- Response synthesizer for answer generation
+- Langfuse callback manager for observability</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/augmentation/components/query_engines/langfuse/query_engine.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LangfuseQueryEngineFactory</span><span class="p">(</span><span class="n">Factory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Factory for creating configured LangfuseQueryEngine instances.</span>
+
+<span class="sd">    Constructs and connects components needed for the RAG pipeline including:</span>
+<span class="sd">    - Retriever for document fetching</span>
+<span class="sd">    - Postprocessors for refining results</span>
+<span class="sd">    - Response synthesizer for answer generation</span>
+<span class="sd">    - Langfuse callback manager for observability</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_configuration_class</span><span class="p">:</span> <span class="n">Type</span> <span class="o">=</span> <span class="n">AugmentationConfiguration</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_instance</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">configuration</span><span class="p">:</span> <span class="n">AugmentationConfiguration</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LangfuseQueryEngine</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create and configure a LangfuseQueryEngine instance from configuration.</span>
+
+<span class="sd">        Instantiates all RAG pipeline components based on configuration settings,</span>
+<span class="sd">        connects them with a shared callback manager for tracing, and assembles</span>
+<span class="sd">        them into a complete query engine.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            configuration: Complete augmentation configuration containing</span>
+<span class="sd">                           settings for all components</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            LangfuseQueryEngine: Fully configured RAG query engine with tracing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">query_engine_configuration</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">augmentation</span><span class="o">.</span><span class="n">query_engine</span>
+        <span class="n">synthesizer</span> <span class="o">=</span> <span class="n">SynthesizerRegistry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">query_engine_configuration</span><span class="o">.</span><span class="n">synthesizer</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">augmentation</span><span class="p">)</span>
+        <span class="n">retriever</span> <span class="o">=</span> <span class="n">RetrieverRegistry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">query_engine_configuration</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="n">postprocessors</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">PostprocessorRegistry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">postprocessor_configuration</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">postprocessor_configuration</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">postprocessor_configuration</span> <span class="ow">in</span> <span class="n">query_engine_configuration</span><span class="o">.</span><span class="n">postprocessors</span>
+        <span class="p">]</span>
+        <span class="n">langfuse_callback_manager</span> <span class="o">=</span> <span class="n">LlamaIndexCallbackManagerFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">configuration</span><span class="o">.</span><span class="n">augmentation</span><span class="o">.</span><span class="n">langfuse</span>
+        <span class="p">)</span>
+
+        <span class="n">retriever</span><span class="o">.</span><span class="n">callback_manager</span> <span class="o">=</span> <span class="n">langfuse_callback_manager</span>
+        <span class="n">synthesizer</span><span class="o">.</span><span class="n">callback_manager</span> <span class="o">=</span> <span class="n">langfuse_callback_manager</span>
+        <span class="k">for</span> <span class="n">postprocessor</span> <span class="ow">in</span> <span class="n">postprocessors</span><span class="p">:</span>
+            <span class="n">postprocessor</span><span class="o">.</span><span class="n">callback_manager</span> <span class="o">=</span> <span class="n">langfuse_callback_manager</span>
+
+        <span class="k">return</span> <span class="n">LangfuseQueryEngine</span><span class="p">(</span>
+            <span class="n">retriever</span><span class="o">=</span><span class="n">retriever</span><span class="p">,</span>
+            <span class="n">postprocessors</span><span class="o">=</span><span class="n">postprocessors</span><span class="p">,</span>
+            <span class="n">response_synthesizer</span><span class="o">=</span><span class="n">synthesizer</span><span class="p">,</span>
+            <span class="n">callback_manager</span><span class="o">=</span><span class="n">langfuse_callback_manager</span><span class="p">,</span>
+            <span class="n">chainlit_tag_format</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">augmentation</span><span class="o">.</span><span class="n">langfuse</span><span class="o">.</span><span class="n">chainlit_tag_format</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.augmentation.components.query_engines.langfuse.query_engine.SourceProcess" class="doc doc-heading">
+            <code>SourceProcess</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Enumeration of possible query processing sources.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>CHAT_COMPLETION</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Query from interactive chat completion interface</p>
+              </div>
+            </li>
+            <li>
+              <b><code>DEPLOYMENT_EVALUATION</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Query from automated deployment testing and evaluation</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/augmentation/components/query_engines/langfuse/query_engine.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SourceProcess</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Enumeration of possible query processing sources.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        CHAT_COMPLETION: Query from interactive chat completion interface</span>
+<span class="sd">        DEPLOYMENT_EVALUATION: Query from automated deployment testing and evaluation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CHAT_COMPLETION</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">DEPLOYMENT_EVALUATION</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../callback_manager/" class="btn btn-neutral float-left" title="Callback_manager"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../configuration/" class="btn btn-neutral float-right" title="Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../callback_manager/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../configuration/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../../../..";</script>
+    <script src="../../../../../../js/theme_extra.js"></script>
+    <script src="../../../../../../js/theme.js"></script>
+      <script src="../../../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
