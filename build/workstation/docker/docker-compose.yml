@@ -1,6 +1,6 @@
 # Docker file for RAG services that use RAG base services via its docker networks.
 
-name: rag
+name: ragsd
 services:
   unit-tests:
     build:
