@@ -1,6 +1,6 @@
 import os
 import re
-from typing import List, Type
+from typing import Callable, List, Type
 
 from llama_index.core.readers.file.base import default_file_metadata_func
 from markitdown import MarkItDown
@@ -39,14 +39,20 @@ class PDFSalesDatasourceParser(BaseParser[PDFSalesDocument]):
         },
     ]
 
-    def __init__(self, parser: MarkItDown = MarkItDown()):
+    def __init__(
+        self,
+        parser: MarkItDown = MarkItDown(),
+        metadata_extractor: Callable = default_file_metadata_func,
+    ):
         """
         Initialize the PDF Sales datasource parser.
 
         Attributes:
             parser: MarkItDown parser instance for PDF to markdown conversion
+            metadata_extractor: Function to extract metadata from the PDF file
         """
         self.parser = parser
+        self.metadata_extractor = metadata_extractor
 
     def parse(self, file_path: str) -> PDFSalesDocument:
         """
@@ -105,7 +111,7 @@ class PDFSalesDatasourceParser(BaseParser[PDFSalesDocument]):
         Returns:
             Processed metadata dictionary with standardized fields
         """
-        metadata = default_file_metadata_func(file_path)
+        metadata = self.metadata_extractor(file_path)
         metadata.update(
             {
                 "datasource": "pdf_sales",
