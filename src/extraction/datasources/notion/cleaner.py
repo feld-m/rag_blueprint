@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from markdownify import markdownify as md
 
 from core.base_factory import Factory
-from extraction.datasources.core.cleaner import BasicMarkdownCleaner
+from extraction.datasources.core.base.cleaner import BasicMarkdownCleaner
 from extraction.datasources.notion.configuration import (
     NotionDatasourceConfiguration,
 )

@@ -7,11 +7,10 @@ sys.path.append("./src")
 
 
 from extraction.datasources.confluence.document import ConfluenceDocument
-from extraction.datasources.core.cleaner import BasicMarkdownCleaner
+from extraction.datasources.core.base.cleaner import BasicMarkdownCleaner
 
 
 class Fixtures:
-
     def __init__(self):
         self.confluence_document: ConfluenceDocument = None
         self.confluence_cleaned_document: ConfluenceDocument = None
@@ -29,14 +28,12 @@ class Fixtures:
 
 
 class Arrangements:
-
     def __init__(self, fixtures: Fixtures) -> None:
         self.fixtures = fixtures
         self.service = BasicMarkdownCleaner()
 
 
 class Assertions:
-
     def __init__(self, arrangements: Arrangements) -> None:
         self.fixtures = arrangements.fixtures
         self.arrangements = arrangements
@@ -61,7 +58,6 @@ class Assertions:
 
 
 class Manager:
-
     def __init__(self, arrangements: Arrangements):
         self.fixtures = arrangements.fixtures
         self.arrangements = arrangements
@@ -72,7 +68,6 @@ class Manager:
 
 
 class TestConfluenceCleaner:
-
     @pytest.mark.parametrize(
         "document_text, expected_document_text",
         [

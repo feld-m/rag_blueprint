@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Generic
 
-from extraction.datasources.core.document import DocType
+from extraction.datasources.core.base.document import DocType
 
 
 class BaseCleaner(ABC, Generic[DocType]):

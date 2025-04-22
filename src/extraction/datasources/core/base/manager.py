@@ -4,14 +4,14 @@ from typing import AsyncIterator, Generic
 from extraction.bootstrap.configuration.configuration import (
     ExtractionConfiguration,
 )
-from extraction.datasources.core.cleaner import (
+from extraction.datasources.core.base.cleaner import (
     BaseCleaner,
     BasicMarkdownCleaner,
 )
-from extraction.datasources.core.document import DocType
-from extraction.datasources.core.parser import BaseParser, BasicMarkdownParser
-from extraction.datasources.core.reader import BaseReader
-from extraction.datasources.core.splitter import (
+from extraction.datasources.core.base.document import DocType
+from extraction.datasources.core.base.parser import BaseParser, BasicMarkdownParser
+from extraction.datasources.core.base.reader import BaseReader
+from extraction.datasources.core.base.splitter import (
     BaseSplitter,
     BasicMarkdownSplitter,
 )
