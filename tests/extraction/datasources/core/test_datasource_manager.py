@@ -11,12 +11,11 @@ from llama_index.core.schema import TextNode
 from embedding.bootstrap.configuration.configuration import (
     EmbeddingConfiguration,
 )
-from extraction.datasources.core.manager import BasicDatasourceManager
-from extraction.datasources.core.reader import BaseReader
+from extraction.datasources.core.base.manager import BasicDatasourceManager
+from extraction.datasources.core.base.reader import BaseReader
 
 
 class Fixtures:
-
     def __init__(self):
         self.raw_data: List[Document] = None
         self.cleaned_documents: List[Document] = None
@@ -32,13 +31,10 @@ class Fixtures:
 
 
 class Arrangements:
-
     def __init__(self, fixtures: Fixtures) -> None:
         self.fixtures = fixtures
 
-        self.configuration: EmbeddingConfiguration = Mock(
-            spec=EmbeddingConfiguration
-        )
+        self.configuration: EmbeddingConfiguration = Mock(spec=EmbeddingConfiguration)
         self.reader: BaseReader = Mock(spec=BaseReader)
         self.service = BasicDatasourceManager(
             configuration=self.configuration,
@@ -55,7 +51,6 @@ class Arrangements:
 
 
 class Assertions:
-
     def __init__(self, arrangements: Arrangements):
         self.fixtures = arrangements.fixtures
 
@@ -68,7 +63,6 @@ class Assertions:
 
 
 class Manager:
-
     def __init__(self, arrangements: Arrangements):
         self.fixtures = arrangements.fixtures
         self.arrangements = arrangements
@@ -79,7 +73,6 @@ class Manager:
 
 
 class TestDatasourceManager:
-
     @pytest.mark.asyncio
     async def test_given_when_full_refresh_sync_then_resources_are_extracted(
         self,
@@ -96,6 +89,4 @@ class TestDatasourceManager:
         documents_generator = service.full_refresh_sync()
 
         # Assert
-        await manager.assertions.assert_documents_are_extracted(
-            documents_generator
-        )
+        await manager.assertions.assert_documents_are_extracted(documents_generator)

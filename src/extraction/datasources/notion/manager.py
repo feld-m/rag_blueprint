@@ -1,7 +1,7 @@
 from typing import AsyncIterator
 
 from core.base_factory import Factory
-from extraction.datasources.core.manager import BaseDatasourceManager
+from extraction.datasources.core.base.manager import BaseDatasourceManager
 from extraction.datasources.notion.cleaner import (
     NotionDatasourceCleaner,
     NotionDatasourceCleanerFactory,

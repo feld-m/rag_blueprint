@@ -10,7 +10,7 @@ from extraction.datasources.confluence.parser import (
 from extraction.datasources.confluence.reader import (
     ConfluenceDatasourceReaderFactory,
 )
-from extraction.datasources.core.manager import BasicDatasourceManager
+from extraction.datasources.core.base.manager import BasicDatasourceManager
 
 
 class ConfluenceDatasourceManagerFactory(Factory):

@@ -1,7 +1,7 @@
 from typing import Type
 
 from core import Factory
-from extraction.datasources.core.manager import BasicDatasourceManager
+from extraction.datasources.core.base.manager import BasicDatasourceManager
 from extraction.datasources.pdf.configuration import PDFDatasourceConfiguration
 from extraction.datasources.pdf.parser import PDFDatasourceParserFactory
 from extraction.datasources.pdf.reader import PDFDatasourceReaderFactory
