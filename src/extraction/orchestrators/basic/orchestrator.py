@@ -4,7 +4,7 @@ from core import Factory
 from extraction.bootstrap.configuration.configuration import (
     ExtractionConfiguration,
 )
-from extraction.datasources.core.document import BaseDocument
+from extraction.datasources.core.base.document import BaseDocument
 from extraction.datasources.registry import DatasourceManagerRegistry
 from extraction.orchestrators.base_orchestator import BaseDatasourceOrchestrator
 
@@ -63,6 +63,4 @@ class BasicDatasourceOrchestratorFactory(Factory):
             )
             for datasource_configuration in configuration.extraction.datasources
         ]
-        return BasicDatasourceOrchestrator(
-            datasource_managers=datasource_managers
-        )
+        return BasicDatasourceOrchestrator(datasource_managers=datasource_managers)
