@@ -50,7 +50,9 @@ class Fixtures:
         self.timeout = timeout
         return self
 
-    def with_rate_limit_delay(self, rate_limit_delay: float = 0.1) -> "Fixtures":
+    def with_rate_limit_delay(
+        self, rate_limit_delay: float = 0.1
+    ) -> "Fixtures":
         self.rate_limit_delay = rate_limit_delay
         return self
 
@@ -75,7 +77,8 @@ class Fixtures:
     def with_single_response(self, items_count: int = 5) -> "Fixtures":
         self.single_response = {
             "items": [
-                {"id": f"item-{i}", "name": f"Item {i}"} for i in range(items_count)
+                {"id": f"item-{i}", "name": f"Item {i}"}
+                for i in range(items_count)
             ]
         }
         return self
@@ -247,7 +250,9 @@ class TestAPIClient:
         # and after sleep
         mock_time.side_effect = [0.0, 100.0, 100.5]
 
-        fixtures = Fixtures().with_base_url().with_rate_limit_delay(0.5).with_timeout()
+        fixtures = (
+            Fixtures().with_base_url().with_rate_limit_delay(0.5).with_timeout()
+        )
         arrangements = Arrangements(fixtures)
 
         # Create a single response for the request
@@ -326,7 +331,10 @@ class TestAPIClient:
         # Arrange
         items_count = 5
         fixtures = (
-            Fixtures().with_base_url().with_timeout().with_single_response(items_count)
+            Fixtures()
+            .with_base_url()
+            .with_timeout()
+            .with_single_response(items_count)
         )
         arrangements = Arrangements(fixtures)
         arrangements.on_make_request_return_single_response()

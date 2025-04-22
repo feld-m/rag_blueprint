@@ -42,7 +42,9 @@ class NotionDatasourceParser(BaseParser[NotionDocument]):
         """
         metadata["datasource"] = "notion"
         metadata["created_date"] = metadata["created_time"].split("T")[0]
-        metadata["last_edited_date"] = metadata["last_edited_time"].split("T")[0]
+        metadata["last_edited_date"] = metadata["last_edited_time"].split("T")[
+            0
+        ]
         return metadata
 
 
@@ -52,7 +54,9 @@ class NotionDatasourceParserFactory(Factory):
     Creates and configures parser instances for Notion content.
     """
 
-    _configuration_class: NotionDatasourceConfiguration = NotionDatasourceConfiguration
+    _configuration_class: NotionDatasourceConfiguration = (
+        NotionDatasourceConfiguration
+    )
 
     @classmethod
     def _create_instance(

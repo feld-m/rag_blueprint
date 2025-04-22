@@ -95,7 +95,9 @@ class NotionDatasourceReader(BaseReader):
         page_ids = set(page_ids)
 
         # Batch and export
-        chunked_database_ids = list(chunked(database_ids, self.export_batch_size))
+        chunked_database_ids = list(
+            chunked(database_ids, self.export_batch_size)
+        )
         chunked_page_ids = list(chunked(page_ids, self.export_batch_size))
 
         databases, databases_failed = await self._export_documents(
@@ -117,7 +119,11 @@ class NotionDatasourceReader(BaseReader):
 
         # Apply limit if needed
         objects = databases + pages
-        return objects if self.export_limit is None else objects[: self.export_limit]
+        return (
+            objects
+            if self.export_limit is None
+            else objects[: self.export_limit]
+        )
 
     async def _export_documents(
         self, chunked_ids: List[List[str]], objects_type: NotionObjectType
@@ -154,7 +160,9 @@ class NotionDatasourceReader(BaseReader):
                 try:
                     objects = await self.exporter.run(
                         page_ids=(
-                            chunk_ids if objects_type == NotionObjectType.PAGE else None
+                            chunk_ids
+                            if objects_type == NotionObjectType.PAGE
+                            else None
                         ),
                         database_ids=(
                             chunk_ids
@@ -164,7 +172,9 @@ class NotionDatasourceReader(BaseReader):
                     )
                     all_objects.extend(objects)
                     pbar.update(len(chunk_ids))
-                    self.logger.debug(f"Added {len(objects)} {objects_type.name}s")
+                    self.logger.debug(
+                        f"Added {len(objects)} {objects_type.name}s"
+                    )
                 except Exception as e:
                     self.logger.error(
                         f"Export failed for {objects_type.name}: {chunk_ids}. {e}"
@@ -201,7 +211,9 @@ class NotionDatasourceReader(BaseReader):
         database_ids = [
             entry["id"] for entry in response if entry["object"] == "database"
         ]
-        page_ids = [entry["id"] for entry in response if entry["object"] == "page"]
+        page_ids = [
+            entry["id"] for entry in response if entry["object"] == "page"
+        ]
 
         self.logger.info(
             f"Found {len(database_ids)} database ids and {len(page_ids)} page ids in Notion."
@@ -249,7 +261,9 @@ class NotionDatasourceReader(BaseReader):
 
         return object_ids
 
-    def _get_current_limit(self, database_ids: List[str], page_ids: List[str]) -> int:
+    def _get_current_limit(
+        self, database_ids: List[str], page_ids: List[str]
+    ) -> int:
         """Calculate remaining object limit based on existing IDs.
 
         Args:

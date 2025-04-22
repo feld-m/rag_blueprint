@@ -63,4 +63,6 @@ class BasicDatasourceOrchestratorFactory(Factory):
             )
             for datasource_configuration in configuration.extraction.datasources
         ]
-        return BasicDatasourceOrchestrator(datasource_managers=datasource_managers)
+        return BasicDatasourceOrchestrator(
+            datasource_managers=datasource_managers
+        )

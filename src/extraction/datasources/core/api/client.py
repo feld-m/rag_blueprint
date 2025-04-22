@@ -49,7 +49,9 @@ class APIClient(abc.ABC):
         elapsed = time.time() - self.last_request_time
         if elapsed < self.rate_limit_delay:
             sleep_time = self.rate_limit_delay - elapsed
-            logger.debug(f"Rate limiting: sleeping for {sleep_time:.2f} seconds")
+            logger.debug(
+                f"Rate limiting: sleeping for {sleep_time:.2f} seconds"
+            )
             time.sleep(sleep_time)
 
         self.last_request_time = time.time()
@@ -155,7 +157,9 @@ class APIClient(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def extract_data(self, response_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+    def extract_data(
+        self, response_data: Dict[str, Any]
+    ) -> List[Dict[str, Any]]:
         """
         Extract relevant data from API response.
 

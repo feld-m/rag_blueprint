@@ -34,7 +34,9 @@ class Arrangements:
     def __init__(self, fixtures: Fixtures) -> None:
         self.fixtures = fixtures
 
-        self.configuration: EmbeddingConfiguration = Mock(spec=EmbeddingConfiguration)
+        self.configuration: EmbeddingConfiguration = Mock(
+            spec=EmbeddingConfiguration
+        )
         self.reader: BaseReader = Mock(spec=BaseReader)
         self.service = BasicDatasourceManager(
             configuration=self.configuration,
@@ -89,4 +91,6 @@ class TestDatasourceManager:
         documents_generator = service.full_refresh_sync()
 
         # Assert
-        await manager.assertions.assert_documents_are_extracted(documents_generator)
+        await manager.assertions.assert_documents_are_extracted(
+            documents_generator
+        )

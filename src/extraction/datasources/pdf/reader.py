@@ -40,12 +40,18 @@ class PDFDatasourceReader(BaseReader):
             f"Fetching PDF files from '{self.base_path}' with limit {self.export_limit}"
         )
 
-        pdf_files = [f for f in os.listdir(self.base_path) if f.endswith(".pdf")]
+        pdf_files = [
+            f for f in os.listdir(self.base_path) if f.endswith(".pdf")
+        ]
         files_to_load = (
-            pdf_files if self.export_limit is None else pdf_files[: self.export_limit]
+            pdf_files
+            if self.export_limit is None
+            else pdf_files[: self.export_limit]
         )
 
-        for file_name in tqdm(files_to_load, desc="[PDF] Loading files", unit="files"):
+        for file_name in tqdm(
+            files_to_load, desc="[PDF] Loading files", unit="files"
+        ):
             file_path = os.path.join(self.base_path, file_name)
             if os.path.isfile(file_path):
                 yield file_path

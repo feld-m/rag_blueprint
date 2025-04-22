@@ -9,7 +9,10 @@ from extraction.datasources.core.base.cleaner import (
     BasicMarkdownCleaner,
 )
 from extraction.datasources.core.base.document import DocType
-from extraction.datasources.core.base.parser import BaseParser, BasicMarkdownParser
+from extraction.datasources.core.base.parser import (
+    BaseParser,
+    BasicMarkdownParser,
+)
 from extraction.datasources.core.base.reader import BaseReader
 from extraction.datasources.core.base.splitter import (
     BaseSplitter,

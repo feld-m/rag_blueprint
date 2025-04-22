@@ -76,7 +76,9 @@ class ConfluenceDatasourceParser(BaseParser[ConfluenceDocument]):
             "datasource": "confluence",
             "format": "md",
             "last_edited_date": page["history"]["lastUpdated"]["when"],
-            "last_edited_time": page["history"]["lastUpdated"]["when"].split("T")[0],
+            "last_edited_time": page["history"]["lastUpdated"]["when"].split(
+                "T"
+            )[0],
             "page_id": page["id"],
             "space": page["_expandable"]["space"].split("/")[-1],
             "title": page["title"],

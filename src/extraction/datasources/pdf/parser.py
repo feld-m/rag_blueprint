@@ -36,7 +36,9 @@ class PDFDatasourceParser(BaseParser[PDFDocument]):
         Returns:
             PDFDocument object containing the parsed content and metadata
         """
-        markdown = self.parser.convert(file_path, file_extension=".pdf").text_content
+        markdown = self.parser.convert(
+            file_path, file_extension=".pdf"
+        ).text_content
         metadata = self._extract_metadata(file_path)
         return PDFDocument(text=markdown, metadata=metadata)
 
@@ -77,7 +79,9 @@ class PDFDatasourceParserFactory(Factory):
     _configuration_class: Type = PDFDatasourceConfiguration
 
     @classmethod
-    def _create_instance(cls, _: PDFDatasourceConfiguration) -> PDFDatasourceParser:
+    def _create_instance(
+        cls, _: PDFDatasourceConfiguration
+    ) -> PDFDatasourceParser:
         """
         Creates a new instance of the PDF parser.
 
