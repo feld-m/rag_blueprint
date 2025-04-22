@@ -205,7 +205,7 @@ from extraction.datasources.confluence.configuration import (
     ConfluenceDatasourceConfiguration,
 )
 from extraction.datasources.confluence.document import ConfluenceDocument
-from extraction.datasources.core.parser import BaseParser
+from extraction.datasources.core.base.parser import BaseParser
 
 
 class ConfluenceDatasourceParser(BaseParser[ConfluenceDocument]):

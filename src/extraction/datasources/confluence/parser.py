@@ -8,11 +8,10 @@ from extraction.datasources.confluence.configuration import (
     ConfluenceDatasourceConfiguration,
 )
 from extraction.datasources.confluence.document import ConfluenceDocument
-from extraction.datasources.core.parser import BaseParser
+from extraction.datasources.core.base.parser import BaseParser
 
 
 class ConfluenceDatasourceParser(BaseParser[ConfluenceDocument]):
-
     def __init__(
         self,
         configuration: ConfluenceDatasourceConfiguration,
@@ -77,9 +76,7 @@ class ConfluenceDatasourceParser(BaseParser[ConfluenceDocument]):
             "datasource": "confluence",
             "format": "md",
             "last_edited_date": page["history"]["lastUpdated"]["when"],
-            "last_edited_time": page["history"]["lastUpdated"]["when"].split(
-                "T"
-            )[0],
+            "last_edited_time": page["history"]["lastUpdated"]["when"].split("T")[0],
             "page_id": page["id"],
             "space": page["_expandable"]["space"].split("/")[-1],
             "title": page["title"],
