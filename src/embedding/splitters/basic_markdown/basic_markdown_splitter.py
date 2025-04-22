@@ -13,7 +13,7 @@ from embedding.splitters.base_splitter import BaseSplitter
 from embedding.splitters.basic_markdown.configuration import (
     BasicMarkdownSplitterConfiguration,
 )
-from extraction.datasources.core.document import DocType
+from extraction.datasources.core.base.document import DocType
 
 
 class BasicMarkdownSplitter(BaseSplitter, Generic[DocType]):
@@ -60,17 +60,13 @@ class BasicMarkdownSplitter(BaseSplitter, Generic[DocType]):
         Returns:
             List[TextNode]: Collection of processed text nodes with optimized sizes
         """
-        document_nodes = self.markdown_node_parser.get_nodes_from_documents(
-            [document]
-        )
+        document_nodes = self.markdown_node_parser.get_nodes_from_documents([document])
         document_nodes = self._split_big_nodes(document_nodes)
         document_nodes = self._merge_small_nodes(document_nodes)
 
         return document_nodes
 
-    def _split_big_nodes(
-        self, document_nodes: List[TextNode]
-    ) -> List[TextNode]:
+    def _split_big_nodes(self, document_nodes: List[TextNode]) -> List[TextNode]:
         """Split oversized nodes into smaller chunks.
 
         Identifies nodes exceeding the token limit and processes them
@@ -122,9 +118,7 @@ class BasicMarkdownSplitter(BaseSplitter, Generic[DocType]):
 
         return sub_nodes
 
-    def _merge_small_nodes(
-        self, document_nodes: List[TextNode]
-    ) -> List[TextNode]:
+    def _merge_small_nodes(self, document_nodes: List[TextNode]) -> List[TextNode]:
         """Merge adjacent small nodes into larger chunks.
 
         Combines consecutive nodes when their combined token count remains

@@ -114,7 +114,7 @@ class ConfluenceDatasourceConfiguration(DatasourceConfiguration):
 The next step is to create a Confluence document data class in `document.py`:
 
 ```py
-from extraction.datasources.core.document import BaseDocument
+from extraction.datasources.core.base.document import BaseDocument
 
 class ConfluenceDocument(BaseDocument):
     """Document representation for Confluence page content.

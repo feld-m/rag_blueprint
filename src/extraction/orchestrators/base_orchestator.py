@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import AsyncIterator, List
 
-from extraction.datasources.core.document import BaseDocument
-from extraction.datasources.core.manager import BaseDatasourceManager
+from extraction.datasources.core.base.document import BaseDocument
+from extraction.datasources.core.base.manager import BaseDatasourceManager
 
 
 class BaseDatasourceOrchestrator(ABC):

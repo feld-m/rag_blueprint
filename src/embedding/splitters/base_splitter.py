@@ -3,7 +3,7 @@ from typing import Generic
 
 from llama_index.core.schema import TextNode
 
-from extraction.datasources.core.document import DocType
+from extraction.datasources.core.base.document import DocType
 
 
 class BaseSplitter(ABC, Generic[DocType]):

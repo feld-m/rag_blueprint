@@ -1,4 +1,4 @@
-from extraction.datasources.core.document import BaseDocument
+from extraction.datasources.core.base.document import BaseDocument
 
 
 class PDFDocument(BaseDocument):

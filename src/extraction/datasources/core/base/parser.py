@@ -3,7 +3,7 @@ from typing import Generic
 
 from llama_index.core import Document
 
-from extraction.datasources.core.document import DocType
+from extraction.datasources.core.base.document import DocType
 
 
 class BaseParser(ABC, Generic[DocType]):
