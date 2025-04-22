@@ -163,7 +163,7 @@ the required `_create_instance` method with the corresponding client initializat
 Create a Confluence reader in `reader.py` that implements the BaseReader interface:
 
 ```py
-from extraction.datasources.core.reader import BaseReader
+from extraction.datasources.core.base.reader import BaseReader
 ...
 
 class ConfluenceDatasourceReader(BaseReader):

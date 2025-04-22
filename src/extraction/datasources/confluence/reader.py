@@ -11,7 +11,7 @@ from extraction.datasources.confluence.client import ConfluenceClientFactory
 from extraction.datasources.confluence.configuration import (
     ConfluenceDatasourceConfiguration,
 )
-from extraction.datasources.core.reader import BaseReader
+from extraction.datasources.core.base.reader import BaseReader
 
 
 class ConfluenceDatasourceReader(BaseReader):
@@ -73,10 +73,7 @@ class ConfluenceDatasourceReader(BaseReader):
                 unit="pages",
             ):
                 yield_counter += 1
-                if (
-                    self.export_limit is not None
-                    and yield_counter > self.export_limit
-                ):
+                if self.export_limit is not None and yield_counter > self.export_limit:
                     break
                 yield page
 
