@@ -5,6 +5,12 @@
                 "name": "pdf",
                 "export_limit": 5,
                 "base_path": "data/bavarian_beer"
+            },
+            {
+                "name": "hackernews",
+                "stories_limit": 50,
+                "fetch_batch_size": 20,
+                "request_timeout": 15.0 // Optional
             }
         ]
     },

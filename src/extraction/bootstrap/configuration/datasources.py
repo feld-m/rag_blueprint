@@ -23,6 +23,7 @@ class DatasourceName(str, Enum):
     NOTION = "notion"
     PDF = "pdf"
     BUNDESTAG = "bundestag"
+    HACKERNEWS = "hackernews"
 
 
 # Configuration
