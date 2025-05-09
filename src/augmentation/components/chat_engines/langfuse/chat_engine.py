@@ -55,6 +55,14 @@ class LangfuseChatEngine(CondensePlusContextChatEngine):
     chainlit_tag_format: str = Field(
         description="Format of the tag used to retrieve the trace by chainlit message id in Langfuse."
     )
+    input_guardrail_prompt_template: Optional[PromptTemplate] = Field(
+        description="Prompt template for validating user input compliance",
+        default=None,
+    )
+    output_guardrail_prompt_template: Optional[PromptTemplate] = Field(
+        description="Prompt template for validating response output compliance",
+        default=None,
+    )
 
     def __init__(
         self,
@@ -66,6 +74,12 @@ class LangfuseChatEngine(CondensePlusContextChatEngine):
         context_refine_prompt: Optional[Union[str, PromptTemplate]] = None,
         condense_prompt: Optional[Union[str, PromptTemplate]] = None,
         system_prompt: Optional[str] = None,
+        input_guardrail_prompt_template: Optional[
+            Union[str, PromptTemplate]
+        ] = None,
+        output_guardrail_prompt_template: Optional[
+            Union[str, PromptTemplate]
+        ] = None,
         skip_condense: bool = False,
         node_postprocessors: Optional[List[BaseNodePostprocessor]] = None,
         callback_manager: Optional[CallbackManager] = None,
@@ -83,6 +97,8 @@ class LangfuseChatEngine(CondensePlusContextChatEngine):
             context_refine_prompt: Prompt for refining context
             condense_prompt: Prompt for condensing context
             system_prompt: System prompt for LLM
+            input_guardrail_prompt_template: Prompt template for input validation
+            output_guardrail_prompt_template: Prompt template for output validation
             skip_condense: Flag to skip context condensing
             node_postprocessors: List of postprocessors for node processing
             callback_manager: Callback manager for tracing
@@ -102,6 +118,59 @@ class LangfuseChatEngine(CondensePlusContextChatEngine):
             verbose=verbose,
         )
         self.chainlit_tag_format = chainlit_tag_format
+        self.input_guardrail_prompt_template = input_guardrail_prompt_template
+        self.output_guardrail_prompt_template = output_guardrail_prompt_template
+
+    @trace_method("input_validation")
+    def _is_input_allowed(self, message: str) -> bool:
+        """Check if user input complies with input guardrail prompt template.
+
+        Args:
+            message: User input message to validate
+
+        Returns:
+            bool: True if input complies, False otherwise
+        """
+        if not self.input_guardrail_prompt_template:
+            return True
+
+        prompt = self.input_guardrail_prompt_template.format(message)
+
+        response = self._llm.complete(prompt)
+        should_block = (
+            "yes" in response.text.lower() or "true" in response.text.lower()
+        )
+        return not should_block
+
+    @trace_method("output_validation")
+    def _is_output_allowed(
+        self, response: Union[AgentChatResponse, str]
+    ) -> bool:
+        """Check if generated output complies with output guardrail prompt template.
+
+        Args:
+            response: Generated response to validate
+
+        Returns:
+            bool: True if output complies, False otherwise
+        """
+        if not self.output_guardrail_prompt_template:
+            return True
+
+        response_text = (
+            response.response
+            if hasattr(response, "response")
+            else str(response)
+        )
+
+        prompt = self.output_guardrail_prompt_template.format(response_text)
+
+        validation_response = self._llm.complete(prompt)
+        should_block = (
+            "yes" in validation_response.text.lower()
+            or "true" in validation_response.text.lower()
+        )
+        return not should_block
 
     @trace_method("chat")
     def chat(
@@ -125,7 +194,26 @@ class LangfuseChatEngine(CondensePlusContextChatEngine):
         self._set_chainlit_message_id(
             message_id=chainlit_message_id, source_process=source_process
         )
-        return super().chat(message=message, chat_history=chat_history)
+
+        if not self._is_input_allowed(message):
+            return AgentChatResponse(
+                response="I'm unable to answer this question as it doesn't comply with our usage guidelines.",
+                sources=[],
+                source_nodes=[],
+                is_dummy_stream=False,
+            )
+
+        response = super().chat(message=message, chat_history=chat_history)
+
+        if not self._is_output_allowed(response):
+            return AgentChatResponse(
+                response="I apologize, but I'm unable to provide a response to this request.",
+                sources=[],
+                source_nodes=[],
+                is_dummy_stream=False,
+            )
+
+        return response
 
     @trace_method("chat")
     def achat(
@@ -149,7 +237,26 @@ class LangfuseChatEngine(CondensePlusContextChatEngine):
         self._set_chainlit_message_id(
             message_id=chainlit_message_id, source_process=source_process
         )
-        return super().achat(message=message, chat_history=chat_history)
+
+        if not self._is_input_allowed(message):
+            return AgentChatResponse(
+                response="I'm unable to answer this question as it doesn't comply with our usage guidelines.",
+                sources=[],
+                source_nodes=[],
+                is_dummy_stream=False,
+            )
+
+        response = super().achat(message=message, chat_history=chat_history)
+
+        if not self._is_output_allowed(response):
+            return AgentChatResponse(
+                response="I apologize, but I'm unable to provide a response to this question.",
+                sources=[],
+                source_nodes=[],
+                is_dummy_stream=False,
+            )
+
+        return response
 
     @trace_method("chat")
     def stream_chat(
@@ -173,7 +280,31 @@ class LangfuseChatEngine(CondensePlusContextChatEngine):
         self._set_chainlit_message_id(
             message_id=chainlit_message_id, source_process=source_process
         )
-        return super().stream_chat(message=message, chat_history=chat_history)
+
+        if not self._is_input_allowed(message):
+            return AgentChatResponse(
+                response="I'm unable to answer this question as it doesn't comply with our usage guidelines.",
+                sources=[],
+                source_nodes=[],
+                is_dummy_stream=True,
+            )
+
+        response = super().stream_chat(
+            message=message, chat_history=chat_history
+        )
+
+        # NOTE: The response is a generator, so we need to join the tokens to check the output
+        str_response = "".join(token for token in response.response_gen)
+
+        if not self._is_output_allowed(str_response):
+            return AgentChatResponse(
+                response="I apologize, but I'm unable to provide a response to this question.",
+                sources=[],
+                source_nodes=[],
+                is_dummy_stream=True,
+            )
+
+        return response
 
     @trace_method("chat")
     async def astream_chat(
@@ -197,9 +328,32 @@ class LangfuseChatEngine(CondensePlusContextChatEngine):
         self._set_chainlit_message_id(
             message_id=chainlit_message_id, source_process=source_process
         )
-        return await super().astream_chat(
+
+        # Check input compliance
+        if not self._is_input_allowed(message):
+            return AgentChatResponse(
+                response="I'm unable to answer this question as it doesn't comply with our usage guidelines.",
+                sources=[],
+                source_nodes=[],
+                is_dummy_stream=True,
+            )
+
+        response = await super().astream_chat(
             message=message, chat_history=chat_history
         )
+
+        # NOTE: The response is a generator, so we need to join the tokens to check the output
+        str_response = "".join(token for token in response.response_gen)
+
+        if not self._is_output_allowed(str_response):
+            return AgentChatResponse(
+                response="I apologize, but I'm unable to provide a response to this question.",
+                sources=[],
+                source_nodes=[],
+                is_dummy_stream=True,
+            )
+
+        return response
 
     def get_current_langfuse_trace(self) -> StatefulTraceClient:
         """Retrieve current Langfuse trace from registered callback handler.
@@ -303,6 +457,8 @@ class LangfuseChatEngineFactory(Factory):
             context_prompt_template,
             context_refine_prompt_template,
             system_prompt_template,
+            input_guardrail_prompt_template,
+            output_guardrail_prompt_template,
         ) = cls._get_prompt_templates(configuration=configuration.augmentation)
 
         retriever.callback_manager = langfuse_callback_manager
@@ -319,13 +475,15 @@ class LangfuseChatEngineFactory(Factory):
             system_prompt=system_prompt_template,
             context_refine_prompt=context_refine_prompt_template,
             condense_prompt=condense_prompt_template,
+            input_guardrail_prompt_template=input_guardrail_prompt_template,
+            output_guardrail_prompt_template=output_guardrail_prompt_template,
             chainlit_tag_format=configuration.augmentation.langfuse.chainlit_tag_format,
         )
 
     @staticmethod
     def _get_prompt_templates(
         configuration: _AugmentationConfiguration,
-    ) -> str:
+    ) -> tuple:
         """Retrieves the prompt template for the augmentation process.
 
         Args:
@@ -333,7 +491,7 @@ class LangfuseChatEngineFactory(Factory):
 
         Returns:
             Tuple of prompt templates for condensing, context generation,
-            context refinement, and system prompts.
+            context refinement, system prompts, and guardrail prompts.
         """
         langfuse_prompt_service = LangfusePromptServiceFactory.create(
             configuration=configuration.langfuse
@@ -351,10 +509,18 @@ class LangfuseChatEngineFactory(Factory):
         system_prompt_template = langfuse_prompt_service.get_prompt_template(
             prompt_name=configuration.chat_engine.prompt_templates.system_prompt_name
         )
+        input_guardrail_prompt_template = langfuse_prompt_service.get_prompt_template(
+            prompt_name=configuration.chat_engine.prompt_templates.input_guardrail_prompt_name
+        )
+        output_guardrail_prompt_template = langfuse_prompt_service.get_prompt_template(
+            prompt_name=configuration.chat_engine.prompt_templates.output_guardrail_prompt_name
+        )
 
         return (
             condense_prompt_template,
             context_prompt_template,
             context_refine_prompt_template,
             system_prompt_template,
+            input_guardrail_prompt_template,
+            output_guardrail_prompt_template,
         )

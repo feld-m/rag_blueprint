@@ -276,6 +276,8 @@ Prompts are used during the augmentation process, which affects the final answer
         "context_prompt_name": "new_context_prompt",
         "context_refine_prompt_name": "new_context_refine_prompt",
         "system_prompt_name": "new_system_prompt"
+        "input_guardrail_prompt_name": "new_input_guardrail_prompt"
+        "output_guardrail_prompt_name": "new_output_guardrail_prompt"
       }
     }
   }
