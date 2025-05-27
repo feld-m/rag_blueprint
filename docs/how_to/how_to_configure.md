@@ -79,24 +79,32 @@ class LLMProviderName(str, Enum):
 
 ```json
 {
-    "augmentation": {
-        "chat_engine": {
-            "llm": {
+    "pipeline": {
+        "augmentation": {
+            "chat_engine": {
+                "guardrails": {
+                        "llm": {
+                            "provider": "lite_llm",
+                            "name": "gemini-2.0-flash-exp",
+                        },
+                },
+                "llm": {
+                    "provider": "lite_llm",
+                    "name": "gemini-2.0-flash-exp",
+                    "max_tokens": 1024,
+                    "max_retries": 3,
+                    "context_window": 16384
+                }
+            }
+        },
+        "evaluation": {
+            "judge_llm": {
                 "provider": "lite_llm",
                 "name": "gemini-2.0-flash-exp",
                 "max_tokens": 1024,
                 "max_retries": 3,
                 "context_window": 16384
             }
-        }
-    },
-    "evaluation": {
-        "judge_llm": {
-            "provider": "lite_llm",
-            "name": "gemini-2.0-flash-exp",
-            "max_tokens": 1024,
-            "max_retries": 3,
-            "context_window": 16384
         }
     }
 }
@@ -111,13 +119,18 @@ In the above case, augmentation and evaluation processes use the same LLM, which
     "pipeline": {
         "augmentation": {
             "chat_engine": {
+                "guardrails": {
+                        "llm": {
+                            "provider": "lite_llm",
+                            "name": "gemini-2.0-flash-exp",
+                        },
+                },
                 "llm": {
                     "provider": "lite_llm",
                     "name": "gemini-2.0-flash-exp",
                     "max_tokens": 1024,
                     "max_retries": 3,
                     "context_window": 16384
-                }
                 }
             }
         },
@@ -131,6 +144,8 @@ In the above case, augmentation and evaluation processes use the same LLM, which
     }
 }
 ```
+
+*__Note__*: You can also use different LLM for any other component like `guardrails`.
 
 ### Secrets
 
@@ -287,7 +302,7 @@ Field `chailit.port` defines on which port chat UI should be run. Fields in `lan
 
 ## Prompt Templates Configuration
 
-For prompts management system uses [Langfuse Prompt](https://langfuse.com/docs/prompts/get-started) service. By default four prompt templates are created in Langfuse Prompts service - `default_system_prompt`, `default_context_refine_prompt`, `default_context_prompt`, `default_condense_prompt`. To find out more about these templates visit [Llamaindex guide](https://docs.llamaindex.ai/en/stable/examples/chat_engine/chat_engine_condense_plus_context/).
+For prompts management system uses [Langfuse Prompt](https://langfuse.com/docs/prompts/get-started) service. By default four prompt templates are created in Langfuse Prompts service - `default_system_prompt`, `default_context_refine_prompt`, `default_context_prompt`, `default_condense_prompt`, `default_input_guardrail_prompt` and `default_output_guardrail_prompt`. To find out more about these templates visit [Llamaindex guide](https://docs.llamaindex.ai/en/stable/examples/chat_engine/chat_engine_condense_plus_context/).
 
 Prompts are used during the augmentation process, which affects the final answers of the system. They can be adjusted via Langfuse Prompts UI. If you want to provide and use templates under different names, you need to add them to Langfuse Prompts and change the configuration as follows:
 
@@ -295,13 +310,15 @@ Prompts are used during the augmentation process, which affects the final answer
 {
   "augmentation": {
     "chat_engine": {
+      "guardrails": {
+        "input_prompt_name": "default_input_guardrail_prompt",
+        "output_prompt_name": "default_output_guardrail_prompt",
+      },
       "prompt_templates": {
         "condense_prompt_name": "new_condense_prompt",
         "context_prompt_name": "new_context_prompt",
         "context_refine_prompt_name": "new_context_refine_prompt",
         "system_prompt_name": "new_system_prompt"
-        "input_guardrail_prompt_name": "new_input_guardrail_prompt"
-        "output_guardrail_prompt_name": "new_output_guardrail_prompt"
       }
     }
   }

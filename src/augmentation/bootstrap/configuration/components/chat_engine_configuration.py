@@ -3,6 +3,9 @@ from typing import Any, List, Type
 
 from pydantic import Field, ValidationInfo, field_validator
 
+from augmentation.bootstrap.configuration.components.guardrails_configuration import (
+    GurdrailsConfigurationRegistry,
+)
 from augmentation.bootstrap.configuration.components.llm_configuration import (
     LLMConfigurationRegistry,
 )
@@ -49,22 +52,6 @@ class ChatEnginePromptTemplates(BaseConfiguration):
             "The prompt is used to set the system context for the chat engine.",
         ),
     )
-    input_guardrail_prompt_name: str = Field(
-        "default_input_guardrail_prompt",
-        description=(
-            "The name of the input guardrail prompt to use available in Langfuse prompts.",
-            "The prompt is used to determine if the input is valid to be passed to the chat engine.",
-            "The LLM should respond with 'yes' or 'true' if the input should be blocked.",
-        ),
-    )
-    output_guardrail_prompt_name: str = Field(
-        "default_output_guardrail_prompt",
-        description=(
-            "The name of the output guardrail prompt to use available in Langfuse prompts.",
-            "The prompt is used to determine if the output of the chat engine is valid to be returned to the user.",
-            "The LLM should respond with 'yes' or 'true' if the output should be blocked.",
-        ),
-    )
 
 
 class BaseChatEngineConfiguration(BaseConfiguration):
@@ -74,6 +61,10 @@ class BaseChatEngineConfiguration(BaseConfiguration):
     including retriever, llm, and postprocessor components.
     """
 
+    guardrails: Any = Field(
+        ...,
+        description="Optional guardrails configuration for the chat engine.",
+    )
     retriever: Any = Field(
         ...,
         description="The retriever configuration for the augmentation pipeline.",
@@ -89,6 +80,24 @@ class BaseChatEngineConfiguration(BaseConfiguration):
         description="The prompt templates configuration for the chat engine.",
         default_factory=ChatEnginePromptTemplates,
     )
+
+    @field_validator("guardrails")
+    @classmethod
+    def _validate_guardrails(cls, value: Any, info: ValidationInfo) -> Any:
+        """Validate retriever configuration against registered retriever types.
+
+        Args:
+            value: The retriever configuration to validate
+            info: Validation context information
+
+        Returns:
+            Validated retriever configuration
+        """
+        return super()._validate(
+            value,
+            info=info,
+            registry=GurdrailsConfigurationRegistry,
+        )
 
     @field_validator("retriever")
     @classmethod

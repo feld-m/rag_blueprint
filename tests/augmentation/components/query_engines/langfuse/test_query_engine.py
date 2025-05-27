@@ -1,5 +1,9 @@
 import sys
 
+from augmentation.components.guardrails.base_guardrails import (
+    BaseGuardrailsEngine,
+)
+
 sys.path.append("./src")
 
 from typing import List
@@ -15,7 +19,6 @@ from llama_index.core.memory import BaseMemory
 from llama_index.core.postprocessor.types import BaseNodePostprocessor
 
 from augmentation.components.chat_engines.langfuse.chat_engine import (
-    GuardrailsEngine,
     LangfuseChatEngine,
 )
 
@@ -45,7 +48,7 @@ class Arrangements:
         self.postprocessors: List[BaseNodePostprocessor] = []
         self.callback_manager: CallbackManager = Mock(spec=CallbackManager)
         self.chainlit_tag_format: str = "tag_format: {message_id}"
-        self.guardrails_engine = Mock(spec=GuardrailsEngine)
+        self.guardrails_engine = Mock(spec=BaseGuardrailsEngine)
 
         self.service = LangfuseChatEngine(
             retriever=self.retriever,

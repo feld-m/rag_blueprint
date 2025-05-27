@@ -9,6 +9,13 @@ Requirements:
 
 ## Configuration & Secrets
 
+First, clone the repository and navigate to `rag_blueprint`:
+
+```
+git clone https://github.com/feld-m/rag_blueprint.git
+cd rag_blueprint
+```
+
 The default configuration is located in [configuration.default.json](https://github.com/feld-m/rag_blueprint/blob/main/configurations/configuration.default.json). This file configures toy PDF dataset as the document datasource and defines default settings for embedding, augmentation, and evaluation stages. To customize the setup, refer to the [How to Configure the RAG System](../how_to/how_to_configure.md) guide.
 
 ### Secrets Configuration

@@ -86,6 +86,7 @@ class AugmentationPackageLoader(EmbeddingPackageLoader):
         super().load_packages()
         self._load_packages(
             [
+                "src.augmentation.components.guardrails",
                 "src.augmentation.components.llms",
                 "src.augmentation.components.retrievers",
                 "src.augmentation.components.postprocessors",
