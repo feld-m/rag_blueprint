@@ -277,6 +277,8 @@ class LangfuseChatEngine(CondensePlusContextChatEngine):
         self._set_chainlit_message_id(
             message_id=chainlit_message_id, source_process=source_process
         )
+        trace = self.get_current_langfuse_trace()
+        trace.input = message
 
         guarded_response = self.guardrails_engine.input_guard(
             message=message, is_stream=True
