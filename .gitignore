@@ -8,6 +8,10 @@ build/**/logs
 **/.DS_Store
 .pytest_cache
 .ruff_cache
+
+data/**
+!data/bavarian_beer/**
+
 configurations/*
 !configurations/configuration.default.json
 !configurations/configuration.local.json
