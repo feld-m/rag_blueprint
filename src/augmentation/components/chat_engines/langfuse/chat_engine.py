@@ -117,8 +117,37 @@ class LangfuseChatEngine(CondensePlusContextChatEngine):
         self.guardrails_engine = guardrails_engine
         self.chainlit_tag_format = chainlit_tag_format
 
-    @trace_method("chat")
     def stream_chat(
+        self,
+        message: str,
+        chat_history: Optional[List[ChatMessage]] = None,
+        chainlit_message_id: str = None,
+        source_process: SourceProcess = SourceProcess.CHAT_COMPLETION,
+    ) -> AgentChatResponse:
+        """Process a query using RAG pipeline with Langfuse tracing.
+        Assign current trace input for monitoring.
+
+        Args:
+            message: Raw query string to process
+            chat_history: Optional chat history for context
+            chainlit_message_id: Optional ID for linking to Chainlit message in UI
+            source_process: Context identifier indicating query's origin source
+
+        Returns:
+            AgentChatResponse: Generated response from RAG pipeline with dummy streaming
+        """
+        response = self._stream_chat(
+            message=message,
+            chat_history=chat_history,
+            chainlit_message_id=chainlit_message_id,
+            source_process=source_process,
+        )
+        trace = self.get_current_langfuse_trace()
+        trace.input = message
+        return response
+
+    @trace_method("chat")
+    def _stream_chat(
         self,
         message: str,
         chat_history: Optional[List[ChatMessage]] = None,
