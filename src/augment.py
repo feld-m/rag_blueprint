@@ -7,8 +7,14 @@ To run the script execute the following command from the root directory of the p
 > python src/chat.py
 """
 
+from typing import Callable
+
 import chainlit as cl
 from chainlit.cli import run_chainlit
+from chainlit.server import app as chainlit_app
+from starlette.concurrency import iterate_in_threadpool
+from starlette.requests import Request
+from starlette.responses import StreamingResponse
 
 from augmentation.bootstrap.initializer import AugmentationInitializer
 from augmentation.chainlit.service import (
@@ -24,6 +30,40 @@ logger = LoggerConfiguration.get_logger(__name__)
 # Initialize configuration early to avoid NameError in get_data_layer
 initializer = None
 configuration = None
+
+
+@chainlit_app.middleware("http")
+async def patch_index_html_inline(
+    request: Request, call_next: Callable
+) -> StreamingResponse:
+    """
+    Remove external CSS links from the HTML response to avoid loading them.
+    This is necesary regarding privacy policy.
+    """
+    if request.scope["type"] != "http":
+        return await call_next(request)
+
+    response: StreamingResponse = await call_next(request)
+
+    if request.url.path in ("/", "/index.html") and response.headers.get(
+        "content-type", ""
+    ).startswith("text/html"):
+        response_body = [
+            section.replace(
+                b"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap",
+                b"#",
+            ).replace(
+                b"https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css",
+                b"#",
+            )
+            async for section in response.body_iterator
+        ]
+        response.body_iterator = iterate_in_threadpool(iter(response_body))
+        total_length = sum(len(chunk) for chunk in response_body)
+        response.headers["content-length"] = str(total_length)
+        return response
+
+    return response
 
 
 @cl.on_app_startup
