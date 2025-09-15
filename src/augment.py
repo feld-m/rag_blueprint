@@ -85,7 +85,7 @@ async def main(user_message: cl.Message) -> None:
         await assistant_message.send()
     except Exception as e:
         # It is imprecise to catch all exceptions, but llamaindex doesn't provide unified RateLimitError
-        logger.error(f"Error in main: {e}")
+        logger.error(f"Error in main: {e}", exc_info=True)
         await cl.ErrorMessage(
             content="You have reached the request rate limit. Please try again later.",
         ).send()
