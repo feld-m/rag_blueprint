@@ -1,6 +1,6 @@
 # Docker file for RAG services that use RAG base services via its docker networks.
 
-name: rag
+name: ragbt
 services:
   unit-tests:
     build:
@@ -29,6 +29,12 @@ services:
         BUILD_NAME: "default-build-name"
         ENV: "default"
         CHAINLIT_PORT: "${RAG__CHAINLIT__PORT}"
+    # Log files rotation for logs retention policy
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "1"
     ports:
       -  "${RAG__CHAINLIT__PORT}:${RAG__CHAINLIT__PORT}"
     restart: unless-stopped
