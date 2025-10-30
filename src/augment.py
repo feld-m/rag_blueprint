@@ -21,6 +21,10 @@ from core.logger import LoggerConfiguration
 
 logger = LoggerConfiguration.get_logger(__name__)
 
+# Initialize configuration early to avoid NameError in get_data_layer
+initializer = None
+configuration = None
+
 
 @cl.on_app_startup
 async def app_startup() -> None:
@@ -39,9 +43,16 @@ def get_data_layer() -> ChainlitService:
     """
     Initialize Chainlit's data layer with the custom service.
 
+    Note: This function may be called before app_startup(), so we need to
+    initialize configuration lazily if it's not already set.
+
     Returns:
         ChainlitService: The custom service for data layer.
     """
+    global initializer, configuration
+    if configuration is None:
+        initializer = AugmentationInitializer()
+        configuration = initializer.get_configuration()
     return ChainlitServiceFactory.create(configuration.augmentation)
 
 
