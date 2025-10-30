@@ -1,0 +1,35 @@
+{
+  "extraction": {
+    "orchestrator_name": "basic",
+    "datasources": [
+      {
+        "name": "bundestag",
+        "include_bundestag_mine": true,
+        "include_dip": false,
+        "export_limit": 5
+      }
+    ]
+  },
+  "embedding": {
+    "orchestrator_name": "basic",
+    "embedder_name": "basic",
+    "embedding_model": {
+      "provider": "hugging_face",
+      "name": "intfloat/multilingual-e5-small",
+      "tokenizer_name": "intfloat/multilingual-e5-small",
+      "batch_size": 8,
+      "device": "cpu",
+      "splitter": {
+        "chunk_overlap_in_tokens": 50,
+        "chunk_size_in_tokens": 384
+      }
+    },
+    "vector_store": {
+      "name": "pgvector",
+      "database_name": "rag-local",
+      "collection_name": "e2e_test_bundestag_mine",
+      "host": "localhost",
+      "port": 5433
+    }
+  }
+}
