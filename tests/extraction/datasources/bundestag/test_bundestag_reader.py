@@ -45,6 +45,8 @@ class Arrangements:
         self.fixtures = fixtures
         self.configuration = Mock(spec=BundestagMineDatasourceConfiguration)
         self.configuration.export_limit = self.fixtures.export_limit
+        self.configuration.include_bundestag_mine = True
+        self.configuration.include_dip = False
         self.client = Mock(spec=BundestagMineClient)
         self.service = BundestagMineDatasourceReader(
             configuration=self.configuration, client=self.client

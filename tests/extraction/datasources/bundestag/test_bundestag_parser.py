@@ -129,13 +129,13 @@ class Manager:
 class TestBundestagMineDatasourceParser:
 
     def test_extract_metadata(self):
-        """Test the _extract_metadata method."""
+        """Test the _extract_metadata_from_speech method."""
         # Arrange
         manager = Manager(Arrangements(Fixtures().with_speech()))
         parser = manager.get_parser()
 
         # Act
-        metadata = parser._extract_metadata(manager.fixtures.speech)
+        metadata = parser._extract_metadata_from_speech(manager.fixtures.speech)
 
         # Assert
         manager.assertions.assert_metadata_extraction(metadata)
