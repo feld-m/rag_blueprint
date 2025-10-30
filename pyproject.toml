@@ -26,12 +26,13 @@ extraction = [
     # Confluence
     "atlassian-python-api>=3.41.19",
     # Notion
-    "more-itertools>=10.6.0",
+    "more-itertools>=8.10.0",
     "notion-exporter>=0.1.1",
     "notion-client>=2.3.0",
     "notion>=0.0.28",
     # Bundestag
     "api-client>=1.3.1",
+    "deutschland[dip_bundestag]>=0.4.2",
 ]
 embedding = [
     "chromadb>=0.6.3",
@@ -43,6 +44,7 @@ embedding = [
     "llama-index-vector-stores-qdrant>=0.4.3",
     "psycopg2-binary>=2.9.10",
     "transformers>=4.49.0",
+    "torch>=2.0.0",  # Note: Install via pip separately on macOS Intel
 ]
 augmentation = [
     "chainlit>=2.3.0",
@@ -67,3 +69,12 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/"]
+
+[tool.uv]
+# Override resolution to use system-installed torch on macOS Intel
+override-dependencies = [
+    "torch==2.2.2",  # Use pip-installed torch for macOS Intel compatibility
+]
+constraint-dependencies = [
+    "numpy<2",  # torch 2.2.2 requires numpy 1.x
+]
