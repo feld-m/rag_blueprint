@@ -7,11 +7,16 @@ from llama_index.core.base.llms.types import ChatMessage, MessageRole
 from llama_index.core.callbacks import CallbackManager, trace_method
 from llama_index.core.chat_engine import CondensePlusContextChatEngine
 from llama_index.core.chat_engine.types import AgentChatResponse
+from llama_index.core.chat_engine.utils import get_prefix_messages_with_context
 from llama_index.core.indices.base_retriever import BaseRetriever
 from llama_index.core.llms.llm import LLM
 from llama_index.core.memory import BaseMemory, ChatMemoryBuffer
 from llama_index.core.postprocessor.types import BaseNodePostprocessor
 from llama_index.core.prompts import PromptTemplate
+from llama_index.core.response_synthesizers import (
+    get_response_synthesizer as get_llama_response_synthesizer,
+)
+from llama_index.core.response_synthesizers.type import ResponseMode
 from pydantic import Field
 
 from augmentation.bootstrap.configuration.configuration import (
@@ -116,6 +121,45 @@ class LangfuseChatEngine(CondensePlusContextChatEngine):
         )
         self.guardrails_engine = guardrails_engine
         self.chainlit_tag_format = chainlit_tag_format
+
+    def _get_response_synthesizer(
+        self, chat_history: List[ChatMessage], streaming: bool = False
+    ):
+        """Override to use SIMPLE_SUMMARIZE mode instead of COMPACT (which uses refine).
+
+        This eliminates the iterative refinement loop that makes N LLM calls for N documents.
+        Instead, all documents are concatenated and processed in a single LLM call.
+
+        Args:
+            chat_history: Chat history for context
+            streaming: Whether to stream the response
+
+        Returns:
+            BaseSynthesizer: Response synthesizer configured for single-pass generation
+        """
+        system_prompt = self._system_prompt or ""
+        qa_messages = get_prefix_messages_with_context(
+            self._context_prompt_template,
+            system_prompt,
+            [],
+            chat_history,
+            self._llm.metadata.system_role,
+        )
+
+        # Use SIMPLE_SUMMARIZE instead of COMPACT to avoid refinement iterations
+        # This concatenates all retrieved documents and makes ONE LLM call
+        from llama_index.core.prompts import ChatPromptTemplate
+
+        return get_llama_response_synthesizer(
+            llm=self._llm,
+            callback_manager=self.callback_manager,
+            text_qa_template=ChatPromptTemplate.from_messages(
+                qa_messages,
+                function_mappings=self._context_prompt_template.function_mappings,
+            ),
+            response_mode=ResponseMode.SIMPLE_SUMMARIZE,
+            streaming=streaming,
+        )
 
     def stream_chat(
         self,
