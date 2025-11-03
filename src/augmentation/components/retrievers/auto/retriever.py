@@ -71,20 +71,89 @@ class AutoRetrieverFactory(Factory):
             similarity_top_k=retriever_configuration.similarity_top_k,
             llm=llm,
             vector_store_info=VectorStoreInfo(
-                content_info="Knowledge base of FELD M company used for retrieval process in RAG system.",
+                content_info="Knowledge base of German Bundestag parliamentary documents including speeches, protocols, drucksachen, and proceedings from various legislative periods.",
                 metadata_info=[
+                    # Date fields (for temporal queries)
                     MetadataInfo(
-                        name="creation_date",
-                        type="date",
+                        name="created_time",
+                        type="str",
                         description=(
-                            "Date of creation of the chunk's document"
+                            "Date when the document was created or the parliamentary session occurred. "
+                            "Format: YYYY-MM-DD (e.g., '2025-01-29'). Use this for queries about specific dates, "
+                            "recent events, or time-based filtering like 'current', 'last session', or 'in 2024'."
                         ),
                     ),
                     MetadataInfo(
-                        name="last_update_date",
-                        type="date",
+                        name="last_edited_time",
+                        type="str",
                         description=(
-                            "Date of the last update of the chunk's document."
+                            "Date of the last edit or update to the document. "
+                            "Format: YYYY-MM-DD. Use for finding recently updated documents."
+                        ),
+                    ),
+                    # Legislative period fields (for session queries)
+                    MetadataInfo(
+                        name="legislature_period",
+                        type="str",
+                        description=(
+                            "The legislative period number (Wahlperiode) as a string, e.g., '20' or '21' (NOT 20 or 21). "
+                            "Each period spans approximately 4 years. Period 20: 2021-2025, Period 21: 2025-2029. "
+                            "Use string equality comparisons only. Use for queries about specific legislative periods."
+                        ),
+                    ),
+                    MetadataInfo(
+                        name="document_number",
+                        type="str",
+                        description=(
+                            "The document identifier in format 'legislature/protocol', e.g., '20/212' or '21/34'. "
+                            "For speeches: format is 'legislature/protocol' (e.g., '20/123'). "
+                            "For protocols: same as protocol_number field (e.g., '20/212'). "
+                            "Use for exact document identification. Do NOT use numeric comparisons - this is a text field."
+                        ),
+                    ),
+                    # Document type fields (for content filtering)
+                    MetadataInfo(
+                        name="document_type",
+                        type="str",
+                        description=(
+                            "Type of document: 'speech' (individual speech), 'protocol' (full session transcript), "
+                            "'drucksache' (printed document), or 'proceeding' (legislative process). "
+                            "Use to filter by document type."
+                        ),
+                    ),
+                    MetadataInfo(
+                        name="source_client",
+                        type="str",
+                        description=(
+                            "Source of the document: 'bundestag_mine' for individual speeches, "
+                            "'dip' for protocols, drucksachen, and proceedings. "
+                            "Generally not needed for user queries."
+                        ),
+                    ),
+                    # Speaker information (for person-specific queries)
+                    MetadataInfo(
+                        name="speaker",
+                        type="str",
+                        description=(
+                            "Full name of the speaker (for speeches only), e.g., 'Friedrich Merz', 'Christian Lindner'. "
+                            "Use for queries about specific politicians or speakers."
+                        ),
+                    ),
+                    MetadataInfo(
+                        name="speaker_party",
+                        type="str",
+                        description=(
+                            "Political party affiliation of the speaker, e.g., 'CDU', 'SPD', 'FDP', 'Grüne', 'AfD', 'Linke'. "
+                            "Use for queries about party positions or statements by party members."
+                        ),
+                    ),
+                    # Topic fields (for content filtering)
+                    MetadataInfo(
+                        name="agenda_item_number",
+                        type="str",
+                        description=(
+                            "Agenda item number for the topic discussed in a session, e.g., '5a'. "
+                            "Use for queries about specific agenda topics."
                         ),
                     ),
                 ],
