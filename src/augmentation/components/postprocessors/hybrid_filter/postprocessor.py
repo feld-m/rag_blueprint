@@ -16,10 +16,12 @@ class HybridFilterPostprocessor(BaseNodePostprocessor):
     """
     Multi-stage filtering postprocessor for intelligent document filtering.
 
-    Applies three stages of filtering to retrieved documents:
+    Applies five stages of filtering to retrieved documents:
     1. Score threshold - fast removal of low-similarity documents
-    2. Semantic deduplication - removes near-duplicate content
-    3. LLM relevance check (optional) - verifies semantic relevance to query
+    2. Temporal filtering - removes old documents when query mentions current/recent
+    3. Semantic deduplication - removes near-duplicate content
+    4. LLM relevance check (optional) - verifies semantic relevance to query
+    5. Max documents limit - caps final document count
 
     This approach balances quality and performance by applying cheap filters first,
     then expensive LLM checks only on remaining high-quality candidates.
@@ -94,14 +96,20 @@ class HybridFilterPostprocessor(BaseNodePostprocessor):
         # Stage 1: Score threshold filtering
         nodes = self._filter_by_score(nodes)
 
-        # Stage 2: Semantic deduplication
+        # Stage 2: Temporal filtering (if query mentions current/recent)
+        if query_bundle:
+            nodes = self._filter_by_temporal_relevance(
+                nodes, query_bundle.query_str
+            )
+
+        # Stage 3: Semantic deduplication
         nodes = self._deduplicate_semantically(nodes)
 
-        # Stage 3: LLM relevance check (optional, expensive)
+        # Stage 4: LLM relevance check (optional, expensive)
         if self.enable_llm_filter and self._llm and query_bundle:
             nodes = self._filter_by_llm_relevance(nodes, query_bundle.query_str)
 
-        # Stage 4: Limit to max_documents
+        # Stage 5: Limit to max_documents
         nodes = nodes[: self.max_documents]
 
         self._logger.info(
@@ -109,6 +117,110 @@ class HybridFilterPostprocessor(BaseNodePostprocessor):
         )
 
         return nodes
+
+    def _filter_by_temporal_relevance(
+        self, nodes: List[NodeWithScore], query: str
+    ) -> List[NodeWithScore]:
+        """
+        Stage 2: Filter out old documents when query asks for 'current' information.
+
+        Detects temporal keywords in the query (current, recent, latest, etc.) and
+        filters to only include documents from the current legislative period (21).
+        This prevents mixing old information (e.g., FDP in period 20) with current
+        parliament composition.
+
+        Args:
+            nodes: List of nodes to filter
+            query: User query string
+
+        Returns:
+            Filtered list of nodes from current period, or all nodes if no temporal keywords
+        """
+        # Keywords indicating user wants current/recent information
+        temporal_keywords = [
+            "current",
+            "recent",
+            "latest",
+            "today",
+            "now",
+            "this year",
+            "aktuell",
+            "jetzt",
+            "neueste",
+            "derzeitig",
+            "gegenwärtig",
+            "dieses jahr",
+            "momentan",
+        ]
+
+        query_lower = query.lower()
+        has_temporal_keyword = any(
+            keyword in query_lower for keyword in temporal_keywords
+        )
+
+        if not has_temporal_keyword:
+            self._logger.info(
+                f"[HybridFilter] Temporal filtering SKIPPED - no temporal keywords found in query: '{query[:80]}'"
+            )
+            return nodes
+
+        self._logger.info(
+            f"[HybridFilter] Temporal filtering ACTIVATED for query: '{query[:80]}'"
+        )
+
+        # Filter to only current period (21)
+        current_period = "21"
+        filtered = []
+
+        for node in nodes:
+            period = node.node.metadata.get("legislature_period", "")
+            document_number = node.node.metadata.get("document_number", "")
+            title = node.node.metadata.get("title", "Untitled")[:60]
+
+            # Fallback: Try to extract period from document_number if not in legislature_period
+            # document_number format: "{legislature_period}/{protocol_number}" (e.g., "21/28")
+            if not period:
+                if "/" in document_number:
+                    period = document_number.split("/")[0]
+
+            # IMPORTANT: Convert period to string for comparison (metadata might be int or str)
+            period = str(period) if period else ""
+
+            # Log what we found
+            self._logger.info(
+                f"[HybridFilter]   Doc: '{title}' | legislature_period='{node.node.metadata.get('legislature_period', '')}' | document_number='{document_number}' | extracted_period='{period}'"
+            )
+
+            # Keep if from current period or if period is unknown (empty)
+            if period == current_period or period == "":
+                filtered.append(node)
+                self._logger.info(
+                    f"[HybridFilter]     ✓ KEPT (period={period or 'unknown'})"
+                )
+            else:
+                filtered_reason = f"old period={period}"
+                self._logger.info(
+                    f"[HybridFilter]     ✗ FILTERED OUT ({filtered_reason})"
+                )
+
+        removed_count = len(nodes) - len(filtered)
+
+        if removed_count > 0:
+            self._logger.info(
+                f"[HybridFilter] Temporal filtering: removed {removed_count} old documents "
+                f"(kept period={current_period} only) → {len(filtered)} remaining"
+            )
+
+        # If filtering removed everything, fall back to all nodes
+        # (better to return some results than none)
+        if not filtered:
+            self._logger.warning(
+                "[HybridFilter] Temporal filtering would remove all documents. "
+                "Keeping all to avoid empty results."
+            )
+            return nodes
+
+        return filtered
 
     def _filter_by_score(
         self, nodes: List[NodeWithScore]
