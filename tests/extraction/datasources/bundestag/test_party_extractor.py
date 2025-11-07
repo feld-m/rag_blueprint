@@ -1,5 +1,9 @@
 """Unit tests for PartyExtractor."""
 
+import sys
+
+sys.path.append("./src")
+
 from extraction.datasources.bundestag.party_extractor import PartyExtractor
 
 
@@ -111,11 +115,17 @@ class TestPartyExtractor:
         """Test that party name variations are grouped correctly."""
         text = """
         Hans Müller (CDU) said...
+        Johann Schmidt (CDU) added...
         Maria Schmidt (CSU) added...
+        Franz Weber (CSU) continued...
         Peter Weber (CDU/CSU) concluded...
+        Alexander Dobrindt (CDU/CSU) agreed...
         Anna Klein (GRÜNE) mentioned...
+        Sophie Bauer (GRÜNE) agreed...
         Thomas Bauer (DIE GRÜNEN) explained...
+        Katrin Göring-Eckardt (DIE GRÜNEN) supported...
         Lisa Wagner (BÜNDNIS 90/DIE GRÜNEN) proposed...
+        Robert Habeck (BÜNDNIS 90/DIE GRÜNEN) concluded...
         """
 
         result = PartyExtractor.extract_from_protocol_text(text)
@@ -135,8 +145,8 @@ class TestPartyExtractor:
         assert cdu_csu_fraction is not None
         # Should have variations: CDU, CSU, CDU/CSU
         assert len(cdu_csu_fraction["variations"]) == 3
-        # Total mentions should be 3
-        assert cdu_csu_fraction["mention_count"] == 3
+        # Total mentions should be 6 (CDU: 2, CSU: 2, CDU/CSU: 2)
+        assert cdu_csu_fraction["mention_count"] == 6
 
         # Find Grüne fraction
         grune_fraction = None
@@ -146,10 +156,10 @@ class TestPartyExtractor:
                 break
 
         assert grune_fraction is not None
-        # Should have variations
+        # Should have variations (GRÜNE, DIE GRÜNEN, BÜNDNIS 90/DIE GRÜNEN)
         assert len(grune_fraction["variations"]) >= 2
-        # Total mentions should be 3
-        assert grune_fraction["mention_count"] == 3
+        # Total mentions should be 6 (GRÜNE: 2, DIE GRÜNEN: 2, BÜNDNIS 90/DIE GRÜNEN: 2)
+        assert grune_fraction["mention_count"] == 6
 
     def test_extract_from_speaker_party(self):
         """Test extraction from speech speaker metadata."""
@@ -202,7 +212,9 @@ class TestPartyExtractor:
         """Test that non-party keywords are filtered out."""
         text = """
         Bundeskanzler Friedrich Merz (CDU/CSU) sprach...
+        Markus Söder (CDU/CSU) fügte hinzu...
         Bundesminister Lars Klingbeil (SPD) erklärte...
+        Saskia Esken (SPD) stimmte zu...
         Präsident Julia Klöckner diskutierte...
         """
 
