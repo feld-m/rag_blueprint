@@ -9,8 +9,6 @@ To run the script execute the following command from the root directory of the p
 
 import chainlit as cl
 from chainlit.cli import run_chainlit
-from llama_index.core.indices.prompt_helper import PromptHelper
-from llama_index.core.settings import Settings
 
 from augmentation.bootstrap.initializer import AugmentationInitializer
 from augmentation.chainlit.service import (
@@ -34,12 +32,6 @@ async def app_startup() -> None:
     Initialize the application on startup.
     Sets up the augmentation initializer and configuration, and starts the scheduler.
     """
-    prompt_helper = PromptHelper(
-        context_window=16384,
-        num_output=4096,
-    )
-    Settings.prompt_helper = prompt_helper
-
     global initializer, configuration
     initializer = AugmentationInitializer()
     configuration = initializer.get_configuration()

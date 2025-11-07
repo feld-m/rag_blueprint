@@ -302,20 +302,24 @@ class TestHybridFilterWithLLM:
 
     def test_llm_filter_all_relevant(self, mock_llm, tmp_path):
         """Test LLM filter when all documents are relevant"""
+        # Register LiteLLM configuration before use
+        import augmentation.components.llms.lite_llm as lite_llm_module
+
+        lite_llm_module.register()
+
         from augmentation.components.llms.lite_llm.configuration import (
             LiteLLMConfiguration,
         )
 
         # Create secrets file with API key for test
         secrets_file = tmp_path / "secrets.test.env"
-        secrets_file.write_text("OPENAI_NEMO__API_KEY=test_key")
+        secrets_file.write_text("RAG__LLMS__OPENAI_NEMO__API_KEY=test_key")
 
         llm_conf = LiteLLMConfiguration.model_validate(
             {
                 "provider": "lite_llm",
                 "name": "openai/nemo",
                 "api_base": "http://10.10.2.166:7998/v1",
-                "api_key": "test_key",
                 "max_tokens": 100,
                 "max_retries": 3,
             },
@@ -334,6 +338,10 @@ class TestHybridFilterWithLLM:
         postprocessor._llm = mock_llm
 
         nodes = []
+        import numpy as np
+
+        # Create nodes with highly distinct embeddings to avoid deduplication
+        # Use orthogonal-like vectors to ensure < 0.9 similarity
         for i in range(3):
             node = TextNode(
                 text=f"Document {i} about climate policy",
@@ -344,7 +352,11 @@ class TestHybridFilterWithLLM:
                     "document_type": "speech",
                 },
             )
-            node.embedding = [float(i), 0.5, 0.5, 0.5]
+            # Create distinct embeddings using one-hot-like patterns
+            vec = np.zeros(10)
+            vec[i] = 1.0  # Primary dimension
+            vec[(i + 5) % 10] = 0.3  # Small secondary component for variation
+            node.embedding = (vec / np.linalg.norm(vec)).tolist()
             nodes.append(NodeWithScore(node=node, score=0.9))
 
         query = QueryBundle(query_str="climate policy")
@@ -357,20 +369,24 @@ class TestHybridFilterWithLLM:
 
     def test_llm_filter_some_irrelevant(self, tmp_path):
         """Test LLM filter when some documents are irrelevant"""
+        # Register LiteLLM configuration before use
+        import augmentation.components.llms.lite_llm as lite_llm_module
+
+        lite_llm_module.register()
+
         from augmentation.components.llms.lite_llm.configuration import (
             LiteLLMConfiguration,
         )
 
         # Create secrets file with API key for test
         secrets_file = tmp_path / "secrets.test.env"
-        secrets_file.write_text("OPENAI_NEMO__API_KEY=test_key")
+        secrets_file.write_text("RAG__LLMS__OPENAI_NEMO__API_KEY=test_key")
 
         llm_conf = LiteLLMConfiguration.model_validate(
             {
                 "provider": "lite_llm",
                 "name": "openai/nemo",
                 "api_base": "http://10.10.2.166:7998/v1",
-                "api_key": "test_key",
                 "max_tokens": 100,
                 "max_retries": 3,
             },
@@ -402,6 +418,9 @@ class TestHybridFilterWithLLM:
         postprocessor._llm = mock_llm
 
         nodes = []
+        import numpy as np
+
+        # Create nodes with highly distinct embeddings to avoid deduplication
         for i in range(4):
             node = TextNode(
                 text=f"Document {i} content",
@@ -410,7 +429,11 @@ class TestHybridFilterWithLLM:
                     "created_time": "2024-01-01",
                 },
             )
-            node.embedding = [float(i), 0.5, 0.5, 0.5]
+            # Create distinct embeddings using one-hot-like patterns
+            vec = np.zeros(10)
+            vec[i] = 1.0  # Primary dimension
+            vec[(i + 5) % 10] = 0.3  # Small secondary component
+            node.embedding = (vec / np.linalg.norm(vec)).tolist()
             nodes.append(NodeWithScore(node=node, score=0.9))
 
         query = QueryBundle(query_str="test query")
@@ -425,20 +448,24 @@ class TestHybridFilterWithLLM:
 
     def test_llm_filter_error_handling(self, tmp_path):
         """Test that LLM errors are handled gracefully"""
+        # Register LiteLLM configuration before use
+        import augmentation.components.llms.lite_llm as lite_llm_module
+
+        lite_llm_module.register()
+
         from augmentation.components.llms.lite_llm.configuration import (
             LiteLLMConfiguration,
         )
 
         # Create secrets file with API key for test
         secrets_file = tmp_path / "secrets.test.env"
-        secrets_file.write_text("OPENAI_NEMO__API_KEY=test_key")
+        secrets_file.write_text("RAG__LLMS__OPENAI_NEMO__API_KEY=test_key")
 
         llm_conf = LiteLLMConfiguration.model_validate(
             {
                 "provider": "lite_llm",
                 "name": "openai/nemo",
                 "api_base": "http://10.10.2.166:7998/v1",
-                "api_key": "test_key",
                 "max_tokens": 100,
                 "max_retries": 3,
             },
