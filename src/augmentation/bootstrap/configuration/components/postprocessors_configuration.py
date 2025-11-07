@@ -14,6 +14,7 @@ class PostProcessorName(str, Enum):
     """
 
     COLBERT_RERANK = "colbert_reranker"
+    HYBRID_FILTER = "hybrid_filter"
 
 
 class PostProcessorConfiguration(BaseConfiguration):
