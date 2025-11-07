@@ -30,6 +30,7 @@ class BundestagMineDocument(BaseDocument):
         "publisher",
         "document_art",
         "document_id",
+        "parliamentary_composition",  # NEW: Party/fraction composition metadata
     ]
 
     included_llm_metadata_keys: List[str] = [
@@ -51,4 +52,5 @@ class BundestagMineDocument(BaseDocument):
         "distribution_date",
         "xml_url",
         "related_proceedings_count",
+        "parliamentary_composition",  # NEW: Party/fraction composition metadata
     ]
