@@ -1,13 +1,17 @@
 from typing import Type
 
 from llama_index.core import VectorStoreIndex
-from llama_index.core.retrievers import VectorIndexAutoRetriever
+from llama_index.core.retrievers import BaseRetriever, VectorIndexAutoRetriever
 from llama_index.core.vector_stores.types import VectorStoreInfo
 
 from augmentation.bootstrap.configuration.configuration import (
     AugmentationConfiguration,
 )
 from augmentation.components.llms.registry import LLMRegistry
+from augmentation.components.retrievers.query_rewriter import QueryRewriter
+from augmentation.components.retrievers.query_rewriting_retriever import (
+    QueryRewritingRetriever,
+)
 from core.base_factory import Factory
 from embedding.embedding_models.registry import EmbeddingModelRegistry
 from embedding.vector_stores.registry import VectorStoreRegistry
@@ -29,23 +33,24 @@ class AutoRetrieverFactory(Factory):
     @classmethod
     def _create_instance(
         cls, configuration: AugmentationConfiguration
-    ) -> VectorIndexAutoRetriever:
+    ) -> BaseRetriever:
         """
-        Creates a VectorIndexAutoRetriever instance based on the provided configuration.
+        Creates a VectorIndexAutoRetriever wrapped with query rewriting.
 
         This method:
         1. Sets up the vector store using the configuration
         2. Initializes the embedding model
         3. Creates a VectorStoreIndex from the vector store and embedding model
         4. Configures the LLM for the retriever
-        5. Returns a fully configured VectorIndexAutoRetriever
+        5. Wraps the retriever with query rewriting for improved retrieval
+        6. Returns a fully configured retriever with query rewriting
 
         Args:
             configuration: AugmentationConfiguration object containing all necessary settings
                           for creating the retriever component
 
         Returns:
-            VectorIndexAutoRetriever: A configured auto-retriever for dynamic query processing
+            BaseRetriever: A query-rewriting retriever wrapping the auto-retriever
         """
         vector_store_configuration = configuration.embedding.vector_store
         vector_store = VectorStoreRegistry.get(
@@ -66,7 +71,7 @@ class AutoRetrieverFactory(Factory):
             retriever_configuration.llm
         )
 
-        return VectorIndexAutoRetriever(
+        base_retriever = VectorIndexAutoRetriever(
             index=index,
             similarity_top_k=retriever_configuration.similarity_top_k,
             llm=llm,
@@ -82,4 +87,10 @@ class AutoRetrieverFactory(Factory):
                     # relevant documents than strict metadata filtering.
                 ],
             ),
+        )
+
+        # Wrap with query rewriting for improved retrieval on specific query patterns
+        query_rewriter = QueryRewriter()
+        return QueryRewritingRetriever(
+            base_retriever=base_retriever, query_rewriter=query_rewriter
         )
