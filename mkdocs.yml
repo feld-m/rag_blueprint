@@ -19,119 +19,125 @@ nav:
   - Embed: src/embed.md
   - Evaluate: src/evaluate.md
   - Augmentation:
+    - Bootstrap:
+      - Configuration:
+        - Configuration: src/augmentation/bootstrap/configuration/configuration.md
+        - Chainlit_configuration: src/augmentation/bootstrap/configuration/chainlit_configuration.md
+        - Components:
+          - Llm_configuration: src/augmentation/bootstrap/configuration/components/llm_configuration.md
+          - Guardrails_configuration: src/augmentation/bootstrap/configuration/components/guardrails_configuration.md
+          - Postprocessors_configuration: src/augmentation/bootstrap/configuration/components/postprocessors_configuration.md
+          - Chat_engine_configuration: src/augmentation/bootstrap/configuration/components/chat_engine_configuration.md
+          - Retriever_configuration: src/augmentation/bootstrap/configuration/components/retriever_configuration.md
+        - Langfuse_configuration: src/augmentation/bootstrap/configuration/langfuse_configuration.md
+      - Initializer: src/augmentation/bootstrap/initializer.md
+    - Components:
+      - Postprocessors:
+        - Colbert_rerank:
+          - Postprocessor: src/augmentation/components/postprocessors/colbert_rerank/postprocessor.md
+          - Configuraiton: src/augmentation/components/postprocessors/colbert_rerank/configuraiton.md
+        - Hybrid_filter:
+          - Configuration: src/augmentation/components/postprocessors/hybrid_filter/configuration.md
+          - Factory: src/augmentation/components/postprocessors/hybrid_filter/factory.md
+          - Postprocessor: src/augmentation/components/postprocessors/hybrid_filter/postprocessor.md
+        - Registry: src/augmentation/components/postprocessors/registry.md
+      - Chat_engines:
+        - Langfuse:
+          - Configuration: src/augmentation/components/chat_engines/langfuse/configuration.md
+          - Chat_engine: src/augmentation/components/chat_engines/langfuse/chat_engine.md
+          - Callback_manager: src/augmentation/components/chat_engines/langfuse/callback_manager.md
+        - Registry: src/augmentation/components/chat_engines/registry.md
+      - Retrievers:
+        - Query_rewriter: src/augmentation/components/retrievers/query_rewriter.md
+        - Query_rewriting_retriever: src/augmentation/components/retrievers/query_rewriting_retriever.md
+        - Basic:
+          - Configuration: src/augmentation/components/retrievers/basic/configuration.md
+          - Retriever: src/augmentation/components/retrievers/basic/retriever.md
+        - Auto:
+          - Configuration: src/augmentation/components/retrievers/auto/configuration.md
+          - Retriever: src/augmentation/components/retrievers/auto/retriever.md
+        - Registry: src/augmentation/components/retrievers/registry.md
+      - Llms:
+        - Registry: src/augmentation/components/llms/registry.md
+        - Lite_llm:
+          - Configuration: src/augmentation/components/llms/lite_llm/configuration.md
+          - Llm: src/augmentation/components/llms/lite_llm/llm.md
+      - Guardrails:
+        - Base_guardrails: src/augmentation/components/guardrails/base_guardrails.md
+        - Basic:
+          - Configuration: src/augmentation/components/guardrails/basic/configuration.md
+          - Guardrails: src/augmentation/components/guardrails/basic/guardrails.md
+        - Registry: src/augmentation/components/guardrails/registry.md
+    - Langfuse:
+      - Client: src/augmentation/langfuse/client.md
+      - Dataset_service: src/augmentation/langfuse/dataset_service.md
+      - Prompt_service: src/augmentation/langfuse/prompt_service.md
     - Chainlit:
       - Feedback_service: src/augmentation/chainlit/feedback_service.md
       - Utils: src/augmentation/chainlit/utils.md
       - Service: src/augmentation/chainlit/service.md
       - Exceptions: src/augmentation/chainlit/exceptions.md
-    - Langfuse:
-      - Prompt_service: src/augmentation/langfuse/prompt_service.md
-      - Client: src/augmentation/langfuse/client.md
-      - Dataset_service: src/augmentation/langfuse/dataset_service.md
-    - Bootstrap:
-      - Configuration:
-        - Langfuse_configuration: src/augmentation/bootstrap/configuration/langfuse_configuration.md
-        - Configuration: src/augmentation/bootstrap/configuration/configuration.md
-        - Chainlit_configuration: src/augmentation/bootstrap/configuration/chainlit_configuration.md
-        - Components:
-          - Llm_configuration: src/augmentation/bootstrap/configuration/components/llm_configuration.md
-          - Postprocessors_configuration: src/augmentation/bootstrap/configuration/components/postprocessors_configuration.md
-          - Guardrails_configuration: src/augmentation/bootstrap/configuration/components/guardrails_configuration.md
-          - Chat_engine_configuration: src/augmentation/bootstrap/configuration/components/chat_engine_configuration.md
-          - Retriever_configuration: src/augmentation/bootstrap/configuration/components/retriever_configuration.md
-      - Initializer: src/augmentation/bootstrap/initializer.md
-    - Components:
-      - Llms:
-        - Registry: src/augmentation/components/llms/registry.md
-        - Lite_llm:
-          - Llm: src/augmentation/components/llms/lite_llm/llm.md
-          - Configuration: src/augmentation/components/llms/lite_llm/configuration.md
-      - Guardrails:
-        - Registry: src/augmentation/components/guardrails/registry.md
-        - Basic:
-          - Configuration: src/augmentation/components/guardrails/basic/configuration.md
-          - Guardrails: src/augmentation/components/guardrails/basic/guardrails.md
-        - Base_guardrails: src/augmentation/components/guardrails/base_guardrails.md
-      - Retrievers:
-        - Registry: src/augmentation/components/retrievers/registry.md
-        - Auto:
-          - Configuration: src/augmentation/components/retrievers/auto/configuration.md
-          - Retriever: src/augmentation/components/retrievers/auto/retriever.md
-        - Basic:
-          - Configuration: src/augmentation/components/retrievers/basic/configuration.md
-          - Retriever: src/augmentation/components/retrievers/basic/retriever.md
-      - Postprocessors:
-        - Registry: src/augmentation/components/postprocessors/registry.md
-        - Colbert_rerank:
-          - Postprocessor: src/augmentation/components/postprocessors/colbert_rerank/postprocessor.md
-          - Configuraiton: src/augmentation/components/postprocessors/colbert_rerank/configuraiton.md
-      - Chat_engines:
-        - Langfuse:
-          - Callback_manager: src/augmentation/components/chat_engines/langfuse/callback_manager.md
-          - Chat_engine: src/augmentation/components/chat_engines/langfuse/chat_engine.md
-          - Configuration: src/augmentation/components/chat_engines/langfuse/configuration.md
-        - Registry: src/augmentation/components/chat_engines/registry.md
   - Core:
     - Logger: src/core/logger.md
-    - Base_configuration: src/core/base_configuration.md
-    - Configuration_retrievers: src/core/configuration_retrievers.md
-    - Base_initializer: src/core/base_initializer.md
     - Base_factory: src/core/base_factory.md
+    - Configuration_retrievers: src/core/configuration_retrievers.md
+    - Base_configuration: src/core/base_configuration.md
+    - Base_initializer: src/core/base_initializer.md
   - Embedding:
+    - Vector_stores:
+      - Qdrant:
+        - Configuration: src/embedding/vector_stores/qdrant/configuration.md
+        - Vector_store: src/embedding/vector_stores/qdrant/vector_store.md
+        - Validator: src/embedding/vector_stores/qdrant/validator.md
+        - Client: src/embedding/vector_stores/qdrant/client.md
+      - Chroma:
+        - Configuration: src/embedding/vector_stores/chroma/configuration.md
+        - Vector_store: src/embedding/vector_stores/chroma/vector_store.md
+        - Validator: src/embedding/vector_stores/chroma/validator.md
+        - Client: src/embedding/vector_stores/chroma/client.md
+      - Core:
+        - Validator: src/embedding/vector_stores/core/validator.md
+        - Exceptions: src/embedding/vector_stores/core/exceptions.md
+      - Registry: src/embedding/vector_stores/registry.md
+      - Pgvector:
+        - Configuration: src/embedding/vector_stores/pgvector/configuration.md
+        - Vector_store: src/embedding/vector_stores/pgvector/vector_store.md
+        - Validator: src/embedding/vector_stores/pgvector/validator.md
+        - Client: src/embedding/vector_stores/pgvector/client.md
+    - Bootstrap:
+      - Configuration:
+        - Configuration: src/embedding/bootstrap/configuration/configuration.md
+        - Vector_store_configuration: src/embedding/bootstrap/configuration/vector_store_configuration.md
+        - Splitting_configuration: src/embedding/bootstrap/configuration/splitting_configuration.md
+        - Embedding_model_configuration: src/embedding/bootstrap/configuration/embedding_model_configuration.md
+      - Initializer: src/embedding/bootstrap/initializer.md
     - Embedders:
-      - Registry: src/embedding/embedders/registry.md
       - Base_embedder: src/embedding/embedders/base_embedder.md
       - Basic:
         - Embedder: src/embedding/embedders/basic/embedder.md
+      - Registry: src/embedding/embedders/registry.md
     - Orchestrators:
-      - Registry: src/embedding/orchestrators/registry.md
       - Basic:
         - Orchestrator: src/embedding/orchestrators/basic/orchestrator.md
+      - Registry: src/embedding/orchestrators/registry.md
       - Base_orchestrator: src/embedding/orchestrators/base_orchestrator.md
-    - Vector_stores:
-      - Chroma:
-        - Vector_store: src/embedding/vector_stores/chroma/vector_store.md
-        - Client: src/embedding/vector_stores/chroma/client.md
-        - Configuration: src/embedding/vector_stores/chroma/configuration.md
-        - Validator: src/embedding/vector_stores/chroma/validator.md
-      - Registry: src/embedding/vector_stores/registry.md
-      - Core:
-        - Exceptions: src/embedding/vector_stores/core/exceptions.md
-        - Validator: src/embedding/vector_stores/core/validator.md
-      - Pgvector:
-        - Vector_store: src/embedding/vector_stores/pgvector/vector_store.md
-        - Client: src/embedding/vector_stores/pgvector/client.md
-        - Configuration: src/embedding/vector_stores/pgvector/configuration.md
-        - Validator: src/embedding/vector_stores/pgvector/validator.md
-      - Qdrant:
-        - Vector_store: src/embedding/vector_stores/qdrant/vector_store.md
-        - Client: src/embedding/vector_stores/qdrant/client.md
-        - Configuration: src/embedding/vector_stores/qdrant/configuration.md
-        - Validator: src/embedding/vector_stores/qdrant/validator.md
-    - Splitters:
-      - Registry: src/embedding/splitters/registry.md
-      - Base_splitter: src/embedding/splitters/base_splitter.md
-      - Basic_markdown:
-        - Basic_markdown_splitter: src/embedding/splitters/basic_markdown/basic_markdown_splitter.md
-        - Configuration: src/embedding/splitters/basic_markdown/configuration.md
-    - Bootstrap:
-      - Configuration:
-        - Vector_store_configuration: src/embedding/bootstrap/configuration/vector_store_configuration.md
-        - Embedding_model_configuration: src/embedding/bootstrap/configuration/embedding_model_configuration.md
-        - Configuration: src/embedding/bootstrap/configuration/configuration.md
-        - Splitting_configuration: src/embedding/bootstrap/configuration/splitting_configuration.md
-      - Initializer: src/embedding/bootstrap/initializer.md
     - Embedding_models:
-      - Registry: src/embedding/embedding_models/registry.md
       - Hugging_face:
-        - Embedding_model: src/embedding/embedding_models/hugging_face/embedding_model.md
         - Configuration: src/embedding/embedding_models/hugging_face/configuration.md
-      - Voyage:
-        - Embedding_model: src/embedding/embedding_models/voyage/embedding_model.md
-        - Configuration: src/embedding/embedding_models/voyage/configuration.md
+        - Embedding_model: src/embedding/embedding_models/hugging_face/embedding_model.md
       - Openai:
-        - Embedding_model: src/embedding/embedding_models/openai/embedding_model.md
         - Configuration: src/embedding/embedding_models/openai/configuration.md
+        - Embedding_model: src/embedding/embedding_models/openai/embedding_model.md
+      - Voyage:
+        - Configuration: src/embedding/embedding_models/voyage/configuration.md
+        - Embedding_model: src/embedding/embedding_models/voyage/embedding_model.md
+      - Registry: src/embedding/embedding_models/registry.md
+    - Splitters:
+      - Basic_markdown:
+        - Configuration: src/embedding/splitters/basic_markdown/configuration.md
+        - Basic_markdown_splitter: src/embedding/splitters/basic_markdown/basic_markdown_splitter.md
+      - Base_splitter: src/embedding/splitters/base_splitter.md
+      - Registry: src/embedding/splitters/registry.md
   - Evaluation:
     - Bootstrap:
       - Configuration:
@@ -141,23 +147,23 @@ nav:
       - Langfuse: src/evaluation/evaluators/langfuse.md
       - Ragas: src/evaluation/evaluators/ragas.md
   - Extraction:
-    - Orchestrators:
-      - Base_orchestator: src/extraction/orchestrators/base_orchestator.md
-      - Registry: src/extraction/orchestrators/registry.md
-      - Basic:
-        - Orchestrator: src/extraction/orchestrators/basic/orchestrator.md
-    - Datasources:
-      - Pdf: src/extraction/datasources/pdf.md
-      - Registry: src/extraction/datasources/registry.md
-      - Confluence: src/extraction/datasources/confluence.md
-      - Core: src/extraction/datasources/core.md
-      - Bundestag: src/extraction/datasources/bundestag.md
-      - Notion: src/extraction/datasources/notion.md
     - Bootstrap:
       - Configuration:
-        - Datasources: src/extraction/bootstrap/configuration/datasources.md
         - Configuration: src/extraction/bootstrap/configuration/configuration.md
+        - Datasources: src/extraction/bootstrap/configuration/datasources.md
       - Initializer: src/extraction/bootstrap/initializer.md
+    - Orchestrators:
+      - Base_orchestator: src/extraction/orchestrators/base_orchestator.md
+      - Basic:
+        - Orchestrator: src/extraction/orchestrators/basic/orchestrator.md
+      - Registry: src/extraction/orchestrators/registry.md
+    - Datasources:
+      - Pdf: src/extraction/datasources/pdf.md
+      - Confluence: src/extraction/datasources/confluence.md
+      - Bundestag: src/extraction/datasources/bundestag.md
+      - Core: src/extraction/datasources/core.md
+      - Notion: src/extraction/datasources/notion.md
+      - Registry: src/extraction/datasources/registry.md
 plugins:
 - mkdocstrings
 - search

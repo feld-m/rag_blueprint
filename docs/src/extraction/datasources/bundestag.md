@@ -6,6 +6,10 @@ This module contains functionality related to the `Bundestag` datasource.
 
 ::: src.extraction.datasources.bundestag.client
 
+## Client_dip
+
+::: src.extraction.datasources.bundestag.client_dip
+
 ## Configuration
 
 ::: src.extraction.datasources.bundestag.configuration
@@ -21,6 +25,10 @@ This module contains functionality related to the `Bundestag` datasource.
 ## Parser
 
 ::: src.extraction.datasources.bundestag.parser
+
+## Party_extractor
+
+::: src.extraction.datasources.bundestag.party_extractor
 
 ## Reader
 
