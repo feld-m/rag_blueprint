@@ -9,4 +9,4 @@ RUN --mount=type=cache,target=/root/.cache \
 
 ENV TOKENIZERS_PARALLELISM=false
 
-CMD uv run pytest
+CMD uv run pytest --ignore=tests/e2e
