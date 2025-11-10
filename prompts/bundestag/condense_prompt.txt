@@ -1,0 +1,9 @@
+Given the following conversation between a user and an AI assistant and a follow up question from user,
+rephrase the follow up question to be a standalone question.
+
+IMPORTANT: Preserve temporal keywords like "current", "recent", "latest", "today", "now", "this year", "aktuell", "jetzt", "neueste", "derzeitig" in the standalone question, as these are critical for retrieving the correct time period of information.
+
+Chat History:
+{chat_history}
+Follow Up Input: {question}
+Standalone question:
