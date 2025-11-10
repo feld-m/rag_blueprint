@@ -1,5 +1,5 @@
 import logging
-from typing import AsyncIterator
+from typing import AsyncIterator, Optional
 
 from core import Factory
 from core.logger import LoggerConfiguration
@@ -7,6 +7,7 @@ from extraction.datasources.bundestag.client import (
     BundestagMineClient,
     BundestagMineClientFactory,
 )
+from extraction.datasources.bundestag.client_dip import DIPClient
 from extraction.datasources.bundestag.configuration import (
     BundestagMineDatasourceConfiguration,
 )
@@ -14,62 +15,98 @@ from extraction.datasources.core.reader import BaseReader
 
 
 class BundestagMineDatasourceReader(BaseReader):
-    """Reader for extracting speeches from the BundestagMine API.
+    """Reader for extracting data from multiple Bundestag sources.
 
-    Implements document extraction from the Bundestag speeches.
+    Supports multiple data sources:
+    - BundestagMine API: Individual speeches from parliamentary sessions
+    - DIP API: Comprehensive parliamentary documents (protocols, drucksachen, proceedings)
     """
 
     def __init__(
         self,
         configuration: BundestagMineDatasourceConfiguration,
-        client: BundestagMineClient,
+        client: Optional[BundestagMineClient] = None,
+        dip_client: Optional[DIPClient] = None,
         logger: logging.Logger = LoggerConfiguration.get_logger(__name__),
     ):
-        """Initialize the BundestagMine reader.
+        """Initialize the Bundestag reader with multiple data sources.
 
         Args:
-            configuration: Settings for BundestagMine access and export limits
-            client: Client for BundestagMine API interactions
+            configuration: Settings for Bundestag data access and export limits
+            client: Client for BundestagMine API interactions (optional)
+            dip_client: Client for DIP API interactions (optional)
             logger: Logger instance for recording operation information
         """
         super().__init__()
+        self.configuration = configuration
         self.export_limit = configuration.export_limit
         self.client = client
+        self.dip_client = dip_client
         self.logger = logger
 
     async def read_all_async(
         self,
     ) -> AsyncIterator[dict]:
-        """Asynchronously fetch all speeches from BundestagMine.
+        """Asynchronously fetch all documents from enabled Bundestag sources.
 
-        Yields each speech as a dictionary containing its content and metadata.
+        Yields documents from multiple sources based on configuration:
+        - BundestagMine: Individual speeches
+        - DIP: Comprehensive parliamentary documents
+
+        Each enabled source gets the full export_limit, so if both sources are
+        enabled with export_limit=2, you get 2 documents from each source (4 total).
 
         Returns:
-            AsyncIterator[dict]: An async iterator of page dictionaries containing
+            AsyncIterator[dict]: An async iterator of document dictionaries containing
             content and metadata such as text, speaker data, and last update information
         """
         self.logger.info(
-            f"Reading speeches from BundestagMine with limit {self.export_limit}"
+            f"Reading Bundestag documents with limit {self.export_limit} per source"
         )
-        speech_iterator = self.client.fetch_all_speeches()
-        yield_counter = 0
 
-        for speech in speech_iterator:
-            if self._limit_reached(yield_counter, self.export_limit):
-                return
-
+        # Source 1: BundestagMine speeches
+        if self.configuration.include_bundestag_mine and self.client:
             self.logger.info(
-                f"Fetched Bundestag speech {yield_counter}/{self.export_limit}."
+                f"Fetching speeches from BundestagMine API (limit: {self.export_limit})..."
             )
-            yield_counter += 1
-            yield speech
+            speech_iterator = self.client.fetch_all_speeches()
+            mine_counter = 0
+
+            for speech in speech_iterator:
+                if self._limit_reached(mine_counter, self.export_limit):
+                    break
+
+                self.logger.info(
+                    f"Fetched BundestagMine speech {mine_counter + 1}/{self.export_limit}."
+                )
+                mine_counter += 1
+                yield speech
+
+        # Source 2: DIP API documents
+        if self.configuration.include_dip and self.dip_client:
+            self.logger.info(
+                f"Fetching documents from DIP API (limit: {self.export_limit})..."
+            )
+            dip_iterator = self.dip_client.fetch_all()
+            dip_counter = 0
+
+            for dip_document in dip_iterator:
+                if self._limit_reached(dip_counter, self.export_limit):
+                    break
+
+                self.logger.info(
+                    f"Fetched DIP document {dip_counter + 1}/{self.export_limit}."
+                )
+                dip_counter += 1
+                yield dip_document
 
 
 class BundestagMineDatasourceReaderFactory(Factory):
-    """Factory for creating BundestagMine reader instances.
+    """Factory for creating Bundestag reader instances.
 
     Creates and configures BundestagMineDatasourceReader objects with appropriate
-    clients based on the provided configuration.
+    clients based on the provided configuration. Supports multiple data sources
+    including BundestagMine and DIP APIs.
     """
 
     _configuration_class = BundestagMineDatasourceConfiguration
@@ -78,19 +115,35 @@ class BundestagMineDatasourceReaderFactory(Factory):
     def _create_instance(
         cls, configuration: BundestagMineDatasourceConfiguration
     ) -> BundestagMineDatasourceReader:
-        """Creates a configured BundestagMine reader instance.
+        """Creates a configured Bundestag reader instance.
 
-        Initializes the BundestagMine client and reader with the given configuration
-        settings for credentials, URL, and export limits.
+        Initializes the appropriate clients (BundestagMine and/or DIP) based on
+        configuration settings.
 
         Args:
-            configuration: BundestagMine connection and access settings
+            configuration: Bundestag connection and access settings
 
         Returns:
             BundestagMineDatasourceReader: Fully configured reader instance
         """
-        client = BundestagMineClientFactory.create(configuration)
+        # Create BundestagMine client if enabled
+        bundestag_mine_client = None
+        if configuration.include_bundestag_mine:
+            bundestag_mine_client = BundestagMineClientFactory.create(
+                configuration
+            )
+
+        # Create DIP client if enabled
+        dip_client = None
+        if configuration.include_dip:
+            dip_client = DIPClient(
+                api_key=configuration.dip_api_key,
+                wahlperiode=configuration.dip_wahlperiode,
+                fetch_sources=configuration.dip_sources,
+            )
+
         return BundestagMineDatasourceReader(
             configuration=configuration,
-            client=client,
+            client=bundestag_mine_client,
+            dip_client=dip_client,
         )

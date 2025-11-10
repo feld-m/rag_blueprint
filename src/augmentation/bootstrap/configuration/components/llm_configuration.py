@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Type
+from typing import Optional, Type
 
 from pydantic import Field
 
@@ -29,6 +29,16 @@ class LLMConfiguration(BaseConfigurationWithSecrets):
     )
     max_retries: int = Field(
         ..., description="The maximum number of retries for the language model."
+    )
+    context_window: Optional[int] = Field(
+        None,
+        description="The maximum context window size for the language model. "
+        "If not specified, uses the model's default from LiteLLM metadata.",
+    )
+    num_output: Optional[int] = Field(
+        None,
+        description="The maximum number of output tokens for the language model. "
+        "If not specified, uses the model's default from LiteLLM metadata.",
     )
 
 

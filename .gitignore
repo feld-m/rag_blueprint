@@ -11,6 +11,7 @@ build/**/logs
 configurations/*
 !configurations/configuration.default.json
 !configurations/configuration.local.json
+!configurations/configuration.test*.json
 data/
 tmp/
 # Byte-compiled / optimized / DLL files

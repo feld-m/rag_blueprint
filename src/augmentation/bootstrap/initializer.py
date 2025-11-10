@@ -4,7 +4,6 @@ from typing import Type
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from llama_index.core.chat_engine.condense_plus_context import (
-    DEFAULT_CONDENSE_PROMPT_TEMPLATE,
     DEFAULT_CONTEXT_PROMPT_TEMPLATE,
     DEFAULT_CONTEXT_REFINE_PROMPT_TEMPLATE,
 )
@@ -204,9 +203,17 @@ class AugmentationInitializer(EmbeddingInitializer):
             configuration=configuration.augmentation.langfuse
         )
 
+        # Use LlamaIndex's default condense prompt
+        # Domain-specific prompts can be configured in Langfuse or loaded from prompts/ directory
         langfuse_prompt_service.create_prompt_if_not_exists(
             prompt_name="default_condense_prompt",
-            prompt_template=DEFAULT_CONDENSE_PROMPT_TEMPLATE,
+            prompt_template="""Given the following conversation between a user and an AI assistant and a follow up question from user,
+rephrase the follow up question to be a standalone question.
+
+Chat History:
+{chat_history}
+Follow Up Input: {question}
+Standalone question:""",
         )
 
         langfuse_prompt_service.create_prompt_if_not_exists(
@@ -219,9 +226,24 @@ class AugmentationInitializer(EmbeddingInitializer):
             prompt_template=DEFAULT_CONTEXT_REFINE_PROMPT_TEMPLATE,
         )
 
+        # Generic system prompt for RAG assistant
+        # Domain-specific prompts (e.g., Bundestag) should be configured in Langfuse
+        # or loaded from prompts/ directory for specific deployments
         langfuse_prompt_service.create_prompt_if_not_exists(
             prompt_name="default_system_prompt",
-            prompt_template="",
+            prompt_template="""You are a helpful AI assistant that answers questions based on the provided context documents.
+
+CRITICAL: GROUNDING IN RETRIEVED DOCUMENTS
+- Base your answers ONLY on the information in the provided context documents
+- Do not use your training data or prior knowledge unless explicitly asked
+- If the retrieved documents do not contain information about a topic, clearly state this
+- Always cite or reference the source documents when possible
+
+IMPORTANT GUIDELINES:
+- Provide accurate, objective information based on the retrieved documents
+- If information is ambiguous or conflicting, acknowledge this
+- Be concise but thorough in your responses
+- Maintain a helpful and professional tone""",
         )
 
         langfuse_prompt_service.create_prompt_if_not_exists(
