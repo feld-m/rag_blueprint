@@ -5,6 +5,9 @@ from llama_index.core.postprocessor.types import BaseNodePostprocessor
 from llama_index.core.schema import NodeWithScore, QueryBundle
 from pydantic import Field, PrivateAttr
 
+from augmentation.bootstrap.configuration.temporal_domain_config import (
+    TemporalDomainConfiguration,
+)
 from augmentation.components.llms.registry import LLMRegistry
 from augmentation.components.postprocessors.hybrid_filter.configuration import (
     HybridFilterConfiguration,
@@ -44,13 +47,25 @@ class HybridFilterPostprocessor(BaseNodePostprocessor):
 
     _llm: Any = PrivateAttr(default=None)
     _logger: Any = PrivateAttr(default=None)
+    _temporal_domain_config: Optional[TemporalDomainConfiguration] = (
+        PrivateAttr(default=None)
+    )
+    _current_keywords: List[str] = PrivateAttr(default_factory=list)
+    _historical_keywords: List[str] = PrivateAttr(default_factory=list)
 
-    def __init__(self, configuration: HybridFilterConfiguration, **kwargs):
+    def __init__(
+        self,
+        configuration: HybridFilterConfiguration,
+        temporal_domain_config: Optional[TemporalDomainConfiguration] = None,
+        **kwargs,
+    ):
         """
         Initialize the hybrid filter postprocessor.
 
         Args:
             configuration: Configuration containing filter thresholds and LLM settings
+            temporal_domain_config: Optional temporal domain configuration.
+                If None, runs without temporal filtering.
         """
         super().__init__(
             score_threshold=configuration.score_threshold,
@@ -60,6 +75,28 @@ class HybridFilterPostprocessor(BaseNodePostprocessor):
             **kwargs,
         )
         self._logger = LoggerConfiguration.get_logger(__name__)
+        self._temporal_domain_config = temporal_domain_config
+
+        # Build keyword lists from config (empty if no config provided)
+        # Lowercase keywords for case-insensitive substring matching
+        if temporal_domain_config:
+            self._current_keywords = [
+                kw.lower()
+                for kw in temporal_domain_config.get_all_current_keywords()
+            ]
+            self._historical_keywords = [
+                kw.lower()
+                for kw in temporal_domain_config.get_all_historical_keywords()
+            ]
+            self._logger.info(
+                f"[HybridFilter] Initialized with temporal domain: {temporal_domain_config.name}"
+            )
+        else:
+            self._current_keywords = []
+            self._historical_keywords = []
+            self._logger.info(
+                "[HybridFilter] Running without temporal filtering (no temporal_domain config)"
+            )
 
         # Initialize LLM if relevance filtering is enabled
         if configuration.enable_llm_filter and configuration.llm:
@@ -97,17 +134,32 @@ class HybridFilterPostprocessor(BaseNodePostprocessor):
         nodes = self._filter_by_score(nodes)
 
         # Stage 2: Temporal filtering (if query mentions current/recent)
+        # Track if we applied historical filtering (WP20-only)
+        applied_historical_filter = False
         if query_bundle:
-            nodes = self._filter_by_temporal_relevance(
-                nodes, query_bundle.query_str
+            nodes, applied_historical_filter = (
+                self._filter_by_temporal_relevance(
+                    nodes, query_bundle.query_str
+                )
             )
 
         # Stage 3: Semantic deduplication
         nodes = self._deduplicate_semantically(nodes)
 
         # Stage 4: LLM relevance check (optional, expensive)
-        if self.enable_llm_filter and self._llm and query_bundle:
+        # Skip LLM filtering if we already applied strict WP20 metadata filtering
+        # since all documents are already from the correct period
+        if (
+            self.enable_llm_filter
+            and self._llm
+            and query_bundle
+            and not applied_historical_filter
+        ):
             nodes = self._filter_by_llm_relevance(nodes, query_bundle.query_str)
+        elif applied_historical_filter:
+            self._logger.info(
+                "[HybridFilter] Skipping LLM filtering - documents already strictly filtered to WP20"
+            )
 
         # Stage 5: Limit to max_documents
         nodes = nodes[: self.max_documents]
@@ -120,75 +172,119 @@ class HybridFilterPostprocessor(BaseNodePostprocessor):
 
     def _filter_by_temporal_relevance(
         self, nodes: List[NodeWithScore], query: str
-    ) -> List[NodeWithScore]:
+    ) -> tuple[List[NodeWithScore], bool]:
         """
-        Stage 2: Filter out old documents when query asks for 'current' information.
+        Stage 2: Filter documents by temporal relevance based on query keywords.
 
-        Detects temporal keywords in the query (current, recent, latest, etc.) and
-        filters to only include documents from the current legislative period (21).
-        This prevents mixing old information (e.g., FDP in period 20) with current
-        parliament composition.
+        Uses configured temporal domain to detect temporal intent and filter accordingly.
+        If no temporal_domain_config is provided, returns all nodes unchanged.
 
         Args:
             nodes: List of nodes to filter
             query: User query string
 
         Returns:
-            Filtered list of nodes from current period, or all nodes if no temporal keywords
+            Tuple of (filtered nodes, bool indicating if historical filter was applied)
         """
-        # Keywords indicating user wants current/recent information
-        temporal_keywords = [
-            "current",
-            "recent",
-            "latest",
-            "today",
-            "now",
-            "this year",
-            "aktuell",
-            "jetzt",
-            "neueste",
-            "derzeitig",
-            "gegenwärtig",
-            "dieses jahr",
-            "momentan",
-        ]
+        # If no temporal domain config, skip temporal filtering
+        if not self._temporal_domain_config:
+            self._logger.debug(
+                "[HybridFilter] Temporal filtering SKIPPED - no temporal_domain config"
+            )
+            return nodes, False
 
         query_lower = query.lower()
+
+        # First check for historical keywords - these trigger historical period filtering
+        has_historical_keyword = any(
+            keyword in query_lower for keyword in self._historical_keywords
+        )
+
+        if has_historical_keyword:
+            field_name = self._temporal_domain_config.temporal_field_name
+            target_period = str(
+                self._temporal_domain_config.historical_period_value
+            )
+
+            self._logger.info(
+                f"[HybridFilter] Historical filtering ACTIVATED - filtering to {field_name}={target_period} for query: '{query[:80]}'"
+            )
+
+            filtered = []
+            for node in nodes:
+                period = node.node.metadata.get(field_name, "")
+                document_number = node.node.metadata.get("document_number", "")
+
+                # Fallback: Try to extract period from document_number if not in metadata field
+                if not period and "/" in document_number:
+                    period = document_number.split("/")[0]
+
+                # Convert period to string for comparison
+                period = str(period) if period else ""
+
+                # Keep only historical period documents
+                if period == target_period:
+                    filtered.append(node)
+                    self._logger.debug(
+                        f"[HybridFilter] ✓ KEPT {field_name}={period} doc: {node.node.metadata.get('title', 'Untitled')[:60]}"
+                    )
+                else:
+                    self._logger.debug(
+                        f"[HybridFilter] ✗ FILTERED OUT {field_name}={period} doc (keeping {target_period} only)"
+                    )
+
+            removed_count = len(nodes) - len(filtered)
+            if removed_count > 0:
+                self._logger.info(
+                    f"[HybridFilter] Historical filtering: removed {removed_count} non-{target_period} documents → {len(filtered)} remaining"
+                )
+
+            # If filtering removed everything, fall back to all nodes
+            if not filtered:
+                self._logger.warning(
+                    "[HybridFilter] Historical filtering would remove all documents. Keeping all to avoid empty results."
+                )
+                return nodes, False
+
+            return (
+                filtered,
+                True,
+            )  # True indicates historical filtering was applied
+
+        # Then check for current/temporal keywords - these trigger current period filtering
         has_temporal_keyword = any(
-            keyword in query_lower for keyword in temporal_keywords
+            keyword in query_lower for keyword in self._current_keywords
         )
 
         if not has_temporal_keyword:
             self._logger.info(
                 f"[HybridFilter] Temporal filtering SKIPPED - no temporal keywords found in query: '{query[:80]}'"
             )
-            return nodes
+            return nodes, False
+
+        field_name = self._temporal_domain_config.temporal_field_name
+        current_period = str(self._temporal_domain_config.current_period_value)
 
         self._logger.info(
-            f"[HybridFilter] Temporal filtering ACTIVATED for query: '{query[:80]}'"
+            f"[HybridFilter] Temporal filtering ACTIVATED - filtering to {field_name}={current_period} for query: '{query[:80]}'"
         )
 
-        # Filter to only current period (21)
-        current_period = "21"
         filtered = []
-
         for node in nodes:
-            period = node.node.metadata.get("legislature_period", "")
+            period = node.node.metadata.get(field_name, "")
             document_number = node.node.metadata.get("document_number", "")
             title = node.node.metadata.get("title", "Untitled")[:60]
 
-            # Fallback: Try to extract period from document_number if not in legislature_period
-            # document_number format: "{legislature_period}/{protocol_number}" (e.g., "21/28")
-            if not period:
-                if "/" in document_number:
-                    period = document_number.split("/")[0]
+            # Fallback: Try to extract period from document_number if not in metadata field
+            if not period and "/" in document_number:
+                period = document_number.split("/")[0]
 
-            # IMPORTANT: Convert period to string for comparison (metadata might be int or str)
+            # Convert period to string for comparison
             period = str(period) if period else ""
 
             # Log what we found
             self._logger.info(
-                f"[HybridFilter]   Doc: '{title}' | legislature_period='{node.node.metadata.get('legislature_period', '')}' | document_number='{document_number}' | extracted_period='{period}'"
+                f"[HybridFilter]   Doc: '{title}' | {field_name}='{node.node.metadata.get(field_name, '')}' | document_number='{document_number}' | extracted_period='{period}'"
             )
 
             # Keep if from current period or if period is unknown (empty)
@@ -198,29 +294,28 @@ class HybridFilterPostprocessor(BaseNodePostprocessor):
                     f"[HybridFilter]     ✓ KEPT (period={period or 'unknown'})"
                 )
             else:
-                filtered_reason = f"old period={period}"
                 self._logger.info(
-                    f"[HybridFilter]     ✗ FILTERED OUT ({filtered_reason})"
+                    f"[HybridFilter]     ✗ FILTERED OUT (old period={period})"
                 )
 
         removed_count = len(nodes) - len(filtered)
-
         if removed_count > 0:
             self._logger.info(
                 f"[HybridFilter] Temporal filtering: removed {removed_count} old documents "
-                f"(kept period={current_period} only) → {len(filtered)} remaining"
+                f"(kept {field_name}={current_period} only) → {len(filtered)} remaining"
             )
 
         # If filtering removed everything, fall back to all nodes
-        # (better to return some results than none)
         if not filtered:
             self._logger.warning(
-                "[HybridFilter] Temporal filtering would remove all documents. "
-                "Keeping all to avoid empty results."
+                "[HybridFilter] Temporal filtering would remove all documents. Keeping all to avoid empty results."
             )
-            return nodes
+            return nodes, False
 
-        return filtered
+        return (
+            filtered,
+            False,
+        )  # False - current period filtering, not historical
 
     def _filter_by_score(
         self, nodes: List[NodeWithScore]

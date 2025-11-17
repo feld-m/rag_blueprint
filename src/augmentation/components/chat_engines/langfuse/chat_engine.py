@@ -31,6 +31,9 @@ from augmentation.components.guardrails.base_guardrails import (
 )
 from augmentation.components.guardrails.registry import GuardrailsRegistry
 from augmentation.components.llms.registry import LLMRegistry
+from augmentation.components.postprocessors.hybrid_filter.factory import (
+    HybridFilterFactory,
+)
 from augmentation.components.postprocessors.registry import (
     PostprocessorRegistry,
 )
@@ -333,6 +336,11 @@ class LangfuseChatEngineFactory(Factory):
         retriever = RetrieverRegistry.get(
             chat_engine_configuration.retriever.name
         ).create(configuration)
+
+        # Set temporal_domain_config for hybrid filter factory before creating postprocessors
+        temporal_domain_config = configuration.augmentation.temporal_domain
+        HybridFilterFactory.set_temporal_domain_config(temporal_domain_config)
+
         postprocessors = [
             PostprocessorRegistry.get(postprocessor_configuration.name).create(
                 postprocessor_configuration

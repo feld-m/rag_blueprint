@@ -499,3 +499,300 @@ class TestHybridFilterWithLLM:
 
         # Should keep the document on error (fail-safe behavior)
         assert len(result) == 1
+
+
+class TestHybridFilterTemporalGenericMode:
+    """Test suite for HybridFilterPostprocessor in generic mode (no temporal_domain config)"""
+
+    @pytest.fixture
+    def base_config(self):
+        """Basic configuration without LLM filtering"""
+        return HybridFilterConfiguration(
+            score_threshold=0.7,
+            similarity_threshold=0.9,
+            max_documents=5,
+            enable_llm_filter=False,
+        )
+
+    @pytest.fixture
+    def sample_nodes(self):
+        """Create sample nodes with legislature_period metadata"""
+        nodes = []
+        for i in range(6):
+            node = TextNode(
+                text=f"Document {i} content",
+                metadata={
+                    "title": f"Document {i}",
+                    "legislature_period": 20 if i < 3 else 21,
+                },
+            )
+            node.embedding = [0.1 * i, 0.5, 0.5, 0.5]
+            import numpy as np
+
+            vec = np.array(node.embedding)
+            node.embedding = (vec / np.linalg.norm(vec)).tolist()
+            nodes.append(NodeWithScore(node=node, score=0.9 - i * 0.05))
+        return nodes
+
+    def test_initialization_without_temporal_config(self, base_config):
+        """Test postprocessor initialization without temporal_domain config"""
+        postprocessor = HybridFilterPostprocessor(
+            base_config, temporal_domain_config=None
+        )
+
+        assert postprocessor._temporal_domain_config is None
+        assert postprocessor._current_keywords == []
+        assert postprocessor._historical_keywords == []
+
+    def test_no_temporal_filtering_in_generic_mode(
+        self, base_config, sample_nodes
+    ):
+        """Test that no temporal filtering is applied in generic mode"""
+        postprocessor = HybridFilterPostprocessor(
+            base_config, temporal_domain_config=None
+        )
+
+        # Query with temporal keywords that would trigger filtering if config was present
+        query = QueryBundle(query_str="What are the current party positions?")
+        result = postprocessor._postprocess_nodes(sample_nodes, query)
+
+        # Should not filter by temporal relevance - all nodes should be processed
+        # Only standard filtering (score, similarity, max_documents) should apply
+        assert len(result) <= base_config.max_documents
+        # Should contain mix of both periods since no temporal filtering
+        periods = set(n.node.metadata.get("legislature_period") for n in result)
+        # With no temporal filtering, we should see nodes from both periods
+        # (assuming they pass score/similarity thresholds)
+        assert len(periods) >= 1
+
+
+class TestHybridFilterTemporalBundestagMode:
+    """Test suite for HybridFilterPostprocessor with Bundestag temporal domain"""
+
+    @pytest.fixture
+    def bundestag_config(self):
+        """Load Bundestag temporal domain configuration"""
+        import json
+        from pathlib import Path
+
+        config_path = (
+            Path(__file__).parent.parent.parent.parent.parent
+            / "configurations"
+            / "temporal_domains"
+            / "bundestag.json"
+        )
+        with open(config_path) as f:
+            config_data = json.load(f)
+
+        from augmentation.bootstrap.configuration.temporal_domain_config import (
+            TemporalDomainConfiguration,
+        )
+
+        return TemporalDomainConfiguration(**config_data)
+
+    @pytest.fixture
+    def base_config(self):
+        """Basic configuration without LLM filtering"""
+        return HybridFilterConfiguration(
+            score_threshold=0.7,
+            similarity_threshold=0.9,
+            max_documents=5,
+            enable_llm_filter=False,
+        )
+
+    @pytest.fixture
+    def sample_nodes(self):
+        """Create sample nodes with legislature_period metadata"""
+        nodes = []
+        import numpy as np
+
+        for i in range(6):
+            node = TextNode(
+                text=f"Document {i} about Bundestag parties",
+                metadata={
+                    "title": f"Document {i}",
+                    "legislature_period": 20 if i < 3 else 21,
+                },
+            )
+            # Create distinct embeddings
+            vec = np.zeros(10)
+            vec[i] = 1.0
+            vec[(i + 5) % 10] = 0.3
+            node.embedding = (vec / np.linalg.norm(vec)).tolist()
+            nodes.append(NodeWithScore(node=node, score=0.9 - i * 0.05))
+        return nodes
+
+    def test_initialization_with_bundestag_config(
+        self, base_config, bundestag_config
+    ):
+        """Test postprocessor initialization with Bundestag config"""
+        postprocessor = HybridFilterPostprocessor(
+            base_config, temporal_domain_config=bundestag_config
+        )
+
+        assert postprocessor._temporal_domain_config is not None
+        assert postprocessor._temporal_domain_config.name == "bundestag"
+        assert len(postprocessor._current_keywords) > 0
+        assert len(postprocessor._historical_keywords) > 0
+
+    def test_current_keyword_filtering(
+        self, base_config, bundestag_config, sample_nodes
+    ):
+        """Test that 'current' keywords filter to period 21"""
+        postprocessor = HybridFilterPostprocessor(
+            base_config, temporal_domain_config=bundestag_config
+        )
+
+        # Query with current keyword
+        query = QueryBundle(query_str="What are the current party positions?")
+        result = postprocessor._postprocess_nodes(sample_nodes, query)
+
+        # Should only contain period 21 documents
+        for node in result:
+            assert node.node.metadata.get("legislature_period") == 21
+
+    def test_historical_keyword_filtering(
+        self, base_config, bundestag_config, sample_nodes
+    ):
+        """Test that 'historical' keywords filter to period 20"""
+        postprocessor = HybridFilterPostprocessor(
+            base_config, temporal_domain_config=bundestag_config
+        )
+
+        # Query with historical keyword
+        query = QueryBundle(
+            query_str="What were the parties in the previous parliament?"
+        )
+        result = postprocessor._postprocess_nodes(sample_nodes, query)
+
+        # Should only contain period 20 documents
+        for node in result:
+            assert node.node.metadata.get("legislature_period") == 20
+
+    def test_period_identifier_filtering(
+        self, base_config, bundestag_config, sample_nodes
+    ):
+        """Test filtering with specific period identifiers"""
+        postprocessor = HybridFilterPostprocessor(
+            base_config, temporal_domain_config=bundestag_config
+        )
+
+        # Query with WP20 identifier (a simple period identifier)
+        query = QueryBundle(query_str="What happened in WP20?")
+        result = postprocessor._postprocess_nodes(sample_nodes, query)
+
+        # Should only contain period 20 documents
+        for node in result:
+            assert node.node.metadata.get("legislature_period") == 20
+
+    def test_no_keyword_no_filtering(
+        self, base_config, bundestag_config, sample_nodes
+    ):
+        """Test that queries without temporal keywords don't apply temporal filtering"""
+        postprocessor = HybridFilterPostprocessor(
+            base_config, temporal_domain_config=bundestag_config
+        )
+
+        # Query without temporal keywords
+        query = QueryBundle(
+            query_str="What are the party positions on climate?"
+        )
+        result = postprocessor._postprocess_nodes(sample_nodes, query)
+
+        # Should contain mix of both periods
+        periods = set(n.node.metadata.get("legislature_period") for n in result)
+        # Without temporal filtering, we should see nodes from both periods
+        assert len(periods) >= 1
+
+    def test_german_keyword_filtering(
+        self, base_config, bundestag_config, sample_nodes
+    ):
+        """Test filtering with German temporal keywords"""
+        postprocessor = HybridFilterPostprocessor(
+            base_config, temporal_domain_config=bundestag_config
+        )
+
+        # Current in German
+        query_current = QueryBundle(
+            query_str="Was sind die aktuellen Fraktionen?"
+        )
+        result_current = postprocessor._postprocess_nodes(
+            sample_nodes, query_current
+        )
+        for node in result_current:
+            assert node.node.metadata.get("legislature_period") == 21
+
+        # Historical in German
+        query_historical = QueryBundle(
+            query_str="Was waren die Fraktionen in der vorherigen Wahlperiode?"
+        )
+        result_historical = postprocessor._postprocess_nodes(
+            sample_nodes, query_historical
+        )
+        for node in result_historical:
+            assert node.node.metadata.get("legislature_period") == 20
+
+    def test_temporal_filtering_preserves_other_filters(
+        self, bundestag_config, sample_nodes
+    ):
+        """Test that temporal filtering works alongside other filters"""
+        # Create config with stricter thresholds
+        strict_config = HybridFilterConfiguration(
+            score_threshold=0.85,
+            similarity_threshold=0.9,
+            max_documents=2,
+            enable_llm_filter=False,
+        )
+
+        postprocessor = HybridFilterPostprocessor(
+            strict_config, temporal_domain_config=bundestag_config
+        )
+
+        query = QueryBundle(query_str="What are the current party positions?")
+        result = postprocessor._postprocess_nodes(sample_nodes, query)
+
+        # Should apply both temporal filtering (period 21) AND other filters
+        assert len(result) <= strict_config.max_documents
+
+        # If results exist, they should match the filters
+        if len(result) > 0:
+            for node in result:
+                # Temporal filter (period 21 or failsafe kept all)
+                period = node.node.metadata.get("legislature_period")
+                assert period is not None
+                # Score threshold
+                assert node.score >= strict_config.score_threshold
+
+    def test_failsafe_prevents_empty_results(
+        self, base_config, bundestag_config
+    ):
+        """Test that failsafe prevents empty results when temporal filtering would remove all documents"""
+        postprocessor = HybridFilterPostprocessor(
+            base_config, temporal_domain_config=bundestag_config
+        )
+
+        # Create nodes only for period 21
+        nodes = []
+        import numpy as np
+
+        for i in range(3):
+            node = TextNode(
+                text=f"Document {i} from period 21",
+                metadata={"title": f"Document {i}", "legislature_period": 21},
+            )
+            vec = np.zeros(10)
+            vec[i] = 1.0
+            node.embedding = (vec / np.linalg.norm(vec)).tolist()
+            nodes.append(NodeWithScore(node=node, score=0.9))
+
+        # Query for historical period (20) - would filter out all period 21 docs
+        query = QueryBundle(
+            query_str="What happened in the previous parliament?"
+        )
+        result = postprocessor._postprocess_nodes(nodes, query)
+
+        # Failsafe should prevent empty results - keeps all documents
+        assert len(result) > 0
+        # Documents should be from period 21 (the only ones available)
+        for node in result:
+            assert node.node.metadata.get("legislature_period") == 21

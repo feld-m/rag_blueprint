@@ -12,6 +12,7 @@ class RetrieverName(str, Enum):
 
     BASIC = "basic"
     AUTO = "auto"
+    DYNAMIC_TEMPORAL = "dynamic_temporal"
 
 
 class RetrieverConfiguration(BaseConfiguration):

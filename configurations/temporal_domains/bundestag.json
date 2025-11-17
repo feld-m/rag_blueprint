@@ -1,0 +1,115 @@
+{
+  "name": "bundestag",
+  "metadata_schema": {
+    "temporal_field": "legislature_period",
+    "current_period": 21,
+    "historical_period": 20
+  },
+  "temporal_keywords": {
+    "current": {
+      "en": [
+        "current",
+        "recent",
+        "latest",
+        "today",
+        "now",
+        "this year",
+        "present",
+        "nowadays"
+      ],
+      "de": [
+        "aktuell",
+        "jetzt",
+        "neueste",
+        "derzeitig",
+        "gegenwärtig",
+        "dieses jahr",
+        "momentan",
+        "derzeit",
+        "heute"
+      ]
+    },
+    "historical": {
+      "en": [
+        "previous",
+        "past",
+        "former",
+        "old",
+        "historical",
+        "before",
+        "earlier",
+        "last year"
+      ],
+      "de": [
+        "vorherig",
+        "vergangen",
+        "früher",
+        "alt",
+        "historisch",
+        "letztes jahr"
+      ]
+    }
+  },
+  "period_identifiers": {
+    "20": {
+      "names": [
+        "20. Wahlperiode",
+        "Wahlperiode 20",
+        "WP20",
+        "20th legislative period",
+        "20th legislature",
+        "period 20"
+      ],
+      "years": [2021, 2022, 2023, 2024],
+      "temporal_type": "historical"
+    },
+    "21": {
+      "names": [
+        "21. Wahlperiode",
+        "Wahlperiode 21",
+        "WP21",
+        "21st legislative period",
+        "21st legislature",
+        "period 21"
+      ],
+      "years": [2025],
+      "temporal_type": "current"
+    }
+  },
+  "query_expansion": {
+    "temporal_current": {
+      "de": "21. Wahlperiode 2025 aktuelle Bundesregierung neueste",
+      "en": "21st legislature 2025 current government latest 21. Wahlperiode"
+    },
+    "temporal_historical": {
+      "de": "20. Wahlperiode 2021 2022 2023 2024 frühere Bundesregierung vergangene",
+      "en": "20th legislature 2021 2022 2023 2024 former government previous 20. Wahlperiode"
+    },
+    "entity_terms": {
+      "de": "Fraktionen Bundestag Bundestagsfraktionen parlamentarische Gruppen Wahlperiode",
+      "en": "fractions Bundestag parliamentary groups legislature period"
+    }
+  },
+  "language_detection": {
+    "de": [
+      "wer",
+      "was",
+      "welche",
+      "alle",
+      "der",
+      "die",
+      "das",
+      "ist",
+      "sind"
+    ],
+    "en": [
+      "who",
+      "what",
+      "which",
+      "all",
+      "the",
+      "is",
+      "are"
+    ]
+  }
+}
