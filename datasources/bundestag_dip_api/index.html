@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Bundestag DIP API Documentation - RAG Systems</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Bundestag DIP API Documentation";
+        var mkdocs_page_input_path = "datasources/bundestag_dip_api.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/augment/">Augment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/temporal_domain_config/">Temporal_domain_config</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/chainlit_configuration/">Chainlit_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Components</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/langfuse_configuration/">Langfuse_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Components</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Postprocessors</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Colbert_rerank</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Hybrid_filter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/postprocessors/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chat_engines</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Langfuse</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/chat_engines/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Retrievers</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/query_rewriter/">Query_rewriter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/query_rewriting_retriever/">Query_rewriting_retriever</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Auto</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Dynamic_temporal</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Llms</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/llms/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Lite_llm</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Guardrails</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/guardrails/base_guardrails/">Base_guardrails</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/guardrails/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/client/">Client</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/dataset_service/">Dataset_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/prompt_service/">Prompt_service</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/feedback_service/">Feedback_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/utils/">Utils</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_factory/">Base_factory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/configuration_retrievers/">Configuration_retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_configuration/">Base_configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_initializer/">Base_initializer</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Vector_stores</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Qdrant</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chroma</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/core/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/core/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/vector_stores/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Pgvector</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/vector_store_configuration/">Vector_store_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/splitting_configuration/">Splitting_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/embedding_model_configuration/">Embedding_model_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/base_embedder/">Base_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedders/basic/embedder/">Embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/base_orchestrator/">Base_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedding_models</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Hugging_face</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/hugging_face/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/hugging_face/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Openai</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/openai/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/openai/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Voyage</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/voyage/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/voyage/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedding_models/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Splitters</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic_markdown</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/splitters/basic_markdown/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/splitters/basic_markdown/basic_markdown_splitter/">Basic_markdown_splitter</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/splitters/base_splitter/">Base_splitter</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/splitters/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/evaluation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Evaluators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/evaluators/langfuse/">Langfuse</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/evaluators/ragas/">Ragas</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Extraction</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/bootstrap/configuration/datasources/">Datasources</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/orchestrators/base_orchestator/">Base_orchestator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/orchestrators/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/confluence/">Confluence</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/bundestag/">Bundestag</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Bundestag DIP API Documentation</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/datasources/bundestag_dip_api.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="bundestag-dip-api-documentation">Bundestag DIP API Documentation</h1>
+<h2 id="overview">Overview</h2>
+<p>The <strong>DIP (Dokumentations- und Informationssystem für Parlamentsmaterialien)</strong> API is the official German Bundestag API providing comprehensive access to parliamentary materials, activities, and information. This is the most complete and authoritative source for Bundestag data.</p>
+<p><strong>Official Name:</strong> Documentation and Information System for Parliamentary Materials
+<strong>Provider:</strong> Deutscher Bundestag (German Federal Parliament)
+<strong>API Version:</strong> 1.2
+<strong>OpenAPI Specification:</strong> https://dip.bundestag.api.bund.dev/openapi.yaml</p>
+<h2 id="why-use-this-api">Why Use This API?</h2>
+<p>The DIP API is <strong>the most comprehensive Bundestag data source</strong> available, providing:</p>
+<ul>
+<li><strong>Full Parliamentary Proceedings (Vorgänge):</strong> Complete legislative processes from start to finish</li>
+<li><strong>Printed Materials (Drucksachen):</strong> Bills, motions, government responses, reports</li>
+<li><strong>Full-Text Content:</strong> Complete text of plenary protocols and printed materials</li>
+<li><strong>Person Data:</strong> MPs, ministers, and other parliamentary actors</li>
+<li><strong>Activity Tracking:</strong> All parliamentary activities and positions</li>
+<li><strong>Structured Metadata:</strong> Rich relational data connecting all resources</li>
+</ul>
+<p>This is <strong>significantly more comprehensive</strong> than specialized APIs like:
+- Bundestag Lobby Register (only lobbying data)
+- Bundestag Mine (only speech data)</p>
+<h2 id="api-specifications">API Specifications</h2>
+<h3 id="base-information">Base Information</h3>
+<ul>
+<li><strong>Base URL:</strong> <code>https://search.dip.bundestag.de/api/v1</code></li>
+<li><strong>Data Formats:</strong> JSON (primary), XML (alternative)</li>
+<li><strong>OpenAPI Docs:</strong> https://dip.bundestag.api.bund.dev/</li>
+<li><strong>Terms of Service:</strong> https://dip.bundestag.de/über-dip/nutzungsbedingungen</li>
+<li><strong>Support Contact:</strong> parlamentsdokumentation@bundestag.de</li>
+</ul>
+<h3 id="authentication">Authentication</h3>
+<p><strong>Required:</strong> API key for all requests</p>
+<p><strong>Public Test Key (valid until May 2026):</strong>
+<code>OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw</code></p>
+<p><strong>Request Permanent Key:</strong>
+Email: parlamentsdokumentation@bundestag.de</p>
+<p><strong>Implementation Methods:</strong></p>
+<ol>
+<li>
+<p><strong>HTTP Header (recommended):</strong>
+   <code>Authorization: ApiKey OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw</code></p>
+</li>
+<li>
+<p><strong>Query Parameter:</strong>
+   <code>?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw</code></p>
+</li>
+</ol>
+<h3 id="rate-limiting">Rate Limiting</h3>
+<p>No explicit rate limiting documented. Best practices:
+- Implement reasonable request delays
+- Use cursor-based pagination efficiently
+- Cache results appropriately
+- Be respectful of API resources</p>
+<h2 id="available-resources-and-endpoints">Available Resources and Endpoints</h2>
+<p>The API provides 8 main resource types with 16 endpoints:</p>
+<h3 id="1-vorgange-proceedingsprocesses">1. Vorgänge (Proceedings/Processes)</h3>
+<p>Legislative and parliamentary processes from initiation to completion.</p>
+<p><strong>Endpoints:</strong>
+- <code>GET /vorgang</code> - List all proceedings (with filters)
+- <code>GET /vorgang/{id}</code> - Get specific proceeding by ID</p>
+<p><strong>Use Cases:</strong>
+- Track legislation through the parliamentary process
+- Monitor bills, motions, and resolutions
+- Analyze legislative activity by topic or party</p>
+<p><strong>Example Data:</strong>
+- Legislative type (Gesetzgebung, Antrag, etc.)
+- Status (in debate, completed, rejected)
+- Subject areas (Sachgebiet)
+- Initiators (Bundesregierung, parties, Bundesrat)
+- Associated documents and protocols</p>
+<h3 id="2-vorgangspositionen-proceeding-positions">2. Vorgangspositionen (Proceeding Positions)</h3>
+<p>Individual positions/steps within a larger proceeding.</p>
+<p><strong>Endpoints:</strong>
+- <code>GET /vorgangsposition</code> - List all positions (with filters)
+- <code>GET /vorgangsposition/{id}</code> - Get specific position by ID</p>
+<p><strong>Use Cases:</strong>
+- Track individual steps in legislative process
+- Monitor committee activities
+- Analyze procedural timeline</p>
+<h3 id="3-drucksachen-printed-materials">3. Drucksachen (Printed Materials)</h3>
+<p>Official printed documents (bills, motions, reports, responses).</p>
+<p><strong>Endpoints:</strong>
+- <code>GET /drucksache</code> - List all printed materials (with filters)
+- <code>GET /drucksache/{id}</code> - Get specific material by ID</p>
+<p><strong>Document Types (Drucksachetyp):</strong>
+- Gesetzentwurf (Bill)
+- Antrag (Motion)
+- Kleine Anfrage (Minor Inquiry)
+- Große Anfrage (Major Inquiry)
+- Antwort (Response)
+- Beschlussempfehlung und Bericht (Recommendation and Report)
+- Unterrichtung (Information/Notification)
+- And many more...</p>
+<p><strong>Use Cases:</strong>
+- Access official government documents
+- Retrieve bills and legislative proposals
+- Get responses to parliamentary inquiries</p>
+<h3 id="4-drucksache-text-printed-material-full-text">4. Drucksache-Text (Printed Material Full Text)</h3>
+<p>Full-text content of printed materials.</p>
+<p><strong>Endpoints:</strong>
+- <code>GET /drucksache-text</code> - List materials with full text (with filters)
+- <code>GET /drucksache-text/{id}</code> - Get specific material with full text</p>
+<p><strong>Use Cases:</strong>
+- Full-text search in parliamentary documents
+- Extract complete document content for RAG
+- Analyze actual legislative language</p>
+<h3 id="5-plenarprotokolle-plenary-protocols">5. Plenarprotokolle (Plenary Protocols)</h3>
+<p>Official transcripts of parliamentary sessions.</p>
+<p><strong>Endpoints:</strong>
+- <code>GET /plenarprotokoll</code> - List all protocols (with filters)
+- <code>GET /plenarprotokoll/{id}</code> - Get specific protocol by ID</p>
+<p><strong>Publishers (Herausgeber):</strong>
+- BT (Bundestag)
+- BR (Bundesrat)</p>
+<p><strong>Use Cases:</strong>
+- Access official session transcripts
+- Track debates on specific topics
+- Analyze parliamentary discourse</p>
+<p><strong>Key Fields:</strong>
+- Session number (dokumentnummer)
+- Date of session
+- PDF URL and XML URL (for Bundestag)
+- Associated proceedings (vorgangsbezug)
+- PDF and XML hashes for integrity</p>
+<h3 id="6-plenarprotokoll-text-plenary-protocol-full-text">6. Plenarprotokoll-Text (Plenary Protocol Full Text)</h3>
+<p>Complete stenographic records with full text.</p>
+<p><strong>Endpoints:</strong>
+- <code>GET /plenarprotokoll-text</code> - List protocols with full text (with filters)
+- <code>GET /plenarprotokoll-text/{id}</code> - Get protocol with complete text</p>
+<p><strong>Content Includes:</strong>
+- Stenographic transcript
+- Speaker identification
+- Procedural notes
+- Interruptions and remarks
+- Voting results</p>
+<p><strong>Use Cases:</strong>
+- Full-text search in parliamentary debates
+- Speech analysis and attribution
+- RAG applications with complete debate context</p>
+<h3 id="7-aktivitaten-activities">7. Aktivitäten (Activities)</h3>
+<p>Parliamentary activities and actions.</p>
+<p><strong>Endpoints:</strong>
+- <code>GET /aktivitaet</code> - List all activities (with filters)
+- <code>GET /aktivitaet/{id}</code> - Get specific activity by ID</p>
+<p><strong>Use Cases:</strong>
+- Track specific parliamentary actions
+- Monitor committee activities
+- Analyze procedural steps</p>
+<h3 id="8-personen-persons">8. Personen (Persons)</h3>
+<p>Members of Parliament, ministers, and other parliamentary actors.</p>
+<p><strong>Endpoints:</strong>
+- <code>GET /person</code> - List all persons (with filters)
+- <code>GET /person/{id}</code> - Get specific person by ID</p>
+<p><strong>Data Includes:</strong>
+- Name and function (MdB - Member of Bundestag, etc.)
+- Party/Fraction (Fraktion)
+- Electoral periods served (Wahlperiode)
+- Historical role information</p>
+<p><strong>Use Cases:</strong>
+- Link documents to specific MPs
+- Track individual parliamentary activity
+- Analyze party membership and roles</p>
+<h2 id="query-parameters-and-filtering">Query Parameters and Filtering</h2>
+<p>All list endpoints support filtering parameters (prefixed with <code>f.</code>):</p>
+<h3 id="common-filters">Common Filters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>f.id</code></td>
+<td>string</td>
+<td>Filter by ID</td>
+<td><code>f.id=320244</code></td>
+</tr>
+<tr>
+<td><code>f.wahlperiode</code></td>
+<td>integer</td>
+<td>Electoral period number</td>
+<td><code>f.wahlperiode=20</code></td>
+</tr>
+<tr>
+<td><code>f.datum.start</code></td>
+<td>date</td>
+<td>Start date (YYYY-MM-DD)</td>
+<td><code>f.datum.start=2024-01-01</code></td>
+</tr>
+<tr>
+<td><code>f.datum.end</code></td>
+<td>date</td>
+<td>End date (YYYY-MM-DD)</td>
+<td><code>f.datum.end=2024-12-31</code></td>
+</tr>
+<tr>
+<td><code>f.aktualisiert.start</code></td>
+<td>datetime</td>
+<td>Updated after</td>
+<td><code>f.aktualisiert.start=2025-03-01</code></td>
+</tr>
+<tr>
+<td><code>f.aktualisiert.end</code></td>
+<td>datetime</td>
+<td>Updated before</td>
+<td><code>f.aktualisiert.end=2025-03-31</code></td>
+</tr>
+<tr>
+<td><code>f.drucksache</code></td>
+<td>string</td>
+<td>Document number</td>
+<td><code>f.drucksache=20/15096</code></td>
+</tr>
+<tr>
+<td><code>f.plenarprotokoll</code></td>
+<td>string</td>
+<td>Protocol number</td>
+<td><code>f.plenarprotokoll=20/214</code></td>
+</tr>
+<tr>
+<td><code>f.dokumentnummer</code></td>
+<td>string</td>
+<td>Document number</td>
+<td><code>f.dokumentnummer=20/214</code></td>
+</tr>
+<tr>
+<td><code>f.dokumentart</code></td>
+<td>string</td>
+<td>Document type</td>
+<td><code>f.dokumentart=Plenarprotokoll</code></td>
+</tr>
+<tr>
+<td><code>f.drucksachetyp</code></td>
+<td>string</td>
+<td>Print type</td>
+<td><code>f.drucksachetyp=Gesetzentwurf</code></td>
+</tr>
+<tr>
+<td><code>f.zuordnung</code></td>
+<td>string</td>
+<td>Assignment/classification</td>
+<td>varies</td>
+</tr>
+<tr>
+<td><code>cursor</code></td>
+<td>string</td>
+<td>Pagination cursor</td>
+<td>(see Pagination)</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td>string</td>
+<td>Response format</td>
+<td><code>json</code> or <code>xml</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="resource-specific-filters">Resource-Specific Filters</h3>
+<p><strong>Vorgang:</strong>
+- <code>f.gesta</code> - GESTA procedure number</p>
+<p><strong>Vorgangsposition:</strong>
+- <code>f.aktivitaet</code> - Activity ID
+- <code>f.vorgang</code> - Proceeding ID</p>
+<p><strong>Drucksache:</strong>
+- No additional specific filters beyond common ones</p>
+<p><strong>Person:</strong>
+- No common filters apply (use ID-based lookup)</p>
+<h2 id="pagination">Pagination</h2>
+<p>The API uses <strong>cursor-based pagination</strong> for efficient traversal of large result sets.</p>
+<h3 id="how-it-works">How It Works</h3>
+<ol>
+<li><strong>Initial Request:</strong> Make request without cursor parameter</li>
+<li><strong>Response:</strong> API returns results + <code>cursor</code> field</li>
+<li><strong>Next Page:</strong> Include returned cursor in next request</li>
+<li><strong>End Detection:</strong> When no more results, cursor may be empty or unchanged</li>
+</ol>
+<h3 id="important-notes">Important Notes</h3>
+<ul>
+<li><strong>No page size control:</strong> API determines result count per page</li>
+<li><strong>Cursor format:</strong> Opaque Base64-encoded string</li>
+<li><strong>Stateful:</strong> Cursor maintains query state</li>
+<li><strong>Expiration:</strong> Cursors may expire; unclear documentation on timeout</li>
+</ul>
+<h3 id="pagination-pattern">Pagination Pattern</h3>
+<pre><code>GET /vorgang?f.wahlperiode=20&amp;apikey={key}
+→ Returns {numFound: 37666, cursor: &quot;ABC123...&quot;, documents: [...]}
+
+GET /vorgang?f.wahlperiode=20&amp;cursor=ABC123...&amp;apikey={key}
+→ Returns next batch with new cursor
+
+... repeat until all results fetched
+</code></pre>
+<h2 id="response-structure">Response Structure</h2>
+<h3 id="list-response-format">List Response Format</h3>
+<p>All list endpoints return the same structure:</p>
+<pre><code class="language-json">{
+  &quot;numFound&quot;: 37666,
+  &quot;cursor&quot;: &quot;AoQIQ4zX03n+rouj/w...&quot;,
+  &quot;documents&quot;: [
+    { /* document object */ },
+    { /* document object */ },
+    ...
+  ]
+}
+</code></pre>
+<p><strong>Fields:</strong>
+- <code>numFound</code>: Total number of matching documents (may be null for some queries)
+- <code>cursor</code>: Pagination token for next page
+- <code>documents</code>: Array of document objects</p>
+<h3 id="detail-response-format">Detail Response Format</h3>
+<p>Single-item endpoints return the document object directly:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;5701&quot;,
+  &quot;typ&quot;: &quot;Dokument&quot;,
+  &quot;dokumentart&quot;: &quot;Plenarprotokoll&quot;,
+  &quot;dokumentnummer&quot;: &quot;20/214&quot;,
+  /* ... other fields ... */
+}
+</code></pre>
+<h2 id="data-models">Data Models</h2>
+<h3 id="common-fields">Common Fields</h3>
+<p>Most resources share these fields:</p>
+<ul>
+<li><code>id</code>: Unique identifier (string or integer)</li>
+<li><code>typ</code>: Type (e.g., "Vorgang", "Dokument", "Person")</li>
+<li><code>wahlperiode</code>: Electoral period number(s)</li>
+<li><code>datum</code>: Date (YYYY-MM-DD)</li>
+<li><code>aktualisiert</code>: Last update timestamp (ISO 8601)</li>
+<li><code>titel</code>: Title or name</li>
+</ul>
+<h3 id="vorgang-proceeding-schema">Vorgang (Proceeding) Schema</h3>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;320244&quot;,
+  &quot;typ&quot;: &quot;Vorgang&quot;,
+  &quot;vorgangstyp&quot;: &quot;Selbständiger Antrag von Ländern auf Entschließung&quot;,
+  &quot;titel&quot;: &quot;Title of the proceeding&quot;,
+  &quot;abstract&quot;: &quot;Summary description&quot;,
+  &quot;datum&quot;: &quot;2025-09-26&quot;,
+  &quot;wahlperiode&quot;: 20,
+  &quot;initiative&quot;: [&quot;Brandenburg&quot;],  // Who initiated
+  &quot;beratungsstand&quot;: &quot;In der Beratung...&quot;,  // Status
+  &quot;sachgebiet&quot;: [&quot;Öffentliche Finanzen, Steuern und Abgaben&quot;],  // Subject areas
+  &quot;deskriptor&quot;: [  // Keywords/descriptors
+    {
+      &quot;name&quot;: &quot;Steuerbefreiung&quot;,
+      &quot;typ&quot;: &quot;Sachbegriffe&quot;,
+      &quot;fundstelle&quot;: true
+    }
+  ],
+  &quot;aktualisiert&quot;: &quot;2025-10-15T11:06:54+02:00&quot;
+}
+</code></pre>
+<p><strong>Key Fields:</strong>
+- <code>vorgangstyp</code>: Type of proceeding (legislation, motion, report, etc.)
+- <code>beratungsstand</code>: Current status in parliamentary process
+- <code>initiative</code>: Initiating body (government, party, Bundesrat)
+- <code>sachgebiet</code>: Policy areas
+- <code>deskriptor</code>: Controlled vocabulary keywords
+- <code>mitteilung</code>: Additional notes/messages</p>
+<h3 id="drucksache-printed-material-schema">Drucksache (Printed Material) Schema</h3>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;279131&quot;,
+  &quot;typ&quot;: &quot;Dokument&quot;,
+  &quot;dokumentart&quot;: &quot;Drucksache&quot;,
+  &quot;drucksachetyp&quot;: &quot;Antwort&quot;,
+  &quot;dokumentnummer&quot;: &quot;20/15151&quot;,
+  &quot;wahlperiode&quot;: 20,
+  &quot;herausgeber&quot;: &quot;BT&quot;,
+  &quot;titel&quot;: &quot;Document title&quot;,
+  &quot;datum&quot;: &quot;2025-03-26&quot;,
+  &quot;pdf_hash&quot;: &quot;8321f919a809d05581eccb4ba5bdb8b3&quot;,
+  &quot;vorgangsbezug_anzahl&quot;: 1,
+  &quot;vorgangsbezug&quot;: [
+    {
+      &quot;id&quot;: &quot;320358&quot;,
+      &quot;titel&quot;: &quot;Related proceeding title&quot;,
+      &quot;vorgangstyp&quot;: &quot;Kleine Anfrage&quot;
+    }
+  ],
+  &quot;urheber&quot;: [
+    {
+      &quot;einbringer&quot;: false,
+      &quot;bezeichnung&quot;: &quot;BRg&quot;,
+      &quot;titel&quot;: &quot;Bundesregierung&quot;
+    }
+  ],
+  &quot;ressort&quot;: [
+    {
+      &quot;federfuehrend&quot;: true,
+      &quot;titel&quot;: &quot;Auswärtiges Amt&quot;
+    }
+  ],
+  &quot;fundstelle&quot;: {
+    &quot;pdf_url&quot;: &quot;https://dserver.bundestag.de/btd/20/151/2015151.pdf&quot;,
+    &quot;id&quot;: &quot;279131&quot;,
+    &quot;dokumentnummer&quot;: &quot;20/15151&quot;,
+    &quot;datum&quot;: &quot;2025-03-26&quot;,
+    &quot;verteildatum&quot;: &quot;2025-04-01&quot;
+  },
+  &quot;autoren_anzahl&quot;: 0,
+  &quot;aktualisiert&quot;: &quot;2025-04-01T08:01:10+02:00&quot;
+}
+</code></pre>
+<p><strong>Key Fields:</strong>
+- <code>drucksachetyp</code>: Type (Bill, Motion, Inquiry, Response, Report, etc.)
+- <code>herausgeber</code>: Publisher (BT=Bundestag, BR=Bundesrat)
+- <code>urheber</code>: Authors/originators
+- <code>ressort</code>: Responsible ministry/department
+- <code>fundstelle</code>: Document location with PDF URL
+- <code>vorgangsbezug</code>: Related proceedings
+- <code>pdf_hash</code>: PDF file hash for integrity checking</p>
+<h3 id="plenarprotokoll-plenary-protocol-schema">Plenarprotokoll (Plenary Protocol) Schema</h3>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;5701&quot;,
+  &quot;typ&quot;: &quot;Dokument&quot;,
+  &quot;dokumentart&quot;: &quot;Plenarprotokoll&quot;,
+  &quot;dokumentnummer&quot;: &quot;20/214&quot;,
+  &quot;wahlperiode&quot;: 20,
+  &quot;herausgeber&quot;: &quot;BT&quot;,
+  &quot;titel&quot;: &quot;Protokoll der 214. Sitzung des 20. Deutschen Bundestages&quot;,
+  &quot;datum&quot;: &quot;2025-03-18&quot;,
+  &quot;pdf_hash&quot;: &quot;adbabad803cbf3ca32661d5336d8281e&quot;,
+  &quot;xml_hash&quot;: &quot;6e1e62918ae23f99e075c58803b1b183&quot;,
+  &quot;vorgangsbezug_anzahl&quot;: 12,
+  &quot;vorgangsbezug&quot;: [
+    {
+      &quot;id&quot;: &quot;320785&quot;,
+      &quot;titel&quot;: &quot;Related proceeding&quot;,
+      &quot;vorgangstyp&quot;: &quot;Gesetzgebung&quot;
+    }
+  ],
+  &quot;fundstelle&quot;: {
+    &quot;id&quot;: &quot;5701&quot;,
+    &quot;dokumentnummer&quot;: &quot;20/214&quot;,
+    &quot;datum&quot;: &quot;2025-03-18&quot;,
+    &quot;verteildatum&quot;: &quot;2025-03-19&quot;,
+    &quot;pdf_url&quot;: &quot;https://dserver.bundestag.de/btp/20/20214.pdf&quot;,
+    &quot;xml_url&quot;: &quot;https://dserver.bundestag.de/btp/20/20214.xml&quot;,
+    &quot;dokumentart&quot;: &quot;Plenarprotokoll&quot;,
+    &quot;herausgeber&quot;: &quot;BT&quot;
+  },
+  &quot;aktualisiert&quot;: &quot;2025-04-29T10:20:33+02:00&quot;
+}
+</code></pre>
+<p><strong>Key Fields:</strong>
+- <code>xml_url</code>: Structured XML version (Bundestag only)
+- <code>pdf_url</code>: PDF version
+- <code>xml_hash</code>, <code>pdf_hash</code>: File integrity hashes
+- <code>vorgangsbezug</code>: Proceedings discussed in session
+- <code>verteildatum</code>: Distribution date</p>
+<p><strong>With Full Text (<code>/plenarprotokoll-text/{id}</code>):</strong>
+- Adds <code>text</code> field with complete stenographic transcript
+- Includes speaker names, speeches, votes, procedures
+- Plain text format with section markers</p>
+<h3 id="person-schema">Person Schema</h3>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;40&quot;,
+  &quot;typ&quot;: &quot;Person&quot;,
+  &quot;nachname&quot;: &quot;Ströbele&quot;,
+  &quot;vorname&quot;: &quot;Hans-Christian&quot;,
+  &quot;funktion&quot;: [&quot;MdB&quot;],
+  &quot;fraktion&quot;: [&quot;BÜNDNIS 90/DIE GRÜNEN&quot;],
+  &quot;wahlperiode&quot;: [10, 14, 15, 16, 17, 18],
+  &quot;titel&quot;: &quot;Hans-Christian Ströbele, MdB, BÜNDNIS 90/DIE GRÜNEN&quot;,
+  &quot;datum&quot;: &quot;2017-10-23&quot;,
+  &quot;basisdatum&quot;: &quot;1985-04-15&quot;,
+  &quot;person_roles&quot;: [
+    {
+      &quot;funktion&quot;: &quot;MdB&quot;,
+      &quot;fraktion&quot;: &quot;Die Grünen&quot;,
+      &quot;nachname&quot;: &quot;Ströbele&quot;,
+      &quot;vorname&quot;: &quot;Hans-Christian&quot;,
+      &quot;wahlperiode_nummer&quot;: [10]
+    }
+  ],
+  &quot;aktualisiert&quot;: &quot;2022-07-26T19:57:10+02:00&quot;
+}
+</code></pre>
+<p><strong>Key Fields:</strong>
+- <code>funktion</code>: Role (MdB = Member of Bundestag, Minister, etc.)
+- <code>fraktion</code>: Party/parliamentary group
+- <code>wahlperiode</code>: Electoral periods served (array)
+- <code>person_roles</code>: Historical role breakdown
+- <code>basisdatum</code>: Base date (first appearance)</p>
+<h3 id="vorgangsposition-schema">Vorgangsposition Schema</h3>
+<p>Similar to Vorgang but represents a single step/position within a larger proceeding. Contains references to parent proceeding.</p>
+<h3 id="aktivitat-schema">Aktivität Schema</h3>
+<p>Represents specific parliamentary activities. Structure varies by activity type.</p>
+<h2 id="document-numbering-system">Document Numbering System</h2>
+<p>Understanding document numbers is crucial for working with the API:</p>
+<h3 id="drucksache-numbers">Drucksache Numbers</h3>
+<p>Format: <code>{wahlperiode}/{number}</code></p>
+<p>Examples:
+- <code>20/15151</code> - Wahlperiode 20, Document 15151
+- <code>19/12345</code> - Wahlperiode 19, Document 12345</p>
+<h3 id="plenarprotokoll-numbers">Plenarprotokoll Numbers</h3>
+<p><strong>Bundestag:</strong> <code>{wahlperiode}/{session}</code>
+- Example: <code>20/214</code> - 214th session of 20th Bundestag</p>
+<p><strong>Bundesrat:</strong> <code>{session}</code>
+- Example: <code>1052</code> - 1052nd session of Bundesrat</p>
+<h3 id="wahlperiode-electoral-period">Wahlperiode (Electoral Period)</h3>
+<p>The Bundestag operates in electoral periods (typically 4 years):
+- <strong>20th Wahlperiode:</strong> 2021-2025 (current as of 2025)
+- <strong>19th Wahlperiode:</strong> 2017-2021
+- <strong>18th Wahlperiode:</strong> 2013-2017</p>
+<p>Each period resets document numbering.</p>
+<h2 id="data-relationships">Data Relationships</h2>
+<p>The API provides rich relational data:</p>
+<pre><code>Vorgang (Proceeding)
+  ├─&gt; Vorgangsposition (Positions)
+  ├─&gt; Drucksache (Printed Materials)
+  ├─&gt; Plenarprotokoll (Protocols)
+  └─&gt; Aktivität (Activities)
+
+Drucksache
+  ├─&gt; Vorgang (Parent Proceeding)
+  └─&gt; PDF/Text Content
+
+Plenarprotokoll
+  ├─&gt; Multiple Vorgänge (Discussed Proceedings)
+  ├─&gt; XML/PDF Files
+  └─&gt; Full Text Transcript
+
+Person
+  └─&gt; Associated Documents (via authorship, speeches)
+</code></pre>
+<p><strong>Use <code>vorgangsbezug</code> to traverse relationships:</strong>
+- Documents link to their parent proceedings
+- Protocols link to all discussed proceedings
+- Positions link to parent proceedings and documents</p>
+<h2 id="use-cases-for-ragllm-applications">Use Cases for RAG/LLM Applications</h2>
+<p>The DIP API is ideal for building comprehensive parliamentary knowledge systems:</p>
+<h3 id="1-legislative-tracking-and-analysis">1. Legislative Tracking and Analysis</h3>
+<ul>
+<li>Track bills from introduction to passage</li>
+<li>Analyze legislative timelines and bottlenecks</li>
+<li>Monitor specific policy areas</li>
+</ul>
+<h3 id="2-full-text-parliamentary-search">2. Full-Text Parliamentary Search</h3>
+<ul>
+<li>Search across all speeches, documents, inquiries</li>
+<li>Semantic search on debate transcripts</li>
+<li>Answer questions about parliamentary positions</li>
+</ul>
+<h3 id="3-mp-activity-and-behavior-analysis">3. MP Activity and Behavior Analysis</h3>
+<ul>
+<li>Track individual MP activities and votes</li>
+<li>Analyze party positions on issues</li>
+<li>Study parliamentary discourse patterns</li>
+</ul>
+<h3 id="4-government-accountability">4. Government Accountability</h3>
+<ul>
+<li>Access all government responses to inquiries</li>
+<li>Track ministry activities and communications</li>
+<li>Monitor implementation of legislation</li>
+</ul>
+<h3 id="5-historical-research">5. Historical Research</h3>
+<ul>
+<li>Access complete parliamentary records</li>
+<li>Track policy evolution across electoral periods</li>
+<li>Analyze long-term political trends</li>
+</ul>
+<h3 id="6-multi-document-question-answering">6. Multi-Document Question Answering</h3>
+<ul>
+<li>Connect debates to bills to votes to outcomes</li>
+<li>Provide comprehensive answers with full context</li>
+<li>Trace arguments across multiple sessions</li>
+</ul>
+<h2 id="metadata-recommendations-for-rag">Metadata Recommendations for RAG</h2>
+<h3 id="core-identification">Core Identification</h3>
+<ul>
+<li><code>document_id</code>: Unique identifier</li>
+<li><code>document_type</code>: Vorgang, Drucksache, Plenarprotokoll, etc.</li>
+<li><code>document_number</code>: Official number (e.g., 20/214)</li>
+<li><code>wahlperiode</code>: Electoral period</li>
+</ul>
+<h3 id="content-context">Content Context</h3>
+<ul>
+<li><code>title</code>: Document title</li>
+<li><code>abstract</code>: Summary (if available)</li>
+<li><code>sachgebiet</code>: Subject areas (for filtering)</li>
+<li><code>deskriptor</code>: Keywords (for semantic grouping)</li>
+</ul>
+<h3 id="temporal-context">Temporal Context</h3>
+<ul>
+<li><code>date</code>: Official date</li>
+<li><code>updated</code>: Last modification date</li>
+<li><code>distribution_date</code>: When distributed (verteildatum)</li>
+</ul>
+<h3 id="relational-context">Relational Context</h3>
+<ul>
+<li><code>related_proceeding_ids</code>: Linked proceedings</li>
+<li><code>proceeding_type</code>: Type of legislative process</li>
+<li><code>status</code>: Current state in process</li>
+</ul>
+<h3 id="authority-context">Authority Context</h3>
+<ul>
+<li><code>publisher</code>: BT or BR</li>
+<li><code>authors</code>: Who created/submitted</li>
+<li><code>responsible_ministry</code>: Ministry (Ressort)</li>
+<li><code>initiator</code>: Who initiated (party, government, etc.)</li>
+</ul>
+<h3 id="document-location">Document Location</h3>
+<ul>
+<li><code>pdf_url</code>: Link to PDF</li>
+<li><code>xml_url</code>: Link to XML (if available)</li>
+<li><code>pdf_hash</code>: For integrity checking</li>
+</ul>
+<h3 id="for-speeches-from-plenarprotokoll-text">For Speeches (from Plenarprotokoll-Text)</h3>
+<ul>
+<li><code>speaker</code>: Person who spoke</li>
+<li><code>party</code>: Speaker's party</li>
+<li><code>session_date</code>: When spoken</li>
+<li><code>topic</code>: Related proceeding/agenda item</li>
+</ul>
+<h2 id="data-quality-considerations">Data Quality Considerations</h2>
+<h3 id="completeness">Completeness</h3>
+<ul>
+<li><strong>Full text available:</strong> Yes, for most documents via <code>-text</code> endpoints</li>
+<li><strong>Historical coverage:</strong> Complete for recent Wahlperioden (18+), partial for earlier</li>
+<li><strong>Update frequency:</strong> Real-time to daily updates</li>
+<li><strong>Missing data:</strong> Some older documents may lack full text or XML</li>
+</ul>
+<h3 id="accuracy">Accuracy</h3>
+<ul>
+<li><strong>Official source:</strong> Direct from Bundestag; authoritative</li>
+<li><strong>Verification:</strong> PDF/XML hashes provided for integrity</li>
+<li><strong>Corrections:</strong> Updates reflected in <code>aktualisiert</code> timestamp</li>
+</ul>
+<h3 id="consistency">Consistency</h3>
+<ul>
+<li><strong>Structured format:</strong> Well-defined schemas</li>
+<li><strong>Controlled vocabulary:</strong> <code>deskriptor</code> uses standardized terms</li>
+<li><strong>ID stability:</strong> IDs appear stable across requests</li>
+</ul>
+<h3 id="language">Language</h3>
+<ul>
+<li><strong>Primary language:</strong> German</li>
+<li><strong>Translation:</strong> Not provided; consider external translation for non-German users</li>
+<li><strong>Field names:</strong> Mix of German (data) and some English (structure)</li>
+</ul>
+<h2 id="best-practices-for-data-extraction">Best Practices for Data Extraction</h2>
+<h3 id="1-incremental-updates">1. Incremental Updates</h3>
+<p>Use <code>f.aktualisiert.start</code> to fetch only recent changes:</p>
+<pre><code>GET /vorgang?f.aktualisiert.start=2025-03-01&amp;apikey={key}
+</code></pre>
+<h3 id="2-filter-by-electoral-period">2. Filter by Electoral Period</h3>
+<p>Limit scope with <code>f.wahlperiode</code> for focused extraction:</p>
+<pre><code>GET /drucksache?f.wahlperiode=20&amp;apikey={key}
+</code></pre>
+<h3 id="3-leverage-relationships">3. Leverage Relationships</h3>
+<p>Use <code>vorgangsbezug</code> IDs to fetch related documents efficiently.</p>
+<h3 id="4-full-text-strategy">4. Full Text Strategy</h3>
+<ul>
+<li>Start with metadata endpoints (faster)</li>
+<li>Fetch full text only for relevant documents</li>
+<li>Cache full text locally to avoid re-fetching</li>
+</ul>
+<h3 id="5-pagination-pattern">5. Pagination Pattern</h3>
+<pre><code class="language-python">cursor = &quot;&quot;
+while True:
+    response = fetch_data(cursor)
+    process_documents(response['documents'])
+    new_cursor = response.get('cursor')
+    if not new_cursor or new_cursor == cursor:
+        break
+    cursor = new_cursor
+</code></pre>
+<h3 id="6-error-handling">6. Error Handling</h3>
+<ul>
+<li>Handle missing fields gracefully (not all documents have all fields)</li>
+<li>Retry on network errors</li>
+<li>Respect API rate limits (implement backoff)</li>
+</ul>
+<h3 id="7-data-storage">7. Data Storage</h3>
+<ul>
+<li>Store <code>pdf_hash</code>/<code>xml_hash</code> to detect changes</li>
+<li>Track <code>aktualisiert</code> for incremental updates</li>
+<li>Maintain relationships (vorgangsbezug IDs)</li>
+</ul>
+<h2 id="comparison-dip-vs-other-bundestag-apis">Comparison: DIP vs. Other Bundestag APIs</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>DIP API</th>
+<th>Lobby Register</th>
+<th>Bundestag Mine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Scope</strong></td>
+<td>Complete parliamentary data</td>
+<td>Lobbying only</td>
+<td>Speeches only</td>
+</tr>
+<tr>
+<td><strong>Documents</strong></td>
+<td>All types</td>
+<td>Lobby entries</td>
+<td>None</td>
+</tr>
+<tr>
+<td><strong>Full Text</strong></td>
+<td>Yes</td>
+<td>N/A</td>
+<td>Speech text</td>
+</tr>
+<tr>
+<td><strong>Proceedings</strong></td>
+<td>Complete</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Persons</strong></td>
+<td>All MPs/Ministers</td>
+<td>Lobbyists</td>
+<td>Speakers</td>
+</tr>
+<tr>
+<td><strong>Historical</strong></td>
+<td>Full archives</td>
+<td>From 2022</td>
+<td>Limited</td>
+</tr>
+<tr>
+<td><strong>Relationships</strong></td>
+<td>Rich</td>
+<td>Minimal</td>
+<td>Minimal</td>
+</tr>
+<tr>
+<td><strong>Best For</strong></td>
+<td>Comprehensive RAG</td>
+<td>Transparency research</td>
+<td>Speech analysis</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recommendation:</strong> Use DIP as primary source; supplement with specialized APIs if needed.</p>
+<h2 id="technical-specifications">Technical Specifications</h2>
+<h3 id="http-methods">HTTP Methods</h3>
+<ul>
+<li><code>GET</code> only (read-only API)</li>
+</ul>
+<h3 id="response-codes">Response Codes</h3>
+<ul>
+<li><code>200</code> - Success</li>
+<li><code>400</code> - Bad Request (invalid parameters)</li>
+<li><code>401</code> - Unauthorized (invalid API key)</li>
+<li><code>404</code> - Not Found (invalid ID)</li>
+</ul>
+<h3 id="headers">Headers</h3>
+<pre><code>Accept: application/json
+Authorization: ApiKey {your-key}
+</code></pre>
+<h3 id="content-type">Content-Type</h3>
+<ul>
+<li>Request: Not applicable (GET only)</li>
+<li>Response: <code>application/json</code> or <code>application/xml</code></li>
+</ul>
+<h3 id="character-encoding">Character Encoding</h3>
+<ul>
+<li>UTF-8</li>
+</ul>
+<h3 id="datetime-format">Date/Time Format</h3>
+<ul>
+<li>Dates: <code>YYYY-MM-DD</code></li>
+<li>Timestamps: ISO 8601 (<code>YYYY-MM-DDTHH:mm:ss+02:00</code>)</li>
+</ul>
+<h2 id="limitations-and-considerations">Limitations and Considerations</h2>
+<h3 id="api-limitations">API Limitations</h3>
+<ul>
+<li><strong>No full-text search:</strong> API filters on metadata only; implement search in your application</li>
+<li><strong>No batch endpoints:</strong> Must fetch documents individually or paginate lists</li>
+<li><strong>Cursor expiration:</strong> Unclear; may need to restart pagination if cursor becomes invalid</li>
+<li><strong>No rate limit documentation:</strong> Implement conservative rate limiting</li>
+</ul>
+<h3 id="data-limitations">Data Limitations</h3>
+<ul>
+<li><strong>German language:</strong> All content in German; translation needed for multilingual applications</li>
+<li><strong>Historical gaps:</strong> Very old documents may have limited metadata or missing full text</li>
+<li><strong>No sentiment/analysis:</strong> Raw data only; NLP/analysis must be done client-side</li>
+<li><strong>Large full-text responses:</strong> Protocol transcripts can be very long (100KB+)</li>
+</ul>
+<h3 id="practical-considerations">Practical Considerations</h3>
+<ul>
+<li><strong>Storage requirements:</strong> Full corpus is large (GB to TB range)</li>
+<li><strong>Processing time:</strong> Complete extraction takes hours/days</li>
+<li><strong>Update frequency:</strong> Check <code>aktualisiert</code> regularly for changes</li>
+<li><strong>PDF processing:</strong> For documents without text endpoints, may need OCR</li>
+</ul>
+<h2 id="example-extraction-strategy">Example Extraction Strategy</h2>
+<p>For building a comprehensive RAG system:</p>
+<h3 id="phase-1-core-data-metadata">Phase 1: Core Data (Metadata)</h3>
+<ol>
+<li>Extract all <code>vorgang</code> for recent Wahlperiode</li>
+<li>Extract associated <code>drucksache</code> metadata</li>
+<li>Extract <code>plenarprotokoll</code> metadata</li>
+<li>Extract <code>person</code> data</li>
+<li>Build relationship graph</li>
+</ol>
+<h3 id="phase-2-full-text">Phase 2: Full Text</h3>
+<ol>
+<li>Fetch <code>drucksache-text</code> for all documents</li>
+<li>Fetch <code>plenarprotokoll-text</code> for all protocols</li>
+<li>Parse and chunk text appropriately</li>
+<li>Extract embedded metadata (speakers, votes, etc.)</li>
+</ol>
+<h3 id="phase-3-incremental-updates">Phase 3: Incremental Updates</h3>
+<ol>
+<li>Query with <code>f.aktualisiert.start</code> daily</li>
+<li>Update changed documents</li>
+<li>Add new documents</li>
+<li>Refresh relationships</li>
+</ol>
+<h3 id="phase-4-enhancement">Phase 4: Enhancement</h3>
+<ol>
+<li>Add embeddings for semantic search</li>
+<li>Link to external resources (PDF URLs)</li>
+<li>Implement cross-document search</li>
+<li>Build knowledge graph</li>
+</ol>
+<h2 id="contact-and-support">Contact and Support</h2>
+<ul>
+<li><strong>Email:</strong> parlamentsdokumentation@bundestag.de</li>
+<li><strong>Purpose:</strong> API keys, technical support, usage questions</li>
+<li><strong>Terms of Service:</strong> https://dip.bundestag.de/über-dip/nutzungsbedingungen</li>
+</ul>
+<h2 id="related-resources">Related Resources</h2>
+<ul>
+<li><strong>DIP Web Interface:</strong> https://dip.bundestag.de</li>
+<li><strong>OpenAPI Spec:</strong> https://dip.bundestag.api.bund.dev/openapi.yaml</li>
+<li><strong>Interactive Docs:</strong> https://dip.bundestag.api.bund.dev/</li>
+<li><strong>GitHub:</strong> https://github.com/bundesAPI/dip-bundestag-api</li>
+<li><strong>Bundestag Document Server:</strong> https://dserver.bundestag.de</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>The DIP API is the <strong>most comprehensive and authoritative source</strong> for German Bundestag data. It provides:</p>
+<p>✅ <strong>Complete Coverage:</strong> All parliamentary documents, proceedings, and activities
+✅ <strong>Full Text:</strong> Complete transcripts and document text
+✅ <strong>Rich Metadata:</strong> Structured, relational data
+✅ <strong>Official Source:</strong> Direct from Bundestag
+✅ <strong>Well-Documented:</strong> OpenAPI specification available
+✅ <strong>Free Access:</strong> Public API key available</p>
+<p><strong>Ideal for:</strong> Comprehensive RAG systems, legislative tracking, parliamentary research, policy analysis, government accountability tools.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

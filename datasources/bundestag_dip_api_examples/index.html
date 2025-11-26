@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Bundestag DIP API - Terminal Examples - RAG Systems</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Bundestag DIP API - Terminal Examples";
+        var mkdocs_page_input_path = "datasources/bundestag_dip_api_examples.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/augment/">Augment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/temporal_domain_config/">Temporal_domain_config</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/chainlit_configuration/">Chainlit_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Components</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/langfuse_configuration/">Langfuse_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Components</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Postprocessors</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Colbert_rerank</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Hybrid_filter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/postprocessors/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chat_engines</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Langfuse</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/chat_engines/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Retrievers</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/query_rewriter/">Query_rewriter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/query_rewriting_retriever/">Query_rewriting_retriever</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Auto</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Dynamic_temporal</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Llms</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/llms/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Lite_llm</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Guardrails</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/guardrails/base_guardrails/">Base_guardrails</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/guardrails/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/client/">Client</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/dataset_service/">Dataset_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/prompt_service/">Prompt_service</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/feedback_service/">Feedback_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/utils/">Utils</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_factory/">Base_factory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/configuration_retrievers/">Configuration_retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_configuration/">Base_configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_initializer/">Base_initializer</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Vector_stores</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Qdrant</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chroma</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/core/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/core/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/vector_stores/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Pgvector</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/vector_store_configuration/">Vector_store_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/splitting_configuration/">Splitting_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/embedding_model_configuration/">Embedding_model_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/base_embedder/">Base_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedders/basic/embedder/">Embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/base_orchestrator/">Base_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedding_models</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Hugging_face</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/hugging_face/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/hugging_face/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Openai</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/openai/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/openai/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Voyage</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/voyage/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/voyage/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedding_models/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Splitters</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic_markdown</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/splitters/basic_markdown/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/splitters/basic_markdown/basic_markdown_splitter/">Basic_markdown_splitter</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/splitters/base_splitter/">Base_splitter</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/splitters/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/evaluation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Evaluators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/evaluators/langfuse/">Langfuse</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/evaluators/ragas/">Ragas</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Extraction</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/bootstrap/configuration/datasources/">Datasources</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/orchestrators/base_orchestator/">Base_orchestator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/orchestrators/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/confluence/">Confluence</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/bundestag/">Bundestag</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Bundestag DIP API - Terminal Examples</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/datasources/bundestag_dip_api_examples.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="bundestag-dip-api-terminal-examples">Bundestag DIP API - Terminal Examples</h1>
+<p>This document provides ready-to-use terminal commands for exploring the comprehensive DIP (Documentation and Information System) Bundestag API.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>These examples use:
+- <code>curl</code>: HTTP client
+- <code>jq</code>: JSON processor (install with <code>brew install jq</code> on macOS)</p>
+<h2 id="api-key">API Key</h2>
+<p>All examples use the public test API key (valid until May 2026):
+<code>OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw</code></p>
+<h2 id="quick-start-examples">Quick Start Examples</h2>
+<h3 id="1-get-recent-proceedings-vorgange">1. Get Recent Proceedings (Vorgänge)</h3>
+<p>List proceedings from the 20th Wahlperiode:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h3 id="2-get-plenary-protocols">2. Get Plenary Protocols</h3>
+<p>List recent parliamentary session transcripts:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/plenarprotokoll?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h3 id="3-get-printed-materials-drucksachen">3. Get Printed Materials (Drucksachen)</h3>
+<p>List official documents from current period:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h3 id="4-get-full-text-of-protocol">4. Get Full Text of Protocol</h3>
+<p>Retrieve complete stenographic transcript:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/plenarprotokoll-text/5701?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h3 id="5-search-for-specific-person">5. Search for Specific Person</h3>
+<p>Find information about a parliament member:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/person?f.id=40&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h2 id="resource-specific-examples">Resource-Specific Examples</h2>
+<h3 id="vorgange-proceedings">Vorgänge (Proceedings)</h3>
+<h4 id="list-all-proceedings-with-count">List All Proceedings with Count</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '{total: .numFound, count: (.documents | length), first_id: .documents[0].id}'
+</code></pre>
+<h4 id="get-specific-proceeding-by-id">Get Specific Proceeding by ID</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang/320244?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h4 id="filter-by-date-range">Filter by Date Range</h4>
+<p>Get proceedings from specific time period:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;f.datum.start=2025-01-01&amp;f.datum.end=2025-03-31&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h4 id="extract-proceeding-summaries">Extract Proceeding Summaries</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '[.documents[] | {id, titel, vorgangstyp, datum, sachgebiet}]' | head -100
+</code></pre>
+<h4 id="find-legislation-gesetzgebung">Find Legislation (Gesetzgebung)</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '[.documents[] | select(.vorgangstyp == &quot;Gesetzgebung&quot;) | {id, titel, datum}]' | head -50
+</code></pre>
+<h3 id="drucksachen-printed-materials">Drucksachen (Printed Materials)</h3>
+<h4 id="list-all-document-types">List All Document Types</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '[.documents[].drucksachetyp] | unique'
+</code></pre>
+<h4 id="get-bills-gesetzentwurfe">Get Bills (Gesetzentwürfe)</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.wahlperiode=20&amp;f.drucksachetyp=Gesetzentwurf&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h4 id="get-government-responses-antworten">Get Government Responses (Antworten)</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.wahlperiode=20&amp;f.drucksachetyp=Antwort&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h4 id="get-specific-document-by-number">Get Specific Document by Number</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.dokumentnummer=20/15151&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h4 id="extract-pdf-urls">Extract PDF URLs</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq -r '.documents[] | {number: .dokumentnummer, pdf: .fundstelle.pdf_url}' | head -20
+</code></pre>
+<h4 id="get-documents-by-ministry-ressort">Get Documents by Ministry (Ressort)</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '[.documents[] | select(.ressort[]?.titel == &quot;Auswärtiges Amt&quot;) | {nummer: .dokumentnummer, titel}]' | head -50
+</code></pre>
+<h3 id="plenarprotokolle-plenary-protocols">Plenarprotokolle (Plenary Protocols)</h3>
+<h4 id="list-recent-sessions">List Recent Sessions</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/plenarprotokoll?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.documents[0:10] | [.[] | {session: .dokumentnummer, date: .datum, topics: .vorgangsbezug_anzahl}]'
+</code></pre>
+<h4 id="get-bundestag-vs-bundesrat-protocols">Get Bundestag vs Bundesrat Protocols</h4>
+<p>Bundestag only:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/plenarprotokoll?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '[.documents[] | select(.herausgeber == &quot;BT&quot;) | {session: .dokumentnummer, date: .datum}]' | head -50
+</code></pre>
+<p>Bundesrat only:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/plenarprotokoll?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '[.documents[] | select(.herausgeber == &quot;BR&quot;) | {session: .dokumentnummer, date: .datum}]' | head -50
+</code></pre>
+<h4 id="get-protocol-with-related-proceedings">Get Protocol with Related Proceedings</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/plenarprotokoll/5701?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '{session: .dokumentnummer, date: .datum, topics: [.vorgangsbezug[] | {id, titel, typ: .vorgangstyp}]}'
+</code></pre>
+<h4 id="extract-protocol-download-links">Extract Protocol Download Links</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/plenarprotokoll?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq -r '.documents[] | select(.herausgeber == &quot;BT&quot;) | {session: .dokumentnummer, pdf: .fundstelle.pdf_url, xml: .fundstelle.xml_url}' | head -40
+</code></pre>
+<h3 id="plenarprotokoll-text-full-transcript">Plenarprotokoll-Text (Full Transcript)</h3>
+<h4 id="get-complete-transcript">Get Complete Transcript</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/plenarprotokoll-text/5701?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h4 id="extract-just-the-text">Extract Just the Text</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/plenarprotokoll-text/5701?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq -r '.text' | head -100
+</code></pre>
+<h4 id="save-full-transcript-to-file">Save Full Transcript to File</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/plenarprotokoll-text/5701?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq -r '.text' &gt; protokoll_20_214.txt
+</code></pre>
+<h4 id="get-transcript-metadata">Get Transcript Metadata</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/plenarprotokoll-text/5701?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq 'del(.text) | .'
+</code></pre>
+<h3 id="personen-persons">Personen (Persons)</h3>
+<h4 id="search-for-person-by-id">Search for Person by ID</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/person?f.id=40&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h4 id="list-all-persons-first-page">List All Persons (First Page)</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/person?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.documents[0:20] | [.[] | {id, name: &quot;\(.vorname) \(.nachname)&quot;, fraktion, funktion}]'
+</code></pre>
+<h4 id="extract-person-roles">Extract Person Roles</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/person?f.id=40&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.documents[0].person_roles'
+</code></pre>
+<h4 id="find-mps-from-specific-party">Find MPs from Specific Party</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/person?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '[.documents[] | select(.fraktion[]? == &quot;BÜNDNIS 90/DIE GRÜNEN&quot;) | {name: &quot;\(.vorname) \(.nachname)&quot;, wahlperiode}]' | head -50
+</code></pre>
+<h3 id="vorgangspositionen-proceeding-positions">Vorgangspositionen (Proceeding Positions)</h3>
+<h4 id="list-positions-for-electoral-period">List Positions for Electoral Period</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgangsposition?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h4 id="get-specific-position">Get Specific Position</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgangsposition/[ID]?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h3 id="aktivitaten-activities">Aktivitäten (Activities)</h3>
+<h4 id="list-recent-activities">List Recent Activities</h4>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/aktivitaet?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h2 id="pagination-examples">Pagination Examples</h2>
+<h3 id="basic-pagination-pattern">Basic Pagination Pattern</h3>
+<pre><code class="language-bash"># Get first page
+curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '{cursor, numFound, count: (.documents | length)}'
+</code></pre>
+<h3 id="extract-and-use-cursor">Extract and Use Cursor</h3>
+<pre><code class="language-bash"># Save cursor to variable
+CURSOR=$(curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq -r '.cursor')
+
+echo &quot;Cursor: $CURSOR&quot;
+
+# Use cursor for next page
+curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;cursor=$CURSOR&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '{cursor, count: (.documents | length)}'
+</code></pre>
+<h3 id="paginate-through-all-results-shell-script">Paginate Through All Results (Shell Script)</h3>
+<pre><code class="language-bash">#!/bin/bash
+
+APIKEY=&quot;OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot;
+WAHLPERIODE=20
+ENDPOINT=&quot;vorgang&quot;
+CURSOR=&quot;&quot;
+PAGE=1
+
+echo &quot;Fetching all ${ENDPOINT} for Wahlperiode ${WAHLPERIODE}...&quot;
+
+while true; do
+  echo &quot;Fetching page $PAGE...&quot;
+
+  if [ -z &quot;$CURSOR&quot; ]; then
+    URL=&quot;https://search.dip.bundestag.de/api/v1/${ENDPOINT}?f.wahlperiode=${WAHLPERIODE}&amp;apikey=${APIKEY}&quot;
+  else
+    URL=&quot;https://search.dip.bundestag.de/api/v1/${ENDPOINT}?f.wahlperiode=${WAHLPERIODE}&amp;cursor=${CURSOR}&amp;apikey=${APIKEY}&quot;
+  fi
+
+  RESPONSE=$(curl -s &quot;$URL&quot;)
+  NEW_CURSOR=$(echo &quot;$RESPONSE&quot; | jq -r '.cursor // empty')
+  COUNT=$(echo &quot;$RESPONSE&quot; | jq '.documents | length')
+
+  echo &quot;Got $COUNT documents&quot;
+  echo &quot;$RESPONSE&quot; &gt; &quot;${ENDPOINT}_page_${PAGE}.json&quot;
+
+  # Check if cursor is empty or unchanged
+  if [ -z &quot;$NEW_CURSOR&quot; ] || [ &quot;$CURSOR&quot; = &quot;$NEW_CURSOR&quot; ]; then
+    echo &quot;Reached end of results&quot;
+    break
+  fi
+
+  CURSOR=&quot;$NEW_CURSOR&quot;
+  PAGE=$((PAGE + 1))
+
+  # Be respectful to the API
+  sleep 1
+done
+
+echo &quot;Downloaded $PAGE pages total&quot;
+</code></pre>
+<h2 id="filtering-examples">Filtering Examples</h2>
+<h3 id="by-date-range">By Date Range</h3>
+<p>Recent proceedings:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;f.datum.start=2025-03-01&amp;f.datum.end=2025-03-31&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.numFound'
+</code></pre>
+<h3 id="by-update-date-incremental-sync">By Update Date (Incremental Sync)</h3>
+<p>Get documents updated since specific date:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.aktualisiert.start=2025-03-15&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '{total: .numFound, recent: [.documents[0:5] | .[] | {id, titel, aktualisiert}]}'
+</code></pre>
+<h3 id="by-document-number">By Document Number</h3>
+<p>Specific document:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.dokumentnummer=20/15096&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h3 id="by-proceeding-reference">By Proceeding Reference</h3>
+<p>Find documents related to specific proceeding:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.vorgang=320244&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.'
+</code></pre>
+<h2 id="analysis-examples">Analysis Examples</h2>
+<h3 id="count-documents-by-type">Count Documents by Type</h3>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '[.documents[].drucksachetyp] | group_by(.) | map({type: .[0], count: length}) | sort_by(.count) | reverse'
+</code></pre>
+<h3 id="extract-subject-areas-sachgebiete">Extract Subject Areas (Sachgebiete)</h3>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '[.documents[].sachgebiet[]?] | unique | sort' | head -50
+</code></pre>
+<h3 id="find-government-initiatives">Find Government Initiatives</h3>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '[.documents[] | select(.initiative[]? == &quot;Bundesregierung&quot;) | {id, titel, datum}]' | head -50
+</code></pre>
+<h3 id="track-proceeding-status">Track Proceeding Status</h3>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '[.documents[].beratungsstand] | group_by(.) | map({status: .[0], count: length})'
+</code></pre>
+<h3 id="find-proceedings-with-keywords">Find Proceedings with Keywords</h3>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '[.documents[] | select(.deskriptor[]?.name | test(&quot;Klima|Energie&quot;)) | {id, titel, keywords: [.deskriptor[].name]}]' | head -100
+</code></pre>
+<h2 id="data-export-examples">Data Export Examples</h2>
+<h3 id="export-to-csv">Export to CSV</h3>
+<p>Extract proceedings to CSV:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq -r '.documents[] | [.id, .datum, .vorgangstyp, .titel] | @csv' &gt; vorgaenge.csv
+</code></pre>
+<p>Export documents with PDF links:</p>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq -r '.documents[] | [.dokumentnummer, .datum, .drucksachetyp, .fundstelle.pdf_url] | @csv' &gt; drucksachen.csv
+</code></pre>
+<h3 id="save-complete-json">Save Complete JSON</h3>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang/320244?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.' &gt; vorgang_320244.json
+</code></pre>
+<h3 id="create-document-inventory">Create Document Inventory</h3>
+<pre><code class="language-bash">#!/bin/bash
+
+APIKEY=&quot;OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot;
+
+echo &quot;Resource,Total Count&quot; &gt; dip_inventory.csv
+
+for resource in vorgang vorgangsposition drucksache plenarprotokoll person aktivitaet; do
+  count=$(curl -s &quot;https://search.dip.bundestag.de/api/v1/${resource}?f.wahlperiode=20&amp;apikey=${APIKEY}&quot; | jq -r '.numFound // &quot;N/A&quot;')
+  echo &quot;${resource},${count}&quot; &gt;&gt; dip_inventory.csv
+  echo &quot;${resource}: ${count}&quot;
+  sleep 1
+done
+
+cat dip_inventory.csv
+</code></pre>
+<h2 id="relationship-traversal-examples">Relationship Traversal Examples</h2>
+<h3 id="get-proceeding-and-all-related-documents">Get Proceeding and All Related Documents</h3>
+<pre><code class="language-bash"># Get proceeding
+VORGANG_ID=320244
+curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang/${VORGANG_ID}?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; &gt; vorgang.json
+
+# Find related drucksachen
+curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.vorgang=${VORGANG_ID}&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; &gt; related_drucksachen.json
+
+# Display summary
+echo &quot;Proceeding:&quot;
+jq '.titel' vorgang.json
+echo -e &quot;\nRelated Documents:&quot;
+jq '.documents[] | {nummer: .dokumentnummer, typ: .drucksachetyp, datum}' related_drucksachen.json
+</code></pre>
+<h3 id="find-all-protocols-discussing-a-topic">Find All Protocols Discussing a Topic</h3>
+<pre><code class="language-bash"># Get protocols mentioning specific proceeding
+curl -s &quot;https://search.dip.bundestag.de/api/v1/plenarprotokoll?f.vorgang=320785&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '.documents[] | {session: .dokumentnummer, date: .datum, pdf: .fundstelle.pdf_url}'
+</code></pre>
+<h2 id="advanced-examples">Advanced Examples</h2>
+<h3 id="monitor-recent-changes">Monitor Recent Changes</h3>
+<p>Check for updates in last 24 hours:</p>
+<pre><code class="language-bash">YESTERDAY=$(date -u -v-1d +&quot;%Y-%m-%dT%H:%M:%S&quot;)
+
+curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.aktualisiert.start=${YESTERDAY}&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq '{total: .numFound, changes: [.documents[] | {id, titel, aktualisiert}]}'
+</code></pre>
+<h3 id="download-all-pdfs-for-a-proceeding">Download All PDFs for a Proceeding</h3>
+<pre><code class="language-bash">#!/bin/bash
+
+VORGANG_ID=320244
+APIKEY=&quot;OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot;
+
+mkdir -p pdfs_${VORGANG_ID}
+
+# Get related documents
+curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.vorgang=${VORGANG_ID}&amp;apikey=${APIKEY}&quot; | \
+  jq -r '.documents[] | .fundstelle.pdf_url' | \
+  while read url; do
+    filename=$(basename &quot;$url&quot;)
+    echo &quot;Downloading $filename...&quot;
+    curl -s &quot;$url&quot; -o &quot;pdfs_${VORGANG_ID}/${filename}&quot;
+    sleep 1
+  done
+
+echo &quot;PDFs saved to pdfs_${VORGANG_ID}/&quot;
+</code></pre>
+<h3 id="build-proceeding-timeline">Build Proceeding Timeline</h3>
+<pre><code class="language-bash">VORGANG_ID=320244
+APIKEY=&quot;OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot;
+
+echo &quot;=== Proceeding Timeline ===&quot;
+echo &quot;&quot;
+
+# Get proceeding info
+curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang/${VORGANG_ID}?apikey=${APIKEY}&quot; | \
+  jq -r '&quot;\(.datum): \(.titel)\nType: \(.vorgangstyp)\nStatus: \(.beratungsstand)\n&quot;'
+
+echo &quot;=== Related Documents ===&quot;
+curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.vorgang=${VORGANG_ID}&amp;apikey=${APIKEY}&quot; | \
+  jq -r '.documents | sort_by(.datum) | .[] | &quot;\(.datum): \(.drucksachetyp) \(.dokumentnummer)&quot;'
+</code></pre>
+<h3 id="compare-two-electoral-periods">Compare Two Electoral Periods</h3>
+<pre><code class="language-bash">APIKEY=&quot;OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot;
+
+echo &quot;Wahlperiode,Total Vorgänge,Total Drucksachen&quot;
+
+for wp in 19 20; do
+  vorgaenge=$(curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=${wp}&amp;apikey=${APIKEY}&quot; | jq -r '.numFound')
+  drucksachen=$(curl -s &quot;https://search.dip.bundestag.de/api/v1/drucksache?f.wahlperiode=${wp}&amp;apikey=${APIKEY}&quot; | jq -r '.numFound')
+  echo &quot;${wp},${vorgaenge},${drucksachen}&quot;
+  sleep 1
+done
+</code></pre>
+<h2 id="troubleshooting-examples">Troubleshooting Examples</h2>
+<h3 id="test-api-connectivity">Test API Connectivity</h3>
+<pre><code class="language-bash">curl -I &quot;https://search.dip.bundestag.de/api/v1/&quot;
+</code></pre>
+<h3 id="validate-api-key">Validate API Key</h3>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=invalid_key&quot; | jq '.'
+# Should return 401 error
+</code></pre>
+<h3 id="check-response-time">Check Response Time</h3>
+<pre><code class="language-bash">time curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; &gt; /dev/null
+</code></pre>
+<h3 id="verify-json-structure">Verify JSON Structure</h3>
+<pre><code class="language-bash">curl -s &quot;https://search.dip.bundestag.de/api/v1/vorgang/320244?apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; | jq empty &amp;&amp; echo &quot;Valid JSON&quot; || echo &quot;Invalid JSON&quot;
+</code></pre>
+<h3 id="debug-with-verbose-output">Debug with Verbose Output</h3>
+<pre><code class="language-bash">curl -v &quot;https://search.dip.bundestag.de/api/v1/vorgang?f.wahlperiode=20&amp;apikey=OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw&quot; 2&gt;&amp;1 | head -50
+</code></pre>
+<h2 id="performance-tips">Performance Tips</h2>
+<ol>
+<li><strong>Use Specific Filters:</strong> Reduce result sets with filters
+   ```bash
+   # Better: filtered query
+   curl -s "...?f.wahlperiode=20&amp;f.datum.start=2025-03-01"</li>
+</ol>
+<p># Avoid: unfiltered query
+   curl -s "...?apikey=..."
+   ```</p>
+<ol>
+<li><strong>Fetch Metadata First, Full Text Later:</strong>
+   ```bash
+   # Step 1: Get list
+   curl -s ".../plenarprotokoll?..." | jq '.documents[].id' &gt; ids.txt</li>
+</ol>
+<p># Step 2: Fetch full text for relevant IDs only
+   cat ids.txt | while read id; do
+     curl -s ".../plenarprotokoll-text/${id}?..."
+   done
+   ```</p>
+<ol>
+<li>
+<p><strong>Cache Results Locally:</strong>
+   <code>bash
+   # Check if cached
+   if [ ! -f "cache_vorgang_20.json" ]; then
+     curl -s "..." &gt; cache_vorgang_20.json
+   fi
+   cat cache_vorgang_20.json | jq '.'</code></p>
+</li>
+<li>
+<p><strong>Implement Rate Limiting:</strong>
+   <code>bash
+   for id in $(seq 1 100); do
+     curl -s ".../${id}?..."
+     sleep 0.5  # 2 requests/second
+   done</code></p>
+</li>
+</ol>
+<h2 id="quick-reference">Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Command Template</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List proceedings</td>
+<td><code>curl -s ".../vorgang?f.wahlperiode=20&amp;apikey=..."</code></td>
+</tr>
+<tr>
+<td>Get by ID</td>
+<td><code>curl -s ".../vorgang/{id}?apikey=..."</code></td>
+</tr>
+<tr>
+<td>Filter by date</td>
+<td><code>...?f.datum.start=YYYY-MM-DD&amp;f.datum.end=YYYY-MM-DD</code></td>
+</tr>
+<tr>
+<td>Get updates</td>
+<td><code>...?f.aktualisiert.start=YYYY-MM-DD</code></td>
+</tr>
+<tr>
+<td>Paginate</td>
+<td><code>...?cursor={cursor}</code></td>
+</tr>
+<tr>
+<td>Get full text</td>
+<td><code>curl -s ".../plenarprotokoll-text/{id}?apikey=..."</code></td>
+</tr>
+<tr>
+<td>Export to CSV</td>
+<td><code>jq -r '[...] \| @csv'</code></td>
+</tr>
+<tr>
+<td>Count results</td>
+<td><code>jq '.numFound'</code></td>
+</tr>
+<tr>
+<td>Extract field</td>
+<td><code>jq '.documents[].titel'</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="next-steps">Next Steps</h2>
+<p>After exploring with these examples:</p>
+<ol>
+<li>Review the full API documentation: <a href="../bundestag_dip_api/">bundestag_dip_api.md</a></li>
+<li>Plan your data extraction strategy</li>
+<li>Identify which resources are most valuable for your use case</li>
+<li>Design your document schema and metadata fields</li>
+<li>Implement pagination for bulk extraction</li>
+<li>Consider incremental updates using <code>f.aktualisiert.start</code></li>
+</ol>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

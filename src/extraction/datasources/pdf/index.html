@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Pdf - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Pdf";
+        var mkdocs_page_input_path = "src/extraction/datasources/pdf.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../augment/">Augment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/bootstrap/configuration/temporal_domain_config/">Temporal_domain_config</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/bootstrap/configuration/chainlit_configuration/">Chainlit_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Components</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/bootstrap/configuration/langfuse_configuration/">Langfuse_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Components</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Postprocessors</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Colbert_rerank</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Hybrid_filter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/postprocessors/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chat_engines</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Langfuse</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/chat_engines/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Retrievers</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/retrievers/query_rewriter/">Query_rewriter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/retrievers/query_rewriting_retriever/">Query_rewriting_retriever</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Auto</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/retrievers/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Dynamic_temporal</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Llms</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/llms/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Lite_llm</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Guardrails</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/guardrails/base_guardrails/">Base_guardrails</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/guardrails/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/langfuse/client/">Client</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/langfuse/dataset_service/">Dataset_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/langfuse/prompt_service/">Prompt_service</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/feedback_service/">Feedback_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/utils/">Utils</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/base_factory/">Base_factory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/configuration_retrievers/">Configuration_retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/base_configuration/">Base_configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/base_initializer/">Base_initializer</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Vector_stores</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Qdrant</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/qdrant/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/qdrant/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/qdrant/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/qdrant/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chroma</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/chroma/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/chroma/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/chroma/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/chroma/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/core/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/core/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/vector_stores/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Pgvector</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/pgvector/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/pgvector/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/pgvector/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/pgvector/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/bootstrap/configuration/vector_store_configuration/">Vector_store_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/bootstrap/configuration/splitting_configuration/">Splitting_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/bootstrap/configuration/embedding_model_configuration/">Embedding_model_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/base_embedder/">Base_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedders/basic/embedder/">Embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/base_orchestrator/">Base_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedding_models</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Hugging_face</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedding_models/hugging_face/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedding_models/hugging_face/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Openai</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedding_models/openai/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedding_models/openai/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Voyage</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedding_models/voyage/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedding_models/voyage/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedding_models/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Splitters</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic_markdown</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/splitters/basic_markdown/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/splitters/basic_markdown/basic_markdown_splitter/">Basic_markdown_splitter</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/splitters/base_splitter/">Base_splitter</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/splitters/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../evaluation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../evaluation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Evaluators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../evaluation/evaluators/langfuse/">Langfuse</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../evaluation/evaluators/ragas/">Ragas</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Extraction</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../bootstrap/configuration/datasources/">Datasources</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/base_orchestator/">Base_orchestator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" >Datasources</a>
+    <ul class="current">
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Pdf</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.pdf.configuration">configuration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.pdf.configuration.PDFDatasourceConfiguration">PDFDatasourceConfiguration</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#document">Document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.pdf.document">document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.pdf.document.PDFDocument">PDFDocument</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#manager">Manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.pdf.manager">manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.pdf.manager.PDFDatasourceManagerFactory">PDFDatasourceManagerFactory</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#parser">Parser</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.pdf.parser">parser</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.pdf.parser.PDFDatasourceParser">PDFDatasourceParser</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.pdf.parser.PDFDatasourceParserFactory">PDFDatasourceParserFactory</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#reader">Reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.pdf.reader">reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.pdf.reader.PDFDatasourceReader">PDFDatasourceReader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.pdf.reader.PDFDatasourceReaderFactory">PDFDatasourceReaderFactory</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../confluence/">Confluence</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../bundestag/">Bundestag</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Extraction</li>
+          <li class="breadcrumb-item">Datasources</li>
+      <li class="breadcrumb-item active">Pdf</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/src/extraction/datasources/pdf.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="pdf-datasource">Pdf Datasource</h1>
+<p>This module contains functionality related to the <code>Pdf</code> datasource.</p>
+<h2 id="configuration">Configuration</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.extraction.datasources.pdf.configuration"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.pdf.configuration.PDFDatasourceConfiguration" class="doc doc-heading">
+            <code>PDFDatasourceConfiguration</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="extraction.bootstrap.configuration.datasources.DatasourceConfiguration">DatasourceConfiguration</span></code></p>
+
+
+
+        <p>Configuration for PDF data source.</p>
+<p>This class defines the configuration parameters required for extracting data from PDF files.
+It inherits from the base DatasourceConfiguration class.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/pdf/configuration.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PDFDatasourceConfiguration</span><span class="p">(</span><span class="n">DatasourceConfiguration</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration for PDF data source.</span>
+
+<span class="sd">    This class defines the configuration parameters required for extracting data from PDF files.</span>
+<span class="sd">    It inherits from the base DatasourceConfiguration class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="n">DatasourceName</span><span class="o">.</span><span class="n">PDF</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The name of the data source.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">base_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Base path to the directory containing PDF files&quot;</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="document">Document</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.extraction.datasources.pdf.document"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.pdf.document.PDFDocument" class="doc doc-heading">
+            <code>PDFDocument</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="extraction.datasources.core.document.BaseDocument">BaseDocument</span></code></p>
+
+
+
+        <p>Document representation for PDF file content.</p>
+<p>Extends BaseDocument to handle PDF-specific document processing including
+metadata filtering for embeddings and LLM contexts.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/pdf/document.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PDFDocument</span><span class="p">(</span><span class="n">BaseDocument</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Document representation for PDF file content.</span>
+
+<span class="sd">    Extends BaseDocument to handle PDF-specific document processing including</span>
+<span class="sd">    metadata filtering for embeddings and LLM contexts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="manager">Manager</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.extraction.datasources.pdf.manager"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.pdf.manager.PDFDatasourceManagerFactory" class="doc doc-heading">
+            <code>PDFDatasourceManagerFactory</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="core.Factory">Factory</span></code></p>
+
+
+
+        <p>Factory for creating datasource managers.</p>
+<p>Provides type-safe creation of datasource managers based on configuration.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>_configuration_class</code></b>
+                  (<code><span title="typing.Type">Type</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Type of configuration object</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/pdf/manager.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PDFDatasourceManagerFactory</span><span class="p">(</span><span class="n">Factory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Factory for creating datasource managers.</span>
+
+<span class="sd">    Provides type-safe creation of datasource managers based on configuration.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        _configuration_class: Type of configuration object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_configuration_class</span><span class="p">:</span> <span class="n">Type</span> <span class="o">=</span> <span class="n">PDFDatasourceConfiguration</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_instance</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">configuration</span><span class="p">:</span> <span class="n">PDFDatasourceConfiguration</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BasicDatasourceManager</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an instance of the PDF datasource manager.</span>
+
+<span class="sd">        This method constructs a BasicDatasourceManager by creating the appropriate</span>
+<span class="sd">        reader and parser based on the provided configuration.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            configuration: Configuration specifying how to set up the PDF datasource</span>
+<span class="sd">                          manager, reader, and parser.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A configured BasicDatasourceManager instance for handling PDF documents.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">PDFDatasourceReaderFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">PDFDatasourceParserFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">BasicDatasourceManager</span><span class="p">(</span>
+            <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">,</span>
+            <span class="n">reader</span><span class="o">=</span><span class="n">reader</span><span class="p">,</span>
+            <span class="n">parser</span><span class="o">=</span><span class="n">parser</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="parser">Parser</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.extraction.datasources.pdf.parser"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.pdf.parser.PDFDatasourceParser" class="doc doc-heading">
+            <code>PDFDatasourceParser</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="extraction.datasources.core.parser.BaseParser">BaseParser</span>[<span title="extraction.datasources.pdf.document.PDFDocument">PDFDocument</span>]</code></p>
+
+
+
+        <p>Parser for PDF documents that converts them to structured PDFDocument objects.</p>
+<p>Uses MarkItDown to convert PDF files to markdown format for easier processing.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/pdf/parser.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PDFDatasourceParser</span><span class="p">(</span><span class="n">BaseParser</span><span class="p">[</span><span class="n">PDFDocument</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parser for PDF documents that converts them to structured PDFDocument objects.</span>
+
+<span class="sd">    Uses MarkItDown to convert PDF files to markdown format for easier processing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parser</span><span class="p">:</span> <span class="n">MarkItDown</span> <span class="o">=</span> <span class="n">MarkItDown</span><span class="p">()):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the PDF parser.</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            parser: MarkItDown parser instance for PDF to markdown conversion</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">parser</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PDFDocument</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parses the given PDF file into a structured document.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            file_path: Path to the PDF file</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            PDFDocument object containing the parsed content and metadata</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">markdown</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span>
+            <span class="n">file_path</span><span class="p">,</span> <span class="n">file_extension</span><span class="o">=</span><span class="s2">&quot;.pdf&quot;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">text_content</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_metadata</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">PDFDocument</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">markdown</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_extract_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extract and process PDF metadata from the file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            file_path: Path to the PDF file</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Processed metadata dictionary with standardized fields</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="n">default_file_metadata_func</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;datasource&quot;</span><span class="p">:</span> <span class="s2">&quot;pdf&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;pdf&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file_path</span><span class="p">),</span>
+                <span class="s2">&quot;last_edited_date&quot;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;last_modified_date&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;created_date&quot;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;creation_date&quot;</span><span class="p">],</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="k">del</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;last_modified_date&quot;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;creation_date&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">metadata</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.pdf.parser.PDFDatasourceParser.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">parser</span><span class="o">=</span><span class="n">MarkItDown</span><span class="p">())</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize the PDF parser.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>parser</code></b>
+              –
+              <div class="doc-md-description">
+                <p>MarkItDown parser instance for PDF to markdown conversion</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/pdf/parser.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parser</span><span class="p">:</span> <span class="n">MarkItDown</span> <span class="o">=</span> <span class="n">MarkItDown</span><span class="p">()):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize the PDF parser.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        parser: MarkItDown parser instance for PDF to markdown conversion</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">parser</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.pdf.parser.PDFDatasourceParser.parse" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">parse</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Parses the given PDF file into a structured document.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>file_path</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Path to the PDF file</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="extraction.datasources.pdf.document.PDFDocument">PDFDocument</span></code>
+              –
+              <div class="doc-md-description">
+                <p>PDFDocument object containing the parsed content and metadata</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/pdf/parser.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PDFDocument</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parses the given PDF file into a structured document.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_path: Path to the PDF file</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        PDFDocument object containing the parsed content and metadata</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">markdown</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span>
+        <span class="n">file_path</span><span class="p">,</span> <span class="n">file_extension</span><span class="o">=</span><span class="s2">&quot;.pdf&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">text_content</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_metadata</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">PDFDocument</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">markdown</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.pdf.parser.PDFDatasourceParserFactory" class="doc doc-heading">
+            <code>PDFDatasourceParserFactory</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="core.Factory">Factory</span></code></p>
+
+
+
+        <p>Factory for creating PDF parser instances.</p>
+<p>Creates and configures PDFDatasourceParser objects according to
+the provided configuration.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/pdf/parser.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PDFDatasourceParserFactory</span><span class="p">(</span><span class="n">Factory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Factory for creating PDF parser instances.</span>
+
+<span class="sd">    Creates and configures PDFDatasourceParser objects according to</span>
+<span class="sd">    the provided configuration.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_configuration_class</span><span class="p">:</span> <span class="n">Type</span> <span class="o">=</span> <span class="n">PDFDatasourceConfiguration</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_instance</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">PDFDatasourceConfiguration</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PDFDatasourceParser</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a new instance of the PDF parser.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            _: Configuration object for the parser (not used in this implementation)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            PDFDatasourceParser: Configured parser instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">PDFDatasourceParser</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="reader">Reader</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.extraction.datasources.pdf.reader"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.pdf.reader.PDFDatasourceReader" class="doc doc-heading">
+            <code>PDFDatasourceReader</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="extraction.datasources.core.reader.BaseReader">BaseReader</span></code></p>
+
+
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/pdf/reader.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PDFDatasourceReader</span><span class="p">(</span><span class="n">BaseReader</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">configuration</span><span class="p">:</span> <span class="n">PDFDatasourceConfiguration</span><span class="p">,</span>
+        <span class="n">logger</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span> <span class="o">=</span> <span class="n">LoggerConfiguration</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">),</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize PDF reader.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            configuration: Settings for PDF processing</span>
+<span class="sd">            logger: Logger instance for logging messages</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">export_limit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_path</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">base_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read_all_async</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Asynchronously yield PDF file paths from the configured directory.</span>
+
+<span class="sd">        Retrieves a list of PDF files from the base path, applies any configured</span>
+<span class="sd">        export limit, and yields each file path individually.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            AsyncIterator[str]: An asynchronous iterator of PDF file paths</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Reading PDF files from &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="si">}</span><span class="s2">&#39; with limit </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">pdf_files</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.pdf&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">files_to_load</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">pdf_files</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="n">pdf_files</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">files_to_load</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span><span class="si">}</span><span class="s2">] Reading PDF file &#39;</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+            <span class="p">)</span>
+            <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">file_path</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.pdf.reader.PDFDatasourceReader.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">LoggerConfiguration</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">))</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize PDF reader.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="extraction.datasources.pdf.configuration.PDFDatasourceConfiguration">PDFDatasourceConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Settings for PDF processing</p>
+              </div>
+            </li>
+            <li>
+              <b><code>logger</code></b>
+                  (<code><span title="logging.Logger">Logger</span></code>, default:
+                      <code><span title="core.logger.LoggerConfiguration.get_logger">get_logger</span>(<span title="__name__">__name__</span>)</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Logger instance for logging messages</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/pdf/reader.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">configuration</span><span class="p">:</span> <span class="n">PDFDatasourceConfiguration</span><span class="p">,</span>
+    <span class="n">logger</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span> <span class="o">=</span> <span class="n">LoggerConfiguration</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">),</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize PDF reader.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        configuration: Settings for PDF processing</span>
+<span class="sd">        logger: Logger instance for logging messages</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">export_limit</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">base_path</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">base_path</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.pdf.reader.PDFDatasourceReader.read_all_async" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">read_all_async</span><span class="p">()</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Asynchronously yield PDF file paths from the configured directory.</p>
+<p>Retrieves a list of PDF files from the base path, applies any configured
+export limit, and yields each file path individually.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.AsyncIterator">AsyncIterator</span>[<span title="str">str</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>AsyncIterator[str]: An asynchronous iterator of PDF file paths</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/pdf/reader.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read_all_async</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Asynchronously yield PDF file paths from the configured directory.</span>
+
+<span class="sd">    Retrieves a list of PDF files from the base path, applies any configured</span>
+<span class="sd">    export limit, and yields each file path individually.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        AsyncIterator[str]: An asynchronous iterator of PDF file paths</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Reading PDF files from &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="si">}</span><span class="s2">&#39; with limit </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">pdf_files</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.pdf&quot;</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="n">files_to_load</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">pdf_files</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">else</span> <span class="n">pdf_files</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">files_to_load</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">export_limit</span><span class="si">}</span><span class="s2">] Reading PDF file &#39;</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+        <span class="p">)</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_path</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">file_path</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.pdf.reader.PDFDatasourceReaderFactory" class="doc doc-heading">
+            <code>PDFDatasourceReaderFactory</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="core.Factory">Factory</span></code></p>
+
+
+
+        <p>Factory for creating PDF reader instances.</p>
+<p>Implements the factory pattern to produce configured PDFDatasourceReader
+objects based on the provided configuration settings.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/pdf/reader.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PDFDatasourceReaderFactory</span><span class="p">(</span><span class="n">Factory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Factory for creating PDF reader instances.</span>
+
+<span class="sd">    Implements the factory pattern to produce configured PDFDatasourceReader</span>
+<span class="sd">    objects based on the provided configuration settings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_configuration_class</span><span class="p">:</span> <span class="n">Type</span> <span class="o">=</span> <span class="n">PDFDatasourceConfiguration</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_instance</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">configuration</span><span class="p">:</span> <span class="n">PDFDatasourceConfiguration</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PDFDatasourceReader</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new PDFDatasourceReader with the specified configuration.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            configuration: Settings that control PDF processing behavior including</span>
+<span class="sd">                           base path and export limits</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            PDFDatasourceReader: A fully configured reader instance ready for use</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">PDFDatasourceReader</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../orchestrators/registry/" class="btn btn-neutral float-left" title="Registry"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../confluence/" class="btn btn-neutral float-right" title="Confluence">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../../orchestrators/registry/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../confluence/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

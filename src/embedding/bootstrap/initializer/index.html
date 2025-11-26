@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Initializer - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Initializer";
+        var mkdocs_page_input_path = "src/embedding/bootstrap/initializer.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../augment/">Augment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/bootstrap/configuration/temporal_domain_config/">Temporal_domain_config</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/bootstrap/configuration/chainlit_configuration/">Chainlit_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Components</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/bootstrap/configuration/langfuse_configuration/">Langfuse_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Components</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Postprocessors</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Colbert_rerank</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Hybrid_filter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/postprocessors/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chat_engines</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Langfuse</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/chat_engines/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Retrievers</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/retrievers/query_rewriter/">Query_rewriter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/retrievers/query_rewriting_retriever/">Query_rewriting_retriever</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Auto</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/retrievers/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Dynamic_temporal</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Llms</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/llms/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Lite_llm</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Guardrails</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/guardrails/base_guardrails/">Base_guardrails</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/guardrails/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/langfuse/client/">Client</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/langfuse/dataset_service/">Dataset_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/langfuse/prompt_service/">Prompt_service</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/feedback_service/">Feedback_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/utils/">Utils</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/base_factory/">Base_factory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/configuration_retrievers/">Configuration_retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/base_configuration/">Base_configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/base_initializer/">Base_initializer</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Embedding</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" >Vector_stores</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Qdrant</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/qdrant/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/qdrant/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/qdrant/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/qdrant/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chroma</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/chroma/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/chroma/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/chroma/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/chroma/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/core/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/core/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../vector_stores/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Pgvector</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/pgvector/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/pgvector/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/pgvector/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../vector_stores/pgvector/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" >Bootstrap</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../configuration/vector_store_configuration/">Vector_store_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../configuration/splitting_configuration/">Splitting_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../configuration/embedding_model_configuration/">Embedding_model_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Initializer</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#initializer_1">Initializer</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.bootstrap.initializer">initializer</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.bootstrap.initializer.EmbeddingInitializer">EmbeddingInitializer</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.embedding.bootstrap.initializer.EmbeddingPackageLoader">EmbeddingPackageLoader</a>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/base_embedder/">Base_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../embedders/basic/embedder/">Embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedders/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/base_orchestrator/">Base_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedding_models</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Hugging_face</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../embedding_models/hugging_face/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../embedding_models/hugging_face/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Openai</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../embedding_models/openai/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../embedding_models/openai/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Voyage</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../embedding_models/voyage/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../embedding_models/voyage/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../embedding_models/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Splitters</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic_markdown</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../splitters/basic_markdown/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../splitters/basic_markdown/basic_markdown_splitter/">Basic_markdown_splitter</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../splitters/base_splitter/">Base_splitter</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../splitters/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../evaluation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../evaluation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Evaluators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../evaluation/evaluators/langfuse/">Langfuse</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../evaluation/evaluators/ragas/">Ragas</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Extraction</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../extraction/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../extraction/bootstrap/configuration/datasources/">Datasources</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../extraction/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../extraction/orchestrators/base_orchestator/">Base_orchestator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../extraction/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../extraction/orchestrators/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../extraction/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../extraction/datasources/confluence/">Confluence</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../extraction/datasources/bundestag/">Bundestag</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../extraction/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../extraction/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../extraction/datasources/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Embedding</li>
+          <li class="breadcrumb-item">Bootstrap</li>
+      <li class="breadcrumb-item active">Initializer</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/src/embedding/bootstrap/initializer.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="initializer">Initializer</h1>
+<p>This module contains functionality related to the the <code>initializer</code> module for <code>embedding.bootstrap</code>.</p>
+<h2 id="initializer_1">Initializer</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.embedding.bootstrap.initializer"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.bootstrap.initializer.EmbeddingInitializer" class="doc doc-heading">
+            <code>EmbeddingInitializer</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="extraction.bootstrap.initializer.ExtractionInitializer">ExtractionInitializer</span></code></p>
+
+
+
+        <p>Initializer for embedding, augmentation and evaluation processes.</p>
+<p>Extends the ExtractionInitializer to provide specialized initialization for
+embedding-related functionality. Responsible for binding embedding components
+to the dependency injection container and preparing the environment for
+embedding, augmentation, and evaluation processes.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+              –
+              <div class="doc-md-description">
+                <p>EmbeddingConfiguration object containing configuration parameters</p>
+              </div>
+            </li>
+            <li>
+              <b><code>configuration_json</code></b>
+              –
+              <div class="doc-md-description">
+                <p>JSON string representation of the EmbeddingConfiguration</p>
+              </div>
+            </li>
+            <li>
+              <b><code>package_loader</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Loader responsible for importing required packages</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/bootstrap/initializer.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EmbeddingInitializer</span><span class="p">(</span><span class="n">ExtractionInitializer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initializer for embedding, augmentation and evaluation processes.</span>
+
+<span class="sd">    Extends the ExtractionInitializer to provide specialized initialization for</span>
+<span class="sd">    embedding-related functionality. Responsible for binding embedding components</span>
+<span class="sd">    to the dependency injection container and preparing the environment for</span>
+<span class="sd">    embedding, augmentation, and evaluation processes.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        configuration: EmbeddingConfiguration object containing configuration parameters</span>
+<span class="sd">        configuration_json: JSON string representation of the EmbeddingConfiguration</span>
+<span class="sd">        package_loader: Loader responsible for importing required packages</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">configuration_class</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BaseConfiguration</span><span class="p">]</span> <span class="o">=</span> <span class="n">EmbeddingConfiguration</span><span class="p">,</span>
+        <span class="n">package_loader</span><span class="p">:</span> <span class="n">BasePackageLoader</span> <span class="o">=</span> <span class="n">EmbeddingPackageLoader</span><span class="p">(),</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">configuration_class</span><span class="o">=</span><span class="n">configuration_class</span><span class="p">,</span>
+            <span class="n">package_loader</span><span class="o">=</span><span class="n">package_loader</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.embedding.bootstrap.initializer.EmbeddingPackageLoader" class="doc doc-heading">
+            <code>EmbeddingPackageLoader</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="extraction.bootstrap.initializer.ExtractionPackageLoader">ExtractionPackageLoader</span></code></p>
+
+
+
+        <p>Package loader for embedding components.</p>
+<p>Extends the ExtractionPackageLoader to include embedding-specific packages.
+Responsible for dynamically loading embedding-related modules into the application.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>logger</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Logger instance for logging package loading operations</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/embedding/bootstrap/initializer.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EmbeddingPackageLoader</span><span class="p">(</span><span class="n">ExtractionPackageLoader</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Package loader for embedding components.</span>
+
+<span class="sd">    Extends the ExtractionPackageLoader to include embedding-specific packages.</span>
+<span class="sd">    Responsible for dynamically loading embedding-related modules into the application.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        logger: Logger instance for logging package loading operations</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">logger</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span> <span class="o">=</span> <span class="n">LoggerConfiguration</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">logger</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Loads all required packages for embedding functionality.</span>
+
+<span class="sd">        First loads extraction packages via the parent class, then loads</span>
+<span class="sd">        embedding-specific packages including vector stores, embedding models,</span>
+<span class="sd">        text splitters, embedders, and orchestrators.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">load_packages</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_packages</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="s2">&quot;src.embedding.vector_stores&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;src.embedding.embedding_models&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;src.embedding.splitters&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;src.embedding.embedders&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;src.embedding.orchestrators&quot;</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.embedding.bootstrap.initializer.EmbeddingPackageLoader.load_packages" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">load_packages</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Loads all required packages for embedding functionality.</p>
+<p>First loads extraction packages via the parent class, then loads
+embedding-specific packages including vector stores, embedding models,
+text splitters, embedders, and orchestrators.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/embedding/bootstrap/initializer.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Loads all required packages for embedding functionality.</span>
+
+<span class="sd">    First loads extraction packages via the parent class, then loads</span>
+<span class="sd">    embedding-specific packages including vector stores, embedding models,</span>
+<span class="sd">    text splitters, embedders, and orchestrators.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">load_packages</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_load_packages</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s2">&quot;src.embedding.vector_stores&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;src.embedding.embedding_models&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;src.embedding.splitters&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;src.embedding.embedders&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;src.embedding.orchestrators&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../configuration/embedding_model_configuration/" class="btn btn-neutral float-left" title="Embedding_model_configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../embedders/base_embedder/" class="btn btn-neutral float-right" title="Base_embedder">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../configuration/embedding_model_configuration/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../embedders/base_embedder/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

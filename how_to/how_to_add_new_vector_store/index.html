@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Add a New Vector Store - RAG Systems</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Add a New Vector Store";
+        var mkdocs_page_input_path = "how_to/how_to_add_new_vector_store.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Add a New Vector Store</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/augment/">Augment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/temporal_domain_config/">Temporal_domain_config</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/chainlit_configuration/">Chainlit_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Components</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/langfuse_configuration/">Langfuse_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Components</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Postprocessors</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Colbert_rerank</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Hybrid_filter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/postprocessors/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chat_engines</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Langfuse</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/chat_engines/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Retrievers</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/query_rewriter/">Query_rewriter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/query_rewriting_retriever/">Query_rewriting_retriever</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Auto</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Dynamic_temporal</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Llms</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/llms/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Lite_llm</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Guardrails</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/guardrails/base_guardrails/">Base_guardrails</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/guardrails/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/client/">Client</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/dataset_service/">Dataset_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/prompt_service/">Prompt_service</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/feedback_service/">Feedback_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/utils/">Utils</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_factory/">Base_factory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/configuration_retrievers/">Configuration_retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_configuration/">Base_configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_initializer/">Base_initializer</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Vector_stores</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Qdrant</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chroma</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/core/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/core/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/vector_stores/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Pgvector</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/vector_store_configuration/">Vector_store_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/splitting_configuration/">Splitting_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/embedding_model_configuration/">Embedding_model_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/base_embedder/">Base_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedders/basic/embedder/">Embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/base_orchestrator/">Base_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedding_models</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Hugging_face</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/hugging_face/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/hugging_face/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Openai</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/openai/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/openai/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Voyage</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/voyage/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/voyage/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedding_models/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Splitters</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic_markdown</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/splitters/basic_markdown/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/splitters/basic_markdown/basic_markdown_splitter/">Basic_markdown_splitter</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/splitters/base_splitter/">Base_splitter</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/splitters/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/evaluation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Evaluators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/evaluators/langfuse/">Langfuse</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/evaluators/ragas/">Ragas</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Extraction</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/bootstrap/configuration/datasources/">Datasources</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/orchestrators/base_orchestator/">Base_orchestator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/orchestrators/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/confluence/">Confluence</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/bundestag/">Bundestag</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">How to</li>
+      <li class="breadcrumb-item active">Add a New Vector Store</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/how_to/how_to_add_new_vector_store.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="how-to-add-a-new-vector-store-implementation">How to Add a New Vector Store Implementation</h1>
+<p>This guide demonstrates how to add support for a new vector store implementation, using <code>Chroma</code> as an example.</p>
+<h2 id="architecture">Architecture</h2>
+<p>Vector store is used for storing and retrieving embeddings of datasource nodes.</p>
+<h1 id="implementation">Implementation</h1>
+<h2 id="step-1-add-dependencies">Step 1: Add Dependencies</h2>
+<p>Add the required packages to <code>pyproject.toml</code>:</p>
+<pre><code class="language-toml">[project.optional-dependencies]
+embedding = [
+    &quot;chromadb&gt;=0.6.3&quot;,
+    &quot;llama-index-vector-stores-chroma&gt;=0.4.1&quot;,
+    ...
+]
+</code></pre>
+<h2 id="step-2-docker-service">Step 2: Docker Service</h2>
+<p>Add the vector store service to <a href="https://github.com/feld-m/rag_blueprint/blob/main/build/workstation/docker/docker-compose.yml">docker-compose.yml</a>:</p>
+<pre><code class="language-yml">name: rag
+services:
+...
+  chroma:
+    image: chromadb/chroma:0.6.4.dev19
+    environment:
+      CHROMA_HOST_PORT: ${RAG__VECTOR_STORE__PORT_REST}
+    ports:
+      - &quot;${RAG__VECTOR_STORE__PORT_REST}:${RAG__VECTOR_STORE__PORT_REST}&quot;
+    restart: unless-stopped
+    volumes:
+      - ./.docker-data/chroma:/chroma/chroma/
+...
+</code></pre>
+<p>It enables easy vector store initialization using <code>init.sh</code> script.</p>
+<h2 id="step-3-vector-store-enum">Step 3: Vector Store Enum</h2>
+<p>Add the vector store to the <code>VectorStoreName</code> enum in <code>vector_store_configuration.py</code>:</p>
+<pre><code class="language-py">class VectorStoreName(str, Enum):
+    ...
+    CHROMA = &quot;chroma&quot;
+</code></pre>
+<p>The enum value must match the service name in the Docker configuration.</p>
+<h2 id="step-4-vector-store-configuration">Step 4: Vector Store Configuration</h2>
+<p>Create a new directory <code>src/embedding/vector_stores/chroma</code> and create a <code>configuration.py</code> file in it. This configuration file will contain necessary fields for setup.</p>
+<pre><code class="language-py">from typing import Literal
+from pydantic import Field
+from embedding.bootstrap.configuration.vector_store_configuration import (
+    VectorStoreConfiguration,
+    VectorStoreName,
+)
+
+class ChromaVectorStoreConfiguration(VectorStoreConfiguration):
+    &quot;&quot;&quot;Configuration for the ChromaDB vector store.&quot;&quot;&quot;
+
+    name: Literal[VectorStoreName.CHROMA] = Field(
+        ..., description=&quot;The name of the vector store.&quot;
+    )
+</code></pre>
+<p>The first part is to create a configuration that extends <code>VectorStoreConfiguration</code>. <code>name</code> field constraints the value to <code>VectorStoreName.CHROMA</code>, which serves as an indicator for pydantic validator.</p>
+<p><strong><em>Note</em></strong>: For adding potentially needed secrets support follow the same approach as explained in <a href="../how_to_add_new_llm/">How to Add a New LLM Implementation</a> guide.</p>
+<h2 id="step-5-vector-store-implementation">Step 5: Vector Store Implementation</h2>
+<p>In the <code>vector_store.py</code> file, create singleton vector store factory. It provides a framework, where vector store can be retrieved through ChromaVectorStoreFactory and is initialized only once per runtime, saving up the memory. To do so, define expected <code>_configuration_class</code> type and provide <code>_create_instance</code> implementation using <code>llamaindex</code>.</p>
+<pre><code class="language-py">from typing import Type
+from llama_index.vector_stores.chroma import ChromaVectorStore
+from core.base_factory import SingletonFactory
+from embedding.vector_stores.chroma.configuration import (
+    ChromaVectorStoreConfiguration,
+)
+
+
+class ChromaVectorStoreFactory(SingletonFactory):
+    _configuration_class: Type = ChromaVectorStoreConfiguration
+
+    @classmethod
+    def _create_instance(
+        cls, configuration: ChromaVectorStoreConfiguration
+    ) -&gt; ChromaVectorStore:
+        return ChromaVectorStore(
+            host=configuration.host,
+            port=str(configuration.port),
+            collection_name=configuration.collection_name,
+        )
+</code></pre>
+<p>The field <code>_configuration_class</code> defines the required configuration type. The rest involves implementing
+the required <code>_create_instance</code> method with the corresponding vector store initialization.</p>
+<h2 id="step-6-vector-store-client">Step 6: Vector Store Client</h2>
+<p>We will want to validate our vector store before the run, for that we need and HTTP client. To create a Chroma client, we implement <code>ChromaVectorStoreClientFactory</code> in <code>client.py</code>. It extends <code>SingletonFactory</code>,
+which provides an interface for initializing a single instance for the duration of the application runtime.</p>
+<pre><code class="language-py">from typing import Type
+from chromadb import HttpClient as ChromaHttpClient
+from chromadb.api import ClientAPI as ChromaClient
+from core.base_factory import SingletonFactory
+from embedding.vector_stores.chroma.configuration import (
+    ChromaVectorStoreConfiguration,
+)
+
+
+class ChromaVectorStoreClientFactory(SingletonFactory):
+    _configuration_class: Type = ChromaVectorStoreConfiguration
+
+    @classmethod
+    def _create_instance(
+        cls, configuration: ChromaVectorStoreConfiguration
+    ) -&gt; ChromaClient:
+        return ChromaHttpClient(
+            host=configuration.host,
+            port=configuration.port,
+        )
+</code></pre>
+<p>The field <code>_configuration_class</code> defines the required configuration type. The rest involves implementing
+the required <code>_create_instance</code> method with the corresponding client initialization.</p>
+<h2 id="step-7-vector-store-validator">Step 7: Vector Store Validator</h2>
+<p>Now we can implement the validator that will check if defined vector store collection already exists. Nevertheless, it can be extended to validate other apsects as well. Create <code>validator.py</code> file and create <code>ChromaVectorStoreValidator</code> that implements <code>BaseVectorStoreValidator</code> interface:</p>
+<pre><code class="language-py">from typing import Type
+from chromadb.api import ClientAPI as ChromaClient
+from core.base_factory import SingletonFactory
+from embedding.vector_stores.chroma.client import ChromaVectorStoreClientFactory
+from embedding.vector_stores.chroma.configuration import (
+    ChromaVectorStoreConfiguration,
+)
+from embedding.vector_stores.core.exceptions import CollectionExistsException
+from embedding.vector_stores.core.validator import BaseVectorStoreValidator
+
+class ChromaVectorStoreValidator(BaseVectorStoreValidator):
+    def __init__(
+        self,
+        configuration: ChromaVectorStoreConfiguration,
+        client: ChromaClient,
+    ):
+        self.configuration = configuration
+        self.client = client
+
+    def validate(self) -&gt; None:
+        self.validate_collection()
+
+    def validate_collection(self) -&gt; None:
+        collection_name = self.configuration.collection_name
+        if collection_name in self.client.list_collections():
+            raise CollectionExistsException(collection_name)
+</code></pre>
+<p>Now add the factory that defines validator initialization.</p>
+<pre><code class="language-py">class ChromaVectorStoreValidatorFactory(SingletonFactory):
+    _configuration_class: Type = ChromaVectorStoreConfiguration
+
+    @classmethod
+    def _create_instance(
+        cls, configuration: ChromaVectorStoreConfiguration
+    ) -&gt; ChromaVectorStoreValidator:
+        client = ChromaVectorStoreClientFactory.create(configuration)
+        return ChromaVectorStoreValidator(
+            configuration=configuration, client=client
+        )
+</code></pre>
+<p>You can notice that we use previously implemented <code>ChromaVectorStoreClientFactory</code> to get required client instance.</p>
+<h2 id="step-8-vector-store-integration">Step 8: Vector Store Integration</h2>
+<p>Create an <code>__init__.py</code> file as follows:</p>
+<pre><code class="language-py">from embedding.bootstrap.configuration.vector_store_configuration import (
+    VectorStoreConfigurationRegistry,
+    VectorStoreName,
+)
+from embedding.vector_stores.chroma.configuration import (
+    ChromaVectorStoreConfiguration,
+)
+from embedding.vector_stores.chroma.validator import (
+    ChromaVectorStoreValidatorFactory,
+)
+from embedding.vector_stores.chroma.vector_store import ChromaVectorStoreFactory
+from embedding.vector_stores.registry import (
+    VectorStoreRegistry,
+    VectorStoreValidatorRegistry,
+)
+
+def register() -&gt; None:
+    VectorStoreConfigurationRegistry.register(
+        VectorStoreName.CHROMA,
+        ChromaVectorStoreConfiguration,
+    )
+    VectorStoreRegistry.register(
+        VectorStoreName.CHROMA, ChromaVectorStoreFactory
+    )
+    VectorStoreValidatorRegistry.register(
+        VectorStoreName.CHROMA, ChromaVectorStoreValidatorFactory
+    )
+</code></pre>
+<p>The initialization file includes a <code>register()</code> method responsible for registering our configuration, and validator and vector store factories. Registries are used to dynamically inform the system about available implementations. This way, with the following Chroma configuration in <code>configurations/configuration.{environment}.json</code> file:</p>
+<pre><code class="language-json">    &quot;embedding&quot;: {
+        &quot;vector_store&quot;: {
+            &quot;name&quot;: &quot;chroma&quot;,
+            &quot;collection_name&quot;: &quot;new-collection&quot;,
+            &quot;host&quot;: &quot;chroma&quot;,
+            &quot;protocol&quot;: &quot;http&quot;,
+            &quot;port&quot;: 6000
+        }
+        ...
+    },
+</code></pre>
+<p>We can dynamically retrieve the corresponding vector store implementation by using the name specified in the configuration:</p>
+<pre><code class="language-py">vector_store_config = read_vector_store_from_config()
+vector_store = VectorStoreRegistry.get(vector_store_config.name).create(vector_store_config)
+vector_store_validator = VectorStoreValidatorRegistry.get(vector_store_config.name).create(vector_store_config)
+</code></pre>
+<p>This mechanism is later used by the embedding orchestrator to initialize the vector store defined in the configuration. These steps conclude the implementation, resulting in the following file structure:</p>
+<pre><code>src/
+└── embedding/
+    └── vector_stores/
+        └── chroma/
+            ├── __init__.py
+            ├── client.py
+            ├── configuration.py
+            ├── validator.py
+            └── vector_store.py
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../how_to_add_new_embedding_model/" class="btn btn-neutral float-left" title="Add a New Embedding Model"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../how_to_add_new_datasource/" class="btn btn-neutral float-right" title="Add a New Datasource">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../how_to_add_new_embedding_model/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../how_to_add_new_datasource/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

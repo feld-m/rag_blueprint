@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../../../img/favicon.ico" />
+    <title>Chat_engine - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Chat_engine";
+        var mkdocs_page_input_path = "src/augmentation/components/chat_engines/langfuse/chat_engine.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../augment/">Augment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Augmentation</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../bootstrap/configuration/temporal_domain_config/">Temporal_domain_config</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../bootstrap/configuration/chainlit_configuration/">Chainlit_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Components</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../bootstrap/configuration/langfuse_configuration/">Langfuse_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" >Components</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" >Postprocessors</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Colbert_rerank</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Hybrid_filter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../postprocessors/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" >Chat_engines</a>
+    <ul class="current">
+                <li class="toctree-l4 current"><a class="reference internal current" >Langfuse</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Retrievers</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../retrievers/query_rewriter/">Query_rewriter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../retrievers/query_rewriting_retriever/">Query_rewriting_retriever</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Auto</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../retrievers/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Dynamic_temporal</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Llms</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../llms/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Lite_llm</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Guardrails</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../guardrails/base_guardrails/">Base_guardrails</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../guardrails/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../langfuse/client/">Client</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../langfuse/dataset_service/">Dataset_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../langfuse/prompt_service/">Prompt_service</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../chainlit/feedback_service/">Feedback_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../chainlit/utils/">Utils</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../chainlit/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../core/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../core/base_factory/">Base_factory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../core/configuration_retrievers/">Configuration_retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../core/base_configuration/">Base_configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../../core/base_initializer/">Base_initializer</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Vector_stores</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Qdrant</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/qdrant/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/qdrant/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/qdrant/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/qdrant/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chroma</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/chroma/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/chroma/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/chroma/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/chroma/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/core/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/core/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/vector_stores/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Pgvector</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/pgvector/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/pgvector/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/pgvector/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/vector_stores/pgvector/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/bootstrap/configuration/vector_store_configuration/">Vector_store_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/bootstrap/configuration/splitting_configuration/">Splitting_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/bootstrap/configuration/embedding_model_configuration/">Embedding_model_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/embedders/base_embedder/">Base_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedders/basic/embedder/">Embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/embedders/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/orchestrators/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/orchestrators/base_orchestrator/">Base_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedding_models</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Hugging_face</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedding_models/hugging_face/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedding_models/hugging_face/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Openai</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedding_models/openai/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedding_models/openai/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Voyage</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedding_models/voyage/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/embedding_models/voyage/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/embedding_models/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Splitters</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic_markdown</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/splitters/basic_markdown/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../embedding/splitters/basic_markdown/basic_markdown_splitter/">Basic_markdown_splitter</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/splitters/base_splitter/">Base_splitter</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../embedding/splitters/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../evaluation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../evaluation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Evaluators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../evaluation/evaluators/langfuse/">Langfuse</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../evaluation/evaluators/ragas/">Ragas</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Extraction</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../extraction/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../extraction/bootstrap/configuration/datasources/">Datasources</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/orchestrators/base_orchestator/">Base_orchestator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../../../extraction/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/orchestrators/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/datasources/confluence/">Confluence</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/datasources/bundestag/">Bundestag</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../../../extraction/datasources/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Augmentation</li>
+          <li class="breadcrumb-item">Components</li>
+          <li class="breadcrumb-item">Chat_engines</li>
+          <li class="breadcrumb-item">Langfuse</li>
+      <li class="breadcrumb-item active">Chat_engine</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/src/augmentation/components/chat_engines/langfuse/chat_engine.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="chat_engine">Chat_engine</h1>
+<p>This module contains functionality related to the the <code>chat_engine</code> module for <code>augmentation.components.chat_engines.langfuse</code>.</p>
+<h2 id="chat_engine_1">Chat_engine</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.augmentation.components.chat_engines.langfuse.chat_engine"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.augmentation.components.chat_engines.langfuse.chat_engine.LangfuseChatEngine" class="doc doc-heading">
+            <code>LangfuseChatEngine</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="llama_index.core.chat_engine.CondensePlusContextChatEngine">CondensePlusContextChatEngine</span></code></p>
+
+
+
+        <p>Custom chat engine implementing Retrieval-Augmented Generation (RAG).</p>
+<p>Coordinates retrieval, post-processing, and response generation for RAG workflow.
+Integrates with Langfuse for tracing and Chainlit for message tracking.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/augmentation/components/chat_engines/langfuse/chat_engine.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LangfuseChatEngine</span><span class="p">(</span><span class="n">CondensePlusContextChatEngine</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom chat engine implementing Retrieval-Augmented Generation (RAG).</span>
+
+<span class="sd">    Coordinates retrieval, post-processing, and response generation for RAG workflow.</span>
+<span class="sd">    Integrates with Langfuse for tracing and Chainlit for message tracking.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">chainlit_tag_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Format of the tag used to retrieve the trace by chainlit message id in Langfuse.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">input_guardrail_prompt_template</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PromptTemplate</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Prompt template for validating user input compliance&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">output_guardrail_prompt_template</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PromptTemplate</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Prompt template for validating response output compliance&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">retriever</span><span class="p">:</span> <span class="n">BaseRetriever</span><span class="p">,</span>
+        <span class="n">llm</span><span class="p">:</span> <span class="n">LLM</span><span class="p">,</span>
+        <span class="n">memory</span><span class="p">:</span> <span class="n">BaseMemory</span><span class="p">,</span>
+        <span class="n">chainlit_tag_format</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">guardrails_engine</span><span class="p">:</span> <span class="n">BaseGuardrailsEngine</span><span class="p">,</span>
+        <span class="n">context_prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PromptTemplate</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">context_refine_prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PromptTemplate</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">condense_prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PromptTemplate</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">system_prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">skip_condense</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">node_postprocessors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BaseNodePostprocessor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">callback_manager</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">CallbackManager</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize LangfuseChatEngine with retriever, LLM, and optional parameters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            retriever: Document retriever for RAG</span>
+<span class="sd">            llm: Language model for response generation</span>
+<span class="sd">            memory: Memory buffer for chat history</span>
+<span class="sd">            chainlit_tag_format: Format for Chainlit message ID in Langfuse</span>
+<span class="sd">            guardrails_engine: Guardrail engine for input/output validation</span>
+<span class="sd">            context_prompt: Prompt for context generation</span>
+<span class="sd">            context_refine_prompt: Prompt for refining context</span>
+<span class="sd">            condense_prompt: Prompt for condensing context</span>
+<span class="sd">            system_prompt: System prompt for LLM</span>
+<span class="sd">            input_guardrail_prompt_template: Prompt template for input validation</span>
+<span class="sd">            output_guardrail_prompt_template: Prompt template for output validation</span>
+<span class="sd">            skip_condense: Flag to skip context condensing</span>
+<span class="sd">            node_postprocessors: List of postprocessors for node processing</span>
+<span class="sd">            callback_manager: Callback manager for tracing</span>
+<span class="sd">            verbose: Flag for verbose output</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">retriever</span><span class="o">=</span><span class="n">retriever</span><span class="p">,</span>
+            <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+            <span class="n">memory</span><span class="o">=</span><span class="n">memory</span><span class="p">,</span>
+            <span class="n">context_prompt</span><span class="o">=</span><span class="n">context_prompt</span><span class="p">,</span>
+            <span class="n">context_refine_prompt</span><span class="o">=</span><span class="n">context_refine_prompt</span><span class="p">,</span>
+            <span class="n">condense_prompt</span><span class="o">=</span><span class="n">condense_prompt</span><span class="p">,</span>
+            <span class="n">system_prompt</span><span class="o">=</span><span class="n">system_prompt</span><span class="p">,</span>
+            <span class="n">skip_condense</span><span class="o">=</span><span class="n">skip_condense</span><span class="p">,</span>
+            <span class="n">node_postprocessors</span><span class="o">=</span><span class="n">node_postprocessors</span><span class="p">,</span>
+            <span class="n">callback_manager</span><span class="o">=</span><span class="n">callback_manager</span><span class="p">,</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">guardrails_engine</span> <span class="o">=</span> <span class="n">guardrails_engine</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chainlit_tag_format</span> <span class="o">=</span> <span class="n">chainlit_tag_format</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_response_synthesizer</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">chat_history</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ChatMessage</span><span class="p">],</span> <span class="n">streaming</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Override to use SIMPLE_SUMMARIZE mode instead of COMPACT (which uses refine).</span>
+
+<span class="sd">        This eliminates the iterative refinement loop that makes N LLM calls for N documents.</span>
+<span class="sd">        Instead, all documents are concatenated and processed in a single LLM call.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            chat_history: Chat history for context</span>
+<span class="sd">            streaming: Whether to stream the response</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            BaseSynthesizer: Response synthesizer configured for single-pass generation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">system_prompt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_system_prompt</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">qa_messages</span> <span class="o">=</span> <span class="n">get_prefix_messages_with_context</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_context_prompt_template</span><span class="p">,</span>
+            <span class="n">system_prompt</span><span class="p">,</span>
+            <span class="p">[],</span>
+            <span class="n">chat_history</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_llm</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">system_role</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Use SIMPLE_SUMMARIZE instead of COMPACT to avoid refinement iterations</span>
+        <span class="c1"># This concatenates all retrieved documents and makes ONE LLM call</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">llama_index.core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+
+        <span class="k">return</span> <span class="n">get_llama_response_synthesizer</span><span class="p">(</span>
+            <span class="n">llm</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_llm</span><span class="p">,</span>
+            <span class="n">callback_manager</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">callback_manager</span><span class="p">,</span>
+            <span class="n">text_qa_template</span><span class="o">=</span><span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
+                <span class="n">qa_messages</span><span class="p">,</span>
+                <span class="n">function_mappings</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_context_prompt_template</span><span class="o">.</span><span class="n">function_mappings</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">response_mode</span><span class="o">=</span><span class="n">ResponseMode</span><span class="o">.</span><span class="n">SIMPLE_SUMMARIZE</span><span class="p">,</span>
+            <span class="n">streaming</span><span class="o">=</span><span class="n">streaming</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">stream_chat</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">chat_history</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ChatMessage</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">chainlit_message_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">source_process</span><span class="p">:</span> <span class="n">SourceProcess</span> <span class="o">=</span> <span class="n">SourceProcess</span><span class="o">.</span><span class="n">CHAT_COMPLETION</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AgentChatResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process a query using RAG pipeline with Langfuse tracing.</span>
+<span class="sd">        Assign current trace input for monitoring.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            message: Raw query string to process</span>
+<span class="sd">            chat_history: Optional chat history for context</span>
+<span class="sd">            chainlit_message_id: Optional ID for linking to Chainlit message in UI</span>
+<span class="sd">            source_process: Context identifier indicating query&#39;s origin source</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            AgentChatResponse: Generated response from RAG pipeline with dummy streaming</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream_chat</span><span class="p">(</span>
+            <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span>
+            <span class="n">chat_history</span><span class="o">=</span><span class="n">chat_history</span><span class="p">,</span>
+            <span class="n">chainlit_message_id</span><span class="o">=</span><span class="n">chainlit_message_id</span><span class="p">,</span>
+            <span class="n">source_process</span><span class="o">=</span><span class="n">source_process</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_current_langfuse_trace</span><span class="p">()</span>
+        <span class="n">trace</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="nd">@trace_method</span><span class="p">(</span><span class="s2">&quot;chat&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_stream_chat</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">chat_history</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ChatMessage</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">chainlit_message_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">source_process</span><span class="p">:</span> <span class="n">SourceProcess</span> <span class="o">=</span> <span class="n">SourceProcess</span><span class="o">.</span><span class="n">CHAT_COMPLETION</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AgentChatResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process a query using RAG pipeline with Langfuse tracing.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            message: Raw query string to process</span>
+<span class="sd">            chat_history: Optional chat history for context</span>
+<span class="sd">            chainlit_message_id: Optional ID for linking to Chainlit message in UI</span>
+<span class="sd">            source_process: Context identifier indicating query&#39;s origin source</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            AgentChatResponse: Generated response from RAG pipeline with dummy streaming</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_chainlit_message_id</span><span class="p">(</span>
+            <span class="n">message_id</span><span class="o">=</span><span class="n">chainlit_message_id</span><span class="p">,</span> <span class="n">source_process</span><span class="o">=</span><span class="n">source_process</span>
+        <span class="p">)</span>
+
+        <span class="n">guarded_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">guardrails_engine</span><span class="o">.</span><span class="n">input_guard</span><span class="p">(</span>
+            <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> <span class="n">is_stream</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">guarded_response</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_save_chat_history</span><span class="p">(</span>
+                <span class="n">input_message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> <span class="n">output_message</span><span class="o">=</span><span class="n">guarded_response</span><span class="o">.</span><span class="n">response</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">guarded_response</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> <span class="n">chat_history</span><span class="o">=</span><span class="n">chat_history</span><span class="p">)</span>
+
+        <span class="n">guarded_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">guardrails_engine</span><span class="o">.</span><span class="n">output_guard</span><span class="p">(</span>
+            <span class="n">message</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">response</span><span class="p">,</span> <span class="n">is_stream</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">guarded_response</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_save_chat_history</span><span class="p">(</span>
+                <span class="n">input_message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> <span class="n">output_message</span><span class="o">=</span><span class="n">guarded_response</span><span class="o">.</span><span class="n">response</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">guarded_response</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">is_dummy_stream</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_current_langfuse_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatefulTraceClient</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve current Langfuse trace from registered callback handler.</span>
+
+<span class="sd">        Searches through callback handlers to find active LlamaIndexCallbackHandler</span>
+<span class="sd">        and extract its associated Langfuse trace for monitoring or annotation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            StatefulTraceClient: Active Langfuse trace or None if not found</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_manager</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">LlamaIndexCallbackHandler</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">handler</span><span class="o">.</span><span class="n">trace</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_session_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set session ID for Langfuse tracing to group related queries.</span>
+
+<span class="sd">        Updates the session identifier in all registered Langfuse callback handlers</span>
+<span class="sd">        to enable session-level analytics and trace grouping.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            session_id: Unique identifier for current user session</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_manager</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">LlamaIndexCallbackHandler</span><span class="p">):</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">session_id</span> <span class="o">=</span> <span class="n">session_id</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_chainlit_message_id</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source_process</span><span class="p">:</span> <span class="n">SourceProcess</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure Chainlit message tracking in Langfuse trace.</span>
+
+<span class="sd">        Links the current Langfuse trace to a Chainlit message ID and tags</span>
+<span class="sd">        with the processing source context for traceability in the Langfuse UI.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            message_id: Chainlit message identifier to reference</span>
+<span class="sd">            source_process: Source context enum categorizing the query origin</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_manager</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">LlamaIndexCallbackHandler</span><span class="p">):</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">set_trace_params</span><span class="p">(</span>
+                    <span class="n">tags</span><span class="o">=</span><span class="p">[</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">chainlit_tag_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message_id</span><span class="o">=</span><span class="n">message_id</span><span class="p">),</span>
+                        <span class="n">source_process</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_save_chat_history</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">input_message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_message</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save chat history to memory buffer.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            input_message: User input message</span>
+<span class="sd">            output_message: Generated response message</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_memory</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+            <span class="n">ChatMessage</span><span class="p">(</span><span class="n">role</span><span class="o">=</span><span class="n">MessageRole</span><span class="o">.</span><span class="n">USER</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">input_message</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_memory</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+            <span class="n">ChatMessage</span><span class="p">(</span><span class="n">role</span><span class="o">=</span><span class="n">MessageRole</span><span class="o">.</span><span class="n">ASSISTANT</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">output_message</span><span class="p">)</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.components.chat_engines.langfuse.chat_engine.LangfuseChatEngine.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">retriever</span><span class="p">,</span> <span class="n">llm</span><span class="p">,</span> <span class="n">memory</span><span class="p">,</span> <span class="n">chainlit_tag_format</span><span class="p">,</span> <span class="n">guardrails_engine</span><span class="p">,</span> <span class="n">context_prompt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">context_refine_prompt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">condense_prompt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">system_prompt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skip_condense</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">node_postprocessors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback_manager</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize LangfuseChatEngine with retriever, LLM, and optional parameters.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>retriever</code></b>
+                  (<code><span title="llama_index.core.indices.base_retriever.BaseRetriever">BaseRetriever</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Document retriever for RAG</p>
+              </div>
+            </li>
+            <li>
+              <b><code>llm</code></b>
+                  (<code><span title="llama_index.core.llms.llm.LLM">LLM</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Language model for response generation</p>
+              </div>
+            </li>
+            <li>
+              <b><code>memory</code></b>
+                  (<code><span title="llama_index.core.memory.BaseMemory">BaseMemory</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Memory buffer for chat history</p>
+              </div>
+            </li>
+            <li>
+              <b><code>chainlit_tag_format</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Format for Chainlit message ID in Langfuse</p>
+              </div>
+            </li>
+            <li>
+              <b><code>guardrails_engine</code></b>
+                  (<code><span title="augmentation.components.guardrails.base_guardrails.BaseGuardrailsEngine">BaseGuardrailsEngine</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Guardrail engine for input/output validation</p>
+              </div>
+            </li>
+            <li>
+              <b><code>context_prompt</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="llama_index.core.prompts.PromptTemplate">PromptTemplate</span>]]</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Prompt for context generation</p>
+              </div>
+            </li>
+            <li>
+              <b><code>context_refine_prompt</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="llama_index.core.prompts.PromptTemplate">PromptTemplate</span>]]</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Prompt for refining context</p>
+              </div>
+            </li>
+            <li>
+              <b><code>condense_prompt</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="llama_index.core.prompts.PromptTemplate">PromptTemplate</span>]]</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Prompt for condensing context</p>
+              </div>
+            </li>
+            <li>
+              <b><code>system_prompt</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="str">str</span>]</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>System prompt for LLM</p>
+              </div>
+            </li>
+            <li>
+              <b><code>input_guardrail_prompt_template</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Prompt template for input validation</p>
+              </div>
+            </li>
+            <li>
+              <b><code>output_guardrail_prompt_template</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Prompt template for output validation</p>
+              </div>
+            </li>
+            <li>
+              <b><code>skip_condense</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Flag to skip context condensing</p>
+              </div>
+            </li>
+            <li>
+              <b><code>node_postprocessors</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[<span title="llama_index.core.postprocessor.types.BaseNodePostprocessor">BaseNodePostprocessor</span>]]</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>List of postprocessors for node processing</p>
+              </div>
+            </li>
+            <li>
+              <b><code>callback_manager</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="llama_index.core.callbacks.CallbackManager">CallbackManager</span>]</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Callback manager for tracing</p>
+              </div>
+            </li>
+            <li>
+              <b><code>verbose</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Flag for verbose output</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/augmentation/components/chat_engines/langfuse/chat_engine.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">retriever</span><span class="p">:</span> <span class="n">BaseRetriever</span><span class="p">,</span>
+    <span class="n">llm</span><span class="p">:</span> <span class="n">LLM</span><span class="p">,</span>
+    <span class="n">memory</span><span class="p">:</span> <span class="n">BaseMemory</span><span class="p">,</span>
+    <span class="n">chainlit_tag_format</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">guardrails_engine</span><span class="p">:</span> <span class="n">BaseGuardrailsEngine</span><span class="p">,</span>
+    <span class="n">context_prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PromptTemplate</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">context_refine_prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PromptTemplate</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">condense_prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PromptTemplate</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">system_prompt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">skip_condense</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">node_postprocessors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BaseNodePostprocessor</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">callback_manager</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">CallbackManager</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize LangfuseChatEngine with retriever, LLM, and optional parameters.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        retriever: Document retriever for RAG</span>
+<span class="sd">        llm: Language model for response generation</span>
+<span class="sd">        memory: Memory buffer for chat history</span>
+<span class="sd">        chainlit_tag_format: Format for Chainlit message ID in Langfuse</span>
+<span class="sd">        guardrails_engine: Guardrail engine for input/output validation</span>
+<span class="sd">        context_prompt: Prompt for context generation</span>
+<span class="sd">        context_refine_prompt: Prompt for refining context</span>
+<span class="sd">        condense_prompt: Prompt for condensing context</span>
+<span class="sd">        system_prompt: System prompt for LLM</span>
+<span class="sd">        input_guardrail_prompt_template: Prompt template for input validation</span>
+<span class="sd">        output_guardrail_prompt_template: Prompt template for output validation</span>
+<span class="sd">        skip_condense: Flag to skip context condensing</span>
+<span class="sd">        node_postprocessors: List of postprocessors for node processing</span>
+<span class="sd">        callback_manager: Callback manager for tracing</span>
+<span class="sd">        verbose: Flag for verbose output</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="n">retriever</span><span class="o">=</span><span class="n">retriever</span><span class="p">,</span>
+        <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+        <span class="n">memory</span><span class="o">=</span><span class="n">memory</span><span class="p">,</span>
+        <span class="n">context_prompt</span><span class="o">=</span><span class="n">context_prompt</span><span class="p">,</span>
+        <span class="n">context_refine_prompt</span><span class="o">=</span><span class="n">context_refine_prompt</span><span class="p">,</span>
+        <span class="n">condense_prompt</span><span class="o">=</span><span class="n">condense_prompt</span><span class="p">,</span>
+        <span class="n">system_prompt</span><span class="o">=</span><span class="n">system_prompt</span><span class="p">,</span>
+        <span class="n">skip_condense</span><span class="o">=</span><span class="n">skip_condense</span><span class="p">,</span>
+        <span class="n">node_postprocessors</span><span class="o">=</span><span class="n">node_postprocessors</span><span class="p">,</span>
+        <span class="n">callback_manager</span><span class="o">=</span><span class="n">callback_manager</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">guardrails_engine</span> <span class="o">=</span> <span class="n">guardrails_engine</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">chainlit_tag_format</span> <span class="o">=</span> <span class="n">chainlit_tag_format</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.components.chat_engines.langfuse.chat_engine.LangfuseChatEngine.get_current_langfuse_trace" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_current_langfuse_trace</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Retrieve current Langfuse trace from registered callback handler.</p>
+<p>Searches through callback handlers to find active LlamaIndexCallbackHandler
+and extract its associated Langfuse trace for monitoring or annotation.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>StatefulTraceClient</code></b>(                  <code><span title="langfuse.client.StatefulTraceClient">StatefulTraceClient</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Active Langfuse trace or None if not found</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/augmentation/components/chat_engines/langfuse/chat_engine.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_current_langfuse_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StatefulTraceClient</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve current Langfuse trace from registered callback handler.</span>
+
+<span class="sd">    Searches through callback handlers to find active LlamaIndexCallbackHandler</span>
+<span class="sd">    and extract its associated Langfuse trace for monitoring or annotation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        StatefulTraceClient: Active Langfuse trace or None if not found</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_manager</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">LlamaIndexCallbackHandler</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">handler</span><span class="o">.</span><span class="n">trace</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.components.chat_engines.langfuse.chat_engine.LangfuseChatEngine.set_session_id" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">set_session_id</span><span class="p">(</span><span class="n">session_id</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Set session ID for Langfuse tracing to group related queries.</p>
+<p>Updates the session identifier in all registered Langfuse callback handlers
+to enable session-level analytics and trace grouping.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>session_id</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Unique identifier for current user session</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/augmentation/components/chat_engines/langfuse/chat_engine.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_session_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set session ID for Langfuse tracing to group related queries.</span>
+
+<span class="sd">    Updates the session identifier in all registered Langfuse callback handlers</span>
+<span class="sd">    to enable session-level analytics and trace grouping.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        session_id: Unique identifier for current user session</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback_manager</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">LlamaIndexCallbackHandler</span><span class="p">):</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">session_id</span> <span class="o">=</span> <span class="n">session_id</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.augmentation.components.chat_engines.langfuse.chat_engine.LangfuseChatEngine.stream_chat" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">stream_chat</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">chat_history</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chainlit_message_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">source_process</span><span class="o">=</span><span class="n">SourceProcess</span><span class="o">.</span><span class="n">CHAT_COMPLETION</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Process a query using RAG pipeline with Langfuse tracing.
+Assign current trace input for monitoring.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>message</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Raw query string to process</p>
+              </div>
+            </li>
+            <li>
+              <b><code>chat_history</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[<span title="llama_index.core.base.llms.types.ChatMessage">ChatMessage</span>]]</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Optional chat history for context</p>
+              </div>
+            </li>
+            <li>
+              <b><code>chainlit_message_id</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Optional ID for linking to Chainlit message in UI</p>
+              </div>
+            </li>
+            <li>
+              <b><code>source_process</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="SourceProcess (src.augmentation.components.chat_engines.langfuse.chat_engine.SourceProcess)" href="#src.augmentation.components.chat_engines.langfuse.chat_engine.SourceProcess">SourceProcess</a></code>, default:
+                      <code><span title="src.augmentation.components.chat_engines.langfuse.chat_engine.SourceProcess.CHAT_COMPLETION">CHAT_COMPLETION</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Context identifier indicating query's origin source</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>AgentChatResponse</code></b>(                  <code><span title="llama_index.core.chat_engine.types.AgentChatResponse">AgentChatResponse</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Generated response from RAG pipeline with dummy streaming</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/augmentation/components/chat_engines/langfuse/chat_engine.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">stream_chat</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">chat_history</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ChatMessage</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">chainlit_message_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">source_process</span><span class="p">:</span> <span class="n">SourceProcess</span> <span class="o">=</span> <span class="n">SourceProcess</span><span class="o">.</span><span class="n">CHAT_COMPLETION</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AgentChatResponse</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process a query using RAG pipeline with Langfuse tracing.</span>
+<span class="sd">    Assign current trace input for monitoring.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message: Raw query string to process</span>
+<span class="sd">        chat_history: Optional chat history for context</span>
+<span class="sd">        chainlit_message_id: Optional ID for linking to Chainlit message in UI</span>
+<span class="sd">        source_process: Context identifier indicating query&#39;s origin source</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        AgentChatResponse: Generated response from RAG pipeline with dummy streaming</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream_chat</span><span class="p">(</span>
+        <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span>
+        <span class="n">chat_history</span><span class="o">=</span><span class="n">chat_history</span><span class="p">,</span>
+        <span class="n">chainlit_message_id</span><span class="o">=</span><span class="n">chainlit_message_id</span><span class="p">,</span>
+        <span class="n">source_process</span><span class="o">=</span><span class="n">source_process</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_current_langfuse_trace</span><span class="p">()</span>
+    <span class="n">trace</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">message</span>
+    <span class="k">return</span> <span class="n">response</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.augmentation.components.chat_engines.langfuse.chat_engine.LangfuseChatEngineFactory" class="doc doc-heading">
+            <code>LangfuseChatEngineFactory</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="core.base_factory.Factory">Factory</span></code></p>
+
+
+
+        <p>Factory for creating configured LangfuseChatEngine instances.</p>
+<p>Constructs and connects components needed for the RAG pipeline.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/augmentation/components/chat_engines/langfuse/chat_engine.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">LangfuseChatEngineFactory</span><span class="p">(</span><span class="n">Factory</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Factory for creating configured LangfuseChatEngine instances.</span>
+
+<span class="sd">    Constructs and connects components needed for the RAG pipeline.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_configuration_class</span><span class="p">:</span> <span class="n">Type</span> <span class="o">=</span> <span class="n">AugmentationConfiguration</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_instance</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">configuration</span><span class="p">:</span> <span class="n">AugmentationConfiguration</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LangfuseChatEngine</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create and configure a LangfuseChatEngine instance from configuration.</span>
+
+<span class="sd">        Instantiates all RAG pipeline components based on configuration settings,</span>
+<span class="sd">        connects them with a shared callback manager for tracing, and assembles</span>
+<span class="sd">        them into a complete chat engine.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            configuration: Complete augmentation configuration containing</span>
+<span class="sd">                           settings for all components</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            LangfuseChatEngine: Fully configured RAG chat engine with tracing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">chat_engine_configuration</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">augmentation</span><span class="o">.</span><span class="n">chat_engine</span>
+        <span class="n">llm</span> <span class="o">=</span> <span class="n">LLMRegistry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">chat_engine_configuration</span><span class="o">.</span><span class="n">llm</span><span class="o">.</span><span class="n">provider</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">chat_engine_configuration</span><span class="o">.</span><span class="n">llm</span>
+        <span class="p">)</span>
+        <span class="n">retriever</span> <span class="o">=</span> <span class="n">RetrieverRegistry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">chat_engine_configuration</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+
+        <span class="c1"># Set temporal_domain_config for hybrid filter factory before creating postprocessors</span>
+        <span class="n">temporal_domain_config</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">augmentation</span><span class="o">.</span><span class="n">temporal_domain</span>
+        <span class="n">HybridFilterFactory</span><span class="o">.</span><span class="n">set_temporal_domain_config</span><span class="p">(</span><span class="n">temporal_domain_config</span><span class="p">)</span>
+
+        <span class="n">postprocessors</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">PostprocessorRegistry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">postprocessor_configuration</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">postprocessor_configuration</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">postprocessor_configuration</span> <span class="ow">in</span> <span class="n">chat_engine_configuration</span><span class="o">.</span><span class="n">postprocessors</span>
+        <span class="p">]</span>
+        <span class="n">langfuse_callback_manager</span> <span class="o">=</span> <span class="n">LlamaIndexCallbackManagerFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">configuration</span><span class="o">.</span><span class="n">augmentation</span><span class="o">.</span><span class="n">langfuse</span>
+        <span class="p">)</span>
+        <span class="n">memory</span> <span class="o">=</span> <span class="n">ChatMemoryBuffer</span><span class="p">(</span>
+            <span class="n">chat_history</span><span class="o">=</span><span class="p">[],</span> <span class="n">token_limit</span><span class="o">=</span><span class="n">llm</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">context_window</span> <span class="o">-</span> <span class="mi">256</span>
+        <span class="p">)</span>
+        <span class="p">(</span>
+            <span class="n">condense_prompt_template</span><span class="p">,</span>
+            <span class="n">context_prompt_template</span><span class="p">,</span>
+            <span class="n">context_refine_prompt_template</span><span class="p">,</span>
+            <span class="n">system_prompt_template</span><span class="p">,</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_prompt_templates</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">augmentation</span><span class="p">)</span>
+        <span class="n">guardrails_configuration</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">configuration</span><span class="o">.</span><span class="n">augmentation</span><span class="o">.</span><span class="n">chat_engine</span><span class="o">.</span><span class="n">guardrails</span>
+        <span class="p">)</span>
+        <span class="n">guardrails_engine</span> <span class="o">=</span> <span class="n">GuardrailsRegistry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">guardrails_configuration</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">augmentation</span><span class="p">)</span>
+
+        <span class="n">retriever</span><span class="o">.</span><span class="n">callback_manager</span> <span class="o">=</span> <span class="n">langfuse_callback_manager</span>
+        <span class="n">llm</span><span class="o">.</span><span class="n">callback_manager</span> <span class="o">=</span> <span class="n">langfuse_callback_manager</span>
+        <span class="k">for</span> <span class="n">postprocessor</span> <span class="ow">in</span> <span class="n">postprocessors</span><span class="p">:</span>
+            <span class="n">postprocessor</span><span class="o">.</span><span class="n">callback_manager</span> <span class="o">=</span> <span class="n">langfuse_callback_manager</span>
+
+        <span class="k">return</span> <span class="n">LangfuseChatEngine</span><span class="p">(</span>
+            <span class="n">retriever</span><span class="o">=</span><span class="n">retriever</span><span class="p">,</span>
+            <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+            <span class="n">node_postprocessors</span><span class="o">=</span><span class="n">postprocessors</span><span class="p">,</span>
+            <span class="n">callback_manager</span><span class="o">=</span><span class="n">langfuse_callback_manager</span><span class="p">,</span>
+            <span class="n">memory</span><span class="o">=</span><span class="n">memory</span><span class="p">,</span>
+            <span class="n">context_prompt</span><span class="o">=</span><span class="n">context_prompt_template</span><span class="p">,</span>
+            <span class="n">system_prompt</span><span class="o">=</span><span class="n">system_prompt_template</span><span class="p">,</span>
+            <span class="n">context_refine_prompt</span><span class="o">=</span><span class="n">context_refine_prompt_template</span><span class="p">,</span>
+            <span class="n">condense_prompt</span><span class="o">=</span><span class="n">condense_prompt_template</span><span class="p">,</span>
+            <span class="n">chainlit_tag_format</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">augmentation</span><span class="o">.</span><span class="n">langfuse</span><span class="o">.</span><span class="n">chainlit_tag_format</span><span class="p">,</span>
+            <span class="n">guardrails_engine</span><span class="o">=</span><span class="n">guardrails_engine</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_prompt_templates</span><span class="p">(</span>
+        <span class="n">configuration</span><span class="p">:</span> <span class="n">_AugmentationConfiguration</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieves the prompt template for the augmentation process.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            configuration: Configuration object containing prompt templates settings.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple of prompt templates for condensing, context generation,</span>
+<span class="sd">            context refinement, system prompts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">langfuse_prompt_service</span> <span class="o">=</span> <span class="n">LangfusePromptServiceFactory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">langfuse</span>
+        <span class="p">)</span>
+
+        <span class="n">condense_prompt_template</span> <span class="o">=</span> <span class="n">langfuse_prompt_service</span><span class="o">.</span><span class="n">get_prompt_template</span><span class="p">(</span>
+            <span class="n">prompt_name</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">chat_engine</span><span class="o">.</span><span class="n">prompt_templates</span><span class="o">.</span><span class="n">condense_prompt_name</span>
+        <span class="p">)</span>
+        <span class="n">context_prompt_template</span> <span class="o">=</span> <span class="n">langfuse_prompt_service</span><span class="o">.</span><span class="n">get_prompt_template</span><span class="p">(</span>
+            <span class="n">prompt_name</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">chat_engine</span><span class="o">.</span><span class="n">prompt_templates</span><span class="o">.</span><span class="n">context_prompt_name</span>
+        <span class="p">)</span>
+        <span class="n">context_refine_prompt_template</span> <span class="o">=</span> <span class="n">langfuse_prompt_service</span><span class="o">.</span><span class="n">get_prompt_template</span><span class="p">(</span>
+            <span class="n">prompt_name</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">chat_engine</span><span class="o">.</span><span class="n">prompt_templates</span><span class="o">.</span><span class="n">context_refine_prompt_name</span>
+        <span class="p">)</span>
+        <span class="n">system_prompt_template</span> <span class="o">=</span> <span class="n">langfuse_prompt_service</span><span class="o">.</span><span class="n">get_prompt_template</span><span class="p">(</span>
+            <span class="n">prompt_name</span><span class="o">=</span><span class="n">configuration</span><span class="o">.</span><span class="n">chat_engine</span><span class="o">.</span><span class="n">prompt_templates</span><span class="o">.</span><span class="n">system_prompt_name</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">condense_prompt_template</span><span class="p">,</span>
+            <span class="n">context_prompt_template</span><span class="p">,</span>
+            <span class="n">context_refine_prompt_template</span><span class="p">,</span>
+            <span class="n">system_prompt_template</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.augmentation.components.chat_engines.langfuse.chat_engine.SourceProcess" class="doc doc-heading">
+            <code>SourceProcess</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+
+        <p>Enumeration of possible chat processing sources.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>CHAT_COMPLETION</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Query from interactive chat completion interface</p>
+              </div>
+            </li>
+            <li>
+              <b><code>DEPLOYMENT_EVALUATION</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Query from automated deployment testing and evaluation</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/augmentation/components/chat_engines/langfuse/chat_engine.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SourceProcess</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Enumeration of possible chat processing sources.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        CHAT_COMPLETION: Query from interactive chat completion interface</span>
+<span class="sd">        DEPLOYMENT_EVALUATION: Query from automated deployment testing and evaluation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CHAT_COMPLETION</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">DEPLOYMENT_EVALUATION</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../configuration/" class="btn btn-neutral float-left" title="Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../callback_manager/" class="btn btn-neutral float-right" title="Callback_manager">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../configuration/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../callback_manager/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../../../..";</script>
+    <script src="../../../../../../js/theme_extra.js"></script>
+    <script src="../../../../../../js/theme.js"></script>
+      <script src="../../../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

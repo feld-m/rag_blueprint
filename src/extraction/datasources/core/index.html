@@ -1,0 +1,3079 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Core - RAG Systems</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Core";
+        var mkdocs_page_input_path = "src/extraction/datasources/core.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../../augment/">Augment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/bootstrap/configuration/temporal_domain_config/">Temporal_domain_config</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/bootstrap/configuration/chainlit_configuration/">Chainlit_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Components</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/bootstrap/configuration/langfuse_configuration/">Langfuse_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Components</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Postprocessors</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Colbert_rerank</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Hybrid_filter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/postprocessors/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chat_engines</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Langfuse</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/chat_engines/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Retrievers</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/retrievers/query_rewriter/">Query_rewriter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/retrievers/query_rewriting_retriever/">Query_rewriting_retriever</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Auto</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/retrievers/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Dynamic_temporal</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Llms</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/llms/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Lite_llm</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Guardrails</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/guardrails/base_guardrails/">Base_guardrails</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../augmentation/components/guardrails/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/langfuse/client/">Client</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/langfuse/dataset_service/">Dataset_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/langfuse/prompt_service/">Prompt_service</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/feedback_service/">Feedback_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/utils/">Utils</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../augmentation/chainlit/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/base_factory/">Base_factory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/configuration_retrievers/">Configuration_retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/base_configuration/">Base_configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../core/base_initializer/">Base_initializer</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Vector_stores</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Qdrant</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/qdrant/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/qdrant/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/qdrant/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/qdrant/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chroma</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/chroma/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/chroma/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/chroma/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/chroma/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/core/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/core/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/vector_stores/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Pgvector</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/pgvector/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/pgvector/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/pgvector/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/vector_stores/pgvector/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/bootstrap/configuration/vector_store_configuration/">Vector_store_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/bootstrap/configuration/splitting_configuration/">Splitting_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/bootstrap/configuration/embedding_model_configuration/">Embedding_model_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/base_embedder/">Base_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedders/basic/embedder/">Embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedders/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/orchestrators/base_orchestrator/">Base_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedding_models</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Hugging_face</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedding_models/hugging_face/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedding_models/hugging_face/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Openai</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedding_models/openai/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedding_models/openai/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Voyage</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedding_models/voyage/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/embedding_models/voyage/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/embedding_models/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Splitters</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic_markdown</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/splitters/basic_markdown/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../../embedding/splitters/basic_markdown/basic_markdown_splitter/">Basic_markdown_splitter</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/splitters/base_splitter/">Base_splitter</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../embedding/splitters/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../../evaluation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../evaluation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Evaluators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../evaluation/evaluators/langfuse/">Langfuse</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../evaluation/evaluators/ragas/">Ragas</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Extraction</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../bootstrap/configuration/datasources/">Datasources</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/base_orchestator/">Base_orchestator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../orchestrators/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" >Datasources</a>
+    <ul class="current">
+                <li class="toctree-l3"><a class="reference internal" href="../pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../confluence/">Confluence</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../bundestag/">Bundestag</a>
+                </li>
+                <li class="toctree-l3 current"><a class="reference internal current" href="#">Core</a>
+    <ul class="current">
+    <li class="toctree-l4"><a class="reference internal" href="#cleaner">Cleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.cleaner">cleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.cleaner.BaseCleaner">BaseCleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.cleaner.BasicMarkdownCleaner">BasicMarkdownCleaner</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#document">Document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.document">document</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.document.BaseDocument">BaseDocument</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#manager">Manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.manager">manager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.manager.BaseDatasourceManager">BaseDatasourceManager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.manager.BasicDatasourceManager">BasicDatasourceManager</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#parser">Parser</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.parser">parser</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.parser.BaseParser">BaseParser</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.parser.BasicMarkdownParser">BasicMarkdownParser</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#reader">Reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.reader">reader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.reader.BaseReader">BaseReader</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#splitter">Splitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.splitter">splitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.splitter.BaseSplitter">BaseSplitter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#src.extraction.datasources.core.splitter.BasicMarkdownSplitter">BasicMarkdownSplitter</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Code Docs</li>
+          <li class="breadcrumb-item">Extraction</li>
+          <li class="breadcrumb-item">Datasources</li>
+      <li class="breadcrumb-item active">Core</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/src/extraction/datasources/core.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="core-datasource">Core Datasource</h1>
+<p>This module contains functionality related to the <code>Core</code> datasource.</p>
+<h2 id="cleaner">Cleaner</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.extraction.datasources.core.cleaner"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.core.cleaner.BaseCleaner" class="doc doc-heading">
+            <code>BaseCleaner</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="extraction.datasources.core.document.DocType">DocType</span>]</code></p>
+
+
+
+        <p>Abstract base class for document cleaning operations.</p>
+<p>Defines the interface for document cleaners with generic type support
+to ensure type safety across different document implementations.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/core/cleaner.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BaseCleaner</span><span class="p">(</span><span class="n">ABC</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">DocType</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract base class for document cleaning operations.</span>
+
+<span class="sd">    Defines the interface for document cleaners with generic type support</span>
+<span class="sd">    to ensure type safety across different document implementations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">:</span> <span class="n">DocType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DocType</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clean a single document.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document: The document to be cleaned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The cleaned document or None if document should be filtered out</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.cleaner.BaseCleaner.clean" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">clean</span><span class="p">(</span><span class="n">document</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Clean a single document.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>document</code></b>
+                  (<code><span title="extraction.datasources.core.document.DocType">DocType</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The document to be cleaned</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="extraction.datasources.core.document.DocType">DocType</span></code>
+              –
+              <div class="doc-md-description">
+                <p>The cleaned document or None if document should be filtered out</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/cleaner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">:</span> <span class="n">DocType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DocType</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clean a single document.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        document: The document to be cleaned</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The cleaned document or None if document should be filtered out</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.core.cleaner.BasicMarkdownCleaner" class="doc doc-heading">
+            <code>BasicMarkdownCleaner</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="BaseCleaner (src.extraction.datasources.core.cleaner.BaseCleaner)" href="#src.extraction.datasources.core.cleaner.BaseCleaner">BaseCleaner</a></code>, <code><span title="typing.Generic">Generic</span>[<span title="extraction.datasources.core.document.DocType">DocType</span>]</code></p>
+
+
+
+        <p>Document cleaner for basic content validation.</p>
+<p>Checks for empty content in documents and filters them out.
+Works with any document type that has a text attribute.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/core/cleaner.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BasicMarkdownCleaner</span><span class="p">(</span><span class="n">BaseCleaner</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">DocType</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Document cleaner for basic content validation.</span>
+
+<span class="sd">    Checks for empty content in documents and filters them out.</span>
+<span class="sd">    Works with any document type that has a text attribute.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">:</span> <span class="n">DocType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DocType</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove document if it contains empty content.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document: The document to validate</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The original document if content is not empty, None otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_empty_content</span><span class="p">(</span><span class="n">document</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">document</span>
+
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_has_empty_content</span><span class="p">(</span><span class="n">document</span><span class="p">:</span> <span class="n">DocType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if document content is empty.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document: Document to check (must have a text attribute)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            True if document&#39;s text is empty or contains only whitespace</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">document</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.cleaner.BasicMarkdownCleaner.clean" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">clean</span><span class="p">(</span><span class="n">document</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Remove document if it contains empty content.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>document</code></b>
+                  (<code><span title="extraction.datasources.core.document.DocType">DocType</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The document to validate</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="extraction.datasources.core.document.DocType">DocType</span></code>
+              –
+              <div class="doc-md-description">
+                <p>The original document if content is not empty, None otherwise</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/cleaner.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">:</span> <span class="n">DocType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DocType</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove document if it contains empty content.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        document: The document to validate</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The original document if content is not empty, None otherwise</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_empty_content</span><span class="p">(</span><span class="n">document</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">document</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="document">Document</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.extraction.datasources.core.document"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.core.document.BaseDocument" class="doc doc-heading">
+            <code>BaseDocument</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="llama_index.core.Document">Document</span></code></p>
+
+
+
+        <p>Base document class for structured content storage.</p>
+<p>Extends LlamaIndex Document to add support for attachments and
+metadata filtering for embedding and LLM contexts.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>attachments</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[<span title="str">str</span>, <span title="str">str</span>]]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Dictionary mapping placeholder keys to attachment content</p>
+              </div>
+            </li>
+            <li>
+              <b><code>included_embed_metadata_keys</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="str">str</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Metadata fields to include in embeddings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>included_llm_metadata_keys</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="str">str</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Metadata fields to include in LLM context</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>DocType TypeVar ensures type safety when implementing document types.
+Default metadata includes title and timestamp information.</p>
+</details>
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/core/document.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BaseDocument</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base document class for structured content storage.</span>
+
+<span class="sd">    Extends LlamaIndex Document to add support for attachments and</span>
+<span class="sd">    metadata filtering for embedding and LLM contexts.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        attachments: Dictionary mapping placeholder keys to attachment content</span>
+<span class="sd">        included_embed_metadata_keys: Metadata fields to include in embeddings</span>
+<span class="sd">        included_llm_metadata_keys: Metadata fields to include in LLM context</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        DocType TypeVar ensures type safety when implementing document types.</span>
+<span class="sd">        Default metadata includes title and timestamp information.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">attachments</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Document attachments with placeholders as keys and content as values&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">included_embed_metadata_keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;created_time&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_edited_time&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="n">included_llm_metadata_keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;created_time&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;last_edited_time&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">attachments</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a document with text, metadata, and optional attachments.</span>
+
+<span class="sd">        Sets up excluded metadata keys for embedding and LLM contexts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attachments</span> <span class="o">=</span> <span class="n">attachments</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">excluded_embed_metadata_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_excluded_metadata_keys</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_embed_metadata_keys</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">excluded_llm_metadata_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_excluded_metadata_keys</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_llm_metadata_keys</span>
+        <span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_excluded_metadata_keys</span><span class="p">(</span>
+        <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">included_keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Identify metadata keys to exclude from processing.</span>
+
+<span class="sd">        Returns all keys from metadata that aren&#39;t in the included_keys list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">included_keys</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.document.BaseDocument.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">attachments</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize a document with text, metadata, and optional attachments.</p>
+<p>Sets up excluded metadata keys for embedding and LLM contexts.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/document.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">attachments</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize a document with text, metadata, and optional attachments.</span>
+
+<span class="sd">    Sets up excluded metadata keys for embedding and LLM contexts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">attachments</span> <span class="o">=</span> <span class="n">attachments</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">excluded_embed_metadata_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_excluded_metadata_keys</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_embed_metadata_keys</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">excluded_llm_metadata_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_excluded_metadata_keys</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">included_llm_metadata_keys</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="manager">Manager</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.extraction.datasources.core.manager"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.core.manager.BaseDatasourceManager" class="doc doc-heading">
+            <code>BaseDatasourceManager</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="extraction.datasources.core.document.DocType">DocType</span>]</code></p>
+
+
+
+        <p>Abstract base class for datasource management.</p>
+<p>Defines the interface for managing the extraction, parsing,
+cleaning, and splitting of documents from a data source.
+This class serves as a template for implementing specific
+datasource managers, ensuring a consistent interface and
+behavior across different implementations.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/core/manager.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BaseDatasourceManager</span><span class="p">(</span><span class="n">ABC</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">DocType</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract base class for datasource management.</span>
+
+<span class="sd">    Defines the interface for managing the extraction, parsing,</span>
+<span class="sd">    cleaning, and splitting of documents from a data source.</span>
+<span class="sd">    This class serves as a template for implementing specific</span>
+<span class="sd">    datasource managers, ensuring a consistent interface and</span>
+<span class="sd">    behavior across different implementations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">configuration</span><span class="p">:</span> <span class="n">ExtractionConfiguration</span><span class="p">,</span>
+        <span class="n">reader</span><span class="p">:</span> <span class="n">BaseReader</span><span class="p">,</span>
+        <span class="n">parser</span><span class="p">:</span> <span class="n">BaseParser</span> <span class="o">=</span> <span class="n">BasicMarkdownParser</span><span class="p">(),</span>
+        <span class="n">cleaner</span><span class="p">:</span> <span class="n">BaseCleaner</span> <span class="o">=</span> <span class="n">BasicMarkdownCleaner</span><span class="p">(),</span>
+        <span class="n">splitter</span><span class="p">:</span> <span class="n">BaseSplitter</span> <span class="o">=</span> <span class="n">BasicMarkdownSplitter</span><span class="p">(),</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize datasource manager.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            configuration: Embedding and processing settings</span>
+<span class="sd">            reader: Content extraction component</span>
+<span class="sd">            cleaner: Content cleaning component</span>
+<span class="sd">            splitter: Content splitting component</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">reader</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">parser</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cleaner</span> <span class="o">=</span> <span class="n">cleaner</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">splitter</span> <span class="o">=</span> <span class="n">splitter</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">full_refresh_sync</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">DocType</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract and process all content from the datasource.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            An async iterator yielding processed document chunks of type DocType</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">incremental_sync</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process only new or changed content from the datasource.</span>
+
+<span class="sd">        This method should handle differential updates to avoid</span>
+<span class="sd">        reprocessing all content when only portions have changed.</span>
+<span class="sd">        Implementations should update the vector storage accordingly.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.manager.BaseDatasourceManager.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">reader</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">BasicMarkdownParser</span><span class="p">(),</span> <span class="n">cleaner</span><span class="o">=</span><span class="n">BasicMarkdownCleaner</span><span class="p">(),</span> <span class="n">splitter</span><span class="o">=</span><span class="n">BasicMarkdownSplitter</span><span class="p">())</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize datasource manager.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>configuration</code></b>
+                  (<code><span title="extraction.bootstrap.configuration.configuration.ExtractionConfiguration">ExtractionConfiguration</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Embedding and processing settings</p>
+              </div>
+            </li>
+            <li>
+              <b><code>reader</code></b>
+                  (<code><span title="extraction.datasources.core.reader.BaseReader">BaseReader</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Content extraction component</p>
+              </div>
+            </li>
+            <li>
+              <b><code>cleaner</code></b>
+                  (<code><span title="extraction.datasources.core.cleaner.BaseCleaner">BaseCleaner</span></code>, default:
+                      <code><span title="extraction.datasources.core.cleaner.BasicMarkdownCleaner">BasicMarkdownCleaner</span>()</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Content cleaning component</p>
+              </div>
+            </li>
+            <li>
+              <b><code>splitter</code></b>
+                  (<code><span title="extraction.datasources.core.splitter.BaseSplitter">BaseSplitter</span></code>, default:
+                      <code><span title="extraction.datasources.core.splitter.BasicMarkdownSplitter">BasicMarkdownSplitter</span>()</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Content splitting component</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/manager.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">configuration</span><span class="p">:</span> <span class="n">ExtractionConfiguration</span><span class="p">,</span>
+    <span class="n">reader</span><span class="p">:</span> <span class="n">BaseReader</span><span class="p">,</span>
+    <span class="n">parser</span><span class="p">:</span> <span class="n">BaseParser</span> <span class="o">=</span> <span class="n">BasicMarkdownParser</span><span class="p">(),</span>
+    <span class="n">cleaner</span><span class="p">:</span> <span class="n">BaseCleaner</span> <span class="o">=</span> <span class="n">BasicMarkdownCleaner</span><span class="p">(),</span>
+    <span class="n">splitter</span><span class="p">:</span> <span class="n">BaseSplitter</span> <span class="o">=</span> <span class="n">BasicMarkdownSplitter</span><span class="p">(),</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize datasource manager.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        configuration: Embedding and processing settings</span>
+<span class="sd">        reader: Content extraction component</span>
+<span class="sd">        cleaner: Content cleaning component</span>
+<span class="sd">        splitter: Content splitting component</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">configuration</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">reader</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">parser</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cleaner</span> <span class="o">=</span> <span class="n">cleaner</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">splitter</span> <span class="o">=</span> <span class="n">splitter</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.manager.BaseDatasourceManager.full_refresh_sync" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">full_refresh_sync</span><span class="p">()</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Extract and process all content from the datasource.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.AsyncIterator">AsyncIterator</span>[<span title="extraction.datasources.core.document.DocType">DocType</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>An async iterator yielding processed document chunks of type DocType</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/manager.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">full_refresh_sync</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">DocType</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract and process all content from the datasource.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        An async iterator yielding processed document chunks of type DocType</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.manager.BaseDatasourceManager.incremental_sync" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">incremental_sync</span><span class="p">()</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Process only new or changed content from the datasource.</p>
+<p>This method should handle differential updates to avoid
+reprocessing all content when only portions have changed.
+Implementations should update the vector storage accordingly.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/manager.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">incremental_sync</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process only new or changed content from the datasource.</span>
+
+<span class="sd">    This method should handle differential updates to avoid</span>
+<span class="sd">    reprocessing all content when only portions have changed.</span>
+<span class="sd">    Implementations should update the vector storage accordingly.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.core.manager.BasicDatasourceManager" class="doc doc-heading">
+            <code>BasicDatasourceManager</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="BaseDatasourceManager (src.extraction.datasources.core.manager.BaseDatasourceManager)" href="#src.extraction.datasources.core.manager.BaseDatasourceManager">BaseDatasourceManager</a></code>, <code><span title="typing.Generic">Generic</span>[<span title="extraction.datasources.core.document.DocType">DocType</span>]</code></p>
+
+
+
+        <p>Standard implementation of datasource content processing pipeline.</p>
+<p>Handles the extraction, parsing, cleaning, and splitting of documents
+from a data source. Processes documents using the provided components
+in a sequential pipeline to prepare them for embedding and storage.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/core/manager.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BasicDatasourceManager</span><span class="p">(</span><span class="n">BaseDatasourceManager</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">DocType</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Standard implementation of datasource content processing pipeline.</span>
+
+<span class="sd">    Handles the extraction, parsing, cleaning, and splitting of documents</span>
+<span class="sd">    from a data source. Processes documents using the provided components</span>
+<span class="sd">    in a sequential pipeline to prepare them for embedding and storage.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">full_refresh_sync</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">DocType</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process all content from the datasource from scratch.</span>
+
+<span class="sd">        Executes the complete pipeline:</span>
+<span class="sd">        1. Reads source objects asynchronously</span>
+<span class="sd">        2. Parses each object into a document</span>
+<span class="sd">        3. Cleans the content</span>
+<span class="sd">        4. Splits into appropriate chunks</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            An async iterator yielding processed document chunks of type DocType</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">objects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">read_all_async</span><span class="p">()</span>
+        <span class="k">async</span> <span class="k">for</span> <span class="nb">object</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
+            <span class="n">md_document</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+            <span class="n">cleaned_document</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaner</span><span class="o">.</span><span class="n">clean</span><span class="p">(</span><span class="n">md_document</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">cleaned_document</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">for</span> <span class="n">split_document</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">splitter</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">cleaned_document</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">split_document</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">incremental_sync</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process only new or changed content since the last sync.</span>
+
+<span class="sd">        Should be implemented by subclasses to provide efficient</span>
+<span class="sd">        updates when only a portion of the datasource has changed.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            NotImplementedError: This feature is not yet implemented</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Currently unsupported feature.&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.manager.BasicDatasourceManager.full_refresh_sync" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">full_refresh_sync</span><span class="p">()</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Process all content from the datasource from scratch.</p>
+<p>Executes the complete pipeline:
+1. Reads source objects asynchronously
+2. Parses each object into a document
+3. Cleans the content
+4. Splits into appropriate chunks</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.AsyncIterator">AsyncIterator</span>[<span title="extraction.datasources.core.document.DocType">DocType</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>An async iterator yielding processed document chunks of type DocType</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/manager.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">full_refresh_sync</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">DocType</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process all content from the datasource from scratch.</span>
+
+<span class="sd">    Executes the complete pipeline:</span>
+<span class="sd">    1. Reads source objects asynchronously</span>
+<span class="sd">    2. Parses each object into a document</span>
+<span class="sd">    3. Cleans the content</span>
+<span class="sd">    4. Splits into appropriate chunks</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        An async iterator yielding processed document chunks of type DocType</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">read_all_async</span><span class="p">()</span>
+    <span class="k">async</span> <span class="k">for</span> <span class="nb">object</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
+        <span class="n">md_document</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+        <span class="n">cleaned_document</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaner</span><span class="o">.</span><span class="n">clean</span><span class="p">(</span><span class="n">md_document</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cleaned_document</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="k">for</span> <span class="n">split_document</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">splitter</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">cleaned_document</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">split_document</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.manager.BasicDatasourceManager.incremental_sync" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">incremental_sync</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Process only new or changed content since the last sync.</p>
+<p>Should be implemented by subclasses to provide efficient
+updates when only a portion of the datasource has changed.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="NotImplementedError">NotImplementedError</span></code>
+              –
+              <div class="doc-md-description">
+                <p>This feature is not yet implemented</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/manager.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">incremental_sync</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process only new or changed content since the last sync.</span>
+
+<span class="sd">    Should be implemented by subclasses to provide efficient</span>
+<span class="sd">    updates when only a portion of the datasource has changed.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        NotImplementedError: This feature is not yet implemented</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Currently unsupported feature.&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="parser">Parser</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.extraction.datasources.core.parser"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.core.parser.BaseParser" class="doc doc-heading">
+            <code>BaseParser</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="extraction.datasources.core.document.DocType">DocType</span>]</code></p>
+
+
+
+        <p>Abstract base class for document parsers.</p>
+<p>Defines the interface for parsing content into documents
+of specified type (DocType).</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/core/parser.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BaseParser</span><span class="p">(</span><span class="n">ABC</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">DocType</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract base class for document parsers.</span>
+
+<span class="sd">    Defines the interface for parsing content into documents</span>
+<span class="sd">    of specified type (DocType).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DocType</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse content into a document of type DocType.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            content: Raw content string to be parsed</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Parsed document of type DocType</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.parser.BaseParser.parse" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">parse</span><span class="p">(</span><span class="n">content</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Parse content into a document of type DocType.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>content</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Raw content string to be parsed</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="extraction.datasources.core.document.DocType">DocType</span></code>
+              –
+              <div class="doc-md-description">
+                <p>Parsed document of type DocType</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/parser.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DocType</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse content into a document of type DocType.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        content: Raw content string to be parsed</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Parsed document of type DocType</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.core.parser.BasicMarkdownParser" class="doc doc-heading">
+            <code>BasicMarkdownParser</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="BaseParser (src.extraction.datasources.core.parser.BaseParser)" href="#src.extraction.datasources.core.parser.BaseParser">BaseParser</a>[<span title="llama_index.core.Document">Document</span>]</code></p>
+
+
+
+        <p>Markdown parser that converts markdown text into Document objects.</p>
+<p>Implements the BaseParser interface for basic markdown content.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/core/parser.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BasicMarkdownParser</span><span class="p">(</span><span class="n">BaseParser</span><span class="p">[</span><span class="n">Document</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Markdown parser that converts markdown text into Document objects.</span>
+
+<span class="sd">    Implements the BaseParser interface for basic markdown content.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">markdown</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Document</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse markdown content into a Document object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            markdown: Markdown content to be parsed</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Document object containing the markdown text</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">markdown</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{})</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.parser.BasicMarkdownParser.parse" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">parse</span><span class="p">(</span><span class="n">markdown</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Parse markdown content into a Document object.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>markdown</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Markdown content to be parsed</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="llama_index.core.Document">Document</span></code>
+              –
+              <div class="doc-md-description">
+                <p>Document object containing the markdown text</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/parser.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">markdown</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Document</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse markdown content into a Document object.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        markdown: Markdown content to be parsed</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Document object containing the markdown text</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">markdown</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{})</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="reader">Reader</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.extraction.datasources.core.reader"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.core.reader.BaseReader" class="doc doc-heading">
+            <code>BaseReader</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+
+        <p>Abstract base class for document source readers.</p>
+<p>This class defines a standard interface for extracting documents from various
+data sources. Concrete implementations should inherit from this class and
+implement the required methods to handle specific data source types.</p>
+<p>The generic typing allows for flexibility in the document types returned
+by different implementations.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/core/reader.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BaseReader</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract base class for document source readers.</span>
+
+<span class="sd">    This class defines a standard interface for extracting documents from various</span>
+<span class="sd">    data sources. Concrete implementations should inherit from this class and</span>
+<span class="sd">    implement the required methods to handle specific data source types.</span>
+
+<span class="sd">    The generic typing allows for flexibility in the document types returned</span>
+<span class="sd">    by different implementations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read_all_async</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Asynchronously retrieve documents from the source.</span>
+
+<span class="sd">        Implementations should use async iteration to efficiently stream documents</span>
+<span class="sd">        from the source without loading all content into memory at once.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            AsyncIterator[Any]: An async iterator that yields documents as they&#39;re</span>
+<span class="sd">                               extracted from the source.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            NotImplementedError: This abstract method must be implemented by subclasses.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_limit_reached</span><span class="p">(</span><span class="n">yield_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if the object retrieval limit has been reached.</span>
+
+<span class="sd">        Determines whether the number of fetched objects has reached or exceeded</span>
+<span class="sd">        the specified limit.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            yield_count: Current number of objects fetched</span>
+<span class="sd">            limit: Maximum number of objects to retrieve (None for unlimited)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if limit reached or exceeded, False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">limit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">yield_count</span> <span class="o">&gt;=</span> <span class="n">limit</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.reader.BaseReader.read_all_async" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">read_all_async</span><span class="p">()</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Asynchronously retrieve documents from the source.</p>
+<p>Implementations should use async iteration to efficiently stream documents
+from the source without loading all content into memory at once.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.AsyncIterator">AsyncIterator</span>[<span title="typing.Any">Any</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>AsyncIterator[Any]: An async iterator that yields documents as they're
+               extracted from the source.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="NotImplementedError">NotImplementedError</span></code>
+              –
+              <div class="doc-md-description">
+                <p>This abstract method must be implemented by subclasses.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/reader.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read_all_async</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Asynchronously retrieve documents from the source.</span>
+
+<span class="sd">    Implementations should use async iteration to efficiently stream documents</span>
+<span class="sd">    from the source without loading all content into memory at once.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        AsyncIterator[Any]: An async iterator that yields documents as they&#39;re</span>
+<span class="sd">                           extracted from the source.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        NotImplementedError: This abstract method must be implemented by subclasses.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="splitter">Splitter</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="src.extraction.datasources.core.splitter"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.core.splitter.BaseSplitter" class="doc doc-heading">
+            <code>BaseSplitter</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code>, <code><span title="typing.Generic">Generic</span>[<span title="extraction.datasources.core.document.DocType">DocType</span>]</code></p>
+
+
+
+        <p>Abstract base class for document splitters.</p>
+<p>This class defines the interface for splitting documents into smaller chunks.
+All splitter implementations should inherit from this class.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/core/splitter.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BaseSplitter</span><span class="p">(</span><span class="n">ABC</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">DocType</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract base class for document splitters.</span>
+
+<span class="sd">    This class defines the interface for splitting documents into smaller chunks.</span>
+<span class="sd">    All splitter implementations should inherit from this class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">:</span> <span class="n">DocType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">DocType</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Split a document into multiple smaller documents.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document: The document to be split.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A list of document chunks.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.splitter.BaseSplitter.split" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">split</span><span class="p">(</span><span class="n">document</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Split a document into multiple smaller documents.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>document</code></b>
+                  (<code><span title="extraction.datasources.core.document.DocType">DocType</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The document to be split.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="extraction.datasources.core.document.DocType">DocType</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>A list of document chunks.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/splitter.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">:</span> <span class="n">DocType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">DocType</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Split a document into multiple smaller documents.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        document: The document to be split.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of document chunks.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="src.extraction.datasources.core.splitter.BasicMarkdownSplitter" class="doc doc-heading">
+            <code>BasicMarkdownSplitter</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="BaseSplitter (src.extraction.datasources.core.splitter.BaseSplitter)" href="#src.extraction.datasources.core.splitter.BaseSplitter">BaseSplitter</a></code>, <code><span title="typing.Generic">Generic</span>[<span title="extraction.datasources.core.document.DocType">DocType</span>]</code></p>
+
+
+
+        <p>A simple splitter implementation that returns the document as-is.</p>
+<p>This splitter does not perform any actual splitting and is primarily
+used as a pass-through when splitting is not required.</p>
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>src/extraction/datasources/core/splitter.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BasicMarkdownSplitter</span><span class="p">(</span><span class="n">BaseSplitter</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">DocType</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A simple splitter implementation that returns the document as-is.</span>
+
+<span class="sd">    This splitter does not perform any actual splitting and is primarily</span>
+<span class="sd">    used as a pass-through when splitting is not required.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">:</span> <span class="n">DocType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">DocType</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the document as a single-item list without splitting.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document: The document to be processed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A list containing the original document as the only element.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">document</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="src.extraction.datasources.core.splitter.BasicMarkdownSplitter.split" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">split</span><span class="p">(</span><span class="n">document</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the document as a single-item list without splitting.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>document</code></b>
+                  (<code><span title="extraction.datasources.core.document.DocType">DocType</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The document to be processed.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.List">List</span>[<span title="extraction.datasources.core.document.DocType">DocType</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>A list containing the original document as the only element.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/extraction/datasources/core/splitter.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">:</span> <span class="n">DocType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">DocType</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the document as a single-item list without splitting.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        document: The document to be processed.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list containing the original document as the only element.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">document</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../bundestag/" class="btn btn-neutral float-left" title="Bundestag"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../notion/" class="btn btn-neutral float-right" title="Notion">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../bundestag/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../notion/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

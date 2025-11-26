@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Configure RAG System - RAG Systems</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Configure RAG System";
+        var mkdocs_page_input_path = "how_to/how_to_configure.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Configure RAG System</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#environments">Environments</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#definition">Definition</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#datasource-configuration">Datasource Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#llm-configuration">LLM Configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#secrets">Secrets</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#embedding-model-configuration">Embedding Model Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vector-store-configuration">Vector Store Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#langfuse-and-chainlit-configuration">Langfuse and Chainlit Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prompt-templates-configuration">Prompt Templates Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#upcoming-docs">Upcoming Docs</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/augment/">Augment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/temporal_domain_config/">Temporal_domain_config</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/chainlit_configuration/">Chainlit_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Components</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/langfuse_configuration/">Langfuse_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Components</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Postprocessors</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Colbert_rerank</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Hybrid_filter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/postprocessors/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chat_engines</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Langfuse</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/chat_engines/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Retrievers</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/query_rewriter/">Query_rewriter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/query_rewriting_retriever/">Query_rewriting_retriever</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Auto</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Dynamic_temporal</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Llms</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/llms/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Lite_llm</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Guardrails</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/guardrails/base_guardrails/">Base_guardrails</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/guardrails/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/client/">Client</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/dataset_service/">Dataset_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/prompt_service/">Prompt_service</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/feedback_service/">Feedback_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/utils/">Utils</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_factory/">Base_factory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/configuration_retrievers/">Configuration_retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_configuration/">Base_configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_initializer/">Base_initializer</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Vector_stores</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Qdrant</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chroma</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/core/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/core/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/vector_stores/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Pgvector</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/vector_store_configuration/">Vector_store_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/splitting_configuration/">Splitting_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/embedding_model_configuration/">Embedding_model_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/base_embedder/">Base_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedders/basic/embedder/">Embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/base_orchestrator/">Base_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedding_models</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Hugging_face</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/hugging_face/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/hugging_face/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Openai</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/openai/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/openai/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Voyage</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/voyage/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/voyage/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedding_models/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Splitters</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic_markdown</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/splitters/basic_markdown/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/splitters/basic_markdown/basic_markdown_splitter/">Basic_markdown_splitter</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/splitters/base_splitter/">Base_splitter</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/splitters/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/evaluation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Evaluators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/evaluators/langfuse/">Langfuse</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/evaluators/ragas/">Ragas</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Extraction</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/bootstrap/configuration/datasources/">Datasources</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/orchestrators/base_orchestator/">Base_orchestator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/orchestrators/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/confluence/">Confluence</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/bundestag/">Bundestag</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">How to</li>
+      <li class="breadcrumb-item active">Configure RAG System</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/how_to/how_to_configure.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="how-to-configure-the-rag-system">How to Configure the RAG System</h1>
+<p>This guide explains how to customize the RAG system pipeline through configuration files.</p>
+<h2 id="environments">Environments</h2>
+<h3 id="definition">Definition</h3>
+<p>The following environments are supported:</p>
+<pre><code class="language-py">class EnvironmentName(str, Enum):
+    DEFAULT = &quot;default&quot;
+    LOCAL = &quot;local&quot;
+    DEV = &quot;dev&quot;
+    TEST = &quot;test&quot;
+    PROD = &quot;prod&quot;
+</code></pre>
+<p>Each environment requires corresponding configuration and secrets files in the <a href="https://github.com/feld-m/rag_blueprint/tree/main/configurations">configurations</a> directory:</p>
+<ul>
+<li>Configuration files: <code>configuration.{environment}.json</code></li>
+<li>Secrets files: <code>secrets.{environment}.env</code></li>
+</ul>
+<p>The configuration files define the pipeline setup, while secrets files store credentials and tokens. For security, all files in the configurations directory are git-ignored except for <code>configuration.default.json</code> and <code>configuration.local.json</code>.</p>
+<h3 id="usage">Usage</h3>
+<p>Run the pipeline with a specific configuration using the <code>--env</code> flag:</p>
+<pre><code class="language-sh">build/workstation/init.sh --env default
+python src/embed.py --env default
+</code></pre>
+<h2 id="datasource-configuration">Datasource Configuration</h2>
+<p>Currently, the following datasources are available:</p>
+<pre><code class="language-py">class DatasourceName(str, Enum):
+    NOTION = &quot;notion&quot;
+    CONFLUENCE = &quot;confluence&quot;
+    PDF = &quot;pdf&quot;
+</code></pre>
+<p>Blueprint allows the usage of single or multiple datasources. Adjust the corresponding configuration accordingly:</p>
+<pre><code class="language-json">{
+    &quot;extraction&quot;: {
+        &quot;datasources&quot;: [
+            {
+                &quot;name&quot;: &quot;notion&quot;,
+                &quot;export_limit&quot;: 100
+            },
+            {
+                &quot;name&quot;: &quot;pdf&quot;,
+                &quot;export_limit&quot;: 100,
+                &quot;base_path&quot;: &quot;data/&quot;
+            }
+        ]
+    }
+}
+</code></pre>
+<p>Each entry in <code>datasources</code> corresponds to a single source that will be sequentially used for the extraction of documents to be further processed. The <code>name</code> of each entry must correspond to one of the implemented enums. Datasources' secrets must be added to the environment's secret file. To check configurable options for specific datasources, visit <code>configuration.py</code> of a datasource.</p>
+<h2 id="llm-configuration">LLM Configuration</h2>
+<p>The system supports the following LLM providers:</p>
+<pre><code class="language-py">class LLMProviderName(str, Enum):
+    LITE_LLM = &quot;lite_llm&quot;
+</code></pre>
+<p><code>LITE_LLM</code> leverages the <a href="https://docs.litellm.ai/">LiteLLM</a> service, providing a unified interface for cloud-hosted models (e.g., OpenAI, Google, Anthropic) and self-hosted LLMs. Minimal setup requires the use of LLMs in augmentation and evaluation processes. To configure this, adjust the following JSON entries:</p>
+<pre><code class="language-json">{
+    &quot;pipeline&quot;: {
+        &quot;augmentation&quot;: {
+            &quot;chat_engine&quot;: {
+                &quot;guardrails&quot;: {
+                        &quot;llm&quot;: {
+                            &quot;provider&quot;: &quot;lite_llm&quot;,
+                            &quot;name&quot;: &quot;gemini-2.0-flash-exp&quot;,
+                        },
+                },
+                &quot;llm&quot;: {
+                    &quot;provider&quot;: &quot;lite_llm&quot;,
+                    &quot;name&quot;: &quot;gemini-2.0-flash-exp&quot;,
+                    &quot;max_tokens&quot;: 1024,
+                    &quot;max_retries&quot;: 3,
+                    &quot;context_window&quot;: 16384
+                }
+            }
+        },
+        &quot;evaluation&quot;: {
+            &quot;judge_llm&quot;: {
+                &quot;provider&quot;: &quot;lite_llm&quot;,
+                &quot;name&quot;: &quot;gemini-2.0-flash-exp&quot;,
+                &quot;max_tokens&quot;: 1024,
+                &quot;max_retries&quot;: 3,
+                &quot;context_window&quot;: 16384
+            }
+        }
+    }
+}
+</code></pre>
+<p>The <code>provider</code> field must be one of the values from <code>LLMProviderName</code>, and the <code>name</code> field indicates the specific model exposed by the provider. To check configurable options for specific providers, visit <code>configuration.py</code> of an LLM.</p>
+<p>In the above case, augmentation and evaluation processes use the same LLM, which might be suboptimal. To change it, simply adjust the entry of one of these:</p>
+<pre><code class="language-json">{
+    &quot;pipeline&quot;: {
+        &quot;augmentation&quot;: {
+            &quot;chat_engine&quot;: {
+                &quot;guardrails&quot;: {
+                        &quot;llm&quot;: {
+                            &quot;provider&quot;: &quot;lite_llm&quot;,
+                            &quot;name&quot;: &quot;gemini-2.0-flash-exp&quot;,
+                        },
+                },
+                &quot;llm&quot;: {
+                    &quot;provider&quot;: &quot;lite_llm&quot;,
+                    &quot;name&quot;: &quot;gemini-2.0-flash-exp&quot;,
+                    &quot;max_tokens&quot;: 1024,
+                    &quot;max_retries&quot;: 3,
+                    &quot;context_window&quot;: 16384
+                }
+            }
+        },
+        &quot;evaluation&quot;: {
+            &quot;judge_llm&quot;: {
+                &quot;provider&quot;: &quot;lite_llm&quot;,
+                &quot;name&quot;: &quot;gpt-4o-mini&quot;,      // another llm
+                &quot;max_tokens&quot;: 512           // different parameters
+            }
+        }
+    }
+}
+</code></pre>
+<p><em><strong>Note</strong></em>: You can also use different LLM for any other component like <code>guardrails</code>.</p>
+<h3 id="secrets">Secrets</h3>
+<p>Each model requires api key. For the above LLMs add following secrets:</p>
+<pre><code class="language-sh">RAG__LLMS__GEMINI_2_0_FLASH_EXP_API_KEY={your-gemini-api-key}
+RAG__LLMS__GPT_4O_MINI__API_KEY={your-openai-api-key}
+</code></pre>
+<p>The variable name includes the uppercased name of the model you are using, whereas all non-alphanumeric characters are replaced by underscores e.g. <code>gpt-3.5-turbo</code> -&gt; <code>GPT_3_5_TURBO</code>.</p>
+<p>If you want to use your local model called for instance <code>my-llm</code>, which is exposed via openai-like API you can use the following configuration:</p>
+<pre><code class="language-json">&quot;provider&quot;: &quot;lite_llm&quot;,
+&quot;name&quot;: &quot;openai/my-llm&quot;,
+&quot;api_base&quot;: &quot;http://127.0.0.1/v1
+</code></pre>
+<p>And the secrets will look as follows:</p>
+<pre><code>RAG__LLMS__OPENAI_MY_LLM__API_KEY={your-api-key}
+</code></pre>
+<blockquote>
+<p><strong><em>Note</em></strong> You can use different API structure for your local LLMs, then just replace <code>openai/</code> prefix with corresponding provider.</p>
+</blockquote>
+<h2 id="embedding-model-configuration">Embedding Model Configuration</h2>
+<p>Currently, embedding models from these providers are supported:</p>
+<pre><code class="language-py">class EmbeddingModelProviderName(str, Enum):
+    HUGGING_FACE = &quot;hugging_face&quot;
+    OPENAI = &quot;openai&quot;
+    VOYAGE = &quot;voyage&quot;
+</code></pre>
+<p>Any model exposed by these providers can be used in the setup.</p>
+<p>Minimal setup requires the use of embedding models in different processes. To configure this, adjust the following JSON entries:</p>
+<pre><code class="language-json">{
+    &quot;embedding&quot;: {
+        &quot;embedding_model&quot;: {
+            &quot;provider&quot;: &quot;hugging_face&quot;,
+            &quot;name&quot;: &quot;BAAI/bge-small-en-v1.5&quot;,
+            &quot;tokenizer_name&quot;: &quot;BAAI/bge-small-en-v1.5&quot;,
+            &quot;splitter&quot;: {
+                &quot;chunk_overlap_in_tokens&quot;: 50,
+                &quot;chunk_size_in_tokens&quot;: 384
+            }
+        }
+    },
+    &quot;evaluation&quot;: {
+        &quot;judge_embedding_model&quot;: {
+            &quot;provider&quot;: &quot;hugging_face&quot;,
+            &quot;name&quot;: &quot;BAAI/bge-small-en-v1.5&quot;,
+            &quot;tokenizer_name&quot;: &quot;BAAI/bge-small-en-v1.5&quot;
+        }
+    }
+}
+</code></pre>
+<p>Providers' secrets must be added to the environment's secret file. The <code>provider</code> field must be one of the values from <code>EmbeddingModelProviderName</code>, and the <code>name</code> field indicates the specific model exposed by the provider. The <code>tokenizer_name</code> field indicates the tokenizer used in pair with the embedding model, and it should be compatible with the specified embedding model. The <code>splitter</code> defines how the documents should be chunked in the embedding process and is required for <code>embedding</code> configuration. To check configurable options for specific providers, visit <code>configuration.py</code> of a embedding model.</p>
+<p><strong><em>Note</em></strong>: The same embedding model is used for embedding and retrieval processes, therefore it is defined in the <code>embedding</code> configuration only.</p>
+<p>In the above case, embedding/retrieval and evaluation processes use the same embedding model, which might be suboptimal. To change it, simply adjust the entry of one of these:</p>
+<pre><code class="language-json">{
+    &quot;embedding&quot;: {
+        &quot;embedding_model&quot;: {
+            &quot;provider&quot;: &quot;hugging_face&quot;,
+            &quot;name&quot;: &quot;BAAI/bge-small-en-v1.5&quot;,
+            &quot;tokenizer_name&quot;: &quot;BAAI/bge-small-en-v1.5&quot;,
+            &quot;splitting&quot;: {
+                &quot;name&quot;: &quot;basic&quot;,
+                &quot;chunk_overlap_in_tokens&quot;: 50,
+                &quot;chunk_size_in_tokens&quot;: 384
+            }
+        }
+    },
+    &quot;evaluation&quot;: {
+        &quot;judge_embedding_model&quot;: {
+            &quot;provider&quot;: &quot;openai&quot;,                       // different provider
+            &quot;name&quot;: &quot;text-embedding-3-small&quot;,           // different embedding model
+            &quot;tokenizer_name&quot;: &quot;text-embedding-3-small&quot;, // different tokenizer
+            &quot;batch_size&quot;: 64                            // different parameters
+        }
+    }
+}
+</code></pre>
+<h2 id="vector-store-configuration">Vector Store Configuration</h2>
+<p>Currently, the following vector stores are supported:</p>
+<pre><code class="language-py">class VectorStoreName(str, Enum):
+    QDRANT = &quot;qdrant&quot;
+    CHROMA = &quot;chroma&quot;
+    PGVECTOR = &quot;pgvector&quot;
+</code></pre>
+<p>To configure the vector store, update the following entry:</p>
+<pre><code class="language-json">{
+    &quot;embedding&quot;: {
+        &quot;vector_store&quot;: {
+            &quot;name&quot;: &quot;qdrant&quot;,
+            &quot;collection_name&quot;: &quot;collection-default&quot;,
+            &quot;host&quot;: &quot;qdrant&quot;,
+            &quot;protocol&quot;: &quot;http&quot;,
+            &quot;port&quot;: 6333
+        }
+    }
+}
+</code></pre>
+<p>The <code>name</code> field indicates one of the vector stores from <code>VectorStoreName</code>, and the <code>collection_name</code> defines the vector store collection for embedded documents. The next fields define the connection to the vector store. Corresponding secrets must be added to the environment's secrets file. To check configurable options for specific datasources, visit <code>configuration.py</code> of a vector store.</p>
+<p><strong><em>Note</em></strong>: If <code>collection_name</code> already exists in the vector store, the embedding process will be skipped. To run it, delete the collection or use a different name.</p>
+<h2 id="langfuse-and-chainlit-configuration">Langfuse and Chainlit Configuration</h2>
+<p>Configuration contains the entries related to Langfuse and Chainlit:</p>
+<pre><code class="language-json">{
+    &quot;augmentation&quot;: {
+        &quot;langfuse&quot;: {
+            &quot;host&quot;: &quot;langfuse&quot;,
+            &quot;protocol&quot;: &quot;http&quot;,
+            &quot;port&quot;: 3000,
+            &quot;database&quot;: {
+                &quot;host&quot;: &quot;langfuse-db&quot;,
+                &quot;port&quot;: 5432,
+                &quot;db&quot;: &quot;langfuse&quot;
+            }
+        },
+        &quot;chainlit&quot;: {
+            &quot;port&quot;: 8000
+        }
+    }
+}
+</code></pre>
+<p>Field <code>chailit.port</code> defines on which port chat UI should be run. Fields in <code>langfuse</code> define connection details to Langfuse server and <code>langfuse.database</code> details of its database. Corresponding secrets for Langfuse have to be added to environment's secrets file.</p>
+<h2 id="prompt-templates-configuration">Prompt Templates Configuration</h2>
+<p>For prompts management system uses <a href="https://langfuse.com/docs/prompts/get-started">Langfuse Prompt</a> service. By default four prompt templates are created in Langfuse Prompts service - <code>default_system_prompt</code>, <code>default_context_refine_prompt</code>, <code>default_context_prompt</code>, <code>default_condense_prompt</code>, <code>default_input_guardrail_prompt</code> and <code>default_output_guardrail_prompt</code>. To find out more about these templates visit <a href="https://docs.llamaindex.ai/en/stable/examples/chat_engine/chat_engine_condense_plus_context/">Llamaindex guide</a>.</p>
+<p>Prompts are used during the augmentation process, which affects the final answers of the system. They can be adjusted via Langfuse Prompts UI. If you want to provide and use templates under different names, you need to add them to Langfuse Prompts and change the configuration as follows:</p>
+<pre><code class="language-json">{
+  &quot;augmentation&quot;: {
+    &quot;chat_engine&quot;: {
+      &quot;guardrails&quot;: {
+        &quot;input_prompt_name&quot;: &quot;default_input_guardrail_prompt&quot;,
+        &quot;output_prompt_name&quot;: &quot;default_output_guardrail_prompt&quot;,
+      },
+      &quot;prompt_templates&quot;: {
+        &quot;condense_prompt_name&quot;: &quot;new_condense_prompt&quot;,
+        &quot;context_prompt_name&quot;: &quot;new_context_prompt&quot;,
+        &quot;context_refine_prompt_name&quot;: &quot;new_context_refine_prompt&quot;,
+        &quot;system_prompt_name&quot;: &quot;new_system_prompt&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h2 id="upcoming-docs">Upcoming Docs</h2>
+<p>Docs about configurable retrievers, postprocessors and others are in progress..</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../quickstart/developer_setup/" class="btn btn-neutral float-left" title="Local Developement Setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../how_to_add_new_llm/" class="btn btn-neutral float-right" title="Add a New LLM">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../../quickstart/developer_setup/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../how_to_add_new_llm/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

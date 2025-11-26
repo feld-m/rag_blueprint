@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>bundesAPI "deutschland" Python Package Documentation - RAG Systems</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "bundesAPI \"deutschland\" Python Package Documentation";
+        var mkdocs_page_input_path = "datasources/bundesapi_deutschland_package.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RAG Systems
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Quickstart</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/quickstart_setup/">Quickstart Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quickstart/developer_setup/">Local Developement Setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How to</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_configure/">Configure RAG System</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_add_new_llm/">Add a New LLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_add_new_embedding_model/">Add a New Embedding Model</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_add_new_vector_store/">Add a New Vector Store</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how_to/how_to_add_new_datasource/">Add a New Datasource</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Evaluation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../evaluation/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Monitoring</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../monitoring/in_progress/">In progress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Code Docs</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/augment/">Augment</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/embed/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../src/evaluate/">Evaluate</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Augmentation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/temporal_domain_config/">Temporal_domain_config</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/chainlit_configuration/">Chainlit_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Components</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/bootstrap/configuration/langfuse_configuration/">Langfuse_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Components</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Postprocessors</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Colbert_rerank</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Hybrid_filter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/postprocessors/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chat_engines</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" >Langfuse</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/chat_engines/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Retrievers</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/query_rewriter/">Query_rewriter</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/query_rewriting_retriever/">Query_rewriting_retriever</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Auto</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/retrievers/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Dynamic_temporal</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Llms</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/llms/registry/">Registry</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Lite_llm</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Guardrails</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/guardrails/base_guardrails/">Base_guardrails</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" >Basic</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/augmentation/components/guardrails/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Langfuse</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/client/">Client</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/dataset_service/">Dataset_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/langfuse/prompt_service/">Prompt_service</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Chainlit</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/feedback_service/">Feedback_service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/utils/">Utils</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/service/">Service</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/augmentation/chainlit/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/logger/">Logger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_factory/">Base_factory</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/configuration_retrievers/">Configuration_retrievers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_configuration/">Base_configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../src/core/base_initializer/">Base_initializer</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Embedding</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Vector_stores</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Qdrant</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/qdrant/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Chroma</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/chroma/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Core</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/core/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/core/exceptions/">Exceptions</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/vector_stores/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Pgvector</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/vector_store/">Vector_store</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/validator/">Validator</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/vector_stores/pgvector/client/">Client</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/vector_store_configuration/">Vector_store_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/splitting_configuration/">Splitting_configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/bootstrap/configuration/embedding_model_configuration/">Embedding_model_configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedders</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/base_embedder/">Base_embedder</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedders/basic/embedder/">Embedder</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedders/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/registry/">Registry</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/orchestrators/base_orchestrator/">Base_orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Embedding_models</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Hugging_face</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/hugging_face/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/hugging_face/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Openai</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/openai/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/openai/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Voyage</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/voyage/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/embedding_models/voyage/embedding_model/">Embedding_model</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/embedding_models/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Splitters</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Basic_markdown</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/splitters/basic_markdown/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/embedding/splitters/basic_markdown/basic_markdown_splitter/">Basic_markdown_splitter</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/splitters/base_splitter/">Base_splitter</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/embedding/splitters/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/evaluation/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Evaluators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/evaluators/langfuse/">Langfuse</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/evaluation/evaluators/ragas/">Ragas</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Extraction</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" >Bootstrap</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" >Configuration</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/bootstrap/configuration/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/bootstrap/configuration/datasources/">Datasources</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/bootstrap/initializer/">Initializer</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Orchestrators</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/orchestrators/base_orchestator/">Base_orchestator</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" >Basic</a>
+    <ul>
+                <li class="toctree-l4"><a class="reference internal" href="../../src/extraction/orchestrators/basic/orchestrator/">Orchestrator</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/orchestrators/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Datasources</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/pdf/">Pdf</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/confluence/">Confluence</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/bundestag/">Bundestag</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/core/">Core</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/notion/">Notion</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../src/extraction/datasources/registry/">Registry</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RAG Systems</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">bundesAPI "deutschland" Python Package Documentation</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/feld-m/rag_blueprint/edit/main/docs/datasources/bundesapi_deutschland_package.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="bundesapi-deutschland-python-package-documentation">bundesAPI "deutschland" Python Package Documentation</h1>
+<h2 id="overview">Overview</h2>
+<p>The <strong>deutschland</strong> Python package provides unified, easy-to-use access to Germany's most important public datasets and APIs. Instead of dealing with multiple APIs individually, this package consolidates them into a single, consistent Python library with auto-generated clients for numerous German government and institutional data sources.</p>
+<p><strong>Key Value Proposition:</strong> One package, one installation, many APIs - all with consistent Python interfaces.</p>
+<p><strong>Official Resources:</strong>
+- <strong>GitHub:</strong> https://github.com/bundesAPI/deutschland
+- <strong>PyPI:</strong> https://pypi.org/project/deutschland/
+- <strong>Version:</strong> 0.4.2 (released June 18, 2024)
+- <strong>License:</strong> Apache-2.0
+- <strong>Maintainer:</strong> Lilith Wittmann (bundesAPI)</p>
+<h2 id="why-use-this-package">Why Use This Package?</h2>
+<h3 id="advantages-over-direct-api-access">Advantages Over Direct API Access</h3>
+<p>✅ <strong>Unified Interface:</strong> Consistent Python API across all German government data sources
+✅ <strong>Type Safety:</strong> Auto-generated Pydantic models for all data structures
+✅ <strong>No Manual HTTP:</strong> Handle authentication, pagination, and errors automatically
+✅ <strong>IDE Support:</strong> Full autocomplete and type hints in modern IDEs
+✅ <strong>Maintained:</strong> Regular updates when APIs change
+✅ <strong>Tested:</strong> Runs on Linux, macOS, and Windows (Python 3.9-3.12)
+✅ <strong>Well-Documented:</strong> Generated documentation for all models and methods</p>
+<h3 id="comparison-with-direct-rest-api-access">Comparison with Direct REST API Access</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>deutschland Package</th>
+<th>Direct REST API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Installation</strong></td>
+<td><code>pip install deutschland</code></td>
+<td>Manual HTTP library setup</td>
+</tr>
+<tr>
+<td><strong>Authentication</strong></td>
+<td>Configured once in code</td>
+<td>Manual headers every request</td>
+</tr>
+<tr>
+<td><strong>Data Models</strong></td>
+<td>Pydantic models with validation</td>
+<td>Manual dict parsing</td>
+</tr>
+<tr>
+<td><strong>Type Hints</strong></td>
+<td>Full IDE support</td>
+<td>None</td>
+</tr>
+<tr>
+<td><strong>Error Handling</strong></td>
+<td>Structured exceptions</td>
+<td>Manual HTTP error handling</td>
+</tr>
+<tr>
+<td><strong>Pagination</strong></td>
+<td>Often handled automatically</td>
+<td>Manual cursor management</td>
+</tr>
+<tr>
+<td><strong>Updates</strong></td>
+<td><code>pip install --upgrade</code></td>
+<td>Rewrite code when API changes</td>
+</tr>
+<tr>
+<td><strong>Learning Curve</strong></td>
+<td>Python-native, intuitive</td>
+<td>Learn each API's quirks</td>
+</tr>
+</tbody>
+</table>
+<h2 id="installation">Installation</h2>
+<h3 id="basic-installation">Basic Installation</h3>
+<pre><code class="language-bash">pip install deutschland
+</code></pre>
+<p>This installs the core package with essential APIs (bundestag, bundesrat, autobahn, dwd, nina, and more).</p>
+<h3 id="with-optional-apis">With Optional APIs</h3>
+<p>Many APIs are optional extras to keep the base package lightweight:</p>
+<pre><code class="language-bash"># Install with DIP Bundestag API
+pip install deutschland[dip_bundestag]
+
+# Install with Bundestag Lobby Register
+pip install deutschland[bundestag_lobbyregister]
+
+# Install with Bundestag Tagesordnung (agenda)
+pip install deutschland[bundestag_tagesordnung]
+
+# Install multiple extras
+pip install deutschland[dip_bundestag,bundestag_lobbyregister,bundestag_tagesordnung]
+
+# Install ALL extras (comprehensive installation)
+pip install deutschland[all]
+</code></pre>
+<h3 id="with-poetry">With Poetry</h3>
+<pre><code class="language-bash"># Basic installation
+poetry add deutschland
+
+# With specific extras
+poetry add deutschland -E dip_bundestag
+poetry add deutschland -E bundestag_lobbyregister
+
+# With multiple extras
+poetry add deutschland -E dip_bundestag -E bundestag_lobbyregister
+</code></pre>
+<h2 id="supported-python-versions">Supported Python Versions</h2>
+<p><strong>Python 3.9 - 3.12</strong> (tested on Linux, macOS, Windows)</p>
+<p><strong>Dependencies</strong> (automatically installed):
+- requests
+- dateparser
+- beautifulsoup4
+- more-itertools
+- numpy
+- pandas
+- pillow
+- lxml
+- onnxruntime
+- And API-specific sub-packages</p>
+<h2 id="available-apis">Available APIs</h2>
+<h3 id="core-apis-included-by-default">Core APIs (Included by Default)</h3>
+<p>These are installed automatically with the base package:</p>
+<ul>
+<li><strong>bundestag</strong> - Basic Bundestag information API</li>
+<li><strong>bundesrat</strong> - Federal Council information</li>
+<li><strong>autobahn</strong> - German highway data, charging stations</li>
+<li><strong>dwd</strong> - German Weather Service (Deutscher Wetterdienst)</li>
+<li><strong>interpol</strong> - International police data</li>
+<li><strong>jobsuche</strong> - Job search data</li>
+<li><strong>ladestationen</strong> - Charging station locations</li>
+<li><strong>mudab</strong> - Market transparency unit for electricity and gas</li>
+<li><strong>nina</strong> - Disaster and emergency alerts</li>
+<li><strong>polizei_brandenburg</strong> - Brandenburg police data</li>
+<li><strong>risikogebiete</strong> - COVID-19 and other risk area classifications</li>
+<li><strong>smard</strong> - Energy market data</li>
+<li><strong>strahlenschutz</strong> - Radiation protection information</li>
+<li><strong>travelwarning</strong> - Travel warnings and advisories</li>
+<li><strong>zoll</strong> - Customs information</li>
+</ul>
+<h3 id="optional-bundestag-apis">Optional Bundestag APIs</h3>
+<p>Install with specific extras for comprehensive parliamentary data:</p>
+<h4 id="dip_bundestag-most-comprehensive"><strong>dip_bundestag</strong> ⭐ Most Comprehensive</h4>
+<ul>
+<li><strong>Extra:</strong> <code>deutschland[dip_bundestag]</code></li>
+<li><strong>Package:</strong> <code>de-dip-bundestag</code></li>
+<li><strong>What it provides:</strong> Complete DIP API access (proceedings, documents, protocols, full text)</li>
+<li><strong>Use case:</strong> Building comprehensive RAG systems with all parliamentary data</li>
+</ul>
+<h4 id="bundestag_lobbyregister"><strong>bundestag_lobbyregister</strong></h4>
+<ul>
+<li><strong>Extra:</strong> <code>deutschland[bundestag_lobbyregister]</code></li>
+<li><strong>Package:</strong> <code>de-bundestag-lobbyregister</code></li>
+<li><strong>What it provides:</strong> Lobby register data</li>
+<li><strong>Use case:</strong> Transparency research, lobbying analysis</li>
+</ul>
+<h4 id="bundestag_tagesordnung"><strong>bundestag_tagesordnung</strong></h4>
+<ul>
+<li><strong>Extra:</strong> <code>deutschland[bundestag_tagesordnung]</code></li>
+<li><strong>Package:</strong> <code>de-bundestag-tagesordnung</code></li>
+<li><strong>What it provides:</strong> Parliamentary agendas and schedules</li>
+<li><strong>Use case:</strong> Tracking upcoming sessions and topics</li>
+</ul>
+<h3 id="other-optional-apis">Other Optional APIs</h3>
+<p>Over 25 additional APIs available as extras:</p>
+<ul>
+<li><strong>destatis</strong> - Federal Statistical Office</li>
+<li><strong>feiertage</strong> - Public holidays</li>
+<li><strong>bundeshaushalt</strong> - Federal budget data</li>
+<li><strong>dashboarddeutschland</strong> - Government dashboard data</li>
+<li><strong>deutschlandatlas</strong> - Germany atlas data</li>
+<li><strong>diga</strong> - Digital health applications</li>
+<li><strong>entgeltatlas</strong> - Wage atlas</li>
+<li><strong>hilfsmittel</strong> - Medical aids registry</li>
+<li><strong>hochwasserzentralen</strong> - Flood warning centers</li>
+<li><strong>klinikatlas</strong> - Hospital atlas</li>
+<li><strong>marktstammdaten</strong> - Master data register for energy market</li>
+<li><strong>pegel-online</strong> - Water level data</li>
+<li><strong>pflanzenschutzmittelzulassung</strong> - Plant protection product approvals</li>
+<li><strong>regionalatlas</strong> - Regional atlas</li>
+<li><strong>studiensuche</strong> - Study program search</li>
+<li><strong>weiterbildungssuche</strong> - Further education search</li>
+<li>And more...</li>
+</ul>
+<p>Complete list: See <a href="https://github.com/bundesAPI/deutschland/blob/main/pyproject.toml">pyproject.toml extras section</a></p>
+<h2 id="basic-usage-pattern">Basic Usage Pattern</h2>
+<p>All auto-generated APIs follow the same pattern:</p>
+<pre><code class="language-python">from deutschland import &lt;api_name&gt;
+from deutschland.&lt;api_name&gt;.api import &lt;api_class&gt;
+
+# Configure authentication (if needed)
+configuration = &lt;api_name&gt;.Configuration(
+    host = &quot;https://api.example.de&quot;,
+    api_key = {'ApiKeyHeader': 'YOUR_KEY'}  # or ApiKeyQuery
+)
+
+# Create API client
+with &lt;api_name&gt;.ApiClient(configuration) as api_client:
+    api_instance = &lt;api_class&gt;(api_client)
+
+    # Make requests
+    response = api_instance.some_method(param1, param2)
+    print(response)
+</code></pre>
+<h2 id="bundestag-data-access">Bundestag Data Access</h2>
+<h3 id="1-basic-bundestag-api-included-by-default">1. Basic Bundestag API (Included by Default)</h3>
+<p>Access basic Bundestag information without extra installation:</p>
+<pre><code class="language-python">from deutschland import bundestag
+from deutschland.bundestag.api import default_api
+
+configuration = bundestag.Configuration(
+    host = &quot;https://www.bundestag.de&quot;
+)
+
+with bundestag.ApiClient(configuration) as api_client:
+    api_instance = default_api.DefaultApi(api_client)
+
+    # Get article details
+    article_id = 849630
+    response = api_instance.blueprint_servlet_content_articleidas_app_v2_newsarticle_xml_get(article_id)
+    print(response)
+
+    # Get plenary sessions overview
+    response = api_instance.static_appdata_plenum_v2_conferences_xml_get()
+    print(response)
+
+    # Get current speaker
+    response = api_instance.static_appdata_plenum_v2_speaker_xml_get()
+    print(response)
+</code></pre>
+<p><strong>Available Endpoints:</strong>
+- News articles
+- Plenary session overview
+- Current speaker information
+- Committee information
+- MP biographies
+- Video on demand</p>
+<h3 id="2-dip-bundestag-api-most-comprehensive">2. DIP Bundestag API (Most Comprehensive) ⭐</h3>
+<p><strong>Installation:</strong></p>
+<pre><code class="language-bash">pip install deutschland[dip_bundestag]
+</code></pre>
+<p><strong>Access complete parliamentary data:</strong></p>
+<pre><code class="language-python">from deutschland import dip_bundestag
+from deutschland.dip_bundestag.api import (
+    vorgnge_api,
+    drucksachen_api,
+    plenarprotokolle_api,
+    personenstammdaten_api
+)
+
+# Configure with API key
+configuration = dip_bundestag.Configuration(
+    host = &quot;https://search.dip.bundestag.de/api/v1&quot;
+)
+
+# API key can be set as header or query param
+configuration.api_key['ApiKeyQuery'] = 'OSOegLs.PR2lwJ1dwCeje9vTj7FPOt3hvpYKtwKkhw'
+
+with dip_bundestag.ApiClient(configuration) as api_client:
+
+    # ============================================
+    # PROCEEDINGS (Vorgänge)
+    # ============================================
+    vorgang_api = vorgnge_api.VorgngeApi(api_client)
+
+    # List all proceedings for Wahlperiode 20
+    vorgaenge = vorgang_api.get_vorgang_list(
+        f_wahlperiode=20,
+        format='json'
+    )
+    print(f&quot;Total proceedings: {vorgaenge.num_found}&quot;)
+
+    # Get specific proceeding
+    vorgang = vorgang_api.get_vorgang(id=320244, format='json')
+    print(f&quot;Title: {vorgang.titel}&quot;)
+    print(f&quot;Status: {vorgang.beratungsstand}&quot;)
+
+    # ============================================
+    # PRINTED MATERIALS (Drucksachen)
+    # ============================================
+    drucksache_api = drucksachen_api.DrucksachenApi(api_client)
+
+    # List documents
+    drucksachen = drucksache_api.get_drucksache_list(
+        f_wahlperiode=20,
+        f_drucksachetyp='Gesetzentwurf',  # Bills only
+        format='json'
+    )
+
+    # Get document with full text
+    drucksache_text = drucksache_api.get_drucksache_text(
+        id=279131,
+        format='json'
+    )
+    print(f&quot;Full text: {drucksache_text.text[:500]}...&quot;)
+
+    # ============================================
+    # PLENARY PROTOCOLS (Plenarprotokolle)
+    # ============================================
+    protokoll_api = plenarprotokolle_api.PlenarprotokolleApi(api_client)
+
+    # List protocols
+    protokolle = protokoll_api.get_plenarprotokoll_list(
+        f_wahlperiode=20,
+        format='json'
+    )
+
+    # Get full transcript
+    protokoll_text = protokoll_api.get_plenarprotokoll_text(
+        id=5701,
+        format='json'
+    )
+    print(f&quot;Session: {protokoll_text.dokumentnummer}&quot;)
+    print(f&quot;Transcript length: {len(protokoll_text.text)} chars&quot;)
+
+    # ============================================
+    # PERSONS (MPs, Ministers)
+    # ============================================
+    person_api = personenstammdaten_api.PersonenstammdatenApi(api_client)
+
+    # List persons
+    personen = person_api.get_person_list(format='json')
+
+    # Get specific person
+    person = person_api.get_person(id=40, format='json')
+    print(f&quot;Name: {person.vorname} {person.nachname}&quot;)
+    print(f&quot;Party: {person.fraktion}&quot;)
+    print(f&quot;Served in periods: {person.wahlperiode}&quot;)
+</code></pre>
+<p><strong>Available API Classes:</strong>
+- <code>VorgngeApi</code> - Proceedings
+- <code>DrucksachenApi</code> - Printed materials (with full text)
+- <code>PlenarprotokolleApi</code> - Plenary protocols (with full text)
+- <code>PersonenstammdatenApi</code> - Person data
+- <code>VorgangspositionenApi</code> - Proceeding positions
+- <code>AktivittenApi</code> - Activities</p>
+<p><strong>All Data Models</strong> (with type hints):
+- <code>Vorgang</code> - Proceeding model
+- <code>Drucksache</code>, <code>DrucksacheText</code> - Document models
+- <code>Plenarprotokoll</code>, <code>PlenarprotokollText</code> - Protocol models
+- <code>Person</code>, <code>PersonRole</code> - Person models
+- <code>Vorgangsposition</code> - Position model
+- <code>Aktivitaet</code> - Activity model
+- And many more supporting models</p>
+<h3 id="3-bundestag-lobby-register">3. Bundestag Lobby Register</h3>
+<p><strong>Installation:</strong></p>
+<pre><code class="language-bash">pip install deutschland[bundestag_lobbyregister]
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="language-python">from deutschland import bundestag_lobbyregister
+
+# Similar pattern to DIP API
+# See de-bundestag-lobbyregister documentation for specifics
+</code></pre>
+<h3 id="4-bundestag-tagesordnung-agenda">4. Bundestag Tagesordnung (Agenda)</h3>
+<p><strong>Installation:</strong></p>
+<pre><code class="language-bash">pip install deutschland[bundestag_tagesordnung]
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="language-python">from deutschland import bundestag_tagesordnung
+
+# Access parliamentary agenda and schedules
+# See de-bundestag-tagesordnung documentation for specifics
+</code></pre>
+<h2 id="built-in-helper-modules">Built-in Helper Modules</h2>
+<h3 id="geographic-data-geo">Geographic Data (Geo)</h3>
+<p>Fetch detailed location information including streets, buildings, addresses:</p>
+<pre><code class="language-python">from deutschland.geo import Geo
+
+geo = Geo()
+
+# Define bounding box (top-right and bottom-left coordinates)
+top_right = [52.530116236589244, 13.426532801586827]
+bottom_left = [52.50876180448243, 13.359631043007212]
+
+data = geo.fetch(top_right, bottom_left)
+
+print(data.keys())
+# dict_keys(['Adresse', 'Barrierenlinie', 'Bauwerksflaeche', ...])
+
+print(data[&quot;Adresse&quot;][0])
+# {'geometry': {'type': 'Point', 'coordinates': (13.422, 52.515)},
+#  'properties': {'postleitzahl': '10179', 'ort': 'Berlin',
+#                 'strasse': 'Holzmarktstraße', 'hausnummer': '55'}}
+</code></pre>
+<p><strong>Data provided by:</strong> AdV SmartMapping (German state surveying offices)</p>
+<h3 id="company-data-bundesanzeiger">Company Data (Bundesanzeiger)</h3>
+<p>Get financial reports for German companies:</p>
+<pre><code class="language-python">from deutschland.bundesanzeiger import Bundesanzeiger
+
+ba = Bundesanzeiger()
+
+# Search for company
+data = ba.get_reports(&quot;Deutsche Bahn AG&quot;)
+
+print(data.keys())
+# dict_keys(['Jahresabschluss zum Geschäftsjahr ...', ...])
+
+# Returns fulltext financial reports extracted via ML
+</code></pre>
+<p><strong>Note:</strong> Uses machine learning to extract structured data from fulltext documents.</p>
+<h3 id="consumer-protection-lebensmittelwarnung">Consumer Protection (Lebensmittelwarnung)</h3>
+<p>Get product warnings from the federal food safety portal:</p>
+<pre><code class="language-python">from deutschland.lebensmittelwarnung import Lebensmittelwarnung
+
+lw = Lebensmittelwarnung()
+
+# Search by content type and region
+data = lw.get(&quot;lebensmittel&quot;, &quot;berlin&quot;)
+
+print(data[0])
+# {'id': 19601, 'title': 'Product Name',
+#  'manufacturer': 'Lebensmittel', 'warning': 'Pyrrolizidinalkaloide',
+#  'affectedStates': ['Baden-Württemberg', ...]}
+</code></pre>
+<h3 id="autobahn-data">Autobahn Data</h3>
+<p>Access highway information and charging stations:</p>
+<pre><code class="language-python">from deutschland import autobahn
+from deutschland.autobahn.api import default_api
+
+api_instance = default_api.DefaultApi()
+
+# List all Autobahns
+autobahnen = api_instance.list_autobahnen()
+print(autobahnen)
+
+# Get charging station details
+station_id = &quot;RUxFQ1RSSUNfQ0hBUkdJTkdfU1RBVElPTl9fMTczMzM=&quot;
+station = api_instance.get_charging_station(station_id)
+print(station)
+</code></pre>
+<h2 id="working-with-pagination">Working with Pagination</h2>
+<p>Many APIs return paginated results with a cursor:</p>
+<pre><code class="language-python">from deutschland import dip_bundestag
+from deutschland.dip_bundestag.api import vorgnge_api
+
+configuration = dip_bundestag.Configuration(
+    host = &quot;https://search.dip.bundestag.de/api/v1&quot;
+)
+configuration.api_key['ApiKeyQuery'] = 'YOUR_API_KEY'
+
+with dip_bundestag.ApiClient(configuration) as api_client:
+    vorgang_api = vorgnge_api.VorgngeApi(api_client)
+
+    cursor = None
+    all_vorgaenge = []
+
+    while True:
+        # Request with cursor
+        response = vorgang_api.get_vorgang_list(
+            f_wahlperiode=20,
+            cursor=cursor if cursor else &quot;&quot;,
+            format='json'
+        )
+
+        all_vorgaenge.extend(response.documents)
+
+        # Check if more pages
+        new_cursor = getattr(response, 'cursor', None)
+        if not new_cursor or new_cursor == cursor:
+            break
+
+        cursor = new_cursor
+
+        print(f&quot;Fetched {len(all_vorgaenge)} total proceedings...&quot;)
+
+    print(f&quot;Complete! Total: {len(all_vorgaenge)}&quot;)
+</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<pre><code class="language-python">from deutschland import dip_bundestag
+from deutschland.dip_bundestag.api import vorgnge_api
+
+configuration = dip_bundestag.Configuration(
+    host = &quot;https://search.dip.bundestag.de/api/v1&quot;
+)
+configuration.api_key['ApiKeyQuery'] = 'YOUR_API_KEY'
+
+with dip_bundestag.ApiClient(configuration) as api_client:
+    vorgang_api = vorgnge_api.VorgngeApi(api_client)
+
+    try:
+        vorgang = vorgang_api.get_vorgang(id=999999999, format='json')
+    except dip_bundestag.ApiException as e:
+        print(f&quot;API Error: {e.status}&quot;)
+        print(f&quot;Reason: {e.reason}&quot;)
+        print(f&quot;Body: {e.body}&quot;)
+</code></pre>
+<p><strong>Common exceptions:</strong>
+- <code>ApiException</code> - Base exception for API errors
+- Status codes: 400 (Bad Request), 401 (Unauthorized), 404 (Not Found)</p>
+<h2 id="type-safety-and-ide-support">Type Safety and IDE Support</h2>
+<p>All models are auto-generated with full type hints:</p>
+<pre><code class="language-python">from deutschland.dip_bundestag.model.vorgang import Vorgang
+from deutschland.dip_bundestag.model.drucksache import Drucksache
+
+# IDE will provide autocomplete for all fields
+def process_vorgang(vorgang: Vorgang) -&gt; None:
+    print(vorgang.id)          # IDE knows this is an int/str
+    print(vorgang.titel)       # IDE knows this is a string
+    print(vorgang.wahlperiode) # IDE knows this is an int
+
+    # Type checking at development time
+    if vorgang.deskriptor:
+        for descriptor in vorgang.deskriptor:
+            print(descriptor.name)  # Full autocomplete!
+</code></pre>
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+<h3 id="custom-timeouts">Custom Timeouts</h3>
+<pre><code class="language-python">configuration = dip_bundestag.Configuration(
+    host = &quot;https://search.dip.bundestag.de/api/v1&quot;
+)
+
+# Create client with custom timeout
+import urllib3
+http_client = urllib3.PoolManager(timeout=30.0)
+
+with dip_bundestag.ApiClient(configuration) as api_client:
+    api_client.rest_client.pool_manager = http_client
+    # ... use api_client
+</code></pre>
+<h3 id="proxy-support">Proxy Support</h3>
+<pre><code class="language-python">configuration = dip_bundestag.Configuration(
+    host = &quot;https://search.dip.bundestag.de/api/v1&quot;
+)
+
+# Configure proxy
+configuration.proxy = &quot;http://proxy.example.com:8080&quot;
+
+with dip_bundestag.ApiClient(configuration) as api_client:
+    # ... use api_client through proxy
+</code></pre>
+<h3 id="debug-logging">Debug Logging</h3>
+<pre><code class="language-python">import logging
+
+# Enable debug logging for all HTTP requests
+logging.basicConfig(level=logging.DEBUG)
+
+# Now all API calls will log detailed information
+</code></pre>
+<h2 id="comparison-deutschland-package-vs-direct-dip-api">Comparison: deutschland Package vs Direct DIP API</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>deutschland Package</th>
+<th>Direct DIP API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Installation</strong></td>
+<td><code>pip install deutschland[dip_bundestag]</code></td>
+<td>No installation needed</td>
+</tr>
+<tr>
+<td><strong>Import</strong></td>
+<td><code>from deutschland import dip_bundestag</code></td>
+<td><code>import requests</code></td>
+</tr>
+<tr>
+<td><strong>Auth Setup</strong></td>
+<td>Configure once in Configuration object</td>
+<td>Pass in every request</td>
+</tr>
+<tr>
+<td><strong>Making Requests</strong></td>
+<td><code>api.get_vorgang_list(f_wahlperiode=20)</code></td>
+<td><code>requests.get(url, params={...})</code></td>
+</tr>
+<tr>
+<td><strong>Response Parsing</strong></td>
+<td>Auto-parsed to Pydantic models</td>
+<td>Manual <code>response.json()</code></td>
+</tr>
+<tr>
+<td><strong>Type Hints</strong></td>
+<td>Full type safety</td>
+<td>None (dict)</td>
+</tr>
+<tr>
+<td><strong>IDE Support</strong></td>
+<td>Complete autocomplete</td>
+<td>Minimal</td>
+</tr>
+<tr>
+<td><strong>Error Handling</strong></td>
+<td>Structured exceptions</td>
+<td>Manual status code checking</td>
+</tr>
+<tr>
+<td><strong>Pagination</strong></td>
+<td>Helper methods available</td>
+<td>Manual cursor management</td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td>Generated docs + docstrings</td>
+<td>Read API specs</td>
+</tr>
+<tr>
+<td><strong>API Changes</strong></td>
+<td>Update package</td>
+<td>Rewrite code</td>
+</tr>
+<tr>
+<td><strong>Learning Curve</strong></td>
+<td>Pythonic, intuitive</td>
+<td>Learn API quirks</td>
+</tr>
+</tbody>
+</table>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="1-use-context-managers">1. Use Context Managers</h3>
+<p>Always use <code>with</code> statement for proper resource cleanup:</p>
+<pre><code class="language-python">with dip_bundestag.ApiClient(configuration) as api_client:
+    # API operations
+    pass
+# Connections automatically closed
+</code></pre>
+<h3 id="2-configure-authentication-once">2. Configure Authentication Once</h3>
+<pre><code class="language-python"># Don't repeat API key in every call
+configuration.api_key['ApiKeyQuery'] = 'YOUR_KEY'
+
+# Now all API instances use this configuration
+with dip_bundestag.ApiClient(configuration) as api_client:
+    vorgang_api = vorgnge_api.VorgngeApi(api_client)
+    drucksache_api = drucksachen_api.DrucksachenApi(api_client)
+    # Both use the same auth
+</code></pre>
+<h3 id="3-handle-large-responses">3. Handle Large Responses</h3>
+<pre><code class="language-python"># For endpoints with large responses, process in batches
+cursor = None
+while True:
+    response = api.get_vorgang_list(f_wahlperiode=20, cursor=cursor)
+
+    # Process batch
+    for vorgang in response.documents:
+        process_vorgang(vorgang)  # Process one at a time
+
+    cursor = response.cursor
+    if not cursor:
+        break
+</code></pre>
+<h3 id="4-cache-results-locally">4. Cache Results Locally</h3>
+<pre><code class="language-python">import pickle
+import os
+
+CACHE_FILE = 'vorgaenge_cache.pkl'
+
+if os.path.exists(CACHE_FILE):
+    with open(CACHE_FILE, 'rb') as f:
+        vorgaenge = pickle.load(f)
+else:
+    vorgaenge = api.get_vorgang_list(f_wahlperiode=20)
+    with open(CACHE_FILE, 'wb') as f:
+        pickle.dump(vorgaenge, f)
+</code></pre>
+<h3 id="5-use-specific-imports-for-large-apis">5. Use Specific Imports for Large APIs</h3>
+<p>If you encounter recursion errors:</p>
+<pre><code class="language-python"># Instead of:
+from deutschland import dip_bundestag
+
+# Use specific imports:
+from deutschland.dip_bundestag.api.vorgnge_api import VorgngeApi
+from deutschland.dip_bundestag.model.vorgang import Vorgang
+</code></pre>
+<p>Or increase recursion limit:</p>
+<pre><code class="language-python">import sys
+sys.setrecursionlimit(1500)
+from deutschland import dip_bundestag
+</code></pre>
+<h2 id="use-cases-for-rag-applications">Use Cases for RAG Applications</h2>
+<h3 id="1-extract-all-parliamentary-proceedings">1. Extract All Parliamentary Proceedings</h3>
+<pre><code class="language-python">proceedings = []
+cursor = None
+
+while True:
+    response = vorgang_api.get_vorgang_list(
+        f_wahlperiode=20,
+        cursor=cursor,
+        format='json'
+    )
+    proceedings.extend(response.documents)
+
+    if not response.cursor or response.cursor == cursor:
+        break
+    cursor = response.cursor
+
+# Now embed and index proceedings
+</code></pre>
+<h3 id="2-get-full-text-documents">2. Get Full-Text Documents</h3>
+<pre><code class="language-python"># Get document metadata
+drucksachen = drucksache_api.get_drucksache_list(f_wahlperiode=20)
+
+# Fetch full text for each
+for doc_meta in drucksachen.documents:
+    full_doc = drucksache_api.get_drucksache_text(
+        id=doc_meta.id,
+        format='json'
+    )
+
+    # Extract text and metadata for RAG
+    text = full_doc.text
+    metadata = {
+        'id': full_doc.id,
+        'nummer': full_doc.dokumentnummer,
+        'typ': full_doc.drucksachetyp,
+        'datum': full_doc.datum,
+        'pdf_url': full_doc.fundstelle.pdf_url
+    }
+
+    # Add to vector database
+    add_to_rag(text, metadata)
+</code></pre>
+<h3 id="3-incremental-updates">3. Incremental Updates</h3>
+<pre><code class="language-python">from datetime import datetime, timedelta
+
+# Get only recent updates
+yesterday = (datetime.now() - timedelta(days=1)).isoformat()
+
+updated_vorgaenge = vorgang_api.get_vorgang_list(
+    f_aktualisiert_start=yesterday,
+    format='json'
+)
+
+# Update only changed documents in RAG
+</code></pre>
+<h2 id="limitations-and-considerations">Limitations and Considerations</h2>
+<h3 id="package-limitations">Package Limitations</h3>
+<ul>
+<li><strong>Size:</strong> Full installation with all extras is large (~100+ MB)</li>
+<li><strong>Recursion errors:</strong> Some APIs may need <code>setrecursionlimit()</code> increase</li>
+<li><strong>Update lag:</strong> Package updates may lag behind API changes</li>
+<li><strong>Python only:</strong> Not available for other languages</li>
+</ul>
+<h3 id="api-specific-limitations">API-Specific Limitations</h3>
+<ul>
+<li><strong>DIP API:</strong> Same limitations as direct API access (rate limits, data completeness)</li>
+<li><strong>Authentication:</strong> API keys still required for protected endpoints</li>
+<li><strong>No caching:</strong> Package doesn't cache responses (implement yourself)</li>
+</ul>
+<h3 id="when-to-use-direct-api-instead">When to Use Direct API Instead</h3>
+<p>Consider direct REST API when:
+- Non-Python environment
+- Extremely lightweight deployment needed
+- Want maximum control over HTTP behavior
+- API not yet supported by deutschland package</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="installation-issues">Installation Issues</h3>
+<pre><code class="language-bash"># If installation fails, try upgrading pip
+pip install --upgrade pip
+
+# Or use specific Python version
+python3.11 -m pip install deutschland[dip_bundestag]
+</code></pre>
+<h3 id="import-errors">Import Errors</h3>
+<pre><code class="language-python"># If imports fail with RecursionError:
+import sys
+sys.setrecursionlimit(1500)
+
+# Then import
+from deutschland import dip_bundestag
+</code></pre>
+<h3 id="api-key-issues">API Key Issues</h3>
+<pre><code class="language-python"># Check if API key is set correctly
+print(configuration.api_key)
+
+# Try both auth methods:
+# Method 1: Header
+configuration.api_key['ApiKeyHeader'] = 'YOUR_KEY'
+
+# Method 2: Query param (more reliable for DIP)
+configuration.api_key['ApiKeyQuery'] = 'YOUR_KEY'
+</code></pre>
+<h3 id="timeout-issues">Timeout Issues</h3>
+<pre><code class="language-python"># Increase timeout for slow endpoints
+configuration.timeout = 60  # seconds
+</code></pre>
+<h2 id="development-and-contributing">Development and Contributing</h2>
+<h3 id="repository-structure">Repository Structure</h3>
+<pre><code>deutschland/
+├── src/deutschland/
+│   ├── bundestag/           # Basic Bundestag API
+│   ├── bundesanzeiger/      # Company financial data
+│   ├── geo/                 # Geographic data
+│   ├── lebensmittelwarnung/ # Food warnings
+│   └── ...                  # Other modules
+├── docs/                    # API documentation
+│   ├── bundestag/
+│   ├── dip_bundestag/      # Installed as extra
+│   └── ...
+└── tests/                   # Unit tests
+</code></pre>
+<h3 id="running-tests">Running Tests</h3>
+<pre><code class="language-bash"># Install with development dependencies
+poetry install
+
+# Run tests
+poetry run pytest
+</code></pre>
+<h3 id="contributing">Contributing</h3>
+<p>Contributions welcome! See <a href="https://github.com/bundesAPI/deutschland">GitHub repository</a> for:
+- Issue tracker
+- Contributing guidelines
+- Development setup</p>
+<h2 id="related-resources">Related Resources</h2>
+<ul>
+<li><strong>Main Repo:</strong> https://github.com/bundesAPI/deutschland</li>
+<li><strong>PyPI:</strong> https://pypi.org/project/deutschland/</li>
+<li><strong>DIP API Docs:</strong> https://dip.bundestag.api.bund.dev/</li>
+<li><strong>bundesAPI Organization:</strong> https://github.com/bundesAPI</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>The <strong>deutschland</strong> Python package is the <strong>easiest way for Python developers</strong> to access German government APIs, including comprehensive Bundestag data through the DIP API.</p>
+<h3 id="quick-decision-guide">Quick Decision Guide</h3>
+<p><strong>Use deutschland package if:</strong>
+✅ You're developing in Python
+✅ You want type safety and IDE support
+✅ You prefer Pythonic interfaces over HTTP calls
+✅ You're building production applications
+✅ You want automatic pagination and error handling</p>
+<p><strong>Use direct REST API if:</strong>
+✅ You're not using Python
+✅ You need ultra-lightweight deployment
+✅ You want maximum control over HTTP
+✅ The API isn't supported by deutschland yet</p>
+<h3 id="installation-quick-reference">Installation Quick Reference</h3>
+<pre><code class="language-bash"># Minimal installation
+pip install deutschland
+
+# With DIP Bundestag (most comprehensive parliamentary data)
+pip install deutschland[dip_bundestag]
+
+# With lobby register
+pip install deutschland[bundestag_lobbyregister]
+
+# With everything
+pip install deutschland[all]
+</code></pre>
+<h3 id="import-quick-reference">Import Quick Reference</h3>
+<pre><code class="language-python"># DIP Bundestag API (comprehensive)
+from deutschland import dip_bundestag
+from deutschland.dip_bundestag.api import vorgnge_api, drucksachen_api
+
+# Basic Bundestag API
+from deutschland import bundestag
+
+# Geographic data
+from deutschland.geo import Geo
+
+# Company data
+from deutschland.bundesanzeiger import Bundesanzeiger
+</code></pre>
+<p><strong>For RAG/LLM Applications:</strong> Use <code>deutschland[dip_bundestag]</code> for easiest access to complete parliamentary data with type-safe, Pythonic interfaces.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/feld-m/rag_blueprint/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
