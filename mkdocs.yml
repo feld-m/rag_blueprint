@@ -22,6 +22,7 @@ nav:
     - Bootstrap:
       - Configuration:
         - Configuration: src/augmentation/bootstrap/configuration/configuration.md
+        - Temporal_domain_config: src/augmentation/bootstrap/configuration/temporal_domain_config.md
         - Chainlit_configuration: src/augmentation/bootstrap/configuration/chainlit_configuration.md
         - Components:
           - Llm_configuration: src/augmentation/bootstrap/configuration/components/llm_configuration.md
@@ -57,6 +58,9 @@ nav:
           - Configuration: src/augmentation/components/retrievers/auto/configuration.md
           - Retriever: src/augmentation/components/retrievers/auto/retriever.md
         - Registry: src/augmentation/components/retrievers/registry.md
+        - Dynamic_temporal:
+          - Configuration: src/augmentation/components/retrievers/dynamic_temporal/configuration.md
+          - Retriever: src/augmentation/components/retrievers/dynamic_temporal/retriever.md
       - Llms:
         - Registry: src/augmentation/components/llms/registry.md
         - Lite_llm:
