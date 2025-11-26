@@ -1,0 +1,21 @@
+{
+  "name": "generic",
+  "metadata_schema": {
+    "temporal_field": "period",
+    "current_period": null,
+    "historical_period": null
+  },
+  "temporal_keywords": {
+    "current": {
+      "en": []
+    },
+    "historical": {
+      "en": []
+    }
+  },
+  "period_identifiers": {},
+  "query_expansion": {},
+  "language_detection": {
+    "en": ["the", "is", "are", "a", "an"]
+  }
+}

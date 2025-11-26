@@ -11,6 +11,7 @@ build/**/logs
 configurations/*
 !configurations/configuration.default.json
 !configurations/configuration.local.json
+!configurations/temporal_domains/
 !configurations/configuration.test*.json
 data/
 tmp/
