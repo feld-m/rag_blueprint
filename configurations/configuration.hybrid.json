@@ -1,0 +1,89 @@
+{
+  \"extraction\": {
+    \"datasources\": [
+      {
+        \"name\": \"pdf\",
+        \"export_limit\": 5,
+        \"base_path\": \"data/bavarian_beer\"
+      }
+    ]
+  },
+  \"embedding\": {
+    \"vector_store\": {
+      \"name\": \"qdrant\",
+      \"collection_name\": \"embeddings\",
+      \"host\": \"qdrant\",
+      \"port\": 6333
+    },
+    \"embedding_model\": {
+      \"provider\": \"hugging_face\",
+      \"name\": \"BAAI/bge-small-en-v1.5\",
+      \"tokenizer_name\": \"BAAI/bge-small-en-v1.5\",
+      \"splitter\": {
+        \"chunk_overlap_in_tokens\": 50,
+        \"chunk_size_in_tokens\": 384
+      }
+    }
+  },
+  \"augmentation\": {
+    \"chat_engine\": {
+      \"name\": \"langfuse\",
+      \"guardrails\": {
+        \"llm\": {
+          \"provider\": \"lite_llm\",
+          \"name\": \"gpt-4o-mini\",
+          \"max_tokens\": 1024,
+          \"max_retries\": 3,
+          \"context_window\": 16384
+        }
+      },
+      \"retriever\": {
+        \"name\": \"hybrid\",
+        \"similarity_top_k\": 10
+      },
+      \"llm\": {
+        \"provider\": \"lite_llm\",
+        \"name\": \"gpt-4o-mini\",
+        \"max_tokens\": 1024,
+        \"max_retries\": 3,
+        \"context_window\": 16384
+      },
+      \"postprocessors\": [
+        {
+          \"name\": \"colbert_rerank\",
+          \"top_n\": 5,
+          \"model\": \"colbert-ir/colbertv2.0\",
+          \"tokenizer\": \"colbert-ir/colbertv2.0\",
+          \"keep_retrieval_score\": true
+        }
+      ]
+    },
+    \"langfuse\": {
+      \"host\": \"langfuse\",
+      \"protocol\": \"http\",
+      \"port\": 3000,
+      \"database\": {
+        \"host\": \"langfuse-db\",
+        \"port\": 5432,
+        \"db\": \"langfuse\"
+      }
+    },
+    \"chainlit\": {feat(config): add hybrid retrieval configuration example
+      \"port\": 8000
+    }
+  },
+  \"evaluation\": {
+    \"judge_llm\": {
+      \"provider\": \"lite_llm\",
+      \"name\": \"gpt-4o-mini\",
+      \"max_tokens\": 1024,
+      \"max_retries\": 3,
+      \"context_window\": 16384
+    },
+    \"judge_embedding_model\": {
+      \"provider\": \"hugging_face\",
+      \"name\": \"BAAI/bge-small-en-v1.5\",
+      \"tokenizer_name\": \"BAAI/bge-small-en-v1.5\"
+    }
+  }
+}

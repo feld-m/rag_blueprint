@@ -11,6 +11,7 @@ dependencies = [
     "pytest-asyncio>=0.26.0",
     "pytest-mock>=3.14.0",
     "python-on-whales>=0.76.1",
+    "mypy>=1.11.0",
 ]
 
 [project.optional-dependencies]
@@ -44,7 +45,7 @@ embedding = [
     "llama-index-vector-stores-qdrant>=0.4.3",
     "psycopg2-binary>=2.9.10",
     "transformers>=4.49.0",
-    "torch>=2.0.0",  # Note: Install via pip separately on macOS Intel
+    "torch>=2.0.0", # Note: Install via pip separately on macOS Intel
 ]
 augmentation = [
     "chainlit>=2.3.0",
@@ -52,9 +53,9 @@ augmentation = [
     "llama-index-callbacks-langfuse>=0.3.0",
     "llama-index-llms-litellm>=0.4.2",
     "llama-index-postprocessor-colbert-rerank>=0.3.0",
+    "llama-index-retrievers-bm25>=0.3.0",
 ]
 evaluation = ["ragas==0.1.14"]
-
 all = [
     "rag-blueprint[core]",
     "rag-blueprint[extraction]",
@@ -73,8 +74,8 @@ packages = ["src/"]
 [tool.uv]
 # Override resolution to use system-installed torch on macOS Intel
 override-dependencies = [
-    "torch==2.2.2",  # Use pip-installed torch for macOS Intel compatibility
+    "torch==2.2.2", # Use pip-installed torch for macOS Intel compatibility
 ]
 constraint-dependencies = [
-    "numpy<2",  # torch 2.2.2 requires numpy 1.x
+    "numpy<2", # torch 2.2.2 requires numpy 1.x
 ]
