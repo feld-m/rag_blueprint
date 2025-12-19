@@ -12,99 +12,35 @@ It comes with built-in monitoring and observability tools for better troubleshoo
 </div>
 
 ## 🚀 Features
-
-- **Multiple Knowledge Base Integration**: Seamless extraction from several Data Sources(Confluence, Notion, PDF)
-- **Wide Models Support**: Availability of numerous embedding and language models
-- **Vector Search**: Efficient similarity search using vector stores
-- **Interactive Chat**: User-friendly interface for querying knowledge on [Chainlit](https://chainlit.io/)
-- **Performance Monitoring**: Query and response tracking with [Langfuse](https://langfuse.com/)
-- **Evaluation**: Comprehensive evaluation metrics using [RAGAS](https://docs.ragas.io/en/stable/)
-- **Setup flexibility**: Easy and flexible setup process of the pipeline
+- **Hybrid Retrieval**: Improved retrieval accuracy by combining semantic vector search and keyword-based (BM25) search with Query Fusion.
+- **ColBERT Reranking**: Advanced post-processing using ColBERT reranker for superior precision in top results.
+- **Multiple Knowledge Base Integration**: Seamless extraction from several Data Sources (Confluence, Notion, PDF).
+- **Wide Models Support**: Availability of numerous embedding and language models.
+- **Interactive Chat**: User-friendly interface for querying knowledge on [Chainlit](https://chainlit.io/).
+- **Performance Monitoring**: Query and response tracking with [Langfuse](https://langfuse.com/).
+- **Evaluation**: Comprehensive evaluation metrics using [RAGAS](https://docs.ragas.io/en/stable/).
+- **Setup flexibility**: Easy and flexible setup process of the pipeline.
 
 ## 🛠️ Tech Stack
-
 ### Core
 [Python](https://www.python.org/) • [LlamaIndex](https://www.llamaindex.ai/) • [Chainlit](https://chainlit.io/) • [Langfuse](https://langfuse.com/) • [RAGAS](https://docs.ragas.io/)
 
----
+### Components
+- **Retriever**: Basic Vector, Hybrid (Vector + BM25)
+- **Postprocessor**: ColBERT Reranker, Metadata filters
+- **LLMs**: OpenAI, Anthropic, HuggingFace, Local (via Ollama)
 
-### Data Sources
-[Notion](https://developers.notion.com/) • [Confluence](https://developer.atlassian.com/cloud/confluence/rest/v2/intro/#about) • PDF files • [BundestagMine](https://bundestag-mine.de/api/documentation/index.html)
-
----
-
-### Embedding Models
-[VoyageAI](https://www.voyageai.com/) • [OpenAI](https://openai.com/) • [Hugging Face](https://huggingface.co/)
-
----
-
-### Language Models
-[LiteLLM](https://docs.litellm.ai/) - Availability of many LLMs via providers like **OpenAI**, **Google** or **Anthropic** as well as local LLMs
-
----
-
-### Vector Stores
-[Qdrant](https://qdrant.tech/) • [Chroma](https://www.trychroma.com/) • [PGVector](https://github.com/pgvector)
-
-
----
-
-### Infrastructure
-[PostgreSQL](https://www.postgresql.org/) • [Docker](https://www.docker.com/)
-
-
-## 🚀 Quickstart
-
-Check the detailed [Quickstart Setup](https://feld-m.github.io/rag_blueprint/quickstart/quickstart_setup/)
-
-## 🏗️ Architecture
-
-### Data Flow
-
-1. **Extraction**:
-   - Fetches content from respective data sources
-   - Preprocess retrieved resources and parse it to markdown
-
-2. **Embedding**:
-   - Applies markdown aware splitting
-   - Embeds final nodes using the selected embedding model
-   - Saves the embeddings in the selected vector store
-
-3. **Augmentation**
-   - Defines retrieval and augmentation pipeline encapusalted in a chat engine
-   - Integrates Chainlit for UI interface
-   - Integrates Langfuse for observability of generated responses and user queries
-
-3. **Evaluation**:
-   - Uses Chainlit and Langfuse platforms for gathering human feedback
-   - Employs Ragas package for evaluating perfomance of current setup
-
-For more info refer to specific readmes of [Extraction](/src/extraction/README.md), [Embedding](/src/embedding/README.md), [Augmentation](/src/augmentation/README.md) and [Evaluation](/src/evaluation//README.md).
-
-### Integrations
-
-For user interface the codebase uses [Chainlit](https://chainlit.io/), which is integrated with [Langfuse](https://langfuse.com/) responsible for observability and tracing of the system. Moreover, integration enables building evaluation datasets based on the user feeback regarding the system answers. Feedback is saved in Langfuse datasets and later used by [Evaluation](/src/evaluation//README.md) module.
-
-## 📁 Project Structure
-
-```
-.
-├── build/            # Build and deployment scripts
-│   └── workstation/  # Build scripts for workstation setup
-├── configurations/   # Configuration and secrets files
-├── data/             # Data for local testing
-├── res/              # Assets
-└── src/              # Source code
-    ├── augmentation/   # Chainlit, Langfuse, and RAG processing components
-    ├── core/           # Base package
-    ├── extraction/     # Data sources extraction
-    ├── embedding/      # Data embedding
-    └── evaluate/       # Evaluation system
-├── tests/            # Unit tests
+## 📖 Usage
+### Basic Start
+```bash
+python -m augmentation.app --config configurations/configuration.default.json
 ```
 
-## 📚 Documentation
+### Hybrid Retrieval Start
+To use the new Hybrid Retrieval with ColBERT reranking:
+```bash
+python -m augmentation.app --config configurations/configuration.hybrid.json
+```
 
-For detailed documentation on setup, configuration, and development:
-- [Documentation Site](https://feld-m.github.io/rag_blueprint/)
-- [Quickstart Setup](https://feld-m.github.io/rag_blueprint/quickstart/quickstart_setup/)
+## ⚙️ Configuration
+The project uses a modular configuration system based on Pydantic. Check `configurations/` for examples.
