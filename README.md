@@ -6,12 +6,11 @@ Open-source community offers a wide range of RAG-related frameworks focus on the
 
 It comes with built-in monitoring and observability tools for better troubleshooting, integrated LLM-based metrics for evaluation, and human feedback collection capabilities. Whether you're building a lightweight knowledge base or an enterprise-grade application, this blueprint offers the flexibility and scalability needed for production deployments.
 
-<div align="center">
-  <img src="res/readme/Architecture.png" width="1200">
-  <p><em>Figure 1: High-level architecture of the RAG Blueprint framework showing the main components and data flow</em></p>
-</div>
+![Architecture](res/readme/Architecture.png)
+*Figure 1: High-level architecture of the RAG Blueprint framework showing the main components and data flow*
 
 ## 🚀 Features
+
 - **Hybrid Retrieval**: Improved retrieval accuracy by combining semantic vector search and keyword-based (BM25) search with Query Fusion.
 - **ColBERT Reranking**: Advanced post-processing using ColBERT reranker for superior precision in top results.
 - **Multiple Knowledge Base Integration**: Seamless extraction from several Data Sources (Confluence, Notion, PDF).
@@ -22,6 +21,7 @@ It comes with built-in monitoring and observability tools for better troubleshoo
 - **Setup flexibility**: Easy and flexible setup process of the pipeline.
 
 ## 🛠️ Tech Stack
+
 ### Core
 [Python](https://www.python.org/) • [LlamaIndex](https://www.llamaindex.ai/) • [Chainlit](https://chainlit.io/) • [Langfuse](https://langfuse.com/) • [RAGAS](https://docs.ragas.io/)
 
@@ -31,16 +31,28 @@ It comes with built-in monitoring and observability tools for better troubleshoo
 - **LLMs**: OpenAI, Anthropic, HuggingFace, Local (via Ollama)
 
 ## 📖 Usage
-### Basic Start
+
+### Prerequisites
+Install dependencies:
 ```bash
-python -m augmentation.app --config configurations/configuration.default.json
+pip install .[all]
+```
+
+### Basic Start
+To start the Chainlit UI with the default configuration:
+```bash
+python -m src.augmentation.app --env default
 ```
 
 ### Hybrid Retrieval Start
 To use the new Hybrid Retrieval with ColBERT reranking:
 ```bash
-python -m augmentation.app --config configurations/configuration.hybrid.json
+python -m src.augmentation.app --env hybrid
 ```
 
 ## ⚙️ Configuration
-The project uses a modular configuration system based on Pydantic. Check `configurations/` for examples.
+
+The project uses a modular configuration system based on Pydantic. Configuration files are located in the `configurations/` directory and are selected using the `--env` flag.
+
+- `configuration.default.json`: Standard vector search
+- `configuration.hybrid.json`: Hybrid search (Vector + BM25) with ColBERT reranking
